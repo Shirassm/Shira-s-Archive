@@ -1,0 +1,814 @@
+<!doctype html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Bab 2: Teori Atom dan Notasi Unsur — Shira's Archive</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/lucide@0.577.0/dist/umd/lucide.min.js"></script>
+  <style>
+    :root {
+      --bg: #f5f8fd;
+      --surface: #fff;
+      --surface2: #edf4fd;
+      --text: #25334a;
+      --muted: #718099;
+      --line: #e3eaf4;
+      --blue: #537fda;
+      --blue2: #e8f0ff;
+      --shadow: 0 12px 36px rgba(48, 79, 129, .07);
+    }
+    body.dark {
+      --bg: #101827;
+      --surface: #192437;
+      --surface2: #202e45;
+      --text: #eef4ff;
+      --muted: #a7b5cb;
+      --line: #344159;
+      --blue: #8bb3ff;
+      --blue2: #263d65;
+      --shadow: 0 12px 36px rgba(0, 0, 0, .17);
+    }
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      background: var(--bg);
+      color: var(--text);
+      font-family: "Plus Jakarta Sans", sans-serif;
+      line-height: 1.7;
+      transition: background .25s, color .25s;
+    }
+    button { font-family: "Plus Jakarta Sans", sans-serif; cursor: pointer; }
+    .wrap { max-width: 1190px; margin: auto; padding: 0 28px; }
+
+    /* Header (Sama persis dengan index.html) */
+    .site-header {
+      background: var(--surface);
+      border-bottom: 1px solid var(--line);
+      position: sticky;
+      top: 0;
+      z-index: 10;
+    }
+    .nav-inner {
+      min-height: 78px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+    }
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 11px;
+      font-weight: 800;
+      font-size: 18px;
+      text-decoration: none;
+      color: var(--text);
+    }
+    .brand-mark {
+      width: 38px;
+      height: 38px;
+      display: grid;
+      place-items: center;
+      border-radius: 12px;
+      background: var(--blue);
+      color: white;
+    }
+    .brand-mark svg { width: 21px; }
+    .icon-button {
+      width: 41px;
+      height: 41px;
+      border: 1px solid var(--line);
+      border-radius: 12px;
+      background: var(--surface);
+      color: var(--text);
+      display: grid;
+      place-items: center;
+    }
+    .icon-button svg { width: 19px; }
+
+    /* Breadcrumb & Judul Bab */
+    .reader-top { padding: 34px 0 24px; }
+    .back-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      color: var(--blue);
+      text-decoration: none;
+      font-weight: 700;
+      font-size: 13px;
+      margin-bottom: 18px;
+    }
+    .back-link svg { width: 17px; }
+    .eyebrow {
+      color: var(--blue);
+      font-size: 12px;
+      font-weight: 800;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+      margin: 0 0 8px;
+    }
+    .reader-top h1 {
+      font-size: clamp(28px, 4vw, 40px);
+      letter-spacing: -.04em;
+      line-height: 1.2;
+      margin: 0 0 10px;
+      font-weight: 800;
+    }
+    .reader-top p.desc {
+      color: var(--muted);
+      font-size: 14px;
+      margin: 0;
+      max-width: 680px;
+    }
+
+    /* Layout Dua Kolom: Sidebar Sub-bab + Area Baca */
+    .reader-layout {
+      display: grid;
+      grid-template-columns: 280px minmax(0, 1fr);
+      gap: 28px;
+      padding-bottom: 80px;
+      align-items: start;
+    }
+
+    /* Sidebar Daftar Sub-bab */
+    .toc-card {
+      background: var(--surface);
+      border: 1px solid var(--line);
+      border-radius: 18px;
+      padding: 20px;
+      box-shadow: var(--shadow);
+      position: sticky;
+      top: 102px;
+    }
+    .toc-title {
+      font-size: 12px;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: .08em;
+      color: var(--muted);
+      margin: 0 0 14px;
+    }
+    .toc-list {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      display: grid;
+      gap: 6px;
+    }
+    .toc-list a {
+      display: flex;
+      align-items: start;
+      gap: 9px;
+      padding: 9px 12px;
+      border-radius: 10px;
+      text-decoration: none;
+      color: var(--muted);
+      font-size: 13px;
+      font-weight: 600;
+      line-height: 1.4;
+      transition: background .2s, color .2s;
+    }
+    .toc-list a:hover {
+      background: var(--surface2);
+      color: var(--text);
+    }
+    .toc-list a.active {
+      background: var(--blue2);
+      color: var(--blue);
+      font-weight: 700;
+    }
+    .toc-num {
+      font-size: 11px;
+      font-weight: 800;
+      opacity: .8;
+      margin-top: 2px;
+    }
+
+    /* Area Konten Catatan */
+    .content-area {
+      display: grid;
+      gap: 24px;
+    }
+    .sub-section {
+      background: var(--surface);
+      border: 1px solid var(--line);
+      border-radius: 20px;
+      padding: 30px;
+      box-shadow: var(--shadow);
+      scroll-margin-top: 102px;
+    }
+    .sub-badge {
+      display: inline-block;
+      background: var(--blue2);
+      color: var(--blue);
+      font-size: 11px;
+      font-weight: 800;
+      padding: 4px 10px;
+      border-radius: 20px;
+      margin-bottom: 10px;
+    }
+    .sub-section h2 {
+      font-size: 22px;
+      letter-spacing: -.03em;
+      margin: 0 0 14px;
+    }
+    .sub-section p {
+      font-size: 14px;
+      margin: 0 0 14px;
+    }
+
+    /* Kotak Rumus & Contoh Soal */
+    .formula-box {
+      background: var(--surface2);
+      border-left: 4px solid var(--blue);
+      border-radius: 12px;
+      padding: 18px 20px;
+      margin: 18px 0;
+    }
+    .formula-box strong.box-label {
+      display: block;
+      font-size: 12px;
+      text-transform: uppercase;
+      letter-spacing: .06em;
+      color: var(--blue);
+      margin-bottom: 10px;
+    }
+    .formula-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 10px 20px;
+      font-size: 14px;
+      font-weight: 600;
+    }
+    .example-box {
+      border: 1px dashed var(--line);
+      border-radius: 12px;
+      padding: 16px 20px;
+      margin-top: 16px;
+      font-size: 13.5px;
+    }
+    .example-box strong { color: var(--blue); }
+
+    /* Kartu Model Teori Atom */
+    .theory-list {
+      display: grid;
+      gap: 16px;
+      margin: 16px 0;
+    }
+    .theory-card {
+      display: flex;
+      align-items: flex-start;
+      gap: 18px;
+      background: var(--surface2);
+      border: 1px solid var(--line);
+      border-radius: 16px;
+      padding: 18px;
+    }
+    .theory-thumb {
+      width: 92px;
+      height: 92px;
+      flex-shrink: 0;
+      background: var(--surface);
+      border: 1px solid var(--line);
+      border-radius: 14px;
+      display: grid;
+      place-items: center;
+      padding: 8px;
+    }
+    .theory-thumb svg {
+      width: 74px;
+      height: 74px;
+    }
+    .theory-body {
+      flex: 1;
+      min-width: 0;
+    }
+    .theory-body h3 {
+      font-size: 16px;
+      font-weight: 800;
+      margin: 0 0 6px;
+      color: var(--blue);
+    }
+    .theory-body p {
+      font-size: 13.5px;
+      margin: 0 0 10px;
+    }
+    .theory-body ul {
+      margin: 4px 0 10px;
+      padding-left: 18px;
+      font-size: 13.5px;
+    }
+    .theory-body li {
+      margin-bottom: 3px;
+    }
+    .pros-cons {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 12px;
+      margin-top: 10px;
+      padding-top: 10px;
+      border-top: 1px solid var(--line);
+      font-size: 13px;
+    }
+    .pros-cons strong {
+      display: block;
+      font-size: 12px;
+      text-transform: uppercase;
+      letter-spacing: .04em;
+      margin-bottom: 4px;
+      color: var(--text);
+    }
+
+    /* Tampilan Notasi Unsur Besar */
+    .notation-display {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 28px;
+      padding: 12px 0;
+      flex-wrap: wrap;
+    }
+    .nuclide-symbol {
+      display: inline-flex;
+      align-items: center;
+      font-weight: 800;
+      line-height: 1;
+      color: var(--blue);
+      background: var(--surface);
+      border: 1px solid var(--line);
+      border-radius: 14px;
+      padding: 14px 22px;
+    }
+    .nuclide-nums {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-end;
+      font-size: 20px;
+      margin-right: 4px;
+      gap: 6px;
+    }
+    .nuclide-elem {
+      font-size: 46px;
+    }
+    .nuclide-legend {
+      font-size: 13.5px;
+      line-height: 1.7;
+    }
+
+    /* Tabel Materi */
+    .table-wrap {
+      overflow-x: auto;
+      margin: 16px 0;
+      border: 1px solid var(--line);
+      border-radius: 12px;
+    }
+    .chem-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 13.5px;
+      text-align: left;
+    }
+    .chem-table th {
+      background: var(--surface2);
+      color: var(--blue);
+      font-weight: 700;
+      padding: 12px 14px;
+      border-bottom: 1px solid var(--line);
+      white-space: nowrap;
+    }
+    .chem-table td {
+      padding: 11px 14px;
+      border-bottom: 1px solid var(--line);
+      vertical-align: top;
+    }
+    .chem-table tr:last-child td { border-bottom: none; }
+
+    /* Navigasi Bawah Antar Bab */
+    .bottom-nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 12px;
+      margin-top: 10px;
+    }
+    .btn-nav {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 12px 18px;
+      border-radius: 12px;
+      text-decoration: none;
+      font-size: 13px;
+      font-weight: 700;
+      border: 1px solid var(--line);
+      background: var(--surface);
+      color: var(--text);
+    }
+    .btn-nav.primary {
+      background: var(--blue);
+      color: #fff;
+      border-color: var(--blue);
+    }
+    .btn-nav svg { width: 17px; }
+
+    .footer {
+      border-top: 1px solid var(--line);
+      padding: 26px 0;
+      color: var(--muted);
+      font-size: 12px;
+    }
+    .footer .wrap {
+      display: flex;
+      justify-content: space-between;
+      gap: 12px;
+    }
+
+    @media (max-width: 860px) {
+      .reader-layout { grid-template-columns: 1fr; }
+      .toc-card { position: static; }
+      .formula-grid, .pros-cons { grid-template-columns: 1fr; }
+    }
+    @media (max-width: 620px) {
+      .wrap { padding: 0 18px; }
+      .sub-section { padding: 22px; }
+      .theory-card { flex-direction: column; }
+      .bottom-nav { flex-direction: column; align-items: stretch; }
+      .btn-nav { justify-content: center; }
+      .footer .wrap { flex-direction: column; }
+    }
+  </style>
+</head>
+<body>
+
+  <header class="site-header">
+    <div class="wrap nav-inner">
+      <a href="../index.html" class="brand" aria-label="Kembali ke Beranda Shira's Archive">
+        <span class="brand-mark"><i data-lucide="book-open"></i></span>
+        <span>Shira's Archive</span>
+      </a>
+      <button id="theme-toggle" class="icon-button" type="button" aria-label="Aktifkan tema gelap" title="Tukar tema">
+        <i data-lucide="moon"></i>
+      </button>
+    </div>
+  </header>
+
+  <main class="wrap">
+    <div class="reader-top">
+      <a href="../index.html" class="back-link"><i data-lucide="arrow-left"></i> Kembali ke Daftar Mata Pelajaran</a>
+      <p class="eyebrow">Kimia • Kelas 10 • Bab 02</p>
+      <h1>Teori Atom dan Notasi Unsur</h1>
+      <p class="desc">Rangkuman struktur dasar penyusun atom, perkembangan model atom dari Dalton hingga Bohr, cara membaca notasi unsur, serta perbedaan isotop, isobar, dan isoton.</p>
+    </div>
+
+    <div class="reader-layout">
+      <!-- Navigasi Lompat Sub-bab (Sticky Sidebar) -->
+      <aside class="toc-card" aria-label="Daftar sub-bab">
+        <p class="toc-title">Daftar Sub-bab</p>
+        <ul class="toc-list">
+          <li><a href="#sub-1" class="active"><span class="toc-num">01</span><span>Struktur Atom</span></a></li>
+          <li><a href="#sub-2"><span class="toc-num">02</span><span>Perkembangan Teori Atom</span></a></li>
+          <li><a href="#sub-3"><span class="toc-num">03</span><span>Notasi Unsur &amp; Partikel Dasar</span></a></li>
+          <li><a href="#sub-4"><span class="toc-num">04</span><span>Isotop, Isobar, dan Isoton</span></a></li>
+        </ul>
+      </aside>
+
+      <!-- Area Baca Utama -->
+      <div class="content-area">
+
+        <!-- Sub-bab 1 -->
+        <article id="sub-1" class="sub-section">
+          <span class="sub-badge">Sub-bab 01</span>
+          <h2>Struktur Atom</h2>
+          <p><strong>Materi</strong> adalah segala sesuatu yang memiliki massa dan menempati suatu ruang. Bagian terkecil dari suatu materi yang masih memiliki sifat dasar materi tersebut disebut <strong>atom</strong>, yang tersusun atas bagian <strong>inti atom</strong> dan <strong>kulit atom</strong>.</p>
+
+          <div class="table-wrap">
+            <table class="chem-table">
+              <thead>
+                <tr>
+                  <th>Partikel Penyusun</th>
+                  <th>Lambang</th>
+                  <th>Muatan Listrik</th>
+                  <th>Letak di Dalam Atom</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td><strong>Proton</strong></td>
+                  <td>p</td>
+                  <td>Positif (+1)</td>
+                  <td>Di dalam inti atom (nukleus)</td>
+                </tr>
+                <tr>
+                  <td><strong>Neutron</strong></td>
+                  <td>n</td>
+                  <td>Netral (0)</td>
+                  <td>Di dalam inti atom (nukleus)</td>
+                </tr>
+                <tr>
+                  <td><strong>Elektron</strong></td>
+                  <td>e<sup>-</sup></td>
+                  <td>Negatif (-1)</td>
+                  <td>Di kulit atom (mengelilingi inti)</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+          <div class="formula-box">
+            <strong class="box-label">Konsep Inti Struktur Atom</strong>
+            <p style="margin:0; font-size:13.5px;">
+              • <strong>Inti atom (Nukleus)</strong> bermuatan positif karena berisi <strong>proton</strong> dan <strong>neutron</strong>.<br>
+              • <strong>Kulit atom</strong> merupakan lintasan tempat <strong>elektron</strong> bergerak mengelilingi inti atom.
+            </p>
+          </div>
+        </article>
+
+        <!-- Sub-bab 2 -->
+        <article id="sub-2" class="sub-section">
+          <span class="sub-badge">Sub-bab 02</span>
+          <h2>Perkembangan Teori Atom</h2>
+          <p>Pemahaman mengenai bentuk dan struktur atom terus berkembang seiring penemuan para ilmuwan:</p>
+
+          <div class="theory-list">
+            <!-- 1. Dalton -->
+            <div class="theory-card">
+              <div class="theory-thumb" aria-hidden="true">
+                <svg viewBox="0 0 80 80">
+                  <defs>
+                    <radialGradient id="daltonGrad" cx="35%" cy="30%" r="65%">
+                      <stop offset="0%" stop-color="#93b4f5"/>
+                      <stop offset="100%" stop-color="#3b63b8"/>
+                    </radialGradient>
+                  </defs>
+                  <circle cx="40" cy="40" r="28" fill="url(#daltonGrad)"/>
+                </svg>
+              </div>
+              <div class="theory-body">
+                <h3>1. Teori Atom Dalton (Model Bola Pejal)</h3>
+                <p>Menurut John Dalton, atom merupakan partikel paling dasar dengan ciri-ciri berikut:</p>
+                <ul>
+                  <li>Bagian terkecil dari unsur yang tidak dapat dibagi lagi.</li>
+                  <li>Tidak dapat dimusnahkan.</li>
+                  <li>Tersusun dari unsur dengan perbandingan tetap.</li>
+                </ul>
+                <div class="pros-cons">
+                  <div>
+                    <strong>Kelebihan</strong>
+                    Dapat menjelaskan Hukum Kekekalan Massa dan Hukum Perbandingan Tetap.
+                  </div>
+                  <div>
+                    <strong>Kekurangan</strong>
+                    Tidak dapat menjelaskan adanya proton, elektron, neutron, dan inti atom; tidak dapat menjelaskan sifat fisik listrik; serta tidak dapat menjelaskan bagaimana atom-atom saling berikatan.
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- 2. Thomson -->
+            <div class="theory-card">
+              <div class="theory-thumb" aria-hidden="true">
+                <svg viewBox="0 0 80 80">
+                  <circle cx="40" cy="40" r="28" fill="#537fda" fill-opacity="0.22" stroke="#537fda" stroke-width="2.5"/>
+                  <text x="36" y="23" font-size="11" font-weight="800" fill="#537fda">+</text>
+                  <text x="53" y="43" font-size="11" font-weight="800" fill="#537fda">+</text>
+                  <text x="20" y="45" font-size="11" font-weight="800" fill="#537fda">+</text>
+                  <text x="37" y="61" font-size="11" font-weight="800" fill="#537fda">+</text>
+                  <circle cx="29" cy="29" r="4" fill="#ef4444"/>
+                  <circle cx="50" cy="29" r="4" fill="#ef4444"/>
+                  <circle cx="40" cy="41" r="4" fill="#ef4444"/>
+                  <circle cx="29" cy="52" r="4" fill="#ef4444"/>
+                  <circle cx="50" cy="52" r="4" fill="#ef4444"/>
+                </svg>
+              </div>
+              <div class="theory-body">
+                <h3>2. Teori Atom Thomson (Model Kue Kismis)</h3>
+                <p>Menurut Thomson, atom adalah unsur yang bermuatan positif dan di dalamnya terdapat elektron yang bermuatan negatif yang tersebar merata dalam atom.</p>
+                <div class="pros-cons">
+                  <div>
+                    <strong>Kelebihan</strong>
+                    Adanya keberadaan elektron membuktikan adanya partikel lain yang bermuatan negatif dalam atom.
+                  </div>
+                  <div>
+                    <strong>Kekurangan</strong>
+                    Tidak dapat menjelaskan susunan muatan positif dan negatif, serta tidak dapat menjelaskan keberadaan inti atom.
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- 3. Rutherford -->
+            <div class="theory-card">
+              <div class="theory-thumb" aria-hidden="true">
+                <svg viewBox="0 0 80 80" fill="none">
+                  <ellipse cx="40" cy="40" rx="31" ry="12" transform="rotate(-30 40 40)" stroke="#537fda" stroke-width="1.8"/>
+                  <ellipse cx="40" cy="40" rx="31" ry="12" transform="rotate(30 40 40)" stroke="#537fda" stroke-width="1.8"/>
+                  <ellipse cx="40" cy="40" rx="12" ry="31" stroke="#537fda" stroke-width="1.8"/>
+                  <circle cx="40" cy="40" r="6" fill="#ef4444"/>
+                  <circle cx="66" cy="25" r="3" fill="#537fda"/>
+                  <circle cx="14" cy="25" r="3" fill="#537fda"/>
+                  <circle cx="40" cy="71" r="3" fill="#537fda"/>
+                </svg>
+              </div>
+              <div class="theory-body">
+                <h3>3. Teori Atom Rutherford</h3>
+                <p>Menurut Rutherford, atom adalah atom yang tersusun dari inti atom yang bermuatan positif dan terdapat elektron yang bergerak mengelilingi inti atom.</p>
+                <div class="pros-cons">
+                  <div>
+                    <strong>Kelebihan</strong>
+                    Dapat menjelaskan pergerakan elektron dalam atom.
+                  </div>
+                  <div>
+                    <strong>Kekurangan</strong>
+                    Tidak dapat menjelaskan mengapa elektron tidak jatuh ke dalam inti atom.
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- 4. Bohr -->
+            <div class="theory-card">
+              <div class="theory-thumb" aria-hidden="true">
+                <svg viewBox="0 0 80 80" fill="none">
+                  <circle cx="40" cy="40" r="31" stroke="#537fda" stroke-width="1.5" stroke-dasharray="3 2"/>
+                  <circle cx="40" cy="40" r="22" stroke="#537fda" stroke-width="1.7"/>
+                  <circle cx="40" cy="40" r="13" stroke="#537fda" stroke-width="1.9"/>
+                  <circle cx="40" cy="40" r="5.5" fill="#ef4444"/>
+                  <circle cx="40" cy="27" r="2.6" fill="#537fda"/>
+                  <circle cx="40" cy="53" r="2.6" fill="#537fda"/>
+                  <circle cx="62" cy="40" r="2.6" fill="#537fda"/>
+                  <circle cx="18" cy="40" r="2.6" fill="#537fda"/>
+                  <circle cx="40" cy="9" r="2.6" fill="#537fda"/>
+                </svg>
+              </div>
+              <div class="theory-body">
+                <h3>4. Teori Atom Bohr</h3>
+                <p>Menurut Bohr, atom adalah unsur yang memiliki inti atom dan terdapat elektron yang bergerak mengelilingi inti atom pada lintasannya yang disebut dengan <strong>kulit</strong> atau <strong>orbit</strong>.</p>
+                <div class="pros-cons">
+                  <div>
+                    <strong>Kelebihan</strong>
+                    Dapat menjelaskan alasan elektron tidak jatuh ke dalam inti atom.
+                  </div>
+                  <div>
+                    <strong>Kekurangan</strong>
+                    Tidak dapat menjelaskan lintasan elektron pada atom kompleks, hanya akurat untuk atom sederhana.
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </article>
+
+        <!-- Sub-bab 3 -->
+        <article id="sub-3" class="sub-section">
+          <span class="sub-badge">Sub-bab 03</span>
+          <h2>Notasi Unsur &amp; Partikel Dasar</h2>
+          <p>Susunan partikel dalam suatu atom dituliskan menggunakan notasi unsur standar berikut:</p>
+
+          <div class="formula-box">
+            <strong class="box-label">Notasi Standar Suatu Unsur</strong>
+            <div class="notation-display">
+              <div class="nuclide-symbol" aria-label="Notasi unsur A di kiri atas, Z di kiri bawah, dan X sebagai lambang unsur">
+                <span class="nuclide-nums">
+                  <span>A</span>
+                  <span>Z</span>
+                </span>
+                <span class="nuclide-elem">X</span>
+              </div>
+              <div class="nuclide-legend">
+                • <strong>X</strong> = Lambang unsur kimia.<br>
+                • <strong>A</strong> = <strong>Nomor Massa</strong> (jumlah proton + neutron di inti atom).<br>
+                • <strong>Z</strong> = <strong>Nomor Atom</strong> (jumlah proton dalam inti atom; menjadi ciri khas tiap unsur).
+              </div>
+            </div>
+          </div>
+
+          <div class="formula-box">
+            <strong class="box-label">Cara Menghitung Proton (p), Elektron (e), dan Neutron (n)</strong>
+            <div class="formula-grid">
+              <div>
+                <strong>1. Pada Atom Netral (<sup>A</sup><sub>Z</sub>X):</strong><br>
+                • Jumlah Proton (p) = <strong>Z</strong><br>
+                • Jumlah Elektron (e) = <strong>Z</strong> (karena netral, muatan positif = negatif)<br>
+                • Jumlah Neutron (n) = <strong>A - Z</strong>
+              </div>
+              <div>
+                <strong>2. Pada Ion Bermuatan:</strong><br>
+                • <strong>Kation / Ion Positif (<sup>A</sup><sub>Z</sub>X<sup>m+</sup>):</strong> Atom melepas elektron sebanyak <em>m</em><br>
+                &nbsp;&nbsp;p = Z &nbsp;|&nbsp; e = <strong>Z - m</strong> &nbsp;|&nbsp; n = A - Z<br>
+                • <strong>Anion / Ion Negatif (<sup>A</sup><sub>Z</sub>X<sup>m-</sup>):</strong> Atom menangkap elektron sebanyak <em>m</em><br>
+                &nbsp;&nbsp;p = Z &nbsp;|&nbsp; e = <strong>Z + m</strong> &nbsp;|&nbsp; n = A - Z
+              </div>
+            </div>
+          </div>
+
+          <div class="example-box">
+            <strong>Contoh Perhitungan:</strong><br>
+            1. Atom netral <strong><sup>23</sup><sub>11</sub>Na</strong> &rarr; p = <strong>11</strong>, e = <strong>11</strong>, dan n = 23 - 11 = <strong>12</strong>.<br>
+            2. Ion positif <strong><sup>23</sup><sub>11</sub>Na<sup>+</sup></strong> &rarr; p = <strong>11</strong>, e = 11 - 1 = <strong>10</strong>, dan n = <strong>12</strong>.<br>
+            3. Ion negatif <strong><sup>16</sup><sub>8</sub>O<sup>2-</sup></strong> &rarr; p = <strong>8</strong>, e = 8 + 2 = <strong>10</strong>, dan n = 16 - 8 = <strong>8</strong>.
+          </div>
+        </article>
+
+        <!-- Sub-bab 4 -->
+        <article id="sub-4" class="sub-section">
+          <span class="sub-badge">Sub-bab 04</span>
+          <h2>Pasangan Notasi Unsur (Isotop, Isobar, Isoton)</h2>
+          <p>Untuk memudahkan menghafal, perhatikan <strong>huruf akhir</strong> pada masing-masing istilah:</p>
+
+          <div class="table-wrap">
+            <table class="chem-table">
+              <thead>
+                <tr>
+                  <th>Istilah &amp; Trik Hafalan</th>
+                  <th>Pengertian</th>
+                  <th>Contoh Pasangan</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td><strong>Isoto<u>p</u></strong><br><span style="color:var(--muted); font-size:12px;">Sama <strong>P</strong>roton / Nomor Atom</span></td>
+                  <td>Atom-atom dari <strong>unsur yang sama</strong> yang memiliki nomor atom (Z) sama, tetapi nomor massa (A) berbeda.</td>
+                  <td><strong><sup>12</sup><sub>6</sub>C</strong> dengan <strong><sup>13</sup><sub>6</sub>C</strong><br>(Keduanya sama-sama memiliki 6 proton)</td>
+                </tr>
+                <tr>
+                  <td><strong>Isoba<u>r</u></strong><br><span style="color:var(--muted); font-size:12px;">Sama Nomor Massa</span></td>
+                  <td>Atom-atom dari <strong>unsur yang berbeda</strong> yang memiliki nomor massa (A) sama, tetapi nomor atom (Z) berbeda.</td>
+                  <td><strong><sup>14</sup><sub>6</sub>C</strong> dengan <strong><sup>14</sup><sub>7</sub>N</strong><br>(Keduanya sama-sama memiliki nomor massa 14)</td>
+                </tr>
+                <tr>
+                  <td><strong>Isoto<u>n</u></strong><br><span style="color:var(--muted); font-size:12px;">Sama <strong>N</strong>eutron</span></td>
+                  <td>Atom-atom dari <strong>unsur yang berbeda</strong> yang memiliki jumlah neutron (A - Z) yang sama.</td>
+                  <td><strong><sup>31</sup><sub>15</sub>P</strong> dengan <strong><sup>32</sup><sub>16</sub>S</strong><br>Neutron pada P = 31 - 15 = 16<br>Neutron pada S = 32 - 16 = 16</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+          <div class="example-box">
+            <strong>Contoh Soal Latihan:</strong> Diketahui empat notasi unsur berikut: <sup>39</sup><sub>19</sub>K, <sup>40</sup><sub>19</sub>K, <sup>40</sup><sub>20</sub>Ca, dan <sup>38</sup><sub>18</sub>Ar. Tentukan pasangan yang merupakan isotop, isobar, dan isoton!<br>
+            <strong>Pembahasan:</strong><br>
+            • <strong>Isotop</strong> (nomor atom Z sama): <strong><sup>39</sup><sub>19</sub>K</strong> dan <strong><sup>40</sup><sub>19</sub>K</strong> (sama-sama bernomor atom 19).<br>
+            • <strong>Isobar</strong> (nomor massa A sama): <strong><sup>40</sup><sub>19</sub>K</strong> dan <strong><sup>40</sup><sub>20</sub>Ca</strong> (sama-sama bernomor massa 40).<br>
+            • <strong>Isoton</strong> (jumlah neutron sama): <strong><sup>39</sup><sub>19</sub>K</strong> (n = 39 - 19 = 20) dengan <strong><sup>40</sup><sub>20</sub>Ca</strong> (n = 40 - 20 = 20), serta <strong><sup>38</sup><sub>18</sub>Ar</strong> (n = 38 - 18 = 20).
+          </div>
+        </article>
+
+        <!-- Navigasi Bawah -->
+        <div class="bottom-nav">
+          <a href="kimia-bab1.html" class="btn-nav"><i data-lucide="arrow-left"></i> Bab Sebelumnya: Ilmu Kimia dan Peranannya Sehari-hari</a>
+          <a href="kimia-bab3.html" class="btn-nav primary">Bab Selanjutnya: Konfigurasi Elektron <i data-lucide="arrow-right"></i></a>
+        </div>
+
+      </div>
+    </div>
+  </main>
+
+  <footer class="footer">
+    <div class="wrap">
+      <span>© Shira's Archive</span>
+      <span>Belajar sedikit demi sedikit, setiap hari.</span>
+    </div>
+  </footer>
+
+  <script>
+    lucide.createIcons();
+
+    // Sinkronisasi Dark Mode dengan halaman beranda
+    const themeBtn = document.getElementById("theme-toggle");
+    if (localStorage.getItem("shira-theme") === "dark") {
+      document.body.classList.add("dark");
+      themeBtn.innerHTML = '<i data-lucide="sun"></i>';
+      lucide.createIcons();
+    }
+
+    themeBtn.onclick = () => {
+      const dark = document.body.classList.toggle("dark");
+      localStorage.setItem("shira-theme", dark ? "dark" : "light");
+      themeBtn.innerHTML = '<i data-lucide="' + (dark ? "sun" : "moon") + '"></i>';
+      lucide.createIcons();
+    };
+
+    // Highlight otomatis daftar sub-bab saat halaman di-scroll
+    const sections = document.querySelectorAll(".sub-section");
+    const navLinks = document.querySelectorAll(".toc-list a");
+
+    window.addEventListener("scroll", () => {
+      let current = "";
+      sections.forEach(sec => {
+        const top = sec.offsetTop - 150;
+        if (window.scrollY >= top) current = sec.getAttribute("id");
+      });
+      navLinks.forEach(link => {
+        link.classList.remove("active");
+        if (link.getAttribute("href") === "#" + current) {
+          link.classList.add("active");
+        }
+      });
+    });
+  </script>
+</body>
+</html>

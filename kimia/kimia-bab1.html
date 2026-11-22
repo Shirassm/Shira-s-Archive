@@ -1,0 +1,1019 @@
+<!doctype html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Bab 1: Kimia di Sekitar Kita — Shira's Archive</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/lucide@0.577.0/dist/umd/lucide.min.js"></script>
+  <style>
+    :root {
+      --bg: #f5f8fd;
+      --surface: #fff;
+      --surface2: #edf4fd;
+      --text: #25334a;
+      --muted: #718099;
+      --line: #e3eaf4;
+      --blue: #537fda;
+      --blue2: #e8f0ff;
+      --shadow: 0 12px 36px rgba(48, 79, 129, .07);
+    }
+    body.dark {
+      --bg: #101827;
+      --surface: #192437;
+      --surface2: #202e45;
+      --text: #eef4ff;
+      --muted: #a7b5cb;
+      --line: #344159;
+      --blue: #8bb3ff;
+      --blue2: #263d65;
+      --shadow: 0 12px 36px rgba(0, 0, 0, .17);
+    }
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      background: var(--bg);
+      color: var(--text);
+      font-family: "Plus Jakarta Sans", sans-serif;
+      line-height: 1.7;
+      transition: background .25s, color .25s;
+    }
+    button { font-family: "Plus Jakarta Sans", sans-serif; cursor: pointer; }
+    .wrap { max-width: 1190px; margin: auto; padding: 0 28px; }
+
+    /* Header (Sama persis dengan index.html) */
+    .site-header {
+      background: var(--surface);
+      border-bottom: 1px solid var(--line);
+      position: sticky;
+      top: 0;
+      z-index: 10;
+    }
+    .nav-inner {
+      min-height: 78px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+    }
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 11px;
+      font-weight: 800;
+      font-size: 18px;
+      text-decoration: none;
+      color: var(--text);
+    }
+    .brand-mark {
+      width: 38px;
+      height: 38px;
+      display: grid;
+      place-items: center;
+      border-radius: 12px;
+      background: var(--blue);
+      color: white;
+    }
+    .brand-mark svg { width: 21px; }
+    .icon-button {
+      width: 41px;
+      height: 41px;
+      border: 1px solid var(--line);
+      border-radius: 12px;
+      background: var(--surface);
+      color: var(--text);
+      display: grid;
+      place-items: center;
+    }
+    .icon-button svg { width: 19px; }
+
+    /* Breadcrumb & Judul Bab */
+    .reader-top { padding: 34px 0 24px; }
+    .back-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      color: var(--blue);
+      text-decoration: none;
+      font-weight: 700;
+      font-size: 13px;
+      margin-bottom: 18px;
+    }
+    .back-link svg { width: 17px; }
+    .eyebrow {
+      color: var(--blue);
+      font-size: 12px;
+      font-weight: 800;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+      margin: 0 0 8px;
+    }
+    .reader-top h1 {
+      font-size: clamp(28px, 4vw, 40px);
+      letter-spacing: -.04em;
+      line-height: 1.2;
+      margin: 0 0 10px;
+      font-weight: 800;
+    }
+    .reader-top p.desc {
+      color: var(--muted);
+      font-size: 14px;
+      margin: 0;
+      max-width: 680px;
+    }
+
+    /* Layout Dua Kolom: Sidebar Sub-bab + Area Baca */
+    .reader-layout {
+      display: grid;
+      grid-template-columns: 280px minmax(0, 1fr);
+      gap: 28px;
+      padding-bottom: 80px;
+      align-items: start;
+    }
+
+    /* Sidebar Daftar Sub-bab */
+    .toc-card {
+      background: var(--surface);
+      border: 1px solid var(--line);
+      border-radius: 18px;
+      padding: 20px;
+      box-shadow: var(--shadow);
+      position: sticky;
+      top: 102px;
+    }
+    .toc-title {
+      font-size: 12px;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: .08em;
+      color: var(--muted);
+      margin: 0 0 14px;
+    }
+    .toc-list {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      display: grid;
+      gap: 6px;
+    }
+    .toc-list a {
+      display: flex;
+      align-items: start;
+      gap: 9px;
+      padding: 9px 12px;
+      border-radius: 10px;
+      text-decoration: none;
+      color: var(--muted);
+      font-size: 13px;
+      font-weight: 600;
+      line-height: 1.4;
+      transition: background .2s, color .2s;
+    }
+    .toc-list a:hover {
+      background: var(--surface2);
+      color: var(--text);
+    }
+    .toc-list a.active {
+      background: var(--blue2);
+      color: var(--blue);
+      font-weight: 700;
+    }
+    .toc-num {
+      font-size: 11px;
+      font-weight: 800;
+      opacity: .8;
+      margin-top: 2px;
+    }
+
+    /* Area Konten Catatan */
+    .content-area {
+      display: grid;
+      gap: 24px;
+    }
+    .sub-section {
+      background: var(--surface);
+      border: 1px solid var(--line);
+      border-radius: 20px;
+      padding: 30px;
+      box-shadow: var(--shadow);
+      scroll-margin-top: 102px;
+    }
+    .sub-badge {
+      display: inline-block;
+      background: var(--blue2);
+      color: var(--blue);
+      font-size: 11px;
+      font-weight: 800;
+      padding: 4px 10px;
+      border-radius: 20px;
+      margin-bottom: 10px;
+    }
+    .sub-section h2 {
+      font-size: 22px;
+      letter-spacing: -.03em;
+      margin: 0 0 14px;
+    }
+    .sub-section p {
+      font-size: 14px;
+      margin: 0 0 14px;
+    }
+
+    /* Kotak Rumus & Contoh Soal */
+    .formula-box {
+      background: var(--surface2);
+      border-left: 4px solid var(--blue);
+      border-radius: 12px;
+      padding: 18px 20px;
+      margin: 18px 0;
+    }
+    .formula-box strong.box-label {
+      display: block;
+      font-size: 12px;
+      text-transform: uppercase;
+      letter-spacing: .06em;
+      color: var(--blue);
+      margin-bottom: 10px;
+    }
+    .formula-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 10px 20px;
+      font-size: 14px;
+      font-weight: 600;
+    }
+    .example-box {
+      border: 1px dashed var(--line);
+      border-radius: 12px;
+      padding: 16px 20px;
+      margin-top: 16px;
+      font-size: 13.5px;
+    }
+    .example-box strong { color: var(--blue); }
+
+    /* Tabel Materi */
+    .table-wrap {
+      overflow-x: auto;
+      margin: 16px 0;
+      border: 1px solid var(--line);
+      border-radius: 12px;
+    }
+    .chem-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 13.5px;
+      text-align: left;
+    }
+    .chem-table th {
+      background: var(--surface2);
+      color: var(--blue);
+      font-weight: 700;
+      padding: 12px 14px;
+      border-bottom: 1px solid var(--line);
+      white-space: nowrap;
+    }
+    .chem-table td {
+      padding: 11px 14px;
+      border-bottom: 1px solid var(--line);
+      vertical-align: top;
+    }
+    .chem-table tr:last-child td { border-bottom: none; }
+
+    /* Kartu Visual Alat Lab & Simbol Bahan Kimia */
+    .visual-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 14px;
+      margin: 16px 0;
+    }
+    .visual-card {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      background: var(--surface2);
+      border: 1px solid var(--line);
+      border-radius: 14px;
+      padding: 14px;
+    }
+    .visual-thumb {
+      width: 68px;
+      height: 68px;
+      flex-shrink: 0;
+      background: var(--surface);
+      border: 1px solid var(--line);
+      border-radius: 12px;
+      display: grid;
+      place-items: center;
+      padding: 6px;
+    }
+    .visual-thumb svg {
+      width: 52px;
+      height: 52px;
+    }
+    .visual-info h3 {
+      font-size: 14px;
+      font-weight: 700;
+      margin: 0 0 4px;
+      color: var(--text);
+    }
+    .visual-info p {
+      font-size: 12.5px;
+      margin: 0;
+      color: var(--muted);
+      line-height: 1.5;
+    }
+    .visual-info .chem-ex {
+      display: inline-block;
+      margin-top: 5px;
+      font-size: 11.5px;
+      font-weight: 600;
+      color: var(--blue);
+    }
+
+    /* Daftar 12 Prinsip Kimia Hijau */
+    .principle-list {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 12px;
+      margin: 16px 0;
+    }
+    .principle-item {
+      background: var(--surface2);
+      border-radius: 12px;
+      padding: 13px 15px;
+      font-size: 13px;
+      line-height: 1.55;
+    }
+    .principle-item strong {
+      display: block;
+      color: var(--blue);
+      margin-bottom: 3px;
+      font-size: 13.5px;
+    }
+
+    /* Navigasi Bawah Antar Bab */
+    .bottom-nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 12px;
+      margin-top: 10px;
+    }
+    .btn-nav {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 12px 18px;
+      border-radius: 12px;
+      text-decoration: none;
+      font-size: 13px;
+      font-weight: 700;
+      border: 1px solid var(--line);
+      background: var(--surface);
+      color: var(--text);
+    }
+    .btn-nav.primary {
+      background: var(--blue);
+      color: #fff;
+      border-color: var(--blue);
+    }
+    .btn-nav svg { width: 17px; }
+
+    .footer {
+      border-top: 1px solid var(--line);
+      padding: 26px 0;
+      color: var(--muted);
+      font-size: 12px;
+    }
+    .footer .wrap {
+      display: flex;
+      justify-content: space-between;
+      gap: 12px;
+    }
+
+    @media (max-width: 860px) {
+      .reader-layout { grid-template-columns: 1fr; }
+      .toc-card { position: static; }
+      .formula-grid, .visual-grid, .principle-list { grid-template-columns: 1fr; }
+    }
+    @media (max-width: 620px) {
+      .wrap { padding: 0 18px; }
+      .sub-section { padding: 22px; }
+      .bottom-nav { flex-direction: column; align-items: stretch; }
+      .btn-nav { justify-content: center; }
+      .footer .wrap { flex-direction: column; }
+    }
+  </style>
+</head>
+<body>
+
+  <header class="site-header">
+    <div class="wrap nav-inner">
+      <a href="../index.html" class="brand" aria-label="Kembali ke Beranda Shira's Archive">
+        <span class="brand-mark"><i data-lucide="book-open"></i></span>
+        <span>Shira's Archive</span>
+      </a>
+      <button id="theme-toggle" class="icon-button" type="button" aria-label="Aktifkan tema gelap" title="Tukar tema">
+        <i data-lucide="moon"></i>
+      </button>
+    </div>
+  </header>
+
+  <main class="wrap">
+    <div class="reader-top">
+      <a href="../index.html" class="back-link"><i data-lucide="arrow-left"></i> Kembali ke Daftar Mata Pelajaran</a>
+      <p class="eyebrow">Kimia • Kelas 10 • Bab 01</p>
+      <h1>Kimia di Sekitar Kita dan Peranannya di Berbagai Bidang</h1>
+      <p class="desc">Rangkuman bahan kimia dalam produk sehari-hari, peran ilmu kimia lintas disiplin, pengenalan alat laboratorium, simbol bahaya bahan kimia, dan 12 prinsip Kimia Hijau.</p>
+    </div>
+
+    <div class="reader-layout">
+      <!-- Navigasi Lompat Sub-bab (Sticky Sidebar) -->
+      <aside class="toc-card" aria-label="Daftar sub-bab">
+        <p class="toc-title">Daftar Sub-bab</p>
+        <ul class="toc-list">
+          <li><a href="#sub-1" class="active"><span class="toc-num">01</span><span>Kimia di Sekitar Kita</span></a></li>
+          <li><a href="#sub-2"><span class="toc-num">02</span><span>Peran Ilmu Kimia di Berbagai Bidang</span></a></li>
+          <li><a href="#sub-3"><span class="toc-num">03</span><span>Alat-Alat Laboratorium Kimia</span></a></li>
+          <li><a href="#sub-4"><span class="toc-num">04</span><span>Sifat-Sifat Bahan Kimia</span></a></li>
+          <li><a href="#sub-5"><span class="toc-num">05</span><span>12 Prinsip Kimia Hijau</span></a></li>
+        </ul>
+      </aside>
+
+      <!-- Area Baca Utama -->
+      <div class="content-area">
+
+        <!-- Sub-bab 1 -->
+        <article id="sub-1" class="sub-section">
+          <span class="sub-badge">Sub-bab 01</span>
+          <h2>Kimia di Sekitar Kita</h2>
+          <p>Hampir seluruh barang yang kita gunakan setiap hari tersusun atas zat kimia. Setiap bahan kimia memiliki manfaat fungsional tertentu, tetapi juga menyimpan risiko bahaya apabila digunakan secara berlebihan, terakumulasi, atau tidak sesuai aturan pakai.</p>
+
+          <div class="table-wrap">
+            <table class="chem-table">
+              <thead>
+                <tr>
+                  <th>Produk</th>
+                  <th>Bahan Kimia</th>
+                  <th>Manfaat</th>
+                  <th>Bahaya / Akibat yang Ditimbulkan</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td><strong>Bedak</strong></td>
+                  <td>Merkuri (raksa)</td>
+                  <td>Memutihkan kulit</td>
+                  <td>Kerusakan saraf, menghambat perkembangan otak bayi.</td>
+                </tr>
+                <tr>
+                  <td rowspan="2"><strong>Sabun &amp; Sampo</strong></td>
+                  <td>Triclosan</td>
+                  <td>Membunuh bakteri</td>
+                  <td>Kebal terhadap antibiotik, limbah sukar terurai di lingkungan.</td>
+                </tr>
+                <tr>
+                  <td>Metilisotiazolinona</td>
+                  <td>Pengawet</td>
+                  <td>Memicu dermatitis hingga kematian sel pada kulit.</td>
+                </tr>
+                <tr>
+                  <td rowspan="2"><strong>Cat Kuku</strong></td>
+                  <td>Aseton</td>
+                  <td>Pelarut</td>
+                  <td>Pemicu kanker (karsinogen), iritasi.</td>
+                </tr>
+                <tr>
+                  <td>Toluena</td>
+                  <td>Pelarut dan pencerah warna</td>
+                  <td>Karsinogen, iritasi, memperlambat reaksi otak.</td>
+                </tr>
+                <tr>
+                  <td><strong>Pembersih Muka</strong></td>
+                  <td>Paraben</td>
+                  <td>Mencegah bakteri &amp; jamur</td>
+                  <td>Memengaruhi kesuburan, risiko kanker payudara.</td>
+                </tr>
+                <tr>
+                  <td><strong>Skincare</strong></td>
+                  <td>Hidrokuinon</td>
+                  <td>Pemutih kulit</td>
+                  <td>Hiperpigmentasi hingga kerusakan DNA pada kulit.</td>
+                </tr>
+                <tr>
+                  <td rowspan="3"><strong>Lipstik</strong></td>
+                  <td>Triclosan</td>
+                  <td>Membasmi bakteri</td>
+                  <td>Kebal antibiotik, limbah sukar terurai.</td>
+                </tr>
+                <tr>
+                  <td>Retinil palmitat</td>
+                  <td>Mencegah keriput/garis halus di bibir</td>
+                  <td>Berbahaya bagi ibu hamil dan dapat memicu kanker.</td>
+                </tr>
+                <tr>
+                  <td>Paraben</td>
+                  <td>Mencegah bakteri &amp; jamur</td>
+                  <td>Memengaruhi kesuburan, risiko kanker payudara.</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+          <div class="formula-box">
+            <strong class="box-label">Konsep Penting: Dosis &amp; Keamanan Bahan</strong>
+            <p style="margin:0; font-size:13.5px;">
+              Tidak semua bahan kimia bersifat berbahaya ("alami" bukan berarti selalu aman, dan "sintetis" bukan berarti selalu beracun). Tingkat bahaya suatu zat ditentukan oleh <strong>konsentrasi, lama paparan, dan cara penggunaannya</strong>.
+            </p>
+          </div>
+
+          <div class="example-box">
+            <strong>Contoh Soal 1:</strong> Seseorang membeli krim pemutih wajah tanpa izin edar yang menjanjikan hasil putih instan dalam tiga hari. Bahan kimia berbahaya apa yang paling sering disalahgunakan dalam produk tersebut dan apa dampaknya bagi tubuh?<br>
+            <strong>Pembahasan:</strong> Bahan tersebut umumnya adalah <strong>merkuri (raksa)</strong> atau <strong>hidrokuinon</strong> dosis tinggi. Merkuri dapat merusak sistem saraf serta menghambat perkembangan otak janin/bayi, sedangkan hidrokuinon berisiko memicu hiperpigmentasi (ochronosis) hingga kerusakan DNA pada sel kulit.
+          </div>
+        </article>
+
+        <!-- Sub-bab 2 -->
+        <article id="sub-2" class="sub-section">
+          <span class="sub-badge">Sub-bab 02</span>
+          <h2>Peran Ilmu Kimia di Berbagai Bidang</h2>
+          <p>Ilmu kimia disebut sebagai <em>Central Science</em> karena konsepnya menjadi jembatan penghubung dan penopang utama bagi perkembangan berbagai bidang kehidupan maupun cabang ilmu pengetahuan lainnya.</p>
+
+          <div class="formula-box">
+            <strong class="box-label">Peran Utama dalam Sektor Kehidupan</strong>
+            <div class="formula-grid">
+              <div>• <strong>Kedokteran &amp; Farmasi:</strong> Menemukan vaksin, mengidentifikasi struktur kimia virus, dan mempelajari mekanisme reaksi kimia dalam tubuh.</div>
+              <div>• <strong>Energi &amp; Lingkungan:</strong> Pengembangan energi terbarukan (biosolar, baterai, sel surya) serta teknologi material (baterai litium-ion, serat optik).</div>
+              <div>• <strong>Industri:</strong> Penemuan katalisator untuk mempercepat proses produksi dan pengolahan limbah industri ramah lingkungan.</div>
+              <div>• <strong>Pertanian &amp; Pangan:</strong> Pembuatan pupuk kimia dan pestisida, serta pengembangan bahan pengawet, aditif makanan, dan pengolahan limbah pertanian.</div>
+              <div>• <strong>Hukum / Kriminal:</strong> Pengujian sidik jari DNA (forensik) dan reagen pendeteksi narkoba.</div>
+              <div>• <strong>Lingkungan Hidup:</strong> Mengatasi pemanasan global dan menerapkan Gerakan Kimia Hijau (<em>Green Chemistry</em>).</div>
+            </div>
+          </div>
+
+          <div class="table-wrap">
+            <table class="chem-table">
+              <thead>
+                <tr>
+                  <th>Cabang Ilmu Lain</th>
+                  <th>Kontribusi Ilmu Kimia</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td><strong>Biologi</strong></td>
+                  <td>Penentuan struktur molekul DNA/RNA makhluk hidup serta reaksi metabolisme sel.</td>
+                </tr>
+                <tr>
+                  <td><strong>Fisika</strong></td>
+                  <td>Penemuan material superkonduktor serta pemahaman struktur atom dan molekul.</td>
+                </tr>
+                <tr>
+                  <td><strong>Geologi</strong></td>
+                  <td>Penelitian komposisi mineral dan struktur kimia Bumi, Bulan, serta planet lain.</td>
+                </tr>
+                <tr>
+                  <td><strong>Sejarah / Arkeologi</strong></td>
+                  <td>Penentuan umur fosil dan artefak purba menggunakan isotop radioaktif (seperti Karbon-14).</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+          <div class="example-box">
+            <strong>Contoh Soal 2:</strong> Para arkeolog menemukan kerangka manusia purba di sebuah gua dan ingin mengetahui perkiraan usia kerangka tersebut. Cabang ilmu apa yang bekerja sama dengan ilmu kimia dalam kasus ini?<br>
+            <strong>Pembahasan:</strong> <strong>Ilmu Sejarah / Arkeologi</strong>. Kimia berperan melalui analisis peluruhan isotop radioaktif (seperti uji radioaktif Karbon-14) untuk menghitung umur fosil secara akurat.
+          </div>
+        </article>
+
+        <!-- Sub-bab 3 -->
+        <article id="sub-3" class="sub-section">
+          <span class="sub-badge">Sub-bab 03</span>
+          <h2>Alat-Alat Laboratorium Kimia</h2>
+          <p>Setiap alat di laboratorium kimia memiliki fungsi spesifik dan tingkat ketelitian pengukuran yang berbeda. Mengenali bentuk dan kegunaannya mencegah kerusakan alat serta kecelakaan kerja saat praktikum.</p>
+
+          <div class="visual-grid">
+            <!-- 1. Gelas Kimia -->
+            <div class="visual-card">
+              <div class="visual-thumb" aria-hidden="true">
+                <svg viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M16 14h32l-2 4h0v32a4 4 0 0 1-4 4H22a4 4 0 0 1-4-4V18l-2-4z" stroke="#537fda"/>
+                  <path d="M18 36h28v14a4 4 0 0 1-4 4H22a4 4 0 0 1-4-4V36z" fill="#537fda" fill-opacity="0.2" stroke="none"/>
+                  <line x1="24" y1="26" x2="30" y2="26" stroke="#537fda"/>
+                  <line x1="24" y1="34" x2="32" y2="34" stroke="#537fda"/>
+                  <line x1="24" y1="42" x2="30" y2="42" stroke="#537fda"/>
+                </svg>
+              </div>
+              <div class="visual-info">
+                <h3>1. Gelas Kimia (Beaker Glass)</h3>
+                <p>Menyiapkan larutan, melarutkan zat padat ke dalam air, dan tempat mereaksikan zat dalam volume banyak (50–1.000 mL).</p>
+              </div>
+            </div>
+
+            <!-- 2. Labu Erlenmeyer -->
+            <div class="visual-card">
+              <div class="visual-thumb" aria-hidden="true">
+                <svg viewBox="0 0 64 64" fill="none" stroke="#537fda" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M26 12h12M28 12v10L15 48a4 4 0 0 0 3.5 6h27a4 4 0 0 0 3.5-6L36 22V12"/>
+                  <path d="M19 40h26l3 8a4 4 0 0 1-3.5 6h-25A4 4 0 0 1 16 48l3-8z" fill="#537fda" fill-opacity="0.2" stroke="none"/>
+                  <line x1="27" y1="34" x2="33" y2="34"/>
+                  <line x1="25" y1="42" x2="33" y2="42"/>
+                </svg>
+              </div>
+              <div class="visual-info">
+                <h3>2. Labu Erlenmeyer</h3>
+                <p>Wadah menyimpan larutan, mereaksikan larutan dengan pengadukan memutar, dan melakukan titrasi (50–500 mL).</p>
+              </div>
+            </div>
+
+            <!-- 3. Silinder Ukur -->
+            <div class="visual-card">
+              <div class="visual-thumb" aria-hidden="true">
+                <svg viewBox="0 0 64 64" fill="none" stroke="#537fda" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                  <rect x="25" y="10" width="14" height="40" rx="1"/>
+                  <path d="M19 54h26l-3-4H22l-3 4z"/>
+                  <rect x="25" y="32" width="14" height="18" fill="#537fda" fill-opacity="0.2" stroke="none"/>
+                  <line x1="29" y1="18" x2="35" y2="18"/>
+                  <line x1="29" y1="25" x2="35" y2="25"/>
+                  <line x1="29" y1="32" x2="35" y2="32"/>
+                  <line x1="29" y1="39" x2="35" y2="39"/>
+                </svg>
+              </div>
+              <div class="visual-info">
+                <h3>3. Silinder Ukur (Gelas Ukur)</h3>
+                <p>Mengukur volume cairan secara cepat untuk keperluan praktikum umum (ukuran 5–500 mL).</p>
+              </div>
+            </div>
+
+            <!-- 4. Pipet Gondok -->
+            <div class="visual-card">
+              <div class="visual-thumb" aria-hidden="true">
+                <svg viewBox="0 0 64 64" fill="none" stroke="#537fda" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M30 8h4v14c4 2 6 6 6 10s-2 8-6 10v12l-2 4-2-4V42c-4-2-6-6-6-10s2-8 6-10V8z"/>
+                  <ellipse cx="32" cy="32" rx="5" ry="9" fill="#537fda" fill-opacity="0.2" stroke="none"/>
+                  <line x1="28" y1="15" x2="36" y2="15"/>
+                </svg>
+              </div>
+              <div class="visual-info">
+                <h3>4. Pipet Gondok / Volumetri</h3>
+                <p>Mengambil larutan dengan volume tertentu secara sangat teliti sesuai ukuran pipet (10–100 mL).</p>
+              </div>
+            </div>
+
+            <!-- 5. Labu Ukur -->
+            <div class="visual-card">
+              <div class="visual-thumb" aria-hidden="true">
+                <svg viewBox="0 0 64 64" fill="none" stroke="#537fda" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M28 10h8M29 10v16a14 14 0 1 0 6 0V10"/>
+                  <path d="M19 41a13 13 0 0 0 26 0H19z" fill="#537fda" fill-opacity="0.2" stroke="none"/>
+                  <line x1="27" y1="18" x2="37" y2="18"/>
+                </svg>
+              </div>
+              <div class="visual-info">
+                <h3>5. Labu Ukur (Labu Takar)</h3>
+                <p>Membuat larutan standar dengan volume tertentu dan ketelitian sangat tinggi (10–1.000 mL).</p>
+              </div>
+            </div>
+
+            <!-- 6. Tabung Reaksi & Rak -->
+            <div class="visual-card">
+              <div class="visual-thumb" aria-hidden="true">
+                <svg viewBox="0 0 64 64" fill="none" stroke="#537fda" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M12 22h40M12 48h40M15 22v30M49 22v30"/>
+                  <path d="M21 14h6v28a3 3 0 0 1-6 0V14z"/>
+                  <path d="M37 14h6v28a3 3 0 0 1-6 0V14z"/>
+                  <path d="M21 30h6v12a3 3 0 0 1-6 0V30z" fill="#537fda" fill-opacity="0.25" stroke="none"/>
+                  <path d="M37 26h6v16a3 3 0 0 1-6 0V26z" fill="#537fda" fill-opacity="0.25" stroke="none"/>
+                </svg>
+              </div>
+              <div class="visual-info">
+                <h3>6. Tabung Reaksi &amp; Rak</h3>
+                <p>Mereaksikan zat dalam jumlah sedikit; rak digunakan untuk menyangga tabung reaksi agar berdiri tegak.</p>
+              </div>
+            </div>
+
+            <!-- 7. Penjepit Tabung Reaksi -->
+            <div class="visual-card">
+              <div class="visual-thumb" aria-hidden="true">
+                <svg viewBox="0 0 64 64" fill="none" stroke="#537fda" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M14 26h28c4 0 8-3 8 6s-4 6-8 6H14"/>
+                  <path d="M40 24v16"/>
+                  <circle cx="48" cy="32" r="4" fill="#537fda" fill-opacity="0.2"/>
+                </svg>
+              </div>
+              <div class="visual-info">
+                <h3>7. Penjepit Tabung Reaksi</h3>
+                <p>Menjepit tabung reaksi saat dipanaskan di atas api agar tangan terhindar dari panas (terbuat dari kayu atau logam).</p>
+              </div>
+            </div>
+
+            <!-- 8. Lampu Spiritus -->
+            <div class="visual-card">
+              <div class="visual-thumb" aria-hidden="true">
+                <svg viewBox="0 0 64 64" fill="none" stroke="#537fda" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M32 10c4 5 5 9 0 13-5-4-4-8 0-13z" fill="#f59e0b" stroke="#d97706"/>
+                  <line x1="32" y1="23" x2="32" y2="28"/>
+                  <rect x="27" y="28" width="10" height="4" rx="1"/>
+                  <path d="M22 32h20l5 16a4 4 0 0 1-4 4H21a4 4 0 0 1-4-4l5-16z"/>
+                  <path d="M19 42h26l2 6a4 4 0 0 1-4 4H21a4 4 0 0 1-4-4l2-6z" fill="#537fda" fill-opacity="0.2" stroke="none"/>
+                </svg>
+              </div>
+              <div class="visual-info">
+                <h3>8. Lampu Spiritus</h3>
+                <p>Alat pemanas berbahan bakar spiritus. Untuk mematikan api cukup ditutup penutup sumbunya, <strong>jangan ditiup</strong>.</p>
+              </div>
+            </div>
+
+            <!-- 9. Corong -->
+            <div class="visual-card">
+              <div class="visual-thumb" aria-hidden="true">
+                <svg viewBox="0 0 64 64" fill="none" stroke="#537fda" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M14 16h36L35 36v16l-6-3V36L14 16z"/>
+                  <polygon points="18,19 46,19 33,34 31,34" fill="#537fda" fill-opacity="0.18" stroke="none"/>
+                </svg>
+              </div>
+              <div class="visual-info">
+                <h3>9. Corong</h3>
+                <p>Membantu menuang cairan ke wadah bermulut kecil atau menyaring endapan (dilengkapi kertas saring).</p>
+              </div>
+            </div>
+
+            <!-- 10. Kaki Tiga -->
+            <div class="visual-card">
+              <div class="visual-thumb" aria-hidden="true">
+                <svg viewBox="0 0 64 64" fill="none" stroke="#537fda" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                  <ellipse cx="32" cy="20" rx="18" ry="5"/>
+                  <line x1="17" y1="22" x2="13" y2="52"/>
+                  <line x1="47" y1="22" x2="51" y2="52"/>
+                  <line x1="32" y1="25" x2="32" y2="52"/>
+                </svg>
+              </div>
+              <div class="visual-info">
+                <h3>10. Kaki Tiga (Tripod)</h3>
+                <p>Penyangga wadah (gelas kimia/erlenmeyer) saat pemanasan di atas lampu spiritus, dilengkapi kasa asbes.</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="example-box">
+            <strong>Contoh Soal 3:</strong> Siswa ingin membuat 250 mL larutan NaCl 0,1 M dengan ketelitian volume yang sangat akurat. Alat ukur apa yang paling tepat digunakan?<br>
+            <strong>Pembahasan:</strong> <strong>Labu Ukur (Labu Takar)</strong> ukuran 250 mL, karena labu ukur dirancang khusus untuk mengencerkan dan membuat larutan pada satu volume tetap dengan ketelitian sangat tinggi dibandingkan gelas kimia maupun silinder ukur.
+          </div>
+        </article>
+
+        <!-- Sub-bab 4 -->
+        <article id="sub-4" class="sub-section">
+          <span class="sub-badge">Sub-bab 04</span>
+          <h2>Sifat-Sifat Bahan Kimia</h2>
+          <p>Kemasan bahan kimia di laboratorium dilengkapi simbol bahaya standar internasional (<em>Globally Harmonized System / GHS</em>) berbentuk belah ketupat berbingkai merah agar pengguna dapat mengantisipasi risiko kecelakaan kerja.</p>
+
+          <div class="visual-grid">
+            <!-- 1. Explosive -->
+            <div class="visual-card">
+              <div class="visual-thumb" aria-hidden="true">
+                <svg viewBox="0 0 64 64">
+                  <polygon points="32,4 60,32 32,60 4,32" fill="#fff" stroke="#dc2626" stroke-width="4"/>
+                  <circle cx="29" cy="35" r="5" fill="#1e293b"/>
+                  <path d="M29 30l4-6M33 32l8-5M34 36l9 1M32 39l6 7M25 32l-6-4M24 37l-7 2" stroke="#1e293b" stroke-width="2.2" stroke-linecap="round"/>
+                  <circle cx="43" cy="24" r="1.8" fill="#1e293b"/>
+                  <circle cx="44" cy="39" r="1.8" fill="#1e293b"/>
+                </svg>
+              </div>
+              <div class="visual-info">
+                <h3>1. Mudah Meledak (Explosive)</h3>
+                <p>Dapat meledak akibat benturan, gesekan, percikan api, atau pemanasan.</p>
+                <span class="chem-ex">Contoh: Amonium nitrat, kalium klorat</span>
+              </div>
+            </div>
+
+            <!-- 2. Oxidizing -->
+            <div class="visual-card">
+              <div class="visual-thumb" aria-hidden="true">
+                <svg viewBox="0 0 64 64">
+                  <polygon points="32,4 60,32 32,60 4,32" fill="#fff" stroke="#dc2626" stroke-width="4"/>
+                  <circle cx="32" cy="37" r="7" fill="none" stroke="#1e293b" stroke-width="2.6"/>
+                  <path d="M32 16c4 4 5 8 2 11 2-1 4 0 3 3-2 2-8 2-10 0-1-3 1-4 3-3-3-3-2-7 2-11z" fill="#1e293b"/>
+                </svg>
+              </div>
+              <div class="visual-info">
+                <h3>2. Pengoksidasi (Oxidizing)</h3>
+                <p>Melepaskan oksigen sehingga dapat memicu atau memperhebat kebakaran bahan lain.</p>
+                <span class="chem-ex">Contoh: Asam sulfat, asam nitrat</span>
+              </div>
+            </div>
+
+            <!-- 3. Carcinogenic -->
+            <div class="visual-card">
+              <div class="visual-thumb" aria-hidden="true">
+                <svg viewBox="0 0 64 64">
+                  <polygon points="32,4 60,32 32,60 4,32" fill="#fff" stroke="#dc2626" stroke-width="4"/>
+                  <circle cx="32" cy="21" r="4" fill="#1e293b"/>
+                  <path d="M23 44l2-14c1-2 3-3 7-3s6 1 7 3l2 14H23z" fill="#1e293b"/>
+                  <path d="M32 29l2 4 4-1-2 3 3 3-4 1-1 4-2-4-4 1 2-3-3-3 4-1z" fill="#fff"/>
+                </svg>
+              </div>
+              <div class="visual-info">
+                <h3>3. Karsinogenik (Carcinogenic)</h3>
+                <p>Pemicu pertumbuhan sel kanker serta gangguan kesehatan kronis jangka panjang.</p>
+                <span class="chem-ex">Contoh: Benzena, asbes, vinil klorida</span>
+              </div>
+            </div>
+
+            <!-- 4. Flammable -->
+            <div class="visual-card">
+              <div class="visual-thumb" aria-hidden="true">
+                <svg viewBox="0 0 64 64">
+                  <polygon points="32,4 60,32 32,60 4,32" fill="#fff" stroke="#dc2626" stroke-width="4"/>
+                  <path d="M32 17c5 6 7 11 3 16 3-1 5 1 4 5-2 4-12 4-14 0-1-4 1-6 4-5-4-5-2-10 3-16z" fill="#1e293b"/>
+                  <line x1="22" y1="44" x2="42" y2="44" stroke="#1e293b" stroke-width="2.5" stroke-linecap="round"/>
+                </svg>
+              </div>
+              <div class="visual-info">
+                <h3>4. Mudah Terbakar (Flammable)</h3>
+                <p>Memiliki titik nyala rendah dan sangat mudah terbakar bila terkena panas atau percikan api.</p>
+                <span class="chem-ex">Contoh: Etil eter, propana, alkohol</span>
+              </div>
+            </div>
+
+            <!-- 5. Toxic -->
+            <div class="visual-card">
+              <div class="visual-thumb" aria-hidden="true">
+                <svg viewBox="0 0 64 64">
+                  <polygon points="32,4 60,32 32,60 4,32" fill="#fff" stroke="#dc2626" stroke-width="4"/>
+                  <circle cx="32" cy="27" r="7" fill="#1e293b"/>
+                  <rect x="28" y="32" width="8" height="4" rx="1" fill="#1e293b"/>
+                  <circle cx="29.5" cy="27" r="1.6" fill="#fff"/>
+                  <circle cx="34.5" cy="27" r="1.6" fill="#fff"/>
+                  <line x1="22" y1="43" x2="42" y2="37" stroke="#1e293b" stroke-width="2.5" stroke-linecap="round"/>
+                  <line x1="22" y1="37" x2="42" y2="43" stroke="#1e293b" stroke-width="2.5" stroke-linecap="round"/>
+                </svg>
+              </div>
+              <div class="visual-info">
+                <h3>5. Beracun (Toxic)</h3>
+                <p>Dapat menyebabkan keracunan serius hingga kematian jika terhirup, tertelan, atau terserap kulit.</p>
+                <span class="chem-ex">Contoh: Merkuri, kalium sianida, timbel oksida</span>
+              </div>
+            </div>
+
+            <!-- 6. Corrosive -->
+            <div class="visual-card">
+              <div class="visual-thumb" aria-hidden="true">
+                <svg viewBox="0 0 64 64">
+                  <polygon points="32,4 60,32 32,60 4,32" fill="#fff" stroke="#dc2626" stroke-width="4"/>
+                  <rect x="19" y="21" width="9" height="4" rx="1" transform="rotate(-25 19 21)" fill="#1e293b"/>
+                  <rect x="36" y="18" width="9" height="4" rx="1" transform="rotate(25 36 18)" fill="#1e293b"/>
+                  <line x1="24" y1="27" x2="24" y2="34" stroke="#1e293b" stroke-width="2" stroke-dasharray="2 2"/>
+                  <line x1="40" y1="27" x2="40" y2="34" stroke="#1e293b" stroke-width="2" stroke-dasharray="2 2"/>
+                  <rect x="18" y="38" width="11" height="4" fill="#1e293b"/>
+                  <path d="M35 39h10c1 0 2 1 2 2s-1 2-2 2H35v-4z" fill="#1e293b"/>
+                </svg>
+              </div>
+              <div class="visual-info">
+                <h3>6. Korosif (Corrosive)</h3>
+                <p>Dapat merusak jaringan hidup (kulit/mata) serta mengikis logam secara kimiawi.</p>
+                <span class="chem-ex">Contoh: Asam asetat, asam klorida, aluminium klorida</span>
+              </div>
+            </div>
+
+            <!-- 7. Irritant -->
+            <div class="visual-card">
+              <div class="visual-thumb" aria-hidden="true">
+                <svg viewBox="0 0 64 64">
+                  <polygon points="32,4 60,32 32,60 4,32" fill="#fff" stroke="#dc2626" stroke-width="4"/>
+                  <rect x="30" y="19" width="4" height="17" rx="2" fill="#1e293b"/>
+                  <circle cx="32" cy="42" r="2.5" fill="#1e293b"/>
+                </svg>
+              </div>
+              <div class="visual-info">
+                <h3>7. Menyebabkan Iritasi (Irritant)</h3>
+                <p>Menimbulkan peradangan, gatal, kemerahan, atau perih pada kulit, mata, dan saluran pernapasan.</p>
+                <span class="chem-ex">Contoh: Amonia, natrium hidroksida, hidrogen peroksida</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="example-box">
+            <strong>Contoh Soal 4:</strong> Botol reagen berisi larutan asam klorida (HCl) pekat memiliki simbol tetesan cairan yang mengikis permukaan batang logam dan tangan. Apa arti simbol tersebut dan tindakan pencegahan apa yang wajib dilakukan?<br>
+            <strong>Pembahasan:</strong> Simbol tersebut menandakan sifat <strong>Korosif (<em>Corrosive</em>)</strong>. Pencegahannya adalah wajib menggunakan sarung tangan karet, jas laboratorium, serta kacamata pelindung (<em>goggles</em>), dan bekerja di dalam lemari asam agar uapnya tidak terhirup.
+          </div>
+        </article>
+
+        <!-- Sub-bab 5 -->
+        <article id="sub-5" class="sub-section">
+          <span class="sub-badge">Sub-bab 05</span>
+          <h2>12 Prinsip Kimia Hijau (Green Chemistry)</h2>
+          <p><strong>Kimia Hijau</strong> adalah pendekatan dalam ilmu kimia yang berfokus pada perancangan produk dan proses kimia untuk mengurangi atau menghilangkan penggunaan serta pembentukan zat berbahaya bagi kesehatan manusia maupun kelestarian lingkungan.</p>
+
+          <div class="principle-list">
+            <div class="principle-item">
+              <strong>1. Mencegah Timbulnya Limbah</strong>
+              Lebih baik mencegah terbentuknya limbah sejak awal daripada mengolah atau membersihkannya setelah limbah terbentuk.
+            </div>
+            <div class="principle-item">
+              <strong>2. Ekonomi Atom (Atom Economy)</strong>
+              Merancang metode sintesis agar sebanyak mungkin atom dari bahan awal masuk ke dalam produk akhir yang diinginkan.
+            </div>
+            <div class="principle-item">
+              <strong>3. Sintesis Kimia yang Tidak Berbahaya</strong>
+              Menggunakan dan menghasilkan zat yang memiliki tingkat toksisitas rendah atau tidak beracun bagi manusia dan lingkungan.
+            </div>
+            <div class="principle-item">
+              <strong>4. Merancang Bahan Kimia yang Lebih Aman</strong>
+              Produk kimia dirancang agar tetap efektif fungsinya, tetapi meminimalkan sifat racunnya.
+            </div>
+            <div class="principle-item">
+              <strong>5. Pelarut dan Bahan Pendukung yang Lebih Aman</strong>
+              Menghindari penggunaan pelarut organik berbahaya, atau menggantinya dengan pelarut ramah lingkungan (seperti air).
+            </div>
+            <div class="principle-item">
+              <strong>6. Desain Efisiensi Energi</strong>
+              Meminimalkan kebutuhan energi dalam reaksi kimia, misalnya melangsungkan reaksi pada suhu dan tekanan ruang.
+            </div>
+            <div class="principle-item">
+              <strong>7. Penggunaan Bahan Baku Terbarukan</strong>
+              Memilih bahan baku yang dapat diperbarui (seperti produk pertanian/biomassa) dibandingkan bahan bakar fosil yang terbatas.
+            </div>
+            <div class="principle-item">
+              <strong>8. Mengurangi Tahapan Derivatisasi</strong>
+              Menghindari proses modifikasi gugus kimia sementara yang tidak perlu karena membutuhkan reagen tambahan dan menghasilkan limbah.
+            </div>
+            <div class="principle-item">
+              <strong>9. Penggunaan Katalis</strong>
+              Menggunakan katalisator selektif untuk mempercepat reaksi dan menghemat energi, dibandingkan reagen stoikiometri yang menghasilkan banyak limbah.
+            </div>
+            <div class="principle-item">
+              <strong>10. Desain Produk yang Mudah Terurai (Degradable)</strong>
+              Produk kimia harus dirancang agar setelah selesai digunakan dapat terurai secara alami di lingkungan dan tidak mencemari.
+            </div>
+            <div class="principle-item">
+              <strong>11. Analisis Langsung (Real-Time) untuk Mencegah Polusi</strong>
+              Mengembangkan metode pemantauan proses secara langsung agar terbentuknya zat berbahaya dapat segera dicegah sebelum terjadi.
+            </div>
+            <div class="principle-item">
+              <strong>12. Meminimalkan Potensi Kecelakaan</strong>
+              Memilih zat dan wujud zat dalam proses kimia yang paling kecil risikonya terhadap ledakan, kebakaran, maupun kebocoran.
+            </div>
+          </div>
+
+          <div class="example-box">
+            <strong>Contoh Soal 5:</strong> Sebuah pabrik plastik mulai mengganti bahan baku pembuatan kemasan dari minyak bumi menjadi pati singkong sehingga kemasannya dapat terurai oleh mikroorganisme tanah dalam beberapa bulan. Prinsip Kimia Hijau nomor berapa saja yang diterapkan pabrik tersebut?<br>
+            <strong>Pembahasan:</strong> Pabrik tersebut menerapkan <strong>Prinsip ke-7 (Penggunaan Bahan Baku Terbarukan)</strong> karena memakai pati singkong pengganti minyak bumi, serta <strong>Prinsip ke-10 (Desain Produk yang Mudah Terurai / Degradable)</strong> karena kemasannya dapat terurai alami di lingkungan.
+          </div>
+        </article>
+
+        <!-- Navigasi Bawah -->
+        <div class="bottom-nav">
+          <a href="../index.html" class="btn-nav"><i data-lucide="layout-grid"></i> Daftar Mata Pelajaran</a>
+          <a href="kimia-bab2.html" class="btn-nav primary">Bab Selanjutnya: Teori Atom dan Notasi Unsur <i data-lucide="arrow-right"></i></a>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <footer class="footer">
+    <div class="wrap">
+      <span>© Shira's Archive</span>
+      <span>Belajar sedikit demi sedikit, setiap hari.</span>
+    </div>
+  </footer>
+
+  <script>
+    lucide.createIcons();
+
+    // Sinkronisasi Dark Mode dengan halaman beranda
+    const themeBtn = document.getElementById("theme-toggle");
+    if (localStorage.getItem("shira-theme") === "dark") {
+      document.body.classList.add("dark");
+      themeBtn.innerHTML = '<i data-lucide="sun"></i>';
+      lucide.createIcons();
+    }
+
+    themeBtn.onclick = () => {
+      const dark = document.body.classList.toggle("dark");
+      localStorage.setItem("shira-theme", dark ? "dark" : "light");
+      themeBtn.innerHTML = '<i data-lucide="' + (dark ? "sun" : "moon") + '"></i>';
+      lucide.createIcons();
+    };
+
+    // Highlight otomatis daftar sub-bab saat halaman di-scroll
+    const sections = document.querySelectorAll(".sub-section");
+    const navLinks = document.querySelectorAll(".toc-list a");
+
+    window.addEventListener("scroll", () => {
+      let current = "";
+      sections.forEach(sec => {
+        const top = sec.offsetTop - 150;
+        if (window.scrollY >= top) current = sec.getAttribute("id");
+      });
+      navLinks.forEach(link => {
+        link.classList.remove("active");
+        if (link.getAttribute("href") === "#" + current) {
+          link.classList.add("active");
+        }
+      });
+    });
+  </script>
+</body>
+</html>

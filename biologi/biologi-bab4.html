@@ -1,0 +1,900 @@
+<!doctype html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Bab 4: Bakteri — Shira's Archive</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/lucide@0.577.0/dist/umd/lucide.min.js"></script>
+  <style>
+    :root {
+      --bg: #f5f8fd;
+      --surface: #fff;
+      --surface2: #edf4fd;
+      --text: #25334a;
+      --muted: #718099;
+      --line: #e3eaf4;
+      --blue: #537fda;
+      --blue2: #e8f0ff;
+      --shadow: 0 12px 36px rgba(48, 79, 129, .07);
+    }
+    body.dark {
+      --bg: #101827;
+      --surface: #192437;
+      --surface2: #202e45;
+      --text: #eef4ff;
+      --muted: #a7b5cb;
+      --line: #344159;
+      --blue: #8bb3ff;
+      --blue2: #263d65;
+      --shadow: 0 12px 36px rgba(0, 0, 0, .17);
+    }
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      background: var(--bg);
+      color: var(--text);
+      font-family: "Plus Jakarta Sans", sans-serif;
+      line-height: 1.7;
+      transition: background .25s, color .25s;
+    }
+    button { font-family: "Plus Jakarta Sans", sans-serif; cursor: pointer; }
+    .wrap { max-width: 1190px; margin: auto; padding: 0 28px; }
+
+    /* Header (Sama persis dengan index.html) */
+    .site-header {
+      background: var(--surface);
+      border-bottom: 1px solid var(--line);
+      position: sticky;
+      top: 0;
+      z-index: 10;
+    }
+    .nav-inner {
+      min-height: 78px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+    }
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 11px;
+      font-weight: 800;
+      font-size: 18px;
+      text-decoration: none;
+      color: var(--text);
+    }
+    .brand-mark {
+      width: 38px;
+      height: 38px;
+      display: grid;
+      place-items: center;
+      border-radius: 12px;
+      background: var(--blue);
+      color: white;
+    }
+    .brand-mark svg { width: 21px; }
+    .icon-button {
+      width: 41px;
+      height: 41px;
+      border: 1px solid var(--line);
+      border-radius: 12px;
+      background: var(--surface);
+      color: var(--text);
+      display: grid;
+      place-items: center;
+    }
+    .icon-button svg { width: 19px; }
+
+    /* Breadcrumb & Judul Bab */
+    .reader-top { padding: 34px 0 24px; }
+    .back-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      color: var(--blue);
+      text-decoration: none;
+      font-weight: 700;
+      font-size: 13px;
+      margin-bottom: 18px;
+    }
+    .back-link svg { width: 17px; }
+    .eyebrow {
+      color: var(--blue);
+      font-size: 12px;
+      font-weight: 800;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+      margin: 0 0 8px;
+    }
+    .reader-top h1 {
+      font-size: clamp(28px, 4vw, 40px);
+      letter-spacing: -.04em;
+      line-height: 1.2;
+      margin: 0 0 10px;
+      font-weight: 800;
+    }
+    .reader-top p.desc {
+      color: var(--muted);
+      font-size: 14px;
+      margin: 0;
+      max-width: 680px;
+    }
+
+    /* Layout Dua Kolom: Sidebar Sub-bab + Area Baca */
+    .reader-layout {
+      display: grid;
+      grid-template-columns: 280px minmax(0, 1fr);
+      gap: 28px;
+      padding-bottom: 80px;
+      align-items: start;
+    }
+
+    /* Sidebar Daftar Sub-bab */
+    .toc-card {
+      background: var(--surface);
+      border: 1px solid var(--line);
+      border-radius: 18px;
+      padding: 20px;
+      box-shadow: var(--shadow);
+      position: sticky;
+      top: 102px;
+    }
+    .toc-title {
+      font-size: 12px;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: .08em;
+      color: var(--muted);
+      margin: 0 0 14px;
+    }
+    .toc-list {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      display: grid;
+      gap: 6px;
+    }
+    .toc-list a {
+      display: flex;
+      align-items: start;
+      gap: 9px;
+      padding: 9px 12px;
+      border-radius: 10px;
+      text-decoration: none;
+      color: var(--muted);
+      font-size: 13px;
+      font-weight: 600;
+      line-height: 1.4;
+      transition: background .2s, color .2s;
+    }
+    .toc-list a:hover {
+      background: var(--surface2);
+      color: var(--text);
+    }
+    .toc-list a.active {
+      background: var(--blue2);
+      color: var(--blue);
+      font-weight: 700;
+    }
+    .toc-num {
+      font-size: 11px;
+      font-weight: 800;
+      opacity: .8;
+      margin-top: 2px;
+    }
+
+    /* Area Konten Catatan */
+    .content-area {
+      display: grid;
+      gap: 24px;
+    }
+    .sub-section {
+      background: var(--surface);
+      border: 1px solid var(--line);
+      border-radius: 20px;
+      padding: 30px;
+      box-shadow: var(--shadow);
+      scroll-margin-top: 102px;
+    }
+    .sub-badge {
+      display: inline-block;
+      background: var(--blue2);
+      color: var(--blue);
+      font-size: 11px;
+      font-weight: 800;
+      padding: 4px 10px;
+      border-radius: 20px;
+      margin-bottom: 10px;
+    }
+    .sub-section h2 {
+      font-size: 22px;
+      letter-spacing: -.03em;
+      margin: 0 0 14px;
+    }
+    .sub-section h3 {
+      font-size: 16px;
+      font-weight: 700;
+      color: var(--blue);
+      margin: 22px 0 10px;
+    }
+    .sub-section p {
+      font-size: 14px;
+      margin: 0 0 14px;
+    }
+
+    /* Kotak Konsep & Contoh Soal */
+    .formula-box {
+      background: var(--surface2);
+      border-left: 4px solid var(--blue);
+      border-radius: 12px;
+      padding: 18px 20px;
+      margin: 18px 0;
+    }
+    .formula-box strong.box-label {
+      display: block;
+      font-size: 12px;
+      text-transform: uppercase;
+      letter-spacing: .06em;
+      color: var(--blue);
+      margin-bottom: 10px;
+    }
+    .formula-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 14px 20px;
+      font-size: 13.5px;
+    }
+    .trend-card {
+      background: var(--surface);
+      border: 1px solid var(--line);
+      border-radius: 10px;
+      padding: 13px 15px;
+    }
+    .trend-head {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 8px;
+      margin-bottom: 6px;
+      font-weight: 700;
+      font-size: 13.5px;
+    }
+    .trend-pill {
+      display: inline-block;
+      padding: 2px 9px;
+      border-radius: 99px;
+      font-size: 11.5px;
+      font-weight: 800;
+      background: var(--blue2);
+      color: var(--blue);
+      white-space: nowrap;
+    }
+    .example-box {
+      border: 1px dashed var(--line);
+      border-radius: 12px;
+      padding: 16px 20px;
+      margin-top: 16px;
+      font-size: 13.5px;
+    }
+    .example-box strong { color: var(--blue); }
+
+    /* Tabel Materi */
+    .table-wrap {
+      overflow-x: auto;
+      margin: 16px 0;
+      border: 1px solid var(--line);
+      border-radius: 12px;
+    }
+    .bio-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 13.5px;
+      text-align: left;
+    }
+    .bio-table th {
+      background: var(--surface2);
+      color: var(--blue);
+      font-weight: 700;
+      padding: 12px 14px;
+      border-bottom: 1px solid var(--line);
+      white-space: nowrap;
+    }
+    .bio-table td {
+      padding: 11px 14px;
+      border-bottom: 1px solid var(--line);
+      vertical-align: top;
+    }
+    .bio-table tr:last-child td { border-bottom: none; }
+
+    /* Diagram Visual SVG */
+    .visual-diagram {
+      background: var(--surface2);
+      border: 1px solid var(--line);
+      border-radius: 14px;
+      padding: 16px;
+      margin: 16px 0;
+      text-align: center;
+    }
+    .visual-diagram svg {
+      width: 100%;
+      max-width: 580px;
+      height: auto;
+      display: block;
+      margin: 0 auto;
+    }
+    .diagram-caption {
+      font-size: 12px;
+      color: var(--muted);
+      font-weight: 600;
+      margin-top: 8px;
+    }
+
+    /* Navigasi Bawah Antar Bab */
+    .bottom-nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 12px;
+      margin-top: 10px;
+    }
+    .btn-nav {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 12px 18px;
+      border-radius: 12px;
+      text-decoration: none;
+      font-size: 13px;
+      font-weight: 700;
+      border: 1px solid var(--line);
+      background: var(--surface);
+      color: var(--text);
+    }
+    .btn-nav.primary {
+      background: var(--blue);
+      color: #fff;
+      border-color: var(--blue);
+    }
+    .btn-nav svg { width: 17px; }
+
+    .footer {
+      border-top: 1px solid var(--line);
+      padding: 26px 0;
+      color: var(--muted);
+      font-size: 12px;
+    }
+    .footer .wrap {
+      display: flex;
+      justify-content: space-between;
+      gap: 12px;
+    }
+
+    @media (max-width: 860px) {
+      .reader-layout { grid-template-columns: 1fr; }
+      .toc-card { position: static; }
+      .formula-grid { grid-template-columns: 1fr; }
+    }
+    @media (max-width: 620px) {
+      .wrap { padding: 0 18px; }
+      .sub-section { padding: 22px; }
+      .bottom-nav { flex-direction: column; align-items: stretch; }
+      .btn-nav { justify-content: center; }
+      .footer .wrap { flex-direction: column; }
+    }
+  </style>
+</head>
+<body>
+
+  <header class="site-header">
+    <div class="wrap nav-inner">
+      <a href="../index.html" class="brand" aria-label="Kembali ke Beranda Shira's Archive">
+        <span class="brand-mark"><i data-lucide="book-open"></i></span>
+        <span>Shira's Archive</span>
+      </a>
+      <button id="theme-toggle" class="icon-button" type="button" aria-label="Aktifkan tema gelap" title="Tukar tema">
+        <i data-lucide="moon"></i>
+      </button>
+    </div>
+  </header>
+
+  <main class="wrap">
+    <div class="reader-top">
+      <a href="../index.html" class="back-link"><i data-lucide="arrow-left"></i> Kembali ke Daftar Mata Pelajaran</a>
+      <p class="eyebrow">Biologi • Kelas 10 • Bab 04</p>
+      <h1>Bakteri</h1>
+      <p class="desc">Rangkuman struktur sel dan organel bakteri, pengelompokan berdasarkan dinding sel dan flagela, cara hidup (oksigen dan nutrisi), reproduksi aseksual maupun rekombinasi gen, serta peranan bakteri.</p>
+    </div>
+
+    <div class="reader-layout">
+      <!-- Navigasi Lompat Sub-bab (Sticky Sidebar) -->
+      <aside class="toc-card" aria-label="Daftar sub-bab">
+        <p class="toc-title">Daftar Sub-bab</p>
+        <ul class="toc-list">
+          <li><a href="#sub-1" class="active"><span class="toc-num">01</span><span>Ciri &amp; Struktur Sel Bakteri</span></a></li>
+          <li><a href="#sub-2"><span class="toc-num">02</span><span>Pengelompokan Bakteri</span></a></li>
+          <li><a href="#sub-3"><span class="toc-num">03</span><span>Cara Hidup Bakteri</span></a></li>
+          <li><a href="#sub-4"><span class="toc-num">04</span><span>Reproduksi Bakteri</span></a></li>
+          <li><a href="#sub-5"><span class="toc-num">05</span><span>Peranan Bakteri dalam Kehidupan</span></a></li>
+        </ul>
+      </aside>
+
+      <!-- Area Baca Utama -->
+      <div class="content-area">
+
+        <!-- Sub-bab 1 -->
+        <article id="sub-1" class="sub-section">
+          <span class="sub-badge">Sub-bab 01</span>
+          <h2>Ciri-Ciri dan Struktur Sel Bakteri</h2>
+          <div class="formula-box">
+            <strong class="box-label">Ciri-Ciri Umum Bakteri</strong>
+            <p style="margin:0; font-size:13.5px;">
+              Organisme mikroskopis (diameter <strong>0,5–1 mikron</strong>, panjang <strong>1–20 mikron</strong>), <strong>uniseluler</strong>, <strong>prokariotik</strong> (tidak memiliki membran inti sel), umumnya berkoloni, dinding sel tersusun dari mukopolisakarida dan <strong>peptidoglikan</strong>, tidak memiliki organel bermembran (seperti mitokondria, RE, badan Golgi), tetapi memiliki <strong>ribosom</strong> dan <strong>plasmid</strong>. Pada kondisi tidak menguntungkan, bakteri dapat membentuk <strong>endospora</strong> untuk melindungi diri.
+            </p>
+          </div>
+
+          <h3>Fungsi Struktur Tubuh Bakteri</h3>
+          <div class="table-wrap">
+            <table class="bio-table">
+              <thead>
+                <tr>
+                  <th>Bagian Sel</th>
+                  <th>Komposisi &amp; Fungsi Utama</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td><strong>Kapsul / Lapisan Lendir</strong></td>
+                  <td>Lapisan terluar pelindung dari kekeringan dan membantu pelekatan pada substrat. <strong>Kapsul</strong> (tebal, dari glikoprotein) dimiliki bakteri patogen untuk melindungi diri dari antibodi inang, sedangkan <strong>lapisan lendir</strong> (tipis, dari air dan polisakarida) dimiliki bakteri saprofit.</td>
+                </tr>
+                <tr>
+                  <td><strong>Dinding Sel</strong></td>
+                  <td>Tersusun atas <strong>peptidoglikan</strong> untuk mempertahankan bentuk sel dan mencegah sel pecah di lingkungan hipotonis.</td>
+                </tr>
+                <tr>
+                  <td><strong>Membran Plasma</strong></td>
+                  <td>Bersifat selektif permeabel, tersusun atas protein dan fosfolipid untuk mengatur pertukaran zat dan membentuk mesosom.</td>
+                </tr>
+                <tr>
+                  <td><strong>Mesosom</strong></td>
+                  <td>Penonjolan membran sel ke arah sitoplasma yang berfungsi menghasilkan energi, membentuk dinding sel baru saat pembelahan, dan menerima DNA saat konjugasi.</td>
+                </tr>
+                <tr>
+                  <td><strong>Sitoplasma</strong></td>
+                  <td>Cairan koloid tempat berlangsungnya reaksi metabolisme sel.</td>
+                </tr>
+                <tr>
+                  <td><strong>DNA Kromosom &amp; Plasmid</strong></td>
+                  <td><strong>DNA kromosom</strong> (di region nukleoid) mengatur sifat metabolisme, sedangkan <strong>plasmid</strong> (DNA sirkuler kecil nonkromosom) menentukan sifat patogen, fertilitas, serta kekebalan terhadap antibiotik.</td>
+                </tr>
+                <tr>
+                  <td><strong>Pili (Fimbriae)</strong></td>
+                  <td>Rambut halus kaku untuk menempel pada media hidup dan menyalurkan DNA saat konjugasi (<em>pilus seks</em>).</td>
+                </tr>
+                <tr>
+                  <td><strong>Flagela</strong></td>
+                  <td>Alat gerak berbentuk cambuk yang tersusun dari protein.</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </article>
+
+        <!-- Sub-bab 2 -->
+        <article id="sub-2" class="sub-section">
+          <span class="sub-badge">Sub-bab 02</span>
+          <h2>Pengelompokan Bakteri</h2>
+
+          <h3>1. Berdasarkan Signature Sequence (Urutan Basa Khas RNA Ribosom)</h3>
+          <p>Dibagi menjadi <strong>5 kelompok utama</strong>: <em>Proteobacteria</em>, bakteri Gram positif, <em>Spirochaeta</em>, <em>Cyanobacteria</em>, dan <em>Chlamydia</em>.</p>
+
+          <h3>2. Berdasarkan Karakteristik Dinding Sel (Pewarnaan Gram)</h3>
+          <div class="formula-grid" style="margin:12px 0;">
+            <div class="trend-card">
+              <div class="trend-head">
+                <span>Bakteri Gram Positif</span>
+                <span class="trend-pill" style="background:#ede9fe; color:#6d28d9;">Warna Ungu (Violet)</span>
+              </div>
+              <p style="margin:0; font-size:13px; color:var(--muted);">
+                Lapisan <strong>peptidoglikan tebal</strong>, menyerap warna ungu (violet).<br>
+                <strong>Contoh:</strong> <em>Actinomyces, Lactobacillus, Propionibacterium, Clostridium, Eubacterium</em>, dan <em>Staphylococcus</em>.
+              </p>
+            </div>
+            <div class="trend-card">
+              <div class="trend-head">
+                <span>Bakteri Gram Negatif</span>
+                <span class="trend-pill" style="background:#fee2e2; color:#dc2626;">Warna Merah</span>
+              </div>
+              <p style="margin:0; font-size:13px; color:var(--muted);">
+                Lapisan <strong>peptidoglikan tipis</strong> di ruang periplasmik serta memiliki <strong>membran luar lipopolisakarida</strong> (membuat bakteri patogen lebih kebal antibiotik dan bersifat toksik), menyerap warna merah.<br>
+                <strong>Contoh:</strong> <em>Rhizobium leguminosarum, Salmonella typhi, Helicobacter pylori, Neisseria gonorrhoeae</em>, dan <em>Haemophilus influenzae</em>.
+              </p>
+            </div>
+          </div>
+
+          <h3>3. Berdasarkan Bentuk Sel</h3>
+          <div class="formula-box">
+            <strong class="box-label">Tiga Bentuk Dasar Sel Bakteri</strong>
+            <p style="margin:0; font-size:13.5px;">
+              • <strong>Kokus (Bulat):</strong> Monokokus, diplokokus, streptokokus, stafilokokus.<br>
+              • <strong>Basil (Batang):</strong> Monobasil, diplobasil, streptobasil.<br>
+              • <strong>Spiral:</strong> Spirilum, spiroseta.
+            </p>
+          </div>
+
+          <h3>4. Berdasarkan Jumlah dan Letak Flagela</h3>
+          <div class="visual-diagram">
+            <svg viewBox="0 0 600 135" fill="none" xmlns="http://www.w3.org/2000/svg" aria-label="Ilustrasi Pengelompokan Bakteri Berdasarkan Letak dan Jumlah Flagela">
+              <g font-family="Plus Jakarta Sans, sans-serif" text-anchor="middle">
+                <!-- 1. Atrik -->
+                <rect x="34" y="45" width="44" height="20" rx="10" fill="#537fda" fill-opacity="0.25" stroke="#537fda" stroke-width="2"/>
+                <text x="56" y="88" font-size="11" font-weight="800" fill="#537fda">Atrik</text>
+                <text x="56" y="103" font-size="9.5" fill="#64748b">Tanpa flagela</text>
+
+                <!-- 2. Monotrik -->
+                <rect x="148" y="45" width="44" height="20" rx="10" fill="#537fda" fill-opacity="0.25" stroke="#537fda" stroke-width="2"/>
+                <path d="M192 55 Q204 47 214 55 T232 55" stroke="#537fda" stroke-width="2" stroke-linecap="round"/>
+                <text x="180" y="88" font-size="11" font-weight="800" fill="#537fda">Monotrik</text>
+                <text x="180" y="103" font-size="9.5" fill="#64748b">1 di satu ujung</text>
+
+                <!-- 3. Lofotrik -->
+                <rect x="272" y="45" width="44" height="20" rx="10" fill="#537fda" fill-opacity="0.25" stroke="#537fda" stroke-width="2"/>
+                <path d="M316 50 Q328 40 340 48" stroke="#537fda" stroke-width="1.8" stroke-linecap="round"/>
+                <path d="M316 55 Q330 50 344 56" stroke="#537fda" stroke-width="1.8" stroke-linecap="round"/>
+                <path d="M316 60 Q328 68 340 62" stroke="#537fda" stroke-width="1.8" stroke-linecap="round"/>
+                <text x="302" y="88" font-size="11" font-weight="800" fill="#537fda">Lofotrik</text>
+                <text x="302" y="103" font-size="9.5" fill="#64748b">Banyak di 1 ujung</text>
+
+                <!-- 4. Amfitrik -->
+                <rect x="406" y="45" width="44" height="20" rx="10" fill="#537fda" fill-opacity="0.25" stroke="#537fda" stroke-width="2"/>
+                <path d="M406 51 Q394 43 384 50" stroke="#537fda" stroke-width="1.8" stroke-linecap="round"/>
+                <path d="M406 59 Q394 67 384 60" stroke="#537fda" stroke-width="1.8" stroke-linecap="round"/>
+                <path d="M450 51 Q462 43 472 50" stroke="#537fda" stroke-width="1.8" stroke-linecap="round"/>
+                <path d="M450 59 Q462 67 472 60" stroke="#537fda" stroke-width="1.8" stroke-linecap="round"/>
+                <text x="428" y="88" font-size="11" font-weight="800" fill="#537fda">Amfitrik</text>
+                <text x="428" y="103" font-size="9.5" fill="#64748b">Banyak di 2 ujung</text>
+
+                <!-- 5. Peritrik -->
+                <rect x="524" y="45" width="44" height="20" rx="10" fill="#537fda" fill-opacity="0.25" stroke="#537fda" stroke-width="2"/>
+                <path d="M534 45 Q528 32 536 24" stroke="#537fda" stroke-width="1.7" stroke-linecap="round"/>
+                <path d="M556 45 Q562 32 554 24" stroke="#537fda" stroke-width="1.7" stroke-linecap="round"/>
+                <path d="M534 65 Q528 76 536 82" stroke="#537fda" stroke-width="1.7" stroke-linecap="round"/>
+                <path d="M556 65 Q562 76 554 82" stroke="#537fda" stroke-width="1.7" stroke-linecap="round"/>
+                <path d="M524 55 Q512 49 504 56" stroke="#537fda" stroke-width="1.7" stroke-linecap="round"/>
+                <path d="M568 55 Q580 49 588 56" stroke="#537fda" stroke-width="1.7" stroke-linecap="round"/>
+                <text x="546" y="98" font-size="11" font-weight="800" fill="#537fda">Peritrik</text>
+                <text x="546" y="113" font-size="9.5" fill="#64748b">Seluruh permukaan</text>
+              </g>
+            </svg>
+          </div>
+
+          <div class="table-wrap">
+            <table class="bio-table">
+              <thead>
+                <tr>
+                  <th>Tipe Flagela</th>
+                  <th>Letak &amp; Jumlah</th>
+                  <th>Contoh Bakteri</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td><strong>Atrik</strong></td>
+                  <td>Tidak memiliki flagela</td>
+                  <td><em>Escherichia coli</em></td>
+                </tr>
+                <tr>
+                  <td><strong>Monotrik</strong></td>
+                  <td>Satu flagela di salah satu ujung sel</td>
+                  <td><em>Pseudomonas aeruginosa</em></td>
+                </tr>
+                <tr>
+                  <td><strong>Lofotrik</strong></td>
+                  <td>Banyak flagela di salah satu ujung sel</td>
+                  <td><em>Pseudomonas fluorescens</em></td>
+                </tr>
+                <tr>
+                  <td><strong>Amfitrik</strong></td>
+                  <td>Banyak flagela di kedua ujung sel</td>
+                  <td><em>Aquaspirillum serpens</em></td>
+                </tr>
+                <tr>
+                  <td><strong>Peritrik</strong></td>
+                  <td>Banyak flagela tersebar di seluruh permukaan dinding sel</td>
+                  <td><em>Salmonella typhi</em></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </article>
+
+        <!-- Sub-bab 3 -->
+        <article id="sub-3" class="sub-section">
+          <span class="sub-badge">Sub-bab 03</span>
+          <h2>Cara Hidup Bakteri</h2>
+
+          <h3>1. Berdasarkan Kebutuhan Oksigen</h3>
+          <div class="table-wrap">
+            <table class="bio-table">
+              <thead>
+                <tr>
+                  <th>Kelompok</th>
+                  <th>Kebutuhan Oksigen</th>
+                  <th>Contoh Spesies</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td><strong>Bakteri Aerob</strong></td>
+                  <td>Mutlak membutuhkan oksigen untuk hidup.</td>
+                  <td>Bakteri nitrifikasi (<em>Nitrosomonas, Nitrosococcus, Nitrobacter</em>) serta <em>Acetobacter</em>.</td>
+                </tr>
+                <tr>
+                  <td><strong>Bakteri Anaerob Fakultatif</strong></td>
+                  <td>Dapat hidup baik dengan oksigen maupun tanpa oksigen.</td>
+                  <td><em>Escherichia coli, Lactobacillus, Aerobacter aerogenes</em>.</td>
+                </tr>
+                <tr>
+                  <td><strong>Bakteri Anaerob Obligat</strong></td>
+                  <td>Tidak membutuhkan oksigen dan akan mati jika ada oksigen.</td>
+                  <td><em>Clostridium tetani, Methanobacterium, Bacteroides fragilis</em>.</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+          <h3>2. Berdasarkan Cara Memperoleh Makanan</h3>
+          <div class="formula-box">
+            <strong class="box-label">A. Bakteri Autotrof (Membuat Makanan Sendiri dari Zat Anorganik)</strong>
+            <p style="margin:0; font-size:13.5px;">
+              • <strong>Fotoautotrof (energi cahaya matahari):</strong> Memiliki pigmen fotosintetik seperti bakterioklorofil/bakteriviridin (hijau), karoten (kuning), bakteriopurpurin (ungu), dan bakteriorhodopsin (merah).<br>
+              &nbsp;&nbsp;<em>Contoh:</em> <em>Rhodopseudomonas, Rhodospirillum, Thiocystis, Thiospirillum</em>.<br><br>
+              • <strong>Kemoautotrof (energi reaksi kimia/oksidasi senyawa anorganik):</strong><br>
+              &nbsp;&nbsp;<em>Contoh:</em> <em>Thiobacillus ferrooxidans</em> (mengoksidasi besi), <em>Nitrobacter</em> (mengoksidasi nitrit), <em>Methanomonas</em> (mengoksidasi metana).
+            </p>
+          </div>
+
+          <div class="formula-box">
+            <strong class="box-label">B. Bakteri Heterotrof (Mendapatkan Zat Organik dari Organisme Lain)</strong>
+            <p style="margin:0; font-size:13.5px;">
+              • <strong>Saprofit (Pengurai):</strong> Menguraikan sisa organisme mati (contoh menguntungkan: <em>Lactobacillus casei</em>; contoh merugikan: <em>Clostridium botulinum</em>).<br>
+              • <strong>Parasit:</strong> Menumpang dan merugikan inang/patogen (contoh: <em>Corynebacterium diphtheriae, Mycobacterium leprae</em>). Beberapa bersifat <strong>oportunis</strong> (menyerang saat imun inang turun).<br>
+              • <strong>Simbiosis Mutualisme:</strong> Saling menguntungkan dengan inang (contoh: <em>Rhizobium leguminosarum</em> pada akar kacang-kacangan mengikat nitrogen; <em>Escherichia coli</em> di usus besar manusia menghasilkan vitamin K).
+            </p>
+          </div>
+        </article>
+
+        <!-- Sub-bab 4 -->
+        <article id="sub-4" class="sub-section">
+          <span class="sub-badge">Sub-bab 04</span>
+          <h2>Reproduksi Bakteri</h2>
+          <p><strong>Reproduksi Aseksual (Pembelahan Biner):</strong> Pembelahan langsung (<strong>amitosis</strong>) dari 1 sel menjadi 2 sel anak melalui pemanjangan nukleoid dan pembentukan sekat (<strong>septum</strong>).</p>
+
+          <h3>Reproduksi Seksual (Rekombinasi Gen)</h3>
+          <div class="visual-diagram">
+            <svg viewBox="0 0 600 130" fill="none" xmlns="http://www.w3.org/2000/svg" aria-label="Ilustrasi Tiga Cara Rekombinasi Gen Bakteri: Konjugasi, Transduksi, dan Transformasi">
+              <!-- 1. Konjugasi -->
+              <rect x="10" y="10" width="184" height="110" rx="12" fill="#537fda" fill-opacity="0.1" stroke="#537fda" stroke-width="1.5"/>
+              <text x="102" y="30" font-family="Plus Jakarta Sans, sans-serif" font-size="11.5" font-weight="800" fill="#537fda" text-anchor="middle">1. Konjugasi</text>
+              <rect x="30" y="48" width="48" height="22" rx="11" fill="#537fda" fill-opacity="0.25" stroke="#537fda" stroke-width="1.8"/>
+              <rect x="126" y="48" width="48" height="22" rx="11" fill="#537fda" fill-opacity="0.25" stroke="#537fda" stroke-width="1.8"/>
+              <line x1="78" y1="59" x2="126" y2="59" stroke="#dc2626" stroke-width="2.5"/>
+              <text x="102" y="92" font-family="Plus Jakarta Sans, sans-serif" font-size="9.5" font-weight="700" fill="#64748b" text-anchor="middle">Via Jembatan Pilus Seks</text>
+              <text x="102" y="106" font-family="Plus Jakarta Sans, sans-serif" font-size="9" fill="#64748b" text-anchor="middle">(Transfer Plasmid Langsung)</text>
+
+              <!-- 2. Transduksi -->
+              <rect x="208" y="10" width="184" height="110" rx="12" fill="#10b981" fill-opacity="0.1" stroke="#059669" stroke-width="1.5"/>
+              <text x="300" y="30" font-family="Plus Jakarta Sans, sans-serif" font-size="11.5" font-weight="800" fill="#047857" text-anchor="middle">2. Transduksi</text>
+              <rect x="228" y="52" width="44" height="20" rx="10" fill="#10b981" fill-opacity="0.25" stroke="#059669" stroke-width="1.8"/>
+              <polygon points="300,38 308,46 300,54 292,46" fill="#d97706"/>
+              <line x1="300" y1="54" x2="300" y2="66" stroke="#d97706" stroke-width="2"/>
+              <rect x="328" y="52" width="44" height="20" rx="10" fill="#10b981" fill-opacity="0.25" stroke="#059669" stroke-width="1.8"/>
+              <text x="300" y="92" font-family="Plus Jakarta Sans, sans-serif" font-size="9.5" font-weight="700" fill="#64748b" text-anchor="middle">Perantara Bakteriofag</text>
+              <text x="300" y="106" font-family="Plus Jakarta Sans, sans-serif" font-size="9" fill="#64748b" text-anchor="middle">(Virus Membawa DNA Bakteri)</text>
+
+              <!-- 3. Transformasi -->
+              <rect x="406" y="10" width="184" height="110" rx="12" fill="#f59e0b" fill-opacity="0.1" stroke="#d97706" stroke-width="1.5"/>
+              <text x="498" y="30" font-family="Plus Jakarta Sans, sans-serif" font-size="11.5" font-weight="800" fill="#b45309" text-anchor="middle">3. Transformasi</text>
+              <path d="M446 58 Q456 50 466 58" stroke="#dc2626" stroke-width="2.5" stroke-linecap="round"/>
+              <path d="M472 58 L488 58" stroke="#d97706" stroke-width="1.8" stroke-linecap="round"/>
+              <rect x="494" y="48" width="56" height="22" rx="11" fill="#f59e0b" fill-opacity="0.25" stroke="#d97706" stroke-width="1.8"/>
+              <text x="498" y="92" font-family="Plus Jakarta Sans, sans-serif" font-size="9.5" font-weight="700" fill="#64748b" text-anchor="middle">Penyerapan DNA Bebas</text>
+              <text x="498" y="106" font-family="Plus Jakarta Sans, sans-serif" font-size="9" fill="#64748b" text-anchor="middle">(Tanpa Jembatan Konjugasi)</text>
+            </svg>
+          </div>
+
+          <div class="table-wrap">
+            <table class="bio-table">
+              <thead>
+                <tr>
+                  <th>Mekanisme</th>
+                  <th>Proses Perpindahan Materi Genetik</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td><strong>Konjugasi</strong></td>
+                  <td>Pemindahan materi genetik (<strong>plasmid</strong>) secara langsung dari satu bakteri ke bakteri lain melalui jembatan konjugasi (<strong>pilus seks</strong>).</td>
+                </tr>
+                <tr>
+                  <td><strong>Transduksi</strong></td>
+                  <td>Rekombinasi gen antara dua sel bakteri yang diperantarai oleh <strong>virus bakteriofag</strong>.</td>
+                </tr>
+                <tr>
+                  <td><strong>Transformasi</strong></td>
+                  <td>Pemindahan langsung sedikit materi genetik (<strong>DNA bebas</strong>) ke dalam sel bakteri tanpa jembatan konjugasi (contoh: <em>Rhizobium, Neisseria, Bacillus, Pneumococcus</em>).</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </article>
+
+        <!-- Sub-bab 5 -->
+        <article id="sub-5" class="sub-section">
+          <span class="sub-badge">Sub-bab 05</span>
+          <h2>Peranan Bakteri dalam Kehidupan</h2>
+
+          <h3>1. Bakteri yang Menguntungkan</h3>
+          <div class="table-wrap">
+            <table class="bio-table">
+              <thead>
+                <tr>
+                  <th>Bidang Pemanfaatan</th>
+                  <th>Nama Spesies &amp; Peranannya</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td><strong>Pertanian &amp; Lingkungan</strong></td>
+                  <td>
+                    • <em><strong>Rhizobium leguminosarum</strong></em> &rarr; mengikat nitrogen bebas pada akar kacang-kacangan.<br>
+                    • <em><strong>Nitrosomonas, Nitrosococcus, Nitrobacter</strong></em> &rarr; proses nitrifikasi yang menyuburkan tanah.<br>
+                    • <em><strong>Clostridium butyricum</strong></em> &rarr; mengolah limbah organik.<br>
+                    • <em><strong>Pseudomonas aeruginosa</strong></em> &rarr; memperbaiki tanah yang tercemar logam berat.
+                  </td>
+                </tr>
+                <tr>
+                  <td><strong>Pencernaan Makanan</strong></td>
+                  <td>
+                    • <em><strong>Escherichia coli</strong></em> &rarr; membusukkan sisa makanan dan menghasilkan vitamin K di usus besar.<br>
+                    • <em><strong>Aerobacter aerogenes</strong></em> &rarr; saprofit pencernaan di usus besar vertebrata.
+                  </td>
+                </tr>
+                <tr>
+                  <td><strong>Antibiotik, Vitamin, &amp; Hormon</strong></td>
+                  <td>
+                    • <em><strong>Streptomyces griseus</strong></em> (antibiotik streptomisin), <em><strong>Streptomyces rimosus</strong></em> (tetrasiklin), <em><strong>Streptomyces venezuelae</strong></em> (kloramfenikol).<br>
+                    • <em><strong>Pseudomonas denitrificans</strong></em> dan <em><strong>Propionibacterium shermanii</strong></em> &rarr; penghasil vitamin B12.<br>
+                    • <em><strong>Escherichia coli</strong></em> (hasil rekayasa genetika) &rarr; menghasilkan hormon insulin sintetis.
+                  </td>
+                </tr>
+                <tr>
+                  <td><strong>Makanan &amp; Minuman</strong></td>
+                  <td>
+                    • <em><strong>Lactobacillus bulgaricus</strong></em> &amp; <em><strong>Streptococcus thermophilus</strong></em> &rarr; yoghurt.<br>
+                    • <em><strong>Streptococcus lactis</strong></em> &rarr; kefir.<br>
+                    • <em><strong>Streptococcus cremoris</strong></em> &rarr; keju.<br>
+                    • <em><strong>Acetobacter xylinum</strong></em> &rarr; nata de coco.<br>
+                    • <em><strong>Acetobacter aceti</strong></em> &amp; <em><strong>Gluconobacter</strong></em> &rarr; asam cuka dan alkohol.<br>
+                    • <em><strong>Corynebacterium glutamicum</strong></em> &amp; <em><strong>Brevibacterium flavum</strong></em> &rarr; asam amino untuk bahan MSG.
+                  </td>
+                </tr>
+                <tr>
+                  <td><strong>Bidang Lainnya</strong></td>
+                  <td>
+                    • <strong>Biopestisida:</strong> <em>Bacillus thuringiensis, Bacillus popilliae, Bacillus lentimorbus, Bacillus sphaericus</em>.<br>
+                    • <strong>Industri Logam:</strong> <em>Thiobacillus ferrooxidans</em> (memisahkan tembaga dari bijihnya).<br>
+                    • <strong>Penghasil Biogas:</strong> <em>Methanobacterium</em> (mengolah sampah dan kotoran ternak menjadi gas metana).
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+          <h3>2. Bakteri yang Merugikan (Penyebab Penyakit)</h3>
+          <div class="table-wrap">
+            <table class="bio-table">
+              <thead>
+                <tr>
+                  <th>Inang</th>
+                  <th>Nama Spesies &amp; Penyakit yang Ditimbulkan</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td><strong>Pada Manusia</strong></td>
+                  <td>
+                    • <em><strong>Treponema pallidum</strong></em> &rarr; sifilis.<br>
+                    • <em><strong>Bordetella pertussis</strong></em> &rarr; batuk rejan (pertusis).<br>
+                    • <em><strong>Neisseria gonorrhoeae</strong></em> &rarr; gonore (kencing nanah).<br>
+                    • <em><strong>Mycobacterium tuberculosis</strong></em> &rarr; TBC.<br>
+                    • <em><strong>Mycobacterium leprae</strong></em> &rarr; lepra.<br>
+                    • <em><strong>Corynebacterium diphtheriae</strong></em> &rarr; difteri.<br>
+                    • <em><strong>Clostridium tetani</strong></em> &rarr; tetanus.<br>
+                    • <em><strong>Vibrio cholerae</strong></em> &rarr; kolera.<br>
+                    • <em><strong>Salmonella typhi</strong></em> &rarr; tipus.<br>
+                    • <em><strong>Streptococcus pneumoniae</strong></em> &rarr; radang paru-paru (pneumonia).<br>
+                    • <em><strong>Clostridium botulinum</strong></em> &rarr; keracunan makanan kaleng (botulisme).
+                  </td>
+                </tr>
+                <tr>
+                  <td><strong>Pada Hewan Ternak</strong></td>
+                  <td>
+                    • <em><strong>Bacillus anthracis</strong></em> &rarr; penyakit antraks (dapat menular ke manusia).<br>
+                    • <em><strong>Coxiella burnetii</strong></em> &rarr; demam pada ternak (dapat menular ke manusia).
+                  </td>
+                </tr>
+                <tr>
+                  <td><strong>Pada Tanaman Budidaya</strong></td>
+                  <td>
+                    • <em><strong>Agrobacterium tumefaciens</strong></em> &rarr; tumor <em>crown gall</em>.<br>
+                    • <em><strong>Pseudomonas solanacearum</strong></em> &rarr; penyakit layu pada tomat, terong, dan cabai.<br>
+                    • <em><strong>Candidatus liberibacter asiaticus</strong></em> &rarr; penyakit CVPD pada jeruk.<br>
+                    • <em><strong>Pseudomonas cattleyae</strong></em> &rarr; penyakit pada tanaman anggrek.<br>
+                    • <em><strong>Bacterium papaya</strong></em> &rarr; penyakit pada tanaman pepaya.
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </article>
+
+        <!-- Navigasi Bawah (Bab Terakhir Biologi Semester Ini) -->
+        <div class="bottom-nav">
+          <a href="biologi-bab3.html" class="btn-nav"><i data-lucide="arrow-left"></i> Bab Sebelumnya: Virus</a>
+          <a href="../index.html" class="btn-nav primary"><i data-lucide="layout-grid"></i> Kembali ke Daftar Mata Pelajaran</a>
+        </div>
+
+      </div>
+    </div>
+  </main>
+
+  <footer class="footer">
+    <div class="wrap">
+      <span>© Shira's Archive</span>
+      <span>Belajar sedikit demi sedikit, setiap hari.</span>
+    </div>
+  </footer>
+
+  <script>
+    lucide.createIcons();
+
+    // Sinkronisasi Dark Mode dengan halaman beranda
+    const themeBtn = document.getElementById("theme-toggle");
+    if (localStorage.getItem("shira-theme") === "dark") {
+      document.body.classList.add("dark");
+      themeBtn.innerHTML = '<i data-lucide="sun"></i>';
+      lucide.createIcons();
+    }
+
+    themeBtn.onclick = () => {
+      const dark = document.body.classList.toggle("dark");
+      localStorage.setItem("shira-theme", dark ? "dark" : "light");
+      themeBtn.innerHTML = '<i data-lucide="' + (dark ? "sun" : "moon") + '"></i>';
+      lucide.createIcons();
+    };
+
+    // Highlight otomatis daftar sub-bab saat halaman di-scroll
+    const sections = document.querySelectorAll(".sub-section");
+    const navLinks = document.querySelectorAll(".toc-list a");
+
+    window.addEventListener("scroll", () => {
+      let current = "";
+      sections.forEach(sec => {
+        const top = sec.offsetTop - 150;
+        if (window.scrollY >= top) current = sec.getAttribute("id");
+      });
+      navLinks.forEach(link => {
+        link.classList.remove("active");
+        if (link.getAttribute("href") === "#" + current) {
+          link.classList.add("active");
+        }
+      });
+    });
+  </script>
+</body>
+</html>

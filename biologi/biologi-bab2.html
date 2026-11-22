@@ -1,0 +1,970 @@
+<!doctype html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Bab 2: Klasifikasi Makhluk Hidup &amp; Kingdom Monera — Shira's Archive</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/lucide@0.577.0/dist/umd/lucide.min.js"></script>
+  <style>
+    :root {
+      --bg: #f5f8fd;
+      --surface: #fff;
+      --surface2: #edf4fd;
+      --text: #25334a;
+      --muted: #718099;
+      --line: #e3eaf4;
+      --blue: #537fda;
+      --blue2: #e8f0ff;
+      --shadow: 0 12px 36px rgba(48, 79, 129, .07);
+    }
+    body.dark {
+      --bg: #101827;
+      --surface: #192437;
+      --surface2: #202e45;
+      --text: #eef4ff;
+      --muted: #a7b5cb;
+      --line: #344159;
+      --blue: #8bb3ff;
+      --blue2: #263d65;
+      --shadow: 0 12px 36px rgba(0, 0, 0, .17);
+    }
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      background: var(--bg);
+      color: var(--text);
+      font-family: "Plus Jakarta Sans", sans-serif;
+      line-height: 1.7;
+      transition: background .25s, color .25s;
+    }
+    button { font-family: "Plus Jakarta Sans", sans-serif; cursor: pointer; }
+    .wrap { max-width: 1190px; margin: auto; padding: 0 28px; }
+
+    /* Header (Sama persis dengan index.html) */
+    .site-header {
+      background: var(--surface);
+      border-bottom: 1px solid var(--line);
+      position: sticky;
+      top: 0;
+      z-index: 10;
+    }
+    .nav-inner {
+      min-height: 78px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+    }
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 11px;
+      font-weight: 800;
+      font-size: 18px;
+      text-decoration: none;
+      color: var(--text);
+    }
+    .brand-mark {
+      width: 38px;
+      height: 38px;
+      display: grid;
+      place-items: center;
+      border-radius: 12px;
+      background: var(--blue);
+      color: white;
+    }
+    .brand-mark svg { width: 21px; }
+    .icon-button {
+      width: 41px;
+      height: 41px;
+      border: 1px solid var(--line);
+      border-radius: 12px;
+      background: var(--surface);
+      color: var(--text);
+      display: grid;
+      place-items: center;
+    }
+    .icon-button svg { width: 19px; }
+
+    /* Breadcrumb & Judul Bab */
+    .reader-top { padding: 34px 0 24px; }
+    .back-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      color: var(--blue);
+      text-decoration: none;
+      font-weight: 700;
+      font-size: 13px;
+      margin-bottom: 18px;
+    }
+    .back-link svg { width: 17px; }
+    .eyebrow {
+      color: var(--blue);
+      font-size: 12px;
+      font-weight: 800;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+      margin: 0 0 8px;
+    }
+    .reader-top h1 {
+      font-size: clamp(28px, 4vw, 40px);
+      letter-spacing: -.04em;
+      line-height: 1.2;
+      margin: 0 0 10px;
+      font-weight: 800;
+    }
+    .reader-top p.desc {
+      color: var(--muted);
+      font-size: 14px;
+      margin: 0;
+      max-width: 680px;
+    }
+
+    /* Layout Dua Kolom: Sidebar Sub-bab + Area Baca */
+    .reader-layout {
+      display: grid;
+      grid-template-columns: 280px minmax(0, 1fr);
+      gap: 28px;
+      padding-bottom: 80px;
+      align-items: start;
+    }
+
+    /* Sidebar Daftar Sub-bab */
+    .toc-card {
+      background: var(--surface);
+      border: 1px solid var(--line);
+      border-radius: 18px;
+      padding: 20px;
+      box-shadow: var(--shadow);
+      position: sticky;
+      top: 102px;
+    }
+    .toc-title {
+      font-size: 12px;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: .08em;
+      color: var(--muted);
+      margin: 0 0 14px;
+    }
+    .toc-list {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      display: grid;
+      gap: 6px;
+    }
+    .toc-list a {
+      display: flex;
+      align-items: start;
+      gap: 9px;
+      padding: 9px 12px;
+      border-radius: 10px;
+      text-decoration: none;
+      color: var(--muted);
+      font-size: 13px;
+      font-weight: 600;
+      line-height: 1.4;
+      transition: background .2s, color .2s;
+    }
+    .toc-list a:hover {
+      background: var(--surface2);
+      color: var(--text);
+    }
+    .toc-list a.active {
+      background: var(--blue2);
+      color: var(--blue);
+      font-weight: 700;
+    }
+    .toc-num {
+      font-size: 11px;
+      font-weight: 800;
+      opacity: .8;
+      margin-top: 2px;
+    }
+
+    /* Area Konten Catatan */
+    .content-area {
+      display: grid;
+      gap: 24px;
+    }
+    .sub-section {
+      background: var(--surface);
+      border: 1px solid var(--line);
+      border-radius: 20px;
+      padding: 30px;
+      box-shadow: var(--shadow);
+      scroll-margin-top: 102px;
+    }
+    .sub-badge {
+      display: inline-block;
+      background: var(--blue2);
+      color: var(--blue);
+      font-size: 11px;
+      font-weight: 800;
+      padding: 4px 10px;
+      border-radius: 20px;
+      margin-bottom: 10px;
+    }
+    .sub-section h2 {
+      font-size: 22px;
+      letter-spacing: -.03em;
+      margin: 0 0 14px;
+    }
+    .sub-section h3 {
+      font-size: 16px;
+      font-weight: 700;
+      color: var(--blue);
+      margin: 22px 0 10px;
+    }
+    .sub-section p {
+      font-size: 14px;
+      margin: 0 0 14px;
+    }
+
+    /* Kotak Konsep & Contoh Soal */
+    .formula-box {
+      background: var(--surface2);
+      border-left: 4px solid var(--blue);
+      border-radius: 12px;
+      padding: 18px 20px;
+      margin: 18px 0;
+    }
+    .formula-box strong.box-label {
+      display: block;
+      font-size: 12px;
+      text-transform: uppercase;
+      letter-spacing: .06em;
+      color: var(--blue);
+      margin-bottom: 10px;
+    }
+    .formula-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 14px 20px;
+      font-size: 13.5px;
+    }
+    .trend-card {
+      background: var(--surface);
+      border: 1px solid var(--line);
+      border-radius: 10px;
+      padding: 13px 15px;
+    }
+    .trend-head {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 8px;
+      margin-bottom: 6px;
+      font-weight: 700;
+      font-size: 13.5px;
+    }
+    .trend-pill {
+      display: inline-block;
+      padding: 2px 9px;
+      border-radius: 99px;
+      font-size: 11.5px;
+      font-weight: 800;
+      background: var(--blue2);
+      color: var(--blue);
+      white-space: nowrap;
+    }
+    .example-box {
+      border: 1px dashed var(--line);
+      border-radius: 12px;
+      padding: 16px 20px;
+      margin-top: 16px;
+      font-size: 13.5px;
+    }
+    .example-box strong { color: var(--blue); }
+
+    /* Tabel Materi */
+    .table-wrap {
+      overflow-x: auto;
+      margin: 16px 0;
+      border: 1px solid var(--line);
+      border-radius: 12px;
+    }
+    .bio-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 13.5px;
+      text-align: left;
+    }
+    .bio-table th {
+      background: var(--surface2);
+      color: var(--blue);
+      font-weight: 700;
+      padding: 12px 14px;
+      border-bottom: 1px solid var(--line);
+      white-space: nowrap;
+    }
+    .bio-table td {
+      padding: 11px 14px;
+      border-bottom: 1px solid var(--line);
+      vertical-align: top;
+    }
+    .bio-table tr:last-child td { border-bottom: none; }
+
+    /* Diagram Visual SVG */
+    .visual-diagram {
+      background: var(--surface2);
+      border: 1px solid var(--line);
+      border-radius: 14px;
+      padding: 16px;
+      margin: 16px 0;
+      text-align: center;
+    }
+    .visual-diagram svg {
+      width: 100%;
+      max-width: 580px;
+      height: auto;
+      display: block;
+      margin: 0 auto;
+    }
+    .diagram-caption {
+      font-size: 12px;
+      color: var(--muted);
+      font-weight: 600;
+      margin-top: 8px;
+    }
+
+    /* Navigasi Bawah Antar Bab */
+    .bottom-nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 12px;
+      margin-top: 10px;
+    }
+    .btn-nav {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 12px 18px;
+      border-radius: 12px;
+      text-decoration: none;
+      font-size: 13px;
+      font-weight: 700;
+      border: 1px solid var(--line);
+      background: var(--surface);
+      color: var(--text);
+    }
+    .btn-nav.primary {
+      background: var(--blue);
+      color: #fff;
+      border-color: var(--blue);
+    }
+    .btn-nav svg { width: 17px; }
+
+    .footer {
+      border-top: 1px solid var(--line);
+      padding: 26px 0;
+      color: var(--muted);
+      font-size: 12px;
+    }
+    .footer .wrap {
+      display: flex;
+      justify-content: space-between;
+      gap: 12px;
+    }
+
+    @media (max-width: 860px) {
+      .reader-layout { grid-template-columns: 1fr; }
+      .toc-card { position: static; }
+      .formula-grid { grid-template-columns: 1fr; }
+    }
+    @media (max-width: 620px) {
+      .wrap { padding: 0 18px; }
+      .sub-section { padding: 22px; }
+      .bottom-nav { flex-direction: column; align-items: stretch; }
+      .btn-nav { justify-content: center; }
+      .footer .wrap { flex-direction: column; }
+    }
+  </style>
+</head>
+<body>
+
+  <header class="site-header">
+    <div class="wrap nav-inner">
+      <a href="../index.html" class="brand" aria-label="Kembali ke Beranda Shira's Archive">
+        <span class="brand-mark"><i data-lucide="book-open"></i></span>
+        <span>Shira's Archive</span>
+      </a>
+      <button id="theme-toggle" class="icon-button" type="button" aria-label="Aktifkan tema gelap" title="Tukar tema">
+        <i data-lucide="moon"></i>
+      </button>
+    </div>
+  </header>
+
+  <main class="wrap">
+    <div class="reader-top">
+      <a href="../index.html" class="back-link"><i data-lucide="arrow-left"></i> Kembali ke Daftar Mata Pelajaran</a>
+      <p class="eyebrow">Biologi • Kelas 10 • Bab 02</p>
+      <h1>Klasifikasi Makhluk Hidup &amp; Kingdom Monera</h1>
+      <p class="desc">Rangkuman dasar klasifikasi makhluk hidup, urutan takson, perkembangan sistem kingdom, serta pembahasan lengkap Kingdom Monera (Bakteri dan Alga Biru / Cyanobacteria).</p>
+    </div>
+
+    <div class="reader-layout">
+      <!-- Navigasi Lompat Sub-bab (Sticky Sidebar) -->
+      <aside class="toc-card" aria-label="Daftar sub-bab">
+        <p class="toc-title">Daftar Sub-bab</p>
+        <ul class="toc-list">
+          <li><a href="#sub-1" class="active"><span class="toc-num">01</span><span>Dasar Klasifikasi &amp; Takson</span></a></li>
+          <li><a href="#sub-2"><span class="toc-num">02</span><span>Perkembangan Sistem Kingdom</span></a></li>
+          <li><a href="#sub-3"><span class="toc-num">03</span><span>Kingdom Monera: Bakteri</span></a></li>
+          <li><a href="#sub-4"><span class="toc-num">04</span><span>Archaebacteria vs Eubacteria</span></a></li>
+          <li><a href="#sub-5"><span class="toc-num">05</span><span>Alga Biru (Cyanobacteria)</span></a></li>
+        </ul>
+      </aside>
+
+      <!-- Area Baca Utama -->
+      <div class="content-area">
+
+        <!-- Sub-bab 1 -->
+        <article id="sub-1" class="sub-section">
+          <span class="sub-badge">Sub-bab 01</span>
+          <h2>Dasar-Dasar Klasifikasi Makhluk Hidup</h2>
+          <p><strong>Klasifikasi makhluk hidup</strong> adalah pengelompokan makhluk hidup berdasarkan persamaan dan perbedaan ciri yang dimilikinya. Tujuan dan manfaat utamanya adalah <strong>menyederhanakan objek studi</strong> yang sangat beraneka ragam sehingga lebih mudah dipelajari.</p>
+
+          <h3>1. Macam-Macam Sistem Klasifikasi</h3>
+          <div class="formula-grid" style="margin:12px 0;">
+            <div class="trend-card" style="grid-column: 1 / -1;">
+              <div class="trend-head">
+                <span>1. Sistem Artifisial (Buatan)</span>
+                <span class="trend-pill">Ciri Morfologi Luar</span>
+              </div>
+              <p style="margin:0; font-size:13px; color:var(--muted);">
+                Berdasarkan persamaan ciri morfologi yang mudah dilihat secara langsung (contoh: pengelompokan tumbuhan menjadi pohon, perdu, dan semak; atau tumbuhan monokotil dan dikotil).
+              </p>
+            </div>
+            <div class="trend-card">
+              <div class="trend-head">
+                <span>2. Sistem Alamiah</span>
+                <span class="trend-pill">Morfologi, Anatomi, Fisiologi</span>
+              </div>
+              <p style="margin:0; font-size:13px; color:var(--muted);">
+                Berdasarkan banyak sedikitnya persamaan sifat morfologi, anatomi, dan fisiologi (contoh: hewan berkaki empat, hewan bersayap, tumbuhan berbunga).
+              </p>
+            </div>
+            <div class="trend-card">
+              <div class="trend-head">
+                <span>3. Sistem Filogenetik</span>
+                <span class="trend-pill">Hubungan Evolusi</span>
+              </div>
+              <p style="margin:0; font-size:13px; color:var(--muted);">
+                Berdasarkan jauh dekatnya hubungan kekerabatan atau evolusi. Semakin banyak persamaan ciri, semakin dekat kekerabatannya (contoh: singkong, karet, dan jarak masuk famili <em>Euphorbiaceae</em> karena sama-sama bergetah; hiu dan pari masuk <em>Chondrichthyes</em> karena bertulang rawan).
+              </p>
+            </div>
+          </div>
+
+          <h3>2. Urutan Tingkat Takson (Tertinggi ke Terendah)</h3>
+          <div class="visual-diagram">
+            <svg viewBox="0 0 600 135" fill="none" xmlns="http://www.w3.org/2000/svg" aria-label="Diagram Urutan Tingkat Takson dari Kingdom sampai Spesies">
+              <g font-family="Plus Jakarta Sans, sans-serif" text-anchor="middle">
+                <rect x="6" y="22" width="76" height="88" rx="10" fill="#537fda" fill-opacity="0.22" stroke="#537fda" stroke-width="1.6"/>
+                <text x="44" y="45" font-size="11" font-weight="800" fill="#537fda">Kingdom</text>
+                <text x="44" y="61" font-size="9.5" fill="#64748b">(Kerajaan)</text>
+                <text x="44" y="92" font-size="9" font-weight="700" fill="#537fda">Paling Luas</text>
+
+                <text x="88" y="69" font-size="13" font-weight="800" fill="#537fda">&rarr;</text>
+
+                <rect x="94" y="28" width="78" height="76" rx="10" fill="#537fda" fill-opacity="0.18" stroke="#537fda" stroke-width="1.5"/>
+                <text x="133" y="50" font-size="10.5" font-weight="800" fill="#537fda">Filum / Divisi</text>
+                <text x="133" y="65" font-size="9" fill="#64748b">Hewan / Tumb.</text>
+
+                <text x="178" y="69" font-size="13" font-weight="800" fill="#537fda">&rarr;</text>
+
+                <rect x="184" y="33" width="72" height="66" rx="10" fill="#537fda" fill-opacity="0.15" stroke="#537fda" stroke-width="1.5"/>
+                <text x="220" y="56" font-size="11" font-weight="800" fill="#537fda">Classis</text>
+                <text x="220" y="71" font-size="9.5" fill="#64748b">(Kelas)</text>
+
+                <text x="262" y="69" font-size="13" font-weight="800" fill="#537fda">&rarr;</text>
+
+                <rect x="268" y="37" width="70" height="58" rx="10" fill="#537fda" fill-opacity="0.13" stroke="#537fda" stroke-width="1.5"/>
+                <text x="303" y="59" font-size="11" font-weight="800" fill="#537fda">Ordo</text>
+                <text x="303" y="74" font-size="9.5" fill="#64748b">(Bangsa)</text>
+
+                <text x="344" y="69" font-size="13" font-weight="800" fill="#537fda">&rarr;</text>
+
+                <rect x="350" y="40" width="72" height="52" rx="10" fill="#537fda" fill-opacity="0.11" stroke="#537fda" stroke-width="1.5"/>
+                <text x="386" y="61" font-size="11" font-weight="800" fill="#537fda">Famili</text>
+                <text x="386" y="76" font-size="9.5" fill="#64748b">(Keluarga)</text>
+
+                <text x="428" y="69" font-size="13" font-weight="800" fill="#537fda">&rarr;</text>
+
+                <rect x="434" y="42" width="70" height="48" rx="10" fill="#537fda" fill-opacity="0.09" stroke="#537fda" stroke-width="1.5"/>
+                <text x="469" y="62" font-size="11" font-weight="800" fill="#537fda">Genus</text>
+                <text x="469" y="77" font-size="9.5" fill="#64748b">(Marga)</text>
+
+                <text x="510" y="69" font-size="13" font-weight="800" fill="#537fda">&rarr;</text>
+
+                <rect x="516" y="44" width="78" height="44" rx="10" fill="#537fda" stroke="#537fda" stroke-width="1.5"/>
+                <text x="555" y="63" font-size="11" font-weight="800" fill="#fff">Spesies</text>
+                <text x="555" y="77" font-size="9" fill="#e8f0ff">Paling Spesifik</text>
+              </g>
+            </svg>
+            <div class="diagram-caption">Semakin rendah tingkat takson, jumlah anggota semakin sedikit tetapi persamaan cirinya semakin banyak</div>
+          </div>
+
+          <div class="formula-box">
+            <strong class="box-label">Perbandingan Takson Hewan &amp; Tumbuhan</strong>
+            <p style="margin:0; font-size:13.5px;">
+              • <strong>Hewan:</strong> Kingdom &rarr; <strong>Filum</strong> &rarr; Classis (Kelas) &rarr; Ordo (Bangsa) &rarr; Famili (Keluarga) &rarr; Genus (Marga) &rarr; Spesies (Jenis).<br>
+              &nbsp;&nbsp;<em>Contoh manusia:</em> Animalia – Chordata – Mamalia – Primata – Hominidae – <em>Homo</em> – <em>sapiens</em>.<br><br>
+              • <strong>Tumbuhan:</strong> Kingdom &rarr; <strong>Divisi</strong> &rarr; Classis &rarr; Ordo &rarr; Famili &rarr; Genus &rarr; Spesies.<br>
+              &nbsp;&nbsp;<em>Contoh mangga:</em> Plantae – Spermatophyta – Dicotyledoneae – Sapindales – Anacardiaceae – <em>Mangifera</em> – <em>indica</em>.
+            </p>
+          </div>
+        </article>
+
+        <!-- Sub-bab 2 -->
+        <article id="sub-2" class="sub-section">
+          <span class="sub-badge">Sub-bab 02</span>
+          <h2>Perkembangan Sistem Kingdom</h2>
+          <p>Seiring kemajuan mikroskop dan biologi molekuler, sistem pengelompokan kingdom berkembang dari 2 kingdom hingga 6 kingdom:</p>
+
+          <div class="table-wrap">
+            <table class="bio-table">
+              <thead>
+                <tr>
+                  <th>Sistem &amp; Pencetus</th>
+                  <th>Daftar Kingdom</th>
+                  <th>Ciri Utama Pembeda</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td><strong>2 Kingdom</strong><br><span style="color:var(--muted); font-size:12px;">Aristoteles</span></td>
+                  <td>Plantae, Animalia</td>
+                  <td><strong>Plantae</strong> (berdinding sel selulosa, berklorofil, autotrof) dan <strong>Animalia</strong> (tidak berdinding sel, tidak berklorofil, bergerak bebas, heterotrof).</td>
+                </tr>
+                <tr>
+                  <td><strong>3 Kingdom</strong><br><span style="color:var(--muted); font-size:12px;">Ernst Haeckel (1866)</span></td>
+                  <td>Protista, Plantae, Animalia</td>
+                  <td>Muncul <strong>Protista</strong> (uniseluler/multiseluler sederhana tanpa jaringan sejati, bersifat eukariotik).</td>
+                </tr>
+                <tr>
+                  <td><strong>4 Kingdom</strong><br><span style="color:var(--muted); font-size:12px;">Herbert F. Copeland (1938)</span></td>
+                  <td>Monera, Protista, Plantae, Animalia</td>
+                  <td>Muncul <strong>Monera</strong> untuk mengelompokkan organisme prokariotik (belum memiliki membran inti sel).</td>
+                </tr>
+                <tr>
+                  <td><strong>5 Kingdom</strong><br><span style="color:var(--muted); font-size:12px;">Robert H. Whittaker (1969)</span></td>
+                  <td>Monera, Protista, <strong>Fungi</strong>, Plantae, Animalia</td>
+                  <td><strong>Fungi (jamur)</strong> dipisahkan dari Plantae karena tidak berklorofil dan bersifat heterotrof (saprofit/parasit).</td>
+                </tr>
+                <tr>
+                  <td><strong>6 Kingdom</strong><br><span style="color:var(--muted); font-size:12px;">Carl Woese (1977)</span></td>
+                  <td><strong>Eubacteria, Archaebacteria</strong>, Protista, Fungi, Plantae, Animalia</td>
+                  <td>Monera dipecah menjadi <strong>Eubacteria</strong> (dinding sel mengandung peptidoglikan) dan <strong>Archaebacteria</strong> (dinding sel tanpa peptidoglikan).</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </article>
+
+        <!-- Sub-bab 3 -->
+        <article id="sub-3" class="sub-section">
+          <span class="sub-badge">Sub-bab 03</span>
+          <h2>Kingdom Monera: Bakteri</h2>
+          <p><strong>Monera</strong> adalah kelompok organisme bersel satu (<strong>uniseluler</strong>) dan bersifat <strong>prokariotik</strong> (sel belum memiliki membran inti/nukleus). Hidup secara soliter atau berkoloni, bersifat autotrof maupun heterotrof, serta bersifat <strong>kosmopolit</strong> (dapat hidup di darat, air, hingga tempat ekstrem). Kingdom Monera dibagi menjadi dua kelompok utama: <strong>Bakteri</strong> dan <strong>Alga Biru (Cyanobacteria)</strong>.</p>
+
+          <div class="formula-box">
+            <strong class="box-label">Ciri-Ciri Umum Bakteri</strong>
+            <p style="margin:0; font-size:13.5px;">
+              • <strong>Struktur &amp; Ukuran:</strong> Uniseluler, prokariotik, ukuran mikroskopis (lebar <strong>0,5–1,0 &mu;m</strong>, panjang <strong>1,0–6,0 &mu;m</strong>, meski ada yang mencapai 100 &mu;m).<br>
+              • <strong>Cara Hidup:</strong> Soliter, berkoloni, bersimbiosis, parasit, atau saprofitik.<br>
+              • <strong>Reproduksi:</strong> Secara vegetatif dengan <strong>pembelahan biner</strong>, dan secara generatif (paraseksual) melalui <strong>konjugasi</strong> (jembatan pili), <strong>transformasi</strong> (pengambilan DNA bebas), dan <strong>transduksi</strong> (perantara bakteriofag/virus).
+            </p>
+          </div>
+
+          <h3>1. Bentuk-Bentuk Bakteri</h3>
+          <div class="visual-diagram">
+            <svg viewBox="0 0 600 175" fill="none" xmlns="http://www.w3.org/2000/svg" aria-label="Ilustrasi Bentuk-Bentuk Bakteri Kokus, Basil, dan Spiral">
+              <!-- Kokus -->
+              <rect x="10" y="12" width="184" height="150" rx="12" fill="#537fda" fill-opacity="0.1" stroke="#537fda" stroke-width="1.5"/>
+              <text x="102" y="34" font-family="Plus Jakarta Sans, sans-serif" font-size="12" font-weight="800" fill="#537fda" text-anchor="middle">1. Kokus (Bulat)</text>
+              <!-- Diplococci -->
+              <circle cx="46" cy="62" r="8" fill="#537fda"/><circle cx="61" cy="62" r="8" fill="#537fda"/>
+              <text x="53" y="83" font-family="Plus Jakarta Sans, sans-serif" font-size="9.5" font-weight="700" fill="#64748b" text-anchor="middle">Diplococci</text>
+              <!-- Streptococci -->
+              <circle cx="110" cy="62" r="6.5" fill="#537fda"/><circle cx="122" cy="62" r="6.5" fill="#537fda"/><circle cx="134" cy="62" r="6.5" fill="#537fda"/><circle cx="146" cy="62" r="6.5" fill="#537fda"/>
+              <text x="128" y="83" font-family="Plus Jakarta Sans, sans-serif" font-size="9.5" font-weight="700" fill="#64748b" text-anchor="middle">Streptococci</text>
+              <!-- Sarcina -->
+              <circle cx="48" cy="110" r="6" fill="#537fda"/><circle cx="60" cy="110" r="6" fill="#537fda"/><circle cx="48" cy="122" r="6" fill="#537fda"/><circle cx="60" cy="122" r="6" fill="#537fda"/>
+              <text x="54" y="143" font-family="Plus Jakarta Sans, sans-serif" font-size="9.5" font-weight="700" fill="#64748b" text-anchor="middle">Tetrad / Sarcina</text>
+              <!-- Staphylococci -->
+              <circle cx="122" cy="108" r="6" fill="#537fda"/><circle cx="134" cy="108" r="6" fill="#537fda"/><circle cx="116" cy="119" r="6" fill="#537fda"/><circle cx="128" cy="119" r="6" fill="#537fda"/><circle cx="140" cy="119" r="6" fill="#537fda"/><circle cx="128" cy="129" r="6" fill="#537fda"/>
+              <text x="128" y="148" font-family="Plus Jakarta Sans, sans-serif" font-size="9.5" font-weight="700" fill="#64748b" text-anchor="middle">Staphylococci</text>
+
+              <!-- Basil -->
+              <rect x="208" y="12" width="184" height="150" rx="12" fill="#10b981" fill-opacity="0.1" stroke="#059669" stroke-width="1.5"/>
+              <text x="300" y="34" font-family="Plus Jakarta Sans, sans-serif" font-size="12" font-weight="800" fill="#047857" text-anchor="middle">2. Basil (Batang)</text>
+              <!-- Streptobasil -->
+              <rect x="234" y="56" width="26" height="12" rx="6" fill="#059669"/>
+              <rect x="262" y="56" width="26" height="12" rx="6" fill="#059669"/>
+              <rect x="290" y="56" width="26" height="12" rx="6" fill="#059669"/>
+              <text x="275" y="83" font-family="Plus Jakarta Sans, sans-serif" font-size="9.5" font-weight="700" fill="#64748b" text-anchor="middle">Rantai Basil (Streptobasil)</text>
+              <!-- Basil berflagel -->
+              <rect x="268" y="106" width="34" height="14" rx="7" fill="#059669"/>
+              <path d="M302 110 Q316 102 328 112" stroke="#059669" stroke-width="2" stroke-linecap="round"/>
+              <path d="M302 116 Q316 124 328 116" stroke="#059669" stroke-width="2" stroke-linecap="round"/>
+              <text x="300" y="143" font-family="Plus Jakarta Sans, sans-serif" font-size="9.5" font-weight="700" fill="#64748b" text-anchor="middle">Basil Berflagel &amp; Berspora</text>
+
+              <!-- Bentuk Lain -->
+              <rect x="406" y="12" width="184" height="150" rx="12" fill="#f59e0b" fill-opacity="0.1" stroke="#d97706" stroke-width="1.5"/>
+              <text x="498" y="34" font-family="Plus Jakarta Sans, sans-serif" font-size="12" font-weight="800" fill="#b45309" text-anchor="middle">3. Koma &amp; Spiral</text>
+              <!-- Vibrio -->
+              <path d="M436 58 Q452 54 456 72" stroke="#d97706" stroke-width="8" stroke-linecap="round"/>
+              <path d="M456 72 Q466 80 474 74" stroke="#d97706" stroke-width="1.8" stroke-linecap="round"/>
+              <text x="452" y="92" font-family="Plus Jakarta Sans, sans-serif" font-size="9.5" font-weight="700" fill="#64748b" text-anchor="middle">Vibrio (Koma)</text>
+              <!-- Spirilla / Spirochaetes -->
+              <path d="M498 62 Q508 48 518 62 T538 62 T558 62" stroke="#d97706" stroke-width="5" stroke-linecap="round"/>
+              <text x="530" y="92" font-family="Plus Jakarta Sans, sans-serif" font-size="9.5" font-weight="700" fill="#64748b" text-anchor="middle">Spirilla</text>
+              <path d="M445 122 Q455 108 465 122 T485 122 T505 122 T525 122 T545 122" stroke="#d97706" stroke-width="3.2" stroke-linecap="round"/>
+              <text x="498" y="145" font-family="Plus Jakarta Sans, sans-serif" font-size="9.5" font-weight="700" fill="#64748b" text-anchor="middle">Spirochaetes (Spiral Lentur)</text>
+            </svg>
+          </div>
+
+          <div class="formula-box">
+            <strong class="box-label">Contoh Spesies Berdasarkan Bentuk Bakteri</strong>
+            <p style="margin:0; font-size:13.5px;">
+              • <strong>Kokus (Bulat):</strong> <em>Diplococci</em> (berpasangan, misal <em>Streptococcus pneumoniae</em>), <em>Streptococci</em> (rantai, misal <em>Streptococcus pyogenes</em>), <em>Tetrad</em> (4 sel), <em>Sarcina</em> (kubus 8 sel, misal <em>Sarcina ventriculi</em>), dan <em>Staphylococci</em> (bergerombol seperti anggur, misal <em>Staphylococcus aureus</em>).<br>
+              • <strong>Basil (Batang):</strong> Rantai basil (<em>Bacillus anthracis</em>), basil berflagel (<em>Salmonella typhi</em>), dan pembentuk spora (<em>Clostridium botulinum</em>).<br>
+              • <strong>Bentuk Lain:</strong> <em>Vibrio</em> (koma, misal <em>Vibrio cholerae</em>), <em>Spirilla</em> (spiral kaku, misal <em>Helicobacter pylori</em>), dan <em>Spirochaetes</em> (spiral lentur, misal <em>Treponema pallidum</em>).
+            </p>
+          </div>
+
+          <h3>2. Struktur Tubuh Bakteri</h3>
+          <div class="visual-diagram">
+            <svg viewBox="0 0 580 185" fill="none" xmlns="http://www.w3.org/2000/svg" aria-label="Diagram Penampang Struktur Sel Bakteri Prokariotik">
+              <!-- Kapsul, Dinding Sel, Membran Plasma -->
+              <rect x="145" y="42" width="250" height="104" rx="52" fill="#f59e0b" fill-opacity="0.2" stroke="#d97706" stroke-width="2.5"/>
+              <rect x="153" y="50" width="234" height="88" rx="44" fill="#3b82f6" fill-opacity="0.16" stroke="#2563eb" stroke-width="2.2"/>
+              <rect x="160" y="57" width="220" height="74" rx="37" fill="#e0f2fe" stroke="#0284c7" stroke-width="1.8"/>
+
+              <!-- Pili (rambut halus) -->
+              <line x1="185" y1="42" x2="178" y2="28" stroke="#d97706" stroke-width="2" stroke-linecap="round"/>
+              <line x1="235" y1="42" x2="235" y2="26" stroke="#d97706" stroke-width="2" stroke-linecap="round"/>
+              <line x1="315" y1="42" x2="320" y2="27" stroke="#d97706" stroke-width="2" stroke-linecap="round"/>
+              <line x1="215" y1="146" x2="210" y2="160" stroke="#d97706" stroke-width="2" stroke-linecap="round"/>
+              <line x1="305" y1="146" x2="310" y2="160" stroke="#d97706" stroke-width="2" stroke-linecap="round"/>
+
+              <!-- Flagela -->
+              <path d="M395 94 Q425 74 452 94 T506 94" stroke="#2563eb" stroke-width="3" stroke-linecap="round"/>
+
+              <!-- Nukleoid (DNA sirkuler kusut) -->
+              <path d="M232 94 C242 74, 266 76, 262 96 C258 114, 286 112, 282 90 C278 72, 304 78, 294 102 C286 116, 248 114, 232 94 Z" stroke="#dc2626" stroke-width="2.4"/>
+
+              <!-- Plasmid -->
+              <circle cx="335" cy="86" r="10" stroke="#7c3aed" stroke-width="2.2"/>
+
+              <!-- Ribosom -->
+              <circle cx="195" cy="84" r="3" fill="#1e293b"/>
+              <circle cx="206" cy="108" r="3" fill="#1e293b"/>
+              <circle cx="322" cy="112" r="3" fill="#1e293b"/>
+              <circle cx="354" cy="102" r="3" fill="#1e293b"/>
+
+              <!-- Label Anotasi -->
+              <g font-family="Plus Jakarta Sans, sans-serif" font-size="10.5" font-weight="700" fill="#334155">
+                <text x="72" y="45" text-anchor="middle">Kapsul &amp; Dinding Sel</text>
+                <line x1="125" y1="45" x2="152" y2="55" stroke="#64748b" stroke-width="1.2"/>
+
+                <text x="68" y="96" text-anchor="middle">Nukleoid (DNA)</text>
+                <line x1="115" y1="94" x2="232" y2="94" stroke="#64748b" stroke-width="1.2"/>
+
+                <text x="72" y="148" text-anchor="middle">Ribosom &amp; Sitoplasma</text>
+                <line x1="130" y1="144" x2="195" y2="110" stroke="#64748b" stroke-width="1.2"/>
+
+                <text x="485" y="45" text-anchor="middle">Pili (Konjugasi)</text>
+                <line x1="440" y1="42" x2="322" y2="33" stroke="#64748b" stroke-width="1.2"/>
+
+                <text x="515" y="75" text-anchor="middle">Flagela (Alat Gerak)</text>
+
+                <text x="485" y="148" text-anchor="middle">Plasmid (DNA Sirkuler)</text>
+                <line x1="425" y1="143" x2="342" y2="93" stroke="#64748b" stroke-width="1.2"/>
+              </g>
+            </svg>
+          </div>
+
+          <div class="formula-grid" style="margin:12px 0;">
+            <div class="trend-card">
+              <div class="trend-head"><span>Struktur Luar Sel</span><span class="trend-pill">Pelindung &amp; Gerak</span></div>
+              <p style="margin:0; font-size:13px; color:var(--muted);">
+                <strong>Kapsul</strong> (lapisan lendir pelindung), <strong>dinding sel</strong>, <strong>membran sel/plasma</strong>, <strong>flagela</strong> (alat gerak), dan <strong>pili</strong> (rambut halus untuk menempel atau konjugasi).
+              </p>
+            </div>
+            <div class="trend-card">
+              <div class="trend-head"><span>Struktur Dalam Sel</span><span class="trend-pill">Metabolisme &amp; Genetik</span></div>
+              <p style="margin:0; font-size:13px; color:var(--muted);">
+                <strong>Sitoplasma</strong>, <strong>nukleoid</strong> (DNA sirkuler tanpa membran inti), <strong>ribosom</strong> (sintesis protein), <strong>mesosom</strong>, dan <strong>plasmid</strong> (DNA sirkuler kecil di luar nukleoid).
+              </p>
+            </div>
+          </div>
+        </article>
+
+        <!-- Sub-bab 4 -->
+        <article id="sub-4" class="sub-section">
+          <span class="sub-badge">Sub-bab 04</span>
+          <h2>Klasifikasi Bakteri: Archaebacteria vs Eubacteria</h2>
+          <p>Dalam sistem 6 kingdom, prokariota dibagi menjadi <strong>Archaebacteria (bakteri purba)</strong> yang hidup di lingkungan ekstrem dan <strong>Eubacteria (bakteri sejati)</strong> yang bersifat kosmopolit.</p>
+
+          <div class="table-wrap">
+            <table class="bio-table">
+              <thead>
+                <tr>
+                  <th>Pembeda</th>
+                  <th>Archaebacteria (Bakteri Purba)</th>
+                  <th>Eubacteria (Bakteri Sejati)</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td><strong>Dinding Sel</strong></td>
+                  <td><strong>Tidak mengandung peptidoglikan</strong> (tersusun atas pseudopeptidoglikan, glikoprotein, polisakarida).</td>
+                  <td><strong>Mengandung peptidoglikan</strong> (kaya asam N-asetilmuramat dan asam D-amino).</td>
+                </tr>
+                <tr>
+                  <td><strong>Membran Plasma</strong></td>
+                  <td>Lapisan tunggal (<em>monolayer</em>) atau ganda (<em>bilayer</em>) dengan <strong>ikatan eter</strong> dan rantai bercabang.</td>
+                  <td>Selalu lapisan ganda (<em>bilayer</em>) lipid dengan <strong>ikatan ester</strong>.</td>
+                </tr>
+                <tr>
+                  <td><strong>RNA Polimerase</strong></td>
+                  <td>Lebih dari satu jenis dan kompleks (&gt;8 polipeptida).</td>
+                  <td>Hanya satu jenis dan sederhana (4 peptida).</td>
+                </tr>
+                <tr>
+                  <td><strong>Reproduksi</strong></td>
+                  <td>Pembelahan, tunas, dan fragmentasi.</td>
+                  <td>Pembelahan biner dan mampu membentuk <strong>endospora</strong> saat lingkungan ekstrem.</td>
+                </tr>
+                <tr>
+                  <td><strong>Habitat</strong></td>
+                  <td><strong>Lingkungan ekstrem:</strong> sumber air panas (&gt;100&deg;C), air sangat asin/asam/basa, rawa anaerob, hingga saluran pencernaan sapi/rayap.</td>
+                  <td><strong>Kosmopolit</strong> (mudah ditemukan di tanah, air, udara, maupun tubuh organisme lain).</td>
+                </tr>
+                <tr>
+                  <td><strong>Jenis &amp; Patogenitas</strong></td>
+                  <td>Terdiri dari <strong>termofilik</strong> (suka panas), <strong>halofilik</strong> (suka asin), dan <strong>metanogenik</strong> (penghasil metana). <strong>Tidak bersifat patogen.</strong></td>
+                  <td>Dibagi menjadi <strong>Bakteri Gram Positif</strong> dan <strong>Bakteri Gram Negatif</strong>. Sebagian bersifat patogen.</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+          <h3>Perbedaan Bakteri Gram Positif dan Gram Negatif (Pewarnaan Gram)</h3>
+          <div class="formula-grid" style="margin:12px 0;">
+            <div class="trend-card">
+              <div class="trend-head">
+                <span>Bakteri Gram Positif</span>
+                <span class="trend-pill" style="background:#ede9fe; color:#6d28d9;">Warna Ungu</span>
+              </div>
+              <p style="margin:0; font-size:13px; color:var(--muted);">
+                • Dinding sel memiliki lapisan <strong>peptidoglikan tebal</strong> dan mengandung asam teikoat.<br>
+                • Menahan zat warna <strong>kristal violet</strong> sehingga tampak <strong>ungu</strong> di mikroskop.<br>
+                • Menghasilkan <strong>eksotoksin</strong>.
+              </p>
+            </div>
+            <div class="trend-card">
+              <div class="trend-head">
+                <span>Bakteri Gram Negatif</span>
+                <span class="trend-pill" style="background:#fee2e2; color:#dc2626;">Warna Merah / Merah Muda</span>
+              </div>
+              <p style="margin:0; font-size:13px; color:var(--muted);">
+                • Lapisan <strong>peptidoglikan tipis</strong> (terletak di ruang periplasma) dan memiliki <strong>membran luar</strong> (lipoprotein, fosfolipid, LPS).<br>
+                • Warna kristal violet luntur saat dicuci alkohol dan menyerap pewarna tandingan <strong>safranin</strong> sehingga tampak <strong>merah / merah muda</strong>.<br>
+                • Lebih tahan antibodi karena membran luarnya sulit ditembus. Menghasilkan <strong>endotoksin</strong>.
+              </p>
+            </div>
+          </div>
+        </article>
+
+        <!-- Sub-bab 5 -->
+        <article id="sub-5" class="sub-section">
+          <span class="sub-badge">Sub-bab 05</span>
+          <h2>Alga Biru (Cyanobacteria / Cyanophyta)</h2>
+          <p><strong>Alga Biru (Cyanobacteria)</strong> adalah organisme <strong>prokariotik</strong> mikroskopis yang sudah mampu melakukan <strong>fotosintesis</strong>. Bentuk tubuhnya ada yang bersel tunggal (uniseluler), berkoloni, maupun membentuk benang halus (filamen).</p>
+
+          <div class="formula-box">
+            <strong class="box-label">Ciri Khas &amp; Komposisi Pigmen Alga Biru</strong>
+            <p style="margin:0; font-size:13.5px;">
+              • Memiliki lapisan lendir (gelatin) di luar dinding sel.<br>
+              • Memiliki <strong>4 jenis pigmen fotosintesis</strong>:<br>
+              &nbsp;&nbsp;1. <strong>Klorofil</strong> (hijau)<br>
+              &nbsp;&nbsp;2. <strong>Karoten</strong> (oranye)<br>
+              &nbsp;&nbsp;3. <strong>Fikosianin</strong> (biru — <strong>pigmen dominan</strong> penyebab warna hijau kebiruan)<br>
+              &nbsp;&nbsp;4. <strong>Fikoeritrin</strong> (merah)
+            </p>
+          </div>
+
+          <h3>1. Jenis Sel Khusus pada Koloni / Filamen Alga Biru</h3>
+          <div class="visual-diagram">
+            <svg viewBox="0 0 580 120" fill="none" xmlns="http://www.w3.org/2000/svg" aria-label="Ilustrasi Struktur Filamen Cyanobacteria dengan Baeosit, Heterokista, dan Akinet">
+              <!-- Rantai Sel Baeosit -->
+              <circle cx="80" cy="48" r="14" fill="#14b8a6" stroke="#0f766e" stroke-width="2"/>
+              <circle cx="110" cy="48" r="14" fill="#14b8a6" stroke="#0f766e" stroke-width="2"/>
+              <circle cx="140" cy="48" r="14" fill="#14b8a6" stroke="#0f766e" stroke-width="2"/>
+
+              <!-- Heterokista (besar, jernih, dinding tebal) -->
+              <ellipse cx="178" cy="48" rx="20" ry="17" fill="#fef9c3" stroke="#ca8a04" stroke-width="3.2"/>
+              <text x="178" y="51" font-family="Plus Jakarta Sans, sans-serif" font-size="9" font-weight="800" fill="#854d0e" text-anchor="middle">N2</text>
+
+              <!-- Rantai Sel Baeosit -->
+              <circle cx="216" cy="48" r="14" fill="#14b8a6" stroke="#0f766e" stroke-width="2"/>
+              <circle cx="246" cy="48" r="14" fill="#14b8a6" stroke="#0f766e" stroke-width="2"/>
+              <circle cx="276" cy="48" r="14" fill="#14b8a6" stroke="#0f766e" stroke-width="2"/>
+
+              <!-- Akinet (lonjong besar, dinding tebal gelap) -->
+              <ellipse cx="318" cy="48" rx="24" ry="18" fill="#0284c7" fill-opacity="0.3" stroke="#1e3a8a" stroke-width="3.5"/>
+              <circle cx="313" cy="46" r="2.5" fill="#1e3a8a"/><circle cx="323" cy="50" r="2.5" fill="#1e3a8a"/><circle cx="318" cy="42" r="2" fill="#1e3a8a"/>
+
+              <!-- Rantai Sel Baeosit -->
+              <circle cx="360" cy="48" r="14" fill="#14b8a6" stroke="#0f766e" stroke-width="2"/>
+              <circle cx="390" cy="48" r="14" fill="#14b8a6" stroke="#0f766e" stroke-width="2"/>
+
+              <!-- Anotasi -->
+              <g font-family="Plus Jakarta Sans, sans-serif" font-size="10.5" font-weight="700" fill="#334155" text-anchor="middle">
+                <text x="110" y="96">Baeosit (Fotosintesis)</text>
+                <line x1="110" y1="83" x2="110" y2="63" stroke="#64748b" stroke-width="1.2"/>
+
+                <text x="200" y="112" fill="#b45309">Heterokista (Pengikat N2)</text>
+                <line x1="186" y1="98" x2="178" y2="66" stroke="#ca8a04" stroke-width="1.3"/>
+
+                <text x="345" y="96" fill="#1e40af">Akinet (Cadangan Makanan &amp; Spora)</text>
+                <line x1="330" y1="83" x2="320" y2="67" stroke="#1e3a8a" stroke-width="1.3"/>
+              </g>
+            </svg>
+          </div>
+
+          <div class="table-wrap">
+            <table class="bio-table">
+              <thead>
+                <tr>
+                  <th>Jenis Sel Khusus</th>
+                  <th>Ciri Struktur &amp; Fungsi Utama</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td><strong>Heterokista</strong></td>
+                  <td>Sel berukuran besar, berdinding tebal, isi jernih, mengandung <strong>enzim nitrogenase</strong> untuk mengikat nitrogen bebas (<strong>N<sub>2</sub></strong>) dari udara.</td>
+                </tr>
+                <tr>
+                  <td><strong>Akinet</strong></td>
+                  <td>Sel berdinding tebal berisi cadangan makanan dan endospora untuk <strong>bertahan hidup pada kondisi lingkungan buruk</strong> (kekeringan).</td>
+                </tr>
+                <tr>
+                  <td><strong>Baeosit</strong></td>
+                  <td>Sel vegetatif kecil, bulat, berklorofil yang berfungsi untuk melakukan <strong>fotosintesis</strong>.</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+          <h3>2. Cara Reproduksi &amp; Manfaat Alga Biru</h3>
+          <div class="formula-box">
+            <strong class="box-label">Cara Reproduksi Alga Biru</strong>
+            <p style="margin:0; font-size:13.5px;">
+              • <strong>Pembelahan Biner:</strong> Terjadi pada <em>Cyanobacteria</em> uniseluler (contoh: <em>Gloeocapsa</em>).<br>
+              • <strong>Fragmentasi:</strong> Pemutusan filamen menjadi potongan-potongan bernama <strong>hormogonium</strong> yang tumbuh menjadi individu baru (contoh: <em>Oscillatoria</em> sp., <em>Plectonema boryanum</em>).<br>
+              • <strong>Pembentukan Endospora (Akinet):</strong> Terjadi saat kekeringan atau lingkungan buruk, dan tumbuh kembali saat lingkungan membaik (contoh: <em>Nostoc</em> sp.).
+            </p>
+          </div>
+
+          <div class="table-wrap">
+            <table class="bio-table">
+              <thead>
+                <tr>
+                  <th>Spesies Alga Biru</th>
+                  <th>Manfaat Bagi Kehidupan</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td><strong><em>Nostoc</em> sp.</strong></td>
+                  <td>Memfiksasi nitrogen (<strong>N<sub>2</sub></strong>) dari udara untuk menyuburkan lahan pertanian/padi.</td>
+                </tr>
+                <tr>
+                  <td><strong><em>Anabaena azollae</em></strong></td>
+                  <td>Bersimbiosis dengan paku air (<em>Azolla pinnata</em>) untuk mengikat <strong>N<sub>2</sub></strong> dan mengubahnya menjadi amonia (<strong>NH<sub>3</sub></strong>) bagi tanaman.</td>
+                </tr>
+                <tr>
+                  <td><strong><em>Spirulina</em> sp.</strong></td>
+                  <td>Sumber <strong>Protein Sel Tunggal (PST)</strong> untuk bahan makanan maupun suplemen kesehatan.</td>
+                </tr>
+                <tr>
+                  <td><strong><em>Gloeocapsa</em> sp.</strong></td>
+                  <td>Sebagai <strong>vegetasi perintis</strong> yang mampu hidup di lingkungan kurang menguntungkan (batuan lembap).</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+          <div class="example-box">
+            <strong>Contoh Soal Latihan:</strong> Seorang petani menanam tumbuhan paku air <em>Azolla pinnata</em> di sela-sela tanaman padi sawah untuk mengurangi penggunaan pupuk urea. Mikroorganisme apakah yang bersimbiosis pada daun <em>Azolla pinnata</em> dan bagaimana mekanismenya menyuburkan tanah?<br>
+            <strong>Pembahasan:</strong> Mikroorganisme tersebut adalah alga biru <strong><em>Anabaena azollae</em></strong>. Melalui sel khusus bernama <strong>heterokista</strong> yang mengandung enzim nitrogenase, alga biru ini mengikat gas nitrogen (<strong>N<sub>2</sub></strong>) bebas dari udara dan mengubahnya menjadi senyawa amonia (<strong>NH<sub>3</sub></strong>) yang dapat diserap oleh akar padi sebagai pupuk alami.
+          </div>
+        </article>
+
+        <!-- Navigasi Bawah -->
+        <div class="bottom-nav">
+          <a href="biologi-bab1.html" class="btn-nav"><i data-lucide="arrow-left"></i> Bab Sebelumnya: Keanekaragaman Hayati</a>
+          <a href="biologi-bab3.html" class="btn-nav primary">Bab Selanjutnya: Virus <i data-lucide="arrow-right"></i></a>
+        </div>
+
+      </div>
+    </div>
+  </main>
+
+  <footer class="footer">
+    <div class="wrap">
+      <span>© Shira's Archive</span>
+      <span>Belajar sedikit demi sedikit, setiap hari.</span>
+    </div>
+  </footer>
+
+  <script>
+    lucide.createIcons();
+
+    // Sinkronisasi Dark Mode dengan halaman beranda
+    const themeBtn = document.getElementById("theme-toggle");
+    if (localStorage.getItem("shira-theme") === "dark") {
+      document.body.classList.add("dark");
+      themeBtn.innerHTML = '<i data-lucide="sun"></i>';
+      lucide.createIcons();
+    }
+
+    themeBtn.onclick = () => {
+      const dark = document.body.classList.toggle("dark");
+      localStorage.setItem("shira-theme", dark ? "dark" : "light");
+      themeBtn.innerHTML = '<i data-lucide="' + (dark ? "sun" : "moon") + '"></i>';
+      lucide.createIcons();
+    };
+
+    // Highlight otomatis daftar sub-bab saat halaman di-scroll
+    const sections = document.querySelectorAll(".sub-section");
+    const navLinks = document.querySelectorAll(".toc-list a");
+
+    window.addEventListener("scroll", () => {
+      let current = "";
+      sections.forEach(sec => {
+        const top = sec.offsetTop - 150;
+        if (window.scrollY >= top) current = sec.getAttribute("id");
+      });
+      navLinks.forEach(link => {
+        link.classList.remove("active");
+        if (link.getAttribute("href") === "#" + current) {
+          link.classList.add("active");
+        }
+      });
+    });
+  </script>
+</body>
+</html>

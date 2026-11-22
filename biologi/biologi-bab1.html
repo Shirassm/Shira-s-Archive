@@ -1,0 +1,1007 @@
+<!doctype html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Bab 1: Keanekaragaman Hayati — Shira's Archive</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/lucide@0.577.0/dist/umd/lucide.min.js"></script>
+  <style>
+    :root {
+      --bg: #f5f8fd;
+      --surface: #fff;
+      --surface2: #edf4fd;
+      --text: #25334a;
+      --muted: #718099;
+      --line: #e3eaf4;
+      --blue: #537fda;
+      --blue2: #e8f0ff;
+      --shadow: 0 12px 36px rgba(48, 79, 129, .07);
+    }
+    body.dark {
+      --bg: #101827;
+      --surface: #192437;
+      --surface2: #202e45;
+      --text: #eef4ff;
+      --muted: #a7b5cb;
+      --line: #344159;
+      --blue: #8bb3ff;
+      --blue2: #263d65;
+      --shadow: 0 12px 36px rgba(0, 0, 0, .17);
+    }
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      background: var(--bg);
+      color: var(--text);
+      font-family: "Plus Jakarta Sans", sans-serif;
+      line-height: 1.7;
+      transition: background .25s, color .25s;
+    }
+    button { font-family: "Plus Jakarta Sans", sans-serif; cursor: pointer; }
+    .wrap { max-width: 1190px; margin: auto; padding: 0 28px; }
+
+    /* Header (Sama persis dengan index.html) */
+    .site-header {
+      background: var(--surface);
+      border-bottom: 1px solid var(--line);
+      position: sticky;
+      top: 0;
+      z-index: 10;
+    }
+    .nav-inner {
+      min-height: 78px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+    }
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 11px;
+      font-weight: 800;
+      font-size: 18px;
+      text-decoration: none;
+      color: var(--text);
+    }
+    .brand-mark {
+      width: 38px;
+      height: 38px;
+      display: grid;
+      place-items: center;
+      border-radius: 12px;
+      background: var(--blue);
+      color: white;
+    }
+    .brand-mark svg { width: 21px; }
+    .icon-button {
+      width: 41px;
+      height: 41px;
+      border: 1px solid var(--line);
+      border-radius: 12px;
+      background: var(--surface);
+      color: var(--text);
+      display: grid;
+      place-items: center;
+    }
+    .icon-button svg { width: 19px; }
+
+    /* Breadcrumb & Judul Bab */
+    .reader-top { padding: 34px 0 24px; }
+    .back-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      color: var(--blue);
+      text-decoration: none;
+      font-weight: 700;
+      font-size: 13px;
+      margin-bottom: 18px;
+    }
+    .back-link svg { width: 17px; }
+    .eyebrow {
+      color: var(--blue);
+      font-size: 12px;
+      font-weight: 800;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+      margin: 0 0 8px;
+    }
+    .reader-top h1 {
+      font-size: clamp(28px, 4vw, 40px);
+      letter-spacing: -.04em;
+      line-height: 1.2;
+      margin: 0 0 10px;
+      font-weight: 800;
+    }
+    .reader-top p.desc {
+      color: var(--muted);
+      font-size: 14px;
+      margin: 0;
+      max-width: 680px;
+    }
+
+    /* Layout Dua Kolom: Sidebar Sub-bab + Area Baca */
+    .reader-layout {
+      display: grid;
+      grid-template-columns: 280px minmax(0, 1fr);
+      gap: 28px;
+      padding-bottom: 80px;
+      align-items: start;
+    }
+
+    /* Sidebar Daftar Sub-bab */
+    .toc-card {
+      background: var(--surface);
+      border: 1px solid var(--line);
+      border-radius: 18px;
+      padding: 20px;
+      box-shadow: var(--shadow);
+      position: sticky;
+      top: 102px;
+    }
+    .toc-title {
+      font-size: 12px;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: .08em;
+      color: var(--muted);
+      margin: 0 0 14px;
+    }
+    .toc-list {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      display: grid;
+      gap: 6px;
+    }
+    .toc-list a {
+      display: flex;
+      align-items: start;
+      gap: 9px;
+      padding: 9px 12px;
+      border-radius: 10px;
+      text-decoration: none;
+      color: var(--muted);
+      font-size: 13px;
+      font-weight: 600;
+      line-height: 1.4;
+      transition: background .2s, color .2s;
+    }
+    .toc-list a:hover {
+      background: var(--surface2);
+      color: var(--text);
+    }
+    .toc-list a.active {
+      background: var(--blue2);
+      color: var(--blue);
+      font-weight: 700;
+    }
+    .toc-num {
+      font-size: 11px;
+      font-weight: 800;
+      opacity: .8;
+      margin-top: 2px;
+    }
+
+    /* Area Konten Catatan */
+    .content-area {
+      display: grid;
+      gap: 24px;
+    }
+    .sub-section {
+      background: var(--surface);
+      border: 1px solid var(--line);
+      border-radius: 20px;
+      padding: 30px;
+      box-shadow: var(--shadow);
+      scroll-margin-top: 102px;
+    }
+    .sub-badge {
+      display: inline-block;
+      background: var(--blue2);
+      color: var(--blue);
+      font-size: 11px;
+      font-weight: 800;
+      padding: 4px 10px;
+      border-radius: 20px;
+      margin-bottom: 10px;
+    }
+    .sub-section h2 {
+      font-size: 22px;
+      letter-spacing: -.03em;
+      margin: 0 0 14px;
+    }
+    .sub-section h3 {
+      font-size: 16px;
+      font-weight: 700;
+      color: var(--blue);
+      margin: 22px 0 10px;
+    }
+    .sub-section p {
+      font-size: 14px;
+      margin: 0 0 14px;
+    }
+
+    /* Kotak Konsep & Contoh Soal */
+    .formula-box {
+      background: var(--surface2);
+      border-left: 4px solid var(--blue);
+      border-radius: 12px;
+      padding: 18px 20px;
+      margin: 18px 0;
+    }
+    .formula-box strong.box-label {
+      display: block;
+      font-size: 12px;
+      text-transform: uppercase;
+      letter-spacing: .06em;
+      color: var(--blue);
+      margin-bottom: 10px;
+    }
+    .formula-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 14px 20px;
+      font-size: 13.5px;
+    }
+    .trend-card {
+      background: var(--surface);
+      border: 1px solid var(--line);
+      border-radius: 10px;
+      padding: 13px 15px;
+    }
+    .trend-head {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 8px;
+      margin-bottom: 6px;
+      font-weight: 700;
+      font-size: 13.5px;
+    }
+    .trend-pill {
+      display: inline-block;
+      padding: 2px 9px;
+      border-radius: 99px;
+      font-size: 11.5px;
+      font-weight: 800;
+      background: var(--blue2);
+      color: var(--blue);
+      white-space: nowrap;
+    }
+    .example-box {
+      border: 1px dashed var(--line);
+      border-radius: 12px;
+      padding: 16px 20px;
+      margin-top: 16px;
+      font-size: 13.5px;
+    }
+    .example-box strong { color: var(--blue); }
+
+    /* Tabel Materi */
+    .table-wrap {
+      overflow-x: auto;
+      margin: 16px 0;
+      border: 1px solid var(--line);
+      border-radius: 12px;
+    }
+    .bio-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 13.5px;
+      text-align: left;
+    }
+    .bio-table th {
+      background: var(--surface2);
+      color: var(--blue);
+      font-weight: 700;
+      padding: 12px 14px;
+      border-bottom: 1px solid var(--line);
+      white-space: nowrap;
+    }
+    .bio-table td {
+      padding: 11px 14px;
+      border-bottom: 1px solid var(--line);
+      vertical-align: top;
+    }
+    .bio-table tr:last-child td { border-bottom: none; }
+
+    /* Kartu Statistik Kekayaan Hayati */
+    .stat-grid {
+      display: grid;
+      grid-template-columns: repeat(5, minmax(0, 1fr));
+      gap: 10px;
+      margin: 14px 0;
+    }
+    .stat-card {
+      background: var(--surface2);
+      border: 1px solid var(--line);
+      border-radius: 12px;
+      padding: 12px;
+      text-align: center;
+    }
+    .stat-card .stat-num {
+      display: block;
+      font-size: 18px;
+      font-weight: 800;
+      color: var(--blue);
+      line-height: 1.2;
+    }
+    .stat-card .stat-label {
+      display: block;
+      font-size: 12px;
+      font-weight: 700;
+      margin-top: 2px;
+    }
+    .stat-card .stat-sub {
+      display: block;
+      font-size: 11px;
+      color: var(--muted);
+      margin-top: 3px;
+    }
+
+    /* Diagram Visual SVG */
+    .visual-diagram {
+      background: var(--surface2);
+      border: 1px solid var(--line);
+      border-radius: 14px;
+      padding: 16px;
+      margin: 16px 0;
+      text-align: center;
+    }
+    .visual-diagram svg {
+      width: 100%;
+      max-width: 580px;
+      height: auto;
+      display: block;
+      margin: 0 auto;
+    }
+    .diagram-caption {
+      font-size: 12px;
+      color: var(--muted);
+      font-weight: 600;
+      margin-top: 8px;
+    }
+
+    /* Grid 2 Kolom Visual Ekosistem */
+    .eco-visual-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 14px;
+      margin: 16px 0;
+    }
+
+    /* Navigasi Bawah Antar Bab */
+    .bottom-nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 12px;
+      margin-top: 10px;
+    }
+    .btn-nav {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 12px 18px;
+      border-radius: 12px;
+      text-decoration: none;
+      font-size: 13px;
+      font-weight: 700;
+      border: 1px solid var(--line);
+      background: var(--surface);
+      color: var(--text);
+    }
+    .btn-nav.primary {
+      background: var(--blue);
+      color: #fff;
+      border-color: var(--blue);
+    }
+    .btn-nav svg { width: 17px; }
+
+    .footer {
+      border-top: 1px solid var(--line);
+      padding: 26px 0;
+      color: var(--muted);
+      font-size: 12px;
+    }
+    .footer .wrap {
+      display: flex;
+      justify-content: space-between;
+      gap: 12px;
+    }
+
+    @media (max-width: 860px) {
+      .reader-layout { grid-template-columns: 1fr; }
+      .toc-card { position: static; }
+      .formula-grid, .eco-visual-grid { grid-template-columns: 1fr; }
+      .stat-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    }
+    @media (max-width: 620px) {
+      .wrap { padding: 0 18px; }
+      .sub-section { padding: 22px; }
+      .bottom-nav { flex-direction: column; align-items: stretch; }
+      .btn-nav { justify-content: center; }
+      .footer .wrap { flex-direction: column; }
+    }
+  </style>
+</head>
+<body>
+
+  <header class="site-header">
+    <div class="wrap nav-inner">
+      <a href="../index.html" class="brand" aria-label="Kembali ke Beranda Shira's Archive">
+        <span class="brand-mark"><i data-lucide="book-open"></i></span>
+        <span>Shira's Archive</span>
+      </a>
+      <button id="theme-toggle" class="icon-button" type="button" aria-label="Aktifkan tema gelap" title="Tukar tema">
+        <i data-lucide="moon"></i>
+      </button>
+    </div>
+  </header>
+
+  <main class="wrap">
+    <div class="reader-top">
+      <a href="../index.html" class="back-link"><i data-lucide="arrow-left"></i> Kembali ke Daftar Mata Pelajaran</a>
+      <p class="eyebrow">Biologi • Kelas 10 • Bab 01</p>
+      <h1>Keanekaragaman Hayati</h1>
+      <p class="desc">Rangkuman tingkatan biodiversitas (gen, spesies, ekosistem), kekayaan flora-fauna-mikroorganisme Indonesia, garis pembatas Wallace &amp; Weber, keunikan ekosistem tropis, serta upaya pelestariannya.</p>
+    </div>
+
+    <div class="reader-layout">
+      <!-- Navigasi Lompat Sub-bab (Sticky Sidebar) -->
+      <aside class="toc-card" aria-label="Daftar sub-bab">
+        <p class="toc-title">Daftar Sub-bab</p>
+        <ul class="toc-list">
+          <li><a href="#sub-1" class="active"><span class="toc-num">01</span><span>Tingkatan Keanekaragaman Hayati</span></a></li>
+          <li><a href="#sub-2"><span class="toc-num">02</span><span>Kekayaan Hayati Indonesia</span></a></li>
+          <li><a href="#sub-3"><span class="toc-num">03</span><span>Garis Wallace &amp; Garis Weber</span></a></li>
+          <li><a href="#sub-4"><span class="toc-num">04</span><span>Hutan Hujan, Pesisir, &amp; Laut</span></a></li>
+          <li><a href="#sub-5"><span class="toc-num">05</span><span>Pelestarian &amp; Manfaat</span></a></li>
+        </ul>
+      </aside>
+
+      <!-- Area Baca Utama -->
+      <div class="content-area">
+
+        <!-- Sub-bab 1 -->
+        <article id="sub-1" class="sub-section">
+          <span class="sub-badge">Sub-bab 01</span>
+          <h2>Konsep dan Tingkatan Keanekaragaman Hayati (Biodiversitas)</h2>
+          <p><strong>Keanekaragaman hayati (biodiversitas)</strong> adalah keragaman semua spesies tumbuhan, hewan, mikroorganisme, serta proses-proses ekosistem dan ekologis yang ada di suatu tempat. Keanekaragaman hayati terbagi menjadi <strong>3 tingkatan</strong>:</p>
+
+          <!-- Ilustrasi 3 Tingkat Biodiversitas -->
+          <div class="visual-diagram">
+            <svg viewBox="0 0 580 140" fill="none" xmlns="http://www.w3.org/2000/svg" aria-label="Ilustrasi 3 Tingkat Keanekaragaman Hayati">
+              <!-- Tingkat 1: Gen -->
+              <rect x="10" y="12" width="174" height="116" rx="12" fill="#537fda" fill-opacity="0.12" stroke="#537fda" stroke-width="1.6"/>
+              <text x="97" y="34" font-family="Plus Jakarta Sans, sans-serif" font-size="12" font-weight="800" fill="#537fda" text-anchor="middle">1. Tingkat Gen</text>
+              <circle cx="62" cy="68" r="14" fill="#ef4444" fill-opacity="0.8"/>
+              <circle cx="97" cy="68" r="14" fill="#f59e0b" fill-opacity="0.85"/>
+              <circle cx="132" cy="68" r="14" fill="#ec4899" fill-opacity="0.8"/>
+              <text x="97" y="102" font-family="Plus Jakarta Sans, sans-serif" font-size="10.5" font-weight="700" fill="#537fda" text-anchor="middle">1 Spesies Sama, Variasi Beda</text>
+              <text x="97" y="116" font-family="Plus Jakarta Sans, sans-serif" font-size="9.5" fill="#64748b" text-anchor="middle">(Mawar merah, kuning, pink)</text>
+
+              <!-- Panah 1->2 -->
+              <path d="M188 70h12" stroke="#537fda" stroke-width="2" stroke-linecap="round"/>
+
+              <!-- Tingkat 2: Spesies -->
+              <rect x="203" y="12" width="174" height="116" rx="12" fill="#537fda" fill-opacity="0.12" stroke="#537fda" stroke-width="1.6"/>
+              <text x="290" y="34" font-family="Plus Jakarta Sans, sans-serif" font-size="12" font-weight="800" fill="#537fda" text-anchor="middle">2. Tingkat Spesies</text>
+              <polygon points="255,54 242,82 268,82" fill="#16a34a" fill-opacity="0.8"/>
+              <rect x="278" y="55" width="24" height="27" rx="5" fill="#0284c7" fill-opacity="0.8"/>
+              <circle cx="326" cy="68" r="14" fill="#d97706" fill-opacity="0.8"/>
+              <text x="290" y="102" font-family="Plus Jakarta Sans, sans-serif" font-size="10.5" font-weight="700" fill="#537fda" text-anchor="middle">Beda Spesies, 1 Kelompok</text>
+              <text x="290" y="116" font-family="Plus Jakarta Sans, sans-serif" font-size="9.5" fill="#64748b" text-anchor="middle">(Kelapa, aren, pinang)</text>
+
+              <!-- Panah 2->3 -->
+              <path d="M381 70h12" stroke="#537fda" stroke-width="2" stroke-linecap="round"/>
+
+              <!-- Tingkat 3: Ekosistem -->
+              <rect x="396" y="12" width="174" height="116" rx="12" fill="#537fda" fill-opacity="0.12" stroke="#537fda" stroke-width="1.6"/>
+              <text x="483" y="34" font-family="Plus Jakarta Sans, sans-serif" font-size="12" font-weight="800" fill="#537fda" text-anchor="middle">3. Tingkat Ekosistem</text>
+              <path d="M425 82 L448 52 L470 82 Z" fill="#15803d" fill-opacity="0.75"/>
+              <path d="M462 82 Q495 66 540 82 Z" fill="#0ea5e9" fill-opacity="0.75"/>
+              <circle cx="525" cy="55" r="8" fill="#eab308"/>
+              <text x="483" y="102" font-family="Plus Jakarta Sans, sans-serif" font-size="10.5" font-weight="700" fill="#537fda" text-anchor="middle">Interaksi Biotik &amp; Abiotik</text>
+              <text x="483" y="116" font-family="Plus Jakarta Sans, sans-serif" font-size="9.5" fill="#64748b" text-anchor="middle">(Hutan hujan, mangrove, laut)</text>
+            </svg>
+          </div>
+
+          <div class="formula-box">
+            <strong class="box-label">1. Keanekaragaman Tingkat Gen</strong>
+            <p style="margin:0; font-size:13.5px;">
+              • <strong>Gen</strong> merupakan faktor pembawa pengendali sifat di dalam kromosom (inti sel).<br>
+              • Makhluk hidup dalam <strong>satu spesies yang sama</strong> memiliki perangkat dasar gen yang sama, tetapi susunannya berbeda-beda sehingga memunculkan variasi sifat/fenotipe.<br>
+              • <strong>Contoh:</strong> Bentuk pial ayam (pial mawar, pial ercis, pial walnut, dan pial tunggal), variasi ciri fisik pada manusia, serta perbedaan warna bunga mawar (merah, putih, kuning).
+            </p>
+          </div>
+
+          <div class="formula-box">
+            <strong class="box-label">2. Keanekaragaman Tingkat Spesies (Jenis)</strong>
+            <p style="margin:0; font-size:13.5px;">
+              • Terlihat pada makhluk hidup yang <strong>berbeda spesies/jenis</strong> (umumnya masih dalam satu famili/suku). Dapat diamati melalui perbedaan ciri fisik (bentuk, ukuran tubuh, warna) dan kebiasaan hidupnya.<br>
+              • <strong>Contoh:</strong> Kelompok palem-paleman (pohon aren di pegunungan, kelapa di pantai, dan pinang di tempat kering), berbagai jenis kacang-kacangan (kapri, kacang tanah, kacang hijau, kacang merah, buncis, kacang panjang), serta kelompok kucing besar (singa, harimau, macan tutul, citah, puma).
+            </p>
+          </div>
+
+          <div class="formula-box">
+            <strong class="box-label">3. Keanekaragaman Tingkat Ekosistem</strong>
+            <p style="margin:0; font-size:13.5px;">
+              • Terbentuk dari interaksi antara <strong>komponen biotik</strong> (makhluk hidup) dengan <strong>komponen abiotik</strong> (lingkungan tak hidup).<br>
+              • Komponen abiotik meliputi <strong>komponen fisik</strong> (iklim, cuaca, air, tanah, udara, angin, cahaya, suhu, kelembapan) dan <strong>komponen kimia</strong> (keasaman, kandungan mineral, salinitas).<br>
+              • Indonesia memiliki sekitar <strong>90 jenis ekosistem alami</strong> akibat variasi iklim, kondisi geologis, serta faktor fisik-kimia tanah (misalnya: ekosistem rawa bakau, hutan rawa air tawar &amp; danau, hutan basah dataran rendah, hutan meranggas kering, hutan basah pegunungan, savana, pesisir pantai, hingga gunung api dan kaldera).
+            </p>
+          </div>
+
+          <div class="example-box">
+            <strong>Contoh Soal 1:</strong> Pohon kelapa (<em>Cocos nucifera</em>), pohon aren (<em>Arenga pinnata</em>), dan pohon pinang (<em>Areca catechu</em>) memiliki bentuk daun menyirip yang mirip namun termasuk spesies yang berbeda. Ketiganya menunjukkan keanekaragaman hayati tingkat apa? Jelaskan!<br>
+            <strong>Pembahasan:</strong> Ketiganya menunjukkan <strong>keanekaragaman tingkat spesies (jenis)</strong> karena ketiganya berasal dari spesies yang berbeda (terlihat dari nama ilmiah dan habitat tumbuhnya yang berbeda), meskipun sama-sama termasuk dalam famili palem-paleman (Arecaceae).
+          </div>
+        </article>
+
+        <!-- Sub-bab 2 -->
+        <article id="sub-2" class="sub-section">
+          <span class="sub-badge">Sub-bab 02</span>
+          <h2>Kekayaan Keanekaragaman Hayati Indonesia</h2>
+          <p>Indonesia dikenal sebagai salah satu negara <em>megabiodiversity</em> utama di dunia karena kekayaan fauna, flora, dan mikroorganismenya yang sangat melimpah serta tingkat endemisme yang tinggi.</p>
+
+          <h3>1. Keanekaragaman Fauna Indonesia</h3>
+          <div class="stat-grid">
+            <div class="stat-card">
+              <span class="stat-num">515</span>
+              <span class="stat-label">Mamalia</span>
+              <span class="stat-sub">12% dunia (39% endemis • Peringkat 2)</span>
+            </div>
+            <div class="stat-card">
+              <span class="stat-num">511</span>
+              <span class="stat-label">Reptil</span>
+              <span class="stat-sub">7,3% dunia (150 endemis • Peringkat 4)</span>
+            </div>
+            <div class="stat-card">
+              <span class="stat-num">1.531</span>
+              <span class="stat-label">Burung</span>
+              <span class="stat-sub">17% dunia (397 endemis • Peringkat 5)</span>
+            </div>
+            <div class="stat-card">
+              <span class="stat-num">270</span>
+              <span class="stat-label">Amfibi</span>
+              <span class="stat-sub">100 endemis (Peringkat 6 dunia)</span>
+            </div>
+            <div class="stat-card">
+              <span class="stat-num">2.827</span>
+              <span class="stat-label">Invertebrata</span>
+              <span class="stat-sub">Beragam filum hewan tak bertulang belakang</span>
+            </div>
+          </div>
+
+          <h3>2. Keanekaragaman Flora Indonesia</h3>
+          <div class="formula-box">
+            <strong class="box-label">Data Kekayaan Tumbuhan Indonesia</strong>
+            <p style="margin:0; font-size:13.5px;">
+              • <strong>Peringkat 5 dunia</strong> dengan lebih dari <strong>38.000 jenis</strong> tumbuhan (<strong>55% endemis</strong>).<br>
+              • <strong>Peringkat 1 dunia</strong> untuk keanekaragaman palem (<strong>477 jenis</strong>, dengan 255 jenis di antaranya endemis).<br>
+              • Memiliki lebih dari setengah total jenis pohon penghasil kayu bernilai ekonomis (<strong>350 jenis</strong>), <strong>25.000</strong> tumbuhan berbunga, <strong>4.250–12.000</strong> jenis jamur, <strong>4.000</strong> jenis paku-pakuan, serta <strong>35.000</strong> jenis lumut dan ganggang.
+            </p>
+          </div>
+
+          <h3>3. Keanekaragaman Mikroorganisme &amp; Pemanfaatannya</h3>
+          <p>Indonesia memiliki sekurangnya <strong>10.000 jenis mikroorganisme</strong> (bakteri, jamur/fungi, protozoa). Selain sebagai pengendali hama, agen bioremediasi/biodegradasi pencemar, serta penghasil protein dan enzim, mikroorganisme banyak dimanfaatkan dalam fermentasi makanan tradisional:</p>
+
+          <div class="table-wrap">
+            <table class="bio-table">
+              <thead>
+                <tr>
+                  <th>Produk Fermentasi</th>
+                  <th>Kelompok Mikroorganisme</th>
+                  <th>Nama Ilmiah Spesies</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td><strong>Tempe</strong></td>
+                  <td>Jamur (Kapang)</td>
+                  <td><em>Rhizopus oryzae</em> dan <em>Rhizopus oligosporus</em></td>
+                </tr>
+                <tr>
+                  <td><strong>Kecap</strong></td>
+                  <td>Jamur (Kapang)</td>
+                  <td><em>Aspergillus wentii</em> / <em>Aspergillus sojae</em></td>
+                </tr>
+                <tr>
+                  <td><strong>Terasi</strong></td>
+                  <td>Bakteri</td>
+                  <td><em>Lactobacillus</em> sp.</td>
+                </tr>
+                <tr>
+                  <td><strong>Tape</strong></td>
+                  <td>Khamir (Ragi)</td>
+                  <td><em>Saccharomyces cerevisiae</em></td>
+                </tr>
+                <tr>
+                  <td><strong>Tuak</strong></td>
+                  <td>Khamir (Ragi)</td>
+                  <td><em>Saccharomyces tuac</em></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </article>
+
+        <!-- Sub-bab 3 -->
+        <article id="sub-3" class="sub-section">
+          <span class="sub-badge">Sub-bab 03</span>
+          <h2>Persebaran Flora &amp; Fauna Indonesia (Garis Wallace dan Garis Weber)</h2>
+          <p>Dari 6 zona biogeografi dunia (<em>Paleartik, Neartik, Neotropik, Etiopia, Oriental, dan Australasia</em>), Indonesia berada di pertemuan <strong>Zona Oriental (Asia)</strong> dan <strong>Zona Australasia</strong> yang dipisahkan oleh dua garis khayal utama:</p>
+
+          <!-- Ilustrasi Peta Zona Wallace & Weber -->
+          <div class="visual-diagram">
+            <svg viewBox="0 0 600 185" fill="none" xmlns="http://www.w3.org/2000/svg" aria-label="Diagram Pembagian Zona Biogeografi Indonesia oleh Garis Wallace dan Garis Weber">
+              <!-- Zona 1: Oriental -->
+              <rect x="14" y="20" width="174" height="145" rx="14" fill="#3b82f6" fill-opacity="0.14" stroke="#3b82f6" stroke-width="1.8"/>
+              <text x="101" y="45" font-family="Plus Jakarta Sans, sans-serif" font-size="13" font-weight="800" fill="#2563eb" text-anchor="middle">ZONA ORIENTAL</text>
+              <text x="101" y="63" font-family="Plus Jakarta Sans, sans-serif" font-size="11" font-weight="700" fill="#537fda" text-anchor="middle">(Barat Garis Wallace)</text>
+              <text x="101" y="88" font-family="Plus Jakarta Sans, sans-serif" font-size="11" font-weight="600" fill="#475569" text-anchor="middle">Sumatra, Jawa,</text>
+              <text x="101" y="103" font-family="Plus Jakarta Sans, sans-serif" font-size="11" font-weight="600" fill="#475569" text-anchor="middle">Kalimantan, Bali</text>
+              <text x="101" y="130" font-family="Plus Jakarta Sans, sans-serif" font-size="10.5" font-weight="700" fill="#2563eb" text-anchor="middle">Gajah, Harimau, Orang Utan,</text>
+              <text x="101" y="144" font-family="Plus Jakarta Sans, sans-serif" font-size="10.5" font-weight="700" fill="#2563eb" text-anchor="middle">Rafflesia arnoldii</text>
+
+              <!-- Garis Wallace -->
+              <line x1="200" y1="10" x2="200" y2="175" stroke="#ef4444" stroke-width="2.6" stroke-dasharray="5 4"/>
+              <rect x="163" y="2" width="74" height="18" rx="6" fill="#ef4444"/>
+              <text x="200" y="14" font-family="Plus Jakarta Sans, sans-serif" font-size="9.5" font-weight="800" fill="#fff" text-anchor="middle">Wallace (1863)</text>
+
+              <!-- Zona 2: Peralihan -->
+              <rect x="212" y="20" width="176" height="145" rx="14" fill="#f59e0b" fill-opacity="0.14" stroke="#d97706" stroke-width="1.8"/>
+              <text x="300" y="45" font-family="Plus Jakarta Sans, sans-serif" font-size="13" font-weight="800" fill="#b45309" text-anchor="middle">ZONA PERALIHAN</text>
+              <text x="300" y="63" font-family="Plus Jakarta Sans, sans-serif" font-size="11" font-weight="700" fill="#d97706" text-anchor="middle">(Wallacea / Endemis)</text>
+              <text x="300" y="88" font-family="Plus Jakarta Sans, sans-serif" font-size="11" font-weight="600" fill="#475569" text-anchor="middle">Sulawesi &amp;</text>
+              <text x="300" y="103" font-family="Plus Jakarta Sans, sans-serif" font-size="11" font-weight="600" fill="#475569" text-anchor="middle">Nusa Tenggara</text>
+              <text x="300" y="130" font-family="Plus Jakarta Sans, sans-serif" font-size="10.5" font-weight="700" fill="#b45309" text-anchor="middle">Komodo, Anoa, Babi Rusa,</text>
+              <text x="300" y="144" font-family="Plus Jakarta Sans, sans-serif" font-size="10.5" font-weight="700" fill="#b45309" text-anchor="middle">Burung Maleo</text>
+
+              <!-- Garis Weber -->
+              <line x1="400" y1="10" x2="400" y2="175" stroke="#10b981" stroke-width="2.6" stroke-dasharray="5 4"/>
+              <rect x="365" y="2" width="70" height="18" rx="6" fill="#059669"/>
+              <text x="400" y="14" font-family="Plus Jakarta Sans, sans-serif" font-size="9.5" font-weight="800" fill="#fff" text-anchor="middle">Weber (1904)</text>
+
+              <!-- Zona 3: Australasia -->
+              <rect x="412" y="20" width="174" height="145" rx="14" fill="#10b981" fill-opacity="0.14" stroke="#059669" stroke-width="1.8"/>
+              <text x="499" y="45" font-family="Plus Jakarta Sans, sans-serif" font-size="13" font-weight="800" fill="#047857" text-anchor="middle">ZONA AUSTRALASIA</text>
+              <text x="499" y="63" font-family="Plus Jakarta Sans, sans-serif" font-size="11" font-weight="700" fill="#059669" text-anchor="middle">(Timur Garis Weber)</text>
+              <text x="499" y="88" font-family="Plus Jakarta Sans, sans-serif" font-size="11" font-weight="600" fill="#475569" text-anchor="middle">Maluku &amp;</text>
+              <text x="499" y="103" font-family="Plus Jakarta Sans, sans-serif" font-size="11" font-weight="600" fill="#475569" text-anchor="middle">Papua</text>
+              <text x="499" y="130" font-family="Plus Jakarta Sans, sans-serif" font-size="10.5" font-weight="700" fill="#047857" text-anchor="middle">Cendrawasih, Kanguru,</text>
+              <text x="499" y="144" font-family="Plus Jakarta Sans, sans-serif" font-size="10.5" font-weight="700" fill="#047857" text-anchor="middle">Walabi, Kakatua, Sagu</text>
+            </svg>
+          </div>
+
+          <div class="formula-box">
+            <strong class="box-label">Letak Geografis Garis Wallace &amp; Garis Weber</strong>
+            <p style="margin:0; font-size:13.5px;">
+              • <strong>Garis Wallace (1863):</strong> Garis khayal yang ditemukan Alfred Russel Wallace untuk memisahkan fauna bagian barat (Paparan Sunda) dan bagian timur (Paparan Sahul). Garis ini membelah <strong>Selat Makassar menuju ke selatan hingga Selat Lombok</strong>.<br>
+              • <strong>Garis Weber (1904):</strong> Garis pembatas yang dibuat Max Carl Wilhelm Weber di sebelah timur Sulawesi memanjang ke utara menuju Kepulauan Aru, sehingga wilayah di antara Garis Wallace dan Garis Weber disebut <strong>Zona Peralihan</strong>.
+            </p>
+          </div>
+
+          <div class="table-wrap">
+            <table class="bio-table">
+              <thead>
+                <tr>
+                  <th>Zona Biogeografi</th>
+                  <th>Wilayah Indonesia</th>
+                  <th>Ciri &amp; Contoh Fauna</th>
+                  <th>Ciri &amp; Contoh Flora</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td><strong>Zona Oriental</strong><br><span style="color:var(--muted); font-size:12px;">(Barat Garis Wallace)</span></td>
+                  <td>Sumatra, Jawa, Kalimantan</td>
+                  <td>
+                    • Banyak mamalia besar (gajah, badak, banteng, harimau).<br>
+                    • Banyak jenis primata/kera (orang utan, kukang, bekantan).<br>
+                    • Burung berkicau dengan warna tidak terlalu mencolok (jalak bali, murai, ayam hutan berdada merah, ayam pegar).
+                  </td>
+                  <td>Mirip tumbuhan Asia: meranti-merantian, rotan, nangka, serta hutan hujan tropis. Terdapat tumbuhan endemis <em>Rafflesia arnoldii</em> (perbatasan Bengkulu, Jambi, Sumsel).</td>
+                </tr>
+                <tr>
+                  <td><strong>Zona Peralihan</strong><br><span style="color:var(--muted); font-size:12px;">(Antara Wallace &amp; Weber)</span></td>
+                  <td>Sulawesi, Nusa Tenggara</td>
+                  <td>Memiliki hewan campuran dan endemis khas yang tidak ditemukan di tempat lain: babi rusa, anoa, komodo, burung maleo, kuskus, dan kera <em>Macaca</em>.</td>
+                  <td>Campuran tipe Asia dan Australia (hutan musim, sabana, dan hutan pegunungan).</td>
+                </tr>
+                <tr>
+                  <td><strong>Zona Australasia</strong><br><span style="color:var(--muted); font-size:12px;">(Timur Garis Weber)</span></td>
+                  <td>Maluku, Papua</td>
+                  <td>
+                    • Mamalia berukuran kecil.<br>
+                    • Banyak hewan berkantung (kanguru, walabi, kuskus, platipus).<br>
+                    • Tidak terdapat spesies kera.<br>
+                    • Burung berbulu indah &amp; beragam (cendrawasih, kakatua).
+                  </td>
+                  <td>Mirip tumbuhan Australia: pohon tinggi &gt;50 m berdaun lebat, mangrove &amp; pandan di pantai, sagu di rawa, serta tumbuhan endemis pegunungan <em>Rhododendron</em>.</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </article>
+
+        <!-- Sub-bab 4 -->
+        <article id="sub-4" class="sub-section">
+          <span class="sub-badge">Sub-bab 04</span>
+          <h2>Keunikan Hutan Hujan Tropis, Pesisir, dan Laut Indonesia</h2>
+
+          <div class="eco-visual-grid">
+            <!-- Ilustrasi Lapisan Tajuk Hutan Hujan Tropis -->
+            <div class="visual-diagram" style="margin:0;">
+              <svg viewBox="0 0 280 185" fill="none" xmlns="http://www.w3.org/2000/svg" aria-label="Diagram 3 Lapisan Tajuk Atas Hutan Hujan Tropis">
+                <line x1="20" y1="160" x2="260" y2="160" stroke="#78350f" stroke-width="3"/>
+                <!-- Lapisan 1: Emergent -->
+                <line x1="75" y1="160" x2="75" y2="35" stroke="#78350f" stroke-width="4"/>
+                <ellipse cx="75" cy="30" rx="34" ry="14" fill="#15803d"/>
+                <text x="192" y="34" font-family="Plus Jakarta Sans, sans-serif" font-size="10.5" font-weight="800" fill="#15803d" text-anchor="middle">1. Lapisan Sembulan (Emergent)</text>
+                <!-- Lapisan 2: Kanopi (24-36m) -->
+                <line x1="145" y1="160" x2="145" y2="75" stroke="#78350f" stroke-width="3.5"/>
+                <ellipse cx="145" cy="72" rx="46" ry="18" fill="#16a34a"/>
+                <text x="200" y="96" font-family="Plus Jakarta Sans, sans-serif" font-size="10.5" font-weight="800" fill="#16a34a" text-anchor="middle">2. Lapisan Kanopi (24–36 m)</text>
+                <!-- Lapisan 3: Tajuk Bawah -->
+                <line x1="210" y1="160" x2="210" y2="122" stroke="#78350f" stroke-width="3"/>
+                <ellipse cx="210" cy="118" rx="32" ry="14" fill="#22c55e"/>
+                <text x="180" y="146" font-family="Plus Jakarta Sans, sans-serif" font-size="10.5" font-weight="800" fill="#15803d" text-anchor="middle">3. Lapisan Tajuk Bawah</text>
+              </svg>
+              <div class="diagram-caption">Struktur 3 Lapisan Tajuk Hutan Hujan Tropis</div>
+            </div>
+
+            <!-- Ilustrasi 4 Tipe Terumbu Karang -->
+            <div class="visual-diagram" style="margin:0;">
+              <svg viewBox="0 0 280 185" fill="none" xmlns="http://www.w3.org/2000/svg" aria-label="Diagram 4 Tipe Terumbu Karang di Indonesia">
+                <!-- Laut -->
+                <rect x="16" y="35" width="248" height="125" rx="10" fill="#0ea5e9" fill-opacity="0.16"/>
+                <!-- Pulau & Karang Tepi (Fringing) -->
+                <path d="M16 160 L16 60 Q45 60 60 110 L90 160 Z" fill="#a16207" fill-opacity="0.45"/>
+                <path d="M46 82 Q64 82 68 106" stroke="#f43f5e" stroke-width="5" stroke-linecap="round"/>
+                <text x="58" y="26" font-family="Plus Jakarta Sans, sans-serif" font-size="9.5" font-weight="800" fill="#e11d48" text-anchor="middle">1. Tepi</text>
+                <!-- Karang Penghalang (Barrier) -->
+                <path d="M105 160 L112 92 L122 92 L128 160 Z" fill="#f43f5e"/>
+                <text x="117" y="26" font-family="Plus Jakarta Sans, sans-serif" font-size="9.5" font-weight="800" fill="#e11d48" text-anchor="middle">2. Penghalang</text>
+                <!-- Karang Cincin (Atoll) -->
+                <path d="M160 160 L165 88 L173 88 L176 115 L196 115 L199 88 L207 88 L212 160 Z" fill="#f43f5e"/>
+                <text x="186" y="26" font-family="Plus Jakarta Sans, sans-serif" font-size="9.5" font-weight="800" fill="#e11d48" text-anchor="middle">3. Cincin (Atol)</text>
+                <!-- Karang Datar (Patch) -->
+                <rect x="232" y="88" width="22" height="72" rx="3" fill="#f43f5e"/>
+                <text x="243" y="26" font-family="Plus Jakarta Sans, sans-serif" font-size="9.5" font-weight="800" fill="#e11d48" text-anchor="middle">4. Datar</text>
+              </svg>
+              <div class="diagram-caption">4 Tipe Terumbu Karang di Perairan Indonesia</div>
+            </div>
+          </div>
+
+          <h3>1. Hutan Hujan Tropis</h3>
+          <div class="formula-box">
+            <strong class="box-label">Ciri &amp; Struktur Lapisan Tajuk Hutan Hujan Tropis</strong>
+            <p style="margin:0; font-size:13.5px;">
+              • Berada di sekitar khatulistiwa (<strong>0°–10° LU/LS</strong>) seperti di Sumatra, Jawa, Kalimantan, Sulawesi, Maluku bagian utara, dan Papua.<br>
+              • Dijuluki <strong>"farmasi terbesar dunia"</strong> karena hampir <strong>1/4 obat modern</strong> berasal dari tumbuhannya.<br>
+              • Memiliki <strong>3 lapisan tajuk atas</strong>:<br>
+              &nbsp;&nbsp;1. <strong>Lapisan sembulan (<em>emergent</em>):</strong> Pohon-pohon tertinggi yang menonjol di atas kanopi.<br>
+              &nbsp;&nbsp;2. <strong>Lapisan kanopi rata-rata:</strong> Ketinggian antara <strong>24–36 m</strong>.<br>
+              &nbsp;&nbsp;3. <strong>Lapisan tajuk bawah:</strong> Lapisan tajuk yang tidak selalu menyambung.
+            </p>
+          </div>
+
+          <h3>2. Ekosistem Pesisir (Hutan Mangrove / Bakau)</h3>
+          <div class="formula-box">
+            <strong class="box-label">Zonasi Tumbuhan Hutan Mangrove</strong>
+            <p style="margin:0; font-size:13.5px;">
+              • Hutan di atas rawa berair payau di garis pantai yang dipengaruhi pasang surut air laut. Indonesia memiliki mangrove terluas di dunia (<strong>2,5–4,5 juta hektare</strong>).<br>
+              • <strong>Zonasi tumbuhan:</strong> bakau <em>Rhizophora apiculata</em> dan <em>R. mucronata</em> di tanah lumpur; <em>R. stylosa</em> dan perepat (<em>Sonneratia alba</em>) di pasir berlumpur; kendeka (<em>Bruguiera</em> spp.) dan kaboa di bagian lebih dalam; serta nipah, pidada, dan bintaro di dekat tepi sungai berair lebih tawar.
+            </p>
+          </div>
+
+          <h3>3. Ekosistem Laut (Terumbu Karang &amp; Padang Lamun)</h3>
+          <p><strong>Terumbu Karang</strong> dibangun di dasar laut tropis oleh biota penghasil kapur (<strong>CaCO<sub>3</sub></strong>) seperti karang batu dan alga berkapur. Terdapat 4 tipe terumbu karang di Indonesia:</p>
+
+          <div class="table-wrap">
+            <table class="bio-table">
+              <thead>
+                <tr>
+                  <th>Tipe Terumbu Karang</th>
+                  <th>Ciri Letak &amp; Bentuk</th>
+                  <th>Contoh Lokasi di Indonesia</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td><strong>1. Terumbu karang tepi</strong><br>(<em>Fringing reefs</em>)</td>
+                  <td>Melingkari pesisir pantai pulau besar hingga kedalaman 40 m.</td>
+                  <td>Bunaken, Pulau Panaitan, Nusa Dua</td>
+                </tr>
+                <tr>
+                  <td><strong>2. Terumbu karang penghalang</strong><br>(<em>Barrier reefs</em>)</td>
+                  <td>Terletak jauh dari pulau ke arah laut lepas dengan kedalaman hingga 75 m.</td>
+                  <td>Spermonde, Banggai Kepulauan</td>
+                </tr>
+                <tr>
+                  <td><strong>3. Terumbu karang cincin</strong><br>(<em>Atolls</em>)</td>
+                  <td>Berbentuk cincin mengelilingi batas pulau vulkanik yang tenggelam.</td>
+                  <td>Taka Bonerate, Maratua, Pulau Dana, Mapia</td>
+                </tr>
+                <tr>
+                  <td><strong>4. Terumbu karang datar</strong><br>(<em>Patch reefs</em> / gosong terumbu)</td>
+                  <td>Tumbuh dari bawah hingga permukaan membentuk pulau datar.</td>
+                  <td>Kepulauan Seribu, Kepulauan Ujung Batu</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+          <div class="formula-box">
+            <strong class="box-label">Padang Lamun (Seagrass Bed)</strong>
+            <p style="margin:0; font-size:13.5px;">
+              Tumbuhan berbiji (<em>Spermatophyta</em>) yang hidup di dasar laut dangkal (<strong>1–10 m</strong>) menyerupai padang rumput. Di perairan tropis Indonesia tumbuh membentuk koloni campuran (<em>mix species</em>) dan menjadi makanan utama <strong>dugong/duyung (<em>Dugong dugon</em>)</strong> serta manatee.
+            </p>
+          </div>
+        </article>
+
+        <!-- Sub-bab 5 -->
+        <article id="sub-5" class="sub-section">
+          <span class="sub-badge">Sub-bab 05</span>
+          <h2>Upaya Pelestarian dan Manfaat Keanekaragaman Hayati</h2>
+
+          <h3>1. Nilai Penting Pelestarian</h3>
+          <div class="formula-grid" style="margin:12px 0;">
+            <div class="trend-card">
+              <div class="trend-head"><span>Nilai Ilmiah</span><span class="trend-pill">Riset</span></div>
+              <p style="margin:0; font-size:13px; color:var(--muted);">Untuk kepentingan penelitian dan pengembangan ilmu pengetahuan.</p>
+            </div>
+            <div class="trend-card">
+              <div class="trend-head"><span>Nilai Ekonomi</span><span class="trend-pill">Pangan &amp; Jasa</span></div>
+              <p style="margin:0; font-size:13px; color:var(--muted);">Menjamin ketersediaan kebutuhan hidup manusia secara berkelanjutan.</p>
+            </div>
+            <div class="trend-card">
+              <div class="trend-head"><span>Nilai Mental Spiritual</span><span class="trend-pill">Religi</span></div>
+              <p style="margin:0; font-size:13px; color:var(--muted);">Keindahan alam meningkatkan rasa syukur dan keimanan kepada Tuhan YME.</p>
+            </div>
+            <div class="trend-card">
+              <div class="trend-head"><span>Nilai Keindahan &amp; Keselarasan</span><span class="trend-pill">Ekologis</span></div>
+              <p style="margin:0; font-size:13px; color:var(--muted);">Menjaga keseimbangan proses alami dalam ekosistem.</p>
+            </div>
+          </div>
+
+          <h3>2. Cara Pelestarian Keanekaragaman Hayati</h3>
+          <div class="formula-box">
+            <strong class="box-label">Metode Pelestarian Alam</strong>
+            <p style="margin:0; font-size:13.5px;">
+              • <strong>Penghijauan (Reboisasi):</strong> Menanami kembali hutan atau lahan gundul.<br>
+              • <strong>Penangkaran:</strong> Perkembangbiakan terkontrol hewan dan tanaman langka (contoh: jalak bali, merak hijau, penyu hijau).<br>
+              • <strong>Perkawinan Silang:</strong> Menyilangkan hewan/tumbuhan sejenis beda varietas untuk menghasilkan varietas baru.<br>
+              • <strong>Perlindungan Alam:</strong> Dibagi menjadi dua cara utama:
+            </p>
+            <div class="formula-grid" style="margin-top:12px;">
+              <div class="trend-card">
+                <div class="trend-head"><span>Pelestarian In-Situ</span><span class="trend-pill">Di Habitat Asli</span></div>
+                <p style="margin:0; font-size:13px; color:var(--muted);">
+                  Dilakukan langsung di dalam habitat aslinya: <strong>taman nasional, cagar alam, suaka margasatwa, hutan lindung, dan taman wisata alam</strong>.
+                </p>
+              </div>
+              <div class="trend-card">
+                <div class="trend-head"><span>Pelestarian Ex-Situ</span><span class="trend-pill">Di Luar Habitat Asli</span></div>
+                <p style="margin:0; font-size:13px; color:var(--muted);">
+                  Dilakukan di luar habitat aslinya: <strong>kebun binatang (taman margasatwa), kebun botani, kebun koleksi, dan kebun plasma nutfah</strong>.
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <h3>3. Manfaat Keanekaragaman Hayati bagi Manusia</h3>
+          <div class="table-wrap">
+            <table class="bio-table">
+              <thead>
+                <tr>
+                  <th>Bidang Manfaat</th>
+                  <th>Keterangan &amp; Contoh Pemanfaatan</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td><strong>Sumber Pangan</strong></td>
+                  <td>Bahan makanan pokok, lauk-pauk, sayur-mayur, dan buah-buahan.</td>
+                </tr>
+                <tr>
+                  <td><strong>Sumber Sandang</strong></td>
+                  <td>Bahan pakaian: kapas, pisang abaka, ulat sutera, bulu biri-biri, rami, sisal, kenaf, dan jute.</td>
+                </tr>
+                <tr>
+                  <td><strong>Sumber Papan</strong></td>
+                  <td>Bahan bangunan rumah dan konstruksi rumah adat tradisional.</td>
+                </tr>
+                <tr>
+                  <td><strong>Kebutuhan Sekunder</strong></td>
+                  <td>Sarana rekreasi alam dan melepas penat (ekowisata).</td>
+                </tr>
+                <tr>
+                  <td><strong>Sumber Obat-obatan</strong></td>
+                  <td>Sekitar <strong>940 spesies</strong> tumbuhan obat (<strong>250</strong> di antaranya dimanfaatkan untuk industri obat herbal).</td>
+                </tr>
+                <tr>
+                  <td><strong>Bahan Kosmetik</strong></td>
+                  <td>Bahan alami untuk perawatan tubuh dan kecantikan.</td>
+                </tr>
+                <tr>
+                  <td><strong>Aspek Budaya</strong></td>
+                  <td>Sarana ritual adat bagi sekitar <strong>350 suku</strong> di Indonesia.</td>
+                </tr>
+                <tr>
+                  <td><strong>Sumber Pendapatan</strong></td>
+                  <td>Komoditas pertanian, perkebunan, dan perikanan yang bernilai jual ekonomi.</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+          <div class="example-box">
+            <strong>Contoh Soal 2:</strong> Pelestarian badak bercula satu di Taman Nasional Ujung Kulon dan pelestarian koleksi anggrek langka di Kebun Raya Bogor masing-masing termasuk jenis pelestarian apa?<br>
+            <strong>Pembahasan:</strong> Taman Nasional Ujung Kulon merupakan pelestarian <strong>In-Situ</strong> (melindungi badak langsung di dalam habitat alaminya), sedangkan Kebun Raya Bogor merupakan pelestarian <strong>Ex-Situ</strong> (mengoleksi dan memelihara tumbuhan di luar habitat aslinya).
+          </div>
+        </article>
+
+        <!-- Navigasi Bawah -->
+        <div class="bottom-nav">
+          <a href="../index.html" class="btn-nav"><i data-lucide="layout-grid"></i> Daftar Mata Pelajaran</a>
+          <a href="biologi-bab2.html" class="btn-nav primary">Bab Selanjutnya: Klasifikasi Makhluk Hidup <i data-lucide="arrow-right"></i></a>
+        </div>
+
+      </div>
+    </div>
+  </main>
+
+  <footer class="footer">
+    <div class="wrap">
+      <span>© Shira's Archive</span>
+      <span>Belajar sedikit demi sedikit, setiap hari.</span>
+    </div>
+  </footer>
+
+  <script>
+    lucide.createIcons();
+
+    // Sinkronisasi Dark Mode dengan halaman beranda
+    const themeBtn = document.getElementById("theme-toggle");
+    if (localStorage.getItem("shira-theme") === "dark") {
+      document.body.classList.add("dark");
+      themeBtn.innerHTML = '<i data-lucide="sun"></i>';
+      lucide.createIcons();
+    }
+
+    themeBtn.onclick = () => {
+      const dark = document.body.classList.toggle("dark");
+      localStorage.setItem("shira-theme", dark ? "dark" : "light");
+      themeBtn.innerHTML = '<i data-lucide="' + (dark ? "sun" : "moon") + '"></i>';
+      lucide.createIcons();
+    };
+
+    // Highlight otomatis daftar sub-bab saat halaman di-scroll
+    const sections = document.querySelectorAll(".sub-section");
+    const navLinks = document.querySelectorAll(".toc-list a");
+
+    window.addEventListener("scroll", () => {
+      let current = "";
+      sections.forEach(sec => {
+        const top = sec.offsetTop - 150;
+        if (window.scrollY >= top) current = sec.getAttribute("id");
+      });
+      navLinks.forEach(link => {
+        link.classList.remove("active");
+        if (link.getAttribute("href") === "#" + current) {
+          link.classList.add("active");
+        }
+      });
+    });
+  </script>
+</body>
+</html>

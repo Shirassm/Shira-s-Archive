@@ -1,0 +1,753 @@
+<!doctype html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Bab 4: Sifat Keperiodikan Unsur — Shira's Archive</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/lucide@0.577.0/dist/umd/lucide.min.js"></script>
+  <style>
+    :root {
+      --bg: #f5f8fd;
+      --surface: #fff;
+      --surface2: #edf4fd;
+      --text: #25334a;
+      --muted: #718099;
+      --line: #e3eaf4;
+      --blue: #537fda;
+      --blue2: #e8f0ff;
+      --shadow: 0 12px 36px rgba(48, 79, 129, .07);
+    }
+    body.dark {
+      --bg: #101827;
+      --surface: #192437;
+      --surface2: #202e45;
+      --text: #eef4ff;
+      --muted: #a7b5cb;
+      --line: #344159;
+      --blue: #8bb3ff;
+      --blue2: #263d65;
+      --shadow: 0 12px 36px rgba(0, 0, 0, .17);
+    }
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      background: var(--bg);
+      color: var(--text);
+      font-family: "Plus Jakarta Sans", sans-serif;
+      line-height: 1.7;
+      transition: background .25s, color .25s;
+    }
+    button { font-family: "Plus Jakarta Sans", sans-serif; cursor: pointer; }
+    .wrap { max-width: 1190px; margin: auto; padding: 0 28px; }
+
+    /* Header (Sama persis dengan index.html) */
+    .site-header {
+      background: var(--surface);
+      border-bottom: 1px solid var(--line);
+      position: sticky;
+      top: 0;
+      z-index: 10;
+    }
+    .nav-inner {
+      min-height: 78px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+    }
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 11px;
+      font-weight: 800;
+      font-size: 18px;
+      text-decoration: none;
+      color: var(--text);
+    }
+    .brand-mark {
+      width: 38px;
+      height: 38px;
+      display: grid;
+      place-items: center;
+      border-radius: 12px;
+      background: var(--blue);
+      color: white;
+    }
+    .brand-mark svg { width: 21px; }
+    .icon-button {
+      width: 41px;
+      height: 41px;
+      border: 1px solid var(--line);
+      border-radius: 12px;
+      background: var(--surface);
+      color: var(--text);
+      display: grid;
+      place-items: center;
+    }
+    .icon-button svg { width: 19px; }
+
+    /* Breadcrumb & Judul Bab */
+    .reader-top { padding: 34px 0 24px; }
+    .back-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      color: var(--blue);
+      text-decoration: none;
+      font-weight: 700;
+      font-size: 13px;
+      margin-bottom: 18px;
+    }
+    .back-link svg { width: 17px; }
+    .eyebrow {
+      color: var(--blue);
+      font-size: 12px;
+      font-weight: 800;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+      margin: 0 0 8px;
+    }
+    .reader-top h1 {
+      font-size: clamp(28px, 4vw, 40px);
+      letter-spacing: -.04em;
+      line-height: 1.2;
+      margin: 0 0 10px;
+      font-weight: 800;
+    }
+    .reader-top p.desc {
+      color: var(--muted);
+      font-size: 14px;
+      margin: 0;
+      max-width: 680px;
+    }
+
+    /* Layout Dua Kolom: Sidebar Sub-bab + Area Baca */
+    .reader-layout {
+      display: grid;
+      grid-template-columns: 280px minmax(0, 1fr);
+      gap: 28px;
+      padding-bottom: 80px;
+      align-items: start;
+    }
+
+    /* Sidebar Daftar Sub-bab */
+    .toc-card {
+      background: var(--surface);
+      border: 1px solid var(--line);
+      border-radius: 18px;
+      padding: 20px;
+      box-shadow: var(--shadow);
+      position: sticky;
+      top: 102px;
+    }
+    .toc-title {
+      font-size: 12px;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: .08em;
+      color: var(--muted);
+      margin: 0 0 14px;
+    }
+    .toc-list {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      display: grid;
+      gap: 6px;
+    }
+    .toc-list a {
+      display: flex;
+      align-items: start;
+      gap: 9px;
+      padding: 9px 12px;
+      border-radius: 10px;
+      text-decoration: none;
+      color: var(--muted);
+      font-size: 13px;
+      font-weight: 600;
+      line-height: 1.4;
+      transition: background .2s, color .2s;
+    }
+    .toc-list a:hover {
+      background: var(--surface2);
+      color: var(--text);
+    }
+    .toc-list a.active {
+      background: var(--blue2);
+      color: var(--blue);
+      font-weight: 700;
+    }
+    .toc-num {
+      font-size: 11px;
+      font-weight: 800;
+      opacity: .8;
+      margin-top: 2px;
+    }
+
+    /* Area Konten Catatan */
+    .content-area {
+      display: grid;
+      gap: 24px;
+    }
+    .sub-section {
+      background: var(--surface);
+      border: 1px solid var(--line);
+      border-radius: 20px;
+      padding: 30px;
+      box-shadow: var(--shadow);
+      scroll-margin-top: 102px;
+    }
+    .sub-badge {
+      display: inline-block;
+      background: var(--blue2);
+      color: var(--blue);
+      font-size: 11px;
+      font-weight: 800;
+      padding: 4px 10px;
+      border-radius: 20px;
+      margin-bottom: 10px;
+    }
+    .sub-section h2 {
+      font-size: 22px;
+      letter-spacing: -.03em;
+      margin: 0 0 14px;
+    }
+    .sub-section p {
+      font-size: 14px;
+      margin: 0 0 14px;
+    }
+
+    /* Kotak Rumus & Contoh Soal */
+    .formula-box {
+      background: var(--surface2);
+      border-left: 4px solid var(--blue);
+      border-radius: 12px;
+      padding: 18px 20px;
+      margin: 18px 0;
+    }
+    .formula-box strong.box-label {
+      display: block;
+      font-size: 12px;
+      text-transform: uppercase;
+      letter-spacing: .06em;
+      color: var(--blue);
+      margin-bottom: 10px;
+    }
+    .formula-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 14px 20px;
+      font-size: 13.5px;
+    }
+    .trend-card {
+      background: var(--surface);
+      border: 1px solid var(--line);
+      border-radius: 10px;
+      padding: 13px 15px;
+    }
+    .trend-head {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 8px;
+      margin-bottom: 6px;
+      font-weight: 700;
+      font-size: 13.5px;
+    }
+    .trend-pill {
+      display: inline-block;
+      padding: 2px 9px;
+      border-radius: 99px;
+      font-size: 11.5px;
+      font-weight: 800;
+      background: var(--blue2);
+      color: var(--blue);
+      white-space: nowrap;
+    }
+    .reaction-eq {
+      display: inline-block;
+      background: var(--surface);
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      padding: 6px 12px;
+      font-weight: 700;
+      font-size: 13.5px;
+      color: var(--blue);
+      margin: 4px 0 8px;
+    }
+    .example-box {
+      border: 1px dashed var(--line);
+      border-radius: 12px;
+      padding: 16px 20px;
+      margin-top: 16px;
+      font-size: 13.5px;
+    }
+    .example-box strong { color: var(--blue); }
+
+    /* Tabel Ringkasan */
+    .table-wrap {
+      overflow-x: auto;
+      margin: 16px 0;
+      border: 1px solid var(--line);
+      border-radius: 12px;
+    }
+    .chem-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 13.5px;
+      text-align: left;
+    }
+    .chem-table th {
+      background: var(--surface2);
+      color: var(--blue);
+      font-weight: 700;
+      padding: 12px 14px;
+      border-bottom: 1px solid var(--line);
+      white-space: nowrap;
+    }
+    .chem-table td {
+      padding: 11px 14px;
+      border-bottom: 1px solid var(--line);
+      vertical-align: top;
+    }
+    .chem-table tr:last-child td { border-bottom: none; }
+
+    /* Diagram Tren SPU */
+    .spu-diagram {
+      background: var(--surface2);
+      border: 1px solid var(--line);
+      border-radius: 14px;
+      padding: 16px;
+      margin: 16px 0;
+      text-align: center;
+    }
+    .spu-diagram svg {
+      width: 100%;
+      max-width: 540px;
+      height: auto;
+      display: block;
+      margin: 0 auto;
+    }
+
+    /* Navigasi Bawah Antar Bab */
+    .bottom-nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 12px;
+      margin-top: 10px;
+    }
+    .btn-nav {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 12px 18px;
+      border-radius: 12px;
+      text-decoration: none;
+      font-size: 13px;
+      font-weight: 700;
+      border: 1px solid var(--line);
+      background: var(--surface);
+      color: var(--text);
+    }
+    .btn-nav.primary {
+      background: var(--blue);
+      color: #fff;
+      border-color: var(--blue);
+    }
+    .btn-nav svg { width: 17px; }
+
+    .footer {
+      border-top: 1px solid var(--line);
+      padding: 26px 0;
+      color: var(--muted);
+      font-size: 12px;
+    }
+    .footer .wrap {
+      display: flex;
+      justify-content: space-between;
+      gap: 12px;
+    }
+
+    @media (max-width: 860px) {
+      .reader-layout { grid-template-columns: 1fr; }
+      .toc-card { position: static; }
+      .formula-grid { grid-template-columns: 1fr; }
+    }
+    @media (max-width: 620px) {
+      .wrap { padding: 0 18px; }
+      .sub-section { padding: 22px; }
+      .bottom-nav { flex-direction: column; align-items: stretch; }
+      .btn-nav { justify-content: center; }
+      .footer .wrap { flex-direction: column; }
+    }
+  </style>
+</head>
+<body>
+
+  <header class="site-header">
+    <div class="wrap nav-inner">
+      <a href="../index.html" class="brand" aria-label="Kembali ke Beranda Shira's Archive">
+        <span class="brand-mark"><i data-lucide="book-open"></i></span>
+        <span>Shira's Archive</span>
+      </a>
+      <button id="theme-toggle" class="icon-button" type="button" aria-label="Aktifkan tema gelap" title="Tukar tema">
+        <i data-lucide="moon"></i>
+      </button>
+    </div>
+  </header>
+
+  <main class="wrap">
+    <div class="reader-top">
+      <a href="../index.html" class="back-link"><i data-lucide="arrow-left"></i> Kembali ke Daftar Mata Pelajaran</a>
+      <p class="eyebrow">Kimia • Kelas 10 • Bab 04</p>
+      <h1>Sifat Keperiodikan Unsur</h1>
+      <p class="desc">Sifat keperiodikan unsur adalah sifat-sifat yang berubah secara teratur sesuai dengan kenaikan nomor atom dalam Sistem Periodik Unsur (SPU)—baik dari kiri ke kanan dalam satu periode (baris horizontal) maupun dari atas ke bawah dalam satu golongan (kolom vertikal).</p>
+    </div>
+
+    <div class="reader-layout">
+      <!-- Navigasi Lompat Sub-bab (Sticky Sidebar) -->
+      <aside class="toc-card" aria-label="Daftar sub-bab">
+        <p class="toc-title">Daftar Sub-bab</p>
+        <ul class="toc-list">
+          <li><a href="#sub-1" class="active"><span class="toc-num">01</span><span>Jari-Jari Atom &amp; Ion</span></a></li>
+          <li><a href="#sub-2"><span class="toc-num">02</span><span>Energi Ionisasi</span></a></li>
+          <li><a href="#sub-3"><span class="toc-num">03</span><span>Afinitas Elektron</span></a></li>
+          <li><a href="#sub-4"><span class="toc-num">04</span><span>Keelektronegatifan</span></a></li>
+          <li><a href="#sub-5"><span class="toc-num">05</span><span>Rangkuman Peta Tren SPU</span></a></li>
+        </ul>
+      </aside>
+
+      <!-- Area Baca Utama -->
+      <div class="content-area">
+
+        <!-- Sub-bab 1 -->
+        <article id="sub-1" class="sub-section">
+          <span class="sub-badge">Sub-bab 01</span>
+          <h2>Jari-Jari Atom</h2>
+          <p><strong>Pengertian:</strong> Jari-jari atom adalah jarak dari pusat inti atom hingga ke kulit elektron paling luar yang ditempati elektron.</p>
+
+          <div class="formula-box">
+            <strong class="box-label">Kecenderungan Jari-Jari Atom dalam SPU</strong>
+            <div class="formula-grid">
+              <div class="trend-card">
+                <div class="trend-head">
+                  <span>Dalam 1 Periode (Kiri &rarr; Kanan)</span>
+                  <span class="trend-pill">Semakin Kecil</span>
+                </div>
+                <p style="margin:0; font-size:13px; color:var(--muted);">
+                  <strong>Alasan:</strong> Jumlah kulit atom tetap sama, namun jumlah proton di inti bertambah. Tarikan inti bermuatan positif terhadap kulit elektron terluar semakin kuat sehingga kulit tertarik merapat ke inti.
+                </p>
+              </div>
+              <div class="trend-card">
+                <div class="trend-head">
+                  <span>Dalam 1 Golongan (Atas &rarr; Bawah)</span>
+                  <span class="trend-pill">Semakin Besar</span>
+                </div>
+                <p style="margin:0; font-size:13px; color:var(--muted);">
+                  <strong>Alasan:</strong> Jumlah kulit atom bertambah dari atas ke bawah, sehingga ukuran atom semakin besar meskipun muatan inti bertambah.
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <div class="formula-box">
+            <strong class="box-label">Catatan Jari-Jari Ion</strong>
+            <p style="margin:0; font-size:13.5px;">
+              • <strong>Kation (ion positif, melepas elektron):</strong> Jari-jarinya <strong>lebih kecil</strong> daripada atom netralnya (contoh: <strong>Na<sup>+</sup> &lt; Na</strong>).<br>
+              • <strong>Anion (ion negatif, menangkap elektron):</strong> Jari-jarinya <strong>lebih besar</strong> daripada atom netralnya (contoh: <strong>Cl<sup>-</sup> &gt; Cl</strong>).
+            </p>
+          </div>
+
+          <div class="example-box">
+            <strong>Contoh Soal 1:</strong> Urutkan spesi berikut dari yang memiliki jari-jari terkecil hingga terbesar: Na, Na<sup>+</sup>, Cl, dan Cl<sup>-</sup> (diketahui <sub>11</sub>Na dan <sub>17</sub>Cl berada pada Periode 3).<br>
+            <strong>Pembahasan:</strong> Dalam satu periode (kiri ke kanan), jari-jari atom mengecil sehingga <strong>Cl &lt; Na</strong>. Kation lebih kecil dari atom netralnya (<strong>Na<sup>+</sup> &lt; Na</strong>, karena Na<sup>+</sup> kehilangan 1 kulit terluar sehingga hanya punya 2 kulit), sedangkan anion lebih besar dari atom netralnya (<strong>Cl<sup>-</sup> &gt; Cl</strong>). Urutannya adalah: <strong>Na<sup>+</sup> &lt; Cl &lt; Cl<sup>-</sup> &lt; Na</strong>.
+          </div>
+        </article>
+
+        <!-- Sub-bab 2 -->
+        <article id="sub-2" class="sub-section">
+          <span class="sub-badge">Sub-bab 02</span>
+          <h2>Energi Ionisasi</h2>
+          <p><strong>Pengertian:</strong> Energi ionisasi adalah energi minimum yang diperlukan suatu atom netral dalam wujud gas untuk melepaskan satu elektron terluarnya sehingga membentuk ion positif.</p>
+          <div class="reaction-eq">X<sub>(g)</sub> + Energi &rarr; X<sup>+</sup><sub>(g)</sub> + e<sup>-</sup></div>
+
+          <div class="formula-box">
+            <strong class="box-label">Kecenderungan Energi Ionisasi dalam SPU</strong>
+            <div class="formula-grid">
+              <div class="trend-card">
+                <div class="trend-head">
+                  <span>Dalam 1 Periode (Kiri &rarr; Kanan)</span>
+                  <span class="trend-pill">Semakin Besar</span>
+                </div>
+                <p style="margin:0; font-size:13px; color:var(--muted);">
+                  <strong>Alasan:</strong> Jari-jari atom makin kecil sehingga gaya tarik inti terhadap elektron terluar sangat kuat; akibatnya dibutuhkan energi lebih besar untuk melepaskan elektron.
+                </p>
+              </div>
+              <div class="trend-card">
+                <div class="trend-head">
+                  <span>Dalam 1 Golongan (Atas &rarr; Bawah)</span>
+                  <span class="trend-pill">Semakin Kecil</span>
+                </div>
+                <p style="margin:0; font-size:13px; color:var(--muted);">
+                  <strong>Alasan:</strong> Jari-jari atom makin besar sehingga jarak elektron terluar ke inti semakin jauh dan tarikan inti melemah; elektron menjadi lebih mudah dilepas.
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <div class="formula-box">
+            <strong class="box-label">Pengecualian Penting Energi Ionisasi</strong>
+            <p style="margin:0; font-size:13.5px;">
+              Energi ionisasi <strong>Golongan IIA &gt; IIIA</strong> (contoh: <strong>Be &gt; B</strong>, <strong>Mg &gt; Al</strong>) dan <strong>Golongan VA &gt; VIA</strong> (contoh: <strong>N &gt; O</strong>, <strong>P &gt; S</strong>). Hal ini terjadi karena konfigurasi subkulit <strong>penuh (ns<sup>2</sup>)</strong> dan <strong>setengah penuh (np<sup>3</sup>)</strong> bersifat lebih stabil sehingga elektronnya lebih sulit dilepas.
+            </p>
+          </div>
+
+          <div class="example-box">
+            <strong>Contoh Soal 2:</strong> Mengapa energi ionisasi pertama atom Nitrogen (<sub>7</sub>N) lebih besar daripada atom Oksigen (<sub>8</sub>O), padahal Oksigen terletak lebih kanan dalam Periode 2?<br>
+            <strong>Pembahasan:</strong> Konfigurasi <sub>7</sub>N berakhir pada <strong>2s<sup>2</sup> 2p<sup>3</sup></strong> (subkulit p terisi setengah penuh yang sangat stabil), sedangkan <sub>8</sub>O berakhir pada <strong>2s<sup>2</sup> 2p<sup>4</sup></strong>. Akibat kestabilan subkulit setengah penuh pada N, elektron terluarnya lebih sulit dilepaskan dibandingkan O.
+          </div>
+        </article>
+
+        <!-- Sub-bab 3 -->
+        <article id="sub-3" class="sub-section">
+          <span class="sub-badge">Sub-bab 03</span>
+          <h2>Afinitas Elektron</h2>
+          <p><strong>Pengertian:</strong> Afinitas elektron adalah besar energi yang dibebaskan atau diserap ketika suatu atom netral dalam wujud gas menerima/menangkap satu elektron untuk membentuk ion negatif.</p>
+          <div class="reaction-eq">X<sub>(g)</sub> + e<sup>-</sup> &rarr; X<sup>-</sup><sub>(g)</sub></div>
+
+          <div class="formula-box">
+            <strong class="box-label">Makna Tanda Nilai Afinitas Elektron</strong>
+            <p style="margin:0; font-size:13.5px;">
+              • <strong>Jika berharga negatif (melepas energi)</strong> &rarr; ion negatif yang terbentuk stabil (atom mudah menangkap elektron). <strong>Semakin negatif nilainya, afinitas elektronnya dianggap semakin besar.</strong><br>
+              • <strong>Jika berharga positif (menyerap energi)</strong> &rarr; ion negatif tidak stabil (atom sukar menangkap elektron).
+            </p>
+          </div>
+
+          <div class="formula-box">
+            <strong class="box-label">Kecenderungan Afinitas Elektron dalam SPU</strong>
+            <div class="formula-grid">
+              <div class="trend-card">
+                <div class="trend-head">
+                  <span>Dalam 1 Periode (Kiri &rarr; Kanan)</span>
+                  <span class="trend-pill">Semakin Besar (kecuali VIIIA)</span>
+                </div>
+                <p style="margin:0; font-size:13px; color:var(--muted);">
+                  <strong>Alasan:</strong> Gaya tarik inti makin kuat sehingga atom semakin mudah menarik elektron dari luar.
+                </p>
+              </div>
+              <div class="trend-card">
+                <div class="trend-head">
+                  <span>Dalam 1 Golongan (Atas &rarr; Bawah)</span>
+                  <span class="trend-pill">Semakin Kecil</span>
+                </div>
+                <p style="margin:0; font-size:13px; color:var(--muted);">
+                  <strong>Alasan:</strong> Jari-jari makin besar sehingga daya tarik inti terhadap elektron dari luar melemah.
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <div class="formula-box">
+            <strong class="box-label">Pengecualian Penting Afinitas Elektron</strong>
+            <p style="margin:0; font-size:13.5px;">
+              • <strong>Golongan VIIIA (Gas Mulia)</strong> memiliki afinitas elektron bertanda positif (sangat kecil) karena kulit elektronnya sudah penuh dan stabil.<br>
+              • Unsur dengan afinitas elektron terbesar adalah <strong>Klorin (Cl)</strong> (lebih besar daripada Fluorin <strong>F</strong> karena ukuran atom F sangat kecil sehingga tolakan antar-elektron di kulit terluarnya cukup kuat).
+            </p>
+          </div>
+        </article>
+
+        <!-- Sub-bab 4 -->
+        <article id="sub-4" class="sub-section">
+          <span class="sub-badge">Sub-bab 04</span>
+          <h2>Keelektronegatifan (Elektronegativitas)</h2>
+          <p><strong>Pengertian:</strong> Keelektronegatifan adalah kemampuan atau kecenderungan suatu atom untuk menarik pasangan elektron ikatan ke arah dirinya dalam suatu molekul.</p>
+
+          <div class="formula-box">
+            <strong class="box-label">Kecenderungan Keelektronegatifan dalam SPU</strong>
+            <div class="formula-grid">
+              <div class="trend-card">
+                <div class="trend-head">
+                  <span>Dalam 1 Periode (Kiri &rarr; Kanan)</span>
+                  <span class="trend-pill">Semakin Besar (kecuali VIIIA)</span>
+                </div>
+                <p style="margin:0; font-size:13px; color:var(--muted);">
+                  <strong>Alasan:</strong> Muatan inti bertambah dan jari-jari mengecil sehingga daya tarik terhadap elektron ikatan makin kuat.
+                </p>
+              </div>
+              <div class="trend-card">
+                <div class="trend-head">
+                  <span>Dalam 1 Golongan (Atas &rarr; Bawah)</span>
+                  <span class="trend-pill">Semakin Kecil</span>
+                </div>
+                <p style="margin:0; font-size:13px; color:var(--muted);">
+                  <strong>Alasan:</strong> Jari-jari membesar sehingga daya tarik inti terhadap elektron ikatan melemah.
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <div class="formula-box">
+            <strong class="box-label">Pengecualian &amp; Fakta Kunci</strong>
+            <p style="margin:0; font-size:13.5px;">
+              • Unsur dengan keelektronegatifan paling besar di tabel periodik adalah <strong>Fluorin (F)</strong> (nilai skala Pauling = <strong>4,0</strong>), diikuti oleh <strong>O (3,5)</strong> dan <strong>N / Cl (3,0)</strong>.<br>
+              • <strong>Golongan VIIIA (Gas Mulia)</strong> umumnya tidak memiliki nilai keelektronegatifan (dianggap <strong>0</strong>) karena sudah stabil dan sukar membentuk ikatan kimia.
+            </p>
+          </div>
+
+          <div class="example-box">
+            <strong>Contoh Soal 3:</strong> Dalam molekul HCl, pasangan elektron ikatan akan lebih tertarik ke arah atom mana? Jelaskan alasannya!<br>
+            <strong>Pembahasan:</strong> Pasangan elektron ikatan akan lebih tertarik ke arah atom <strong>Klorin (Cl)</strong> karena Cl berada di Golongan VIIA dengan keelektronegatifan sebesar <strong>3,0</strong>, jauh lebih besar dibandingkan Hidrogen (H) di Golongan IA (~2,1).
+          </div>
+        </article>
+
+        <!-- Sub-bab 5 -->
+        <article id="sub-5" class="sub-section">
+          <span class="sub-badge">Sub-bab 05</span>
+          <h2>Rangkuman Peta Tren SPU</h2>
+          <p>Untuk memudahkan mengingat seluruh kecenderungan keperiodikan sekaligus, perhatikan pola arah panah berikut pada Sistem Periodik Unsur:</p>
+
+          <div class="spu-diagram">
+            <svg viewBox="0 0 560 225" fill="none" xmlns="http://www.w3.org/2000/svg" aria-label="Diagram arah kecenderungan sifat keperiodikan unsur pada SPU">
+              <defs>
+                <marker id="arrBlue" viewBox="0 0 10 10" refX="7" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+                  <path d="M 1 1.5 L 8.5 5 L 1 8.5 z" fill="#537fda"/>
+                </marker>
+                <marker id="arrAmber" viewBox="0 0 10 10" refX="7" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+                  <path d="M 1 1.5 L 8.5 5 L 1 8.5 z" fill="#d97706"/>
+                </marker>
+              </defs>
+
+              <!-- Panah Horizontal Atas (Kiri ke Kanan) -->
+              <line x1="115" y1="26" x2="495" y2="26" stroke="#537fda" stroke-width="2.5" stroke-linecap="round" marker-end="url(#arrBlue)"/>
+              <text x="305" y="16" font-family="Plus Jakarta Sans, sans-serif" font-size="11.5" font-weight="800" fill="#537fda" text-anchor="middle">
+                Kiri &rarr; Kanan: Energi Ionisasi, Afinitas Elektron, Keelektronegatifan MAKIN BESAR (Jari-jari MAKIN KECIL)
+              </text>
+
+              <!-- Panah Vertikal Kiri (Atas ke Bawah) -->
+              <line x1="88" y1="45" x2="88" y2="195" stroke="#d97706" stroke-width="2.5" stroke-linecap="round" marker-end="url(#arrAmber)"/>
+              <text x="42" y="108" font-family="Plus Jakarta Sans, sans-serif" font-size="11" font-weight="800" fill="#d97706" text-anchor="middle">Atas &darr; Bawah</text>
+              <text x="42" y="123" font-family="Plus Jakarta Sans, sans-serif" font-size="10.5" font-weight="700" fill="#d97706" text-anchor="middle">Jari-jari</text>
+              <text x="42" y="137" font-family="Plus Jakarta Sans, sans-serif" font-size="10.5" font-weight="800" fill="#d97706" text-anchor="middle">MAKIN BESAR</text>
+
+              <!-- Siluet Tabel Periodik -->
+              <g fill="#537fda" fill-opacity="0.18" stroke="#537fda" stroke-width="1.6">
+                <!-- Blok s -->
+                <rect x="115" y="45" width="44" height="150" rx="6"/>
+                <!-- Blok d -->
+                <rect x="165" y="95" width="180" height="100" rx="6"/>
+                <!-- Blok p -->
+                <rect x="351" y="45" width="120" height="150" rx="6"/>
+                <!-- Golongan VIIIA -->
+                <rect x="477" y="45" width="24" height="150" rx="6" fill="#94a3b8" fill-opacity="0.22" stroke="#64748b"/>
+              </g>
+
+              <!-- Label Blok -->
+              <g font-family="Plus Jakarta Sans, sans-serif" font-size="11" font-weight="800" fill="#537fda" text-anchor="middle">
+                <text x="137" y="124">IA–IIA</text>
+                <text x="255" y="148">Golongan Transisi (B)</text>
+                <text x="411" y="124">IIIA–VIIA</text>
+              </g>
+              <text x="489" y="124" font-family="Plus Jakarta Sans, sans-serif" font-size="10" font-weight="800" fill="#64748b" text-anchor="middle" transform="rotate(-90 489 124)">VIIIA (Stabil)</text>
+            </svg>
+          </div>
+
+          <div class="table-wrap">
+            <table class="chem-table">
+              <thead>
+                <tr>
+                  <th>Sifat Keperiodikan</th>
+                  <th>Dalam 1 Periode (Kiri &rarr; Kanan)</th>
+                  <th>Dalam 1 Golongan (Atas &rarr; Bawah)</th>
+                  <th>Catatan / Pengecualian Utama</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td><strong>Jari-Jari Atom</strong></td>
+                  <td><strong>Semakin Kecil</strong></td>
+                  <td><strong>Semakin Besar</strong></td>
+                  <td>Kation &lt; Atom netral &lt; Anion.</td>
+                </tr>
+                <tr>
+                  <td><strong>Energi Ionisasi</strong></td>
+                  <td><strong>Semakin Besar</strong></td>
+                  <td><strong>Semakin Kecil</strong></td>
+                  <td>Golongan IIA &gt; IIIA dan VA &gt; VIA (kestabilan ns<sup>2</sup> &amp; np<sup>3</sup>).</td>
+                </tr>
+                <tr>
+                  <td><strong>Afinitas Elektron</strong></td>
+                  <td><strong>Semakin Besar</strong> (kecuali VIIIA)</td>
+                  <td><strong>Semakin Kecil</strong></td>
+                  <td>Terbesar = <strong>Cl</strong>; Golongan VIIIA bernilai positif.</td>
+                </tr>
+                <tr>
+                  <td><strong>Keelektronegatifan</strong></td>
+                  <td><strong>Semakin Besar</strong> (kecuali VIIIA)</td>
+                  <td><strong>Semakin Kecil</strong></td>
+                  <td>Terbesar = <strong>F (4,0)</strong>; Golongan VIIIA = 0.</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </article>
+
+        <!-- Navigasi Bawah (Bab Terakhir Semester Ini) -->
+        <div class="bottom-nav">
+          <a href="kimia-bab3.html" class="btn-nav"><i data-lucide="arrow-left"></i> Bab Sebelumnya: Konfigurasi Elektron</a>
+          <a href="../index.html" class="btn-nav primary"><i data-lucide="layout-grid"></i> Kembali ke Daftar Mata Pelajaran</a>
+        </div>
+
+      </div>
+    </div>
+  </main>
+
+  <footer class="footer">
+    <div class="wrap">
+      <span>© Shira's Archive</span>
+      <span>Belajar sedikit demi sedikit, setiap hari.</span>
+    </div>
+  </footer>
+
+  <script>
+    lucide.createIcons();
+
+    // Sinkronisasi Dark Mode dengan halaman beranda
+    const themeBtn = document.getElementById("theme-toggle");
+    if (localStorage.getItem("shira-theme") === "dark") {
+      document.body.classList.add("dark");
+      themeBtn.innerHTML = '<i data-lucide="sun"></i>';
+      lucide.createIcons();
+    }
+
+    themeBtn.onclick = () => {
+      const dark = document.body.classList.toggle("dark");
+      localStorage.setItem("shira-theme", dark ? "dark" : "light");
+      themeBtn.innerHTML = '<i data-lucide="' + (dark ? "sun" : "moon") + '"></i>';
+      lucide.createIcons();
+    };
+
+    // Highlight otomatis daftar sub-bab saat halaman di-scroll
+    const sections = document.querySelectorAll(".sub-section");
+    const navLinks = document.querySelectorAll(".toc-list a");
+
+    window.addEventListener("scroll", () => {
+      let current = "";
+      sections.forEach(sec => {
+        const top = sec.offsetTop - 150;
+        if (window.scrollY >= top) current = sec.getAttribute("id");
+      });
+      navLinks.forEach(link => {
+        link.classList.remove("active");
+        if (link.getAttribute("href") === "#" + current) {
+          link.classList.add("active");
+        }
+      });
+    });
+  </script>
+</body>
+</html>

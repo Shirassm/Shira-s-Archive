@@ -1,0 +1,830 @@
+<!doctype html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Bab 3: Virus — Shira's Archive</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/lucide@0.577.0/dist/umd/lucide.min.js"></script>
+  <style>
+    :root {
+      --bg: #f5f8fd;
+      --surface: #fff;
+      --surface2: #edf4fd;
+      --text: #25334a;
+      --muted: #718099;
+      --line: #e3eaf4;
+      --blue: #537fda;
+      --blue2: #e8f0ff;
+      --shadow: 0 12px 36px rgba(48, 79, 129, .07);
+    }
+    body.dark {
+      --bg: #101827;
+      --surface: #192437;
+      --surface2: #202e45;
+      --text: #eef4ff;
+      --muted: #a7b5cb;
+      --line: #344159;
+      --blue: #8bb3ff;
+      --blue2: #263d65;
+      --shadow: 0 12px 36px rgba(0, 0, 0, .17);
+    }
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      background: var(--bg);
+      color: var(--text);
+      font-family: "Plus Jakarta Sans", sans-serif;
+      line-height: 1.7;
+      transition: background .25s, color .25s;
+    }
+    button { font-family: "Plus Jakarta Sans", sans-serif; cursor: pointer; }
+    .wrap { max-width: 1190px; margin: auto; padding: 0 28px; }
+
+    /* Header (Sama persis dengan index.html) */
+    .site-header {
+      background: var(--surface);
+      border-bottom: 1px solid var(--line);
+      position: sticky;
+      top: 0;
+      z-index: 10;
+    }
+    .nav-inner {
+      min-height: 78px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+    }
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 11px;
+      font-weight: 800;
+      font-size: 18px;
+      text-decoration: none;
+      color: var(--text);
+    }
+    .brand-mark {
+      width: 38px;
+      height: 38px;
+      display: grid;
+      place-items: center;
+      border-radius: 12px;
+      background: var(--blue);
+      color: white;
+    }
+    .brand-mark svg { width: 21px; }
+    .icon-button {
+      width: 41px;
+      height: 41px;
+      border: 1px solid var(--line);
+      border-radius: 12px;
+      background: var(--surface);
+      color: var(--text);
+      display: grid;
+      place-items: center;
+    }
+    .icon-button svg { width: 19px; }
+
+    /* Breadcrumb & Judul Bab */
+    .reader-top { padding: 34px 0 24px; }
+    .back-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      color: var(--blue);
+      text-decoration: none;
+      font-weight: 700;
+      font-size: 13px;
+      margin-bottom: 18px;
+    }
+    .back-link svg { width: 17px; }
+    .eyebrow {
+      color: var(--blue);
+      font-size: 12px;
+      font-weight: 800;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+      margin: 0 0 8px;
+    }
+    .reader-top h1 {
+      font-size: clamp(28px, 4vw, 40px);
+      letter-spacing: -.04em;
+      line-height: 1.2;
+      margin: 0 0 10px;
+      font-weight: 800;
+    }
+    .reader-top p.desc {
+      color: var(--muted);
+      font-size: 14px;
+      margin: 0;
+      max-width: 680px;
+    }
+
+    /* Layout Dua Kolom: Sidebar Sub-bab + Area Baca */
+    .reader-layout {
+      display: grid;
+      grid-template-columns: 280px minmax(0, 1fr);
+      gap: 28px;
+      padding-bottom: 80px;
+      align-items: start;
+    }
+
+    /* Sidebar Daftar Sub-bab */
+    .toc-card {
+      background: var(--surface);
+      border: 1px solid var(--line);
+      border-radius: 18px;
+      padding: 20px;
+      box-shadow: var(--shadow);
+      position: sticky;
+      top: 102px;
+    }
+    .toc-title {
+      font-size: 12px;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: .08em;
+      color: var(--muted);
+      margin: 0 0 14px;
+    }
+    .toc-list {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      display: grid;
+      gap: 6px;
+    }
+    .toc-list a {
+      display: flex;
+      align-items: start;
+      gap: 9px;
+      padding: 9px 12px;
+      border-radius: 10px;
+      text-decoration: none;
+      color: var(--muted);
+      font-size: 13px;
+      font-weight: 600;
+      line-height: 1.4;
+      transition: background .2s, color .2s;
+    }
+    .toc-list a:hover {
+      background: var(--surface2);
+      color: var(--text);
+    }
+    .toc-list a.active {
+      background: var(--blue2);
+      color: var(--blue);
+      font-weight: 700;
+    }
+    .toc-num {
+      font-size: 11px;
+      font-weight: 800;
+      opacity: .8;
+      margin-top: 2px;
+    }
+
+    /* Area Konten Catatan */
+    .content-area {
+      display: grid;
+      gap: 24px;
+    }
+    .sub-section {
+      background: var(--surface);
+      border: 1px solid var(--line);
+      border-radius: 20px;
+      padding: 30px;
+      box-shadow: var(--shadow);
+      scroll-margin-top: 102px;
+    }
+    .sub-badge {
+      display: inline-block;
+      background: var(--blue2);
+      color: var(--blue);
+      font-size: 11px;
+      font-weight: 800;
+      padding: 4px 10px;
+      border-radius: 20px;
+      margin-bottom: 10px;
+    }
+    .sub-section h2 {
+      font-size: 22px;
+      letter-spacing: -.03em;
+      margin: 0 0 14px;
+    }
+    .sub-section h3 {
+      font-size: 16px;
+      font-weight: 700;
+      color: var(--blue);
+      margin: 22px 0 10px;
+    }
+    .sub-section p {
+      font-size: 14px;
+      margin: 0 0 14px;
+    }
+
+    /* Kotak Konsep & Contoh Soal */
+    .formula-box {
+      background: var(--surface2);
+      border-left: 4px solid var(--blue);
+      border-radius: 12px;
+      padding: 18px 20px;
+      margin: 18px 0;
+    }
+    .formula-box strong.box-label {
+      display: block;
+      font-size: 12px;
+      text-transform: uppercase;
+      letter-spacing: .06em;
+      color: var(--blue);
+      margin-bottom: 10px;
+    }
+    .formula-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 14px 20px;
+      font-size: 13.5px;
+    }
+    .trend-card {
+      background: var(--surface);
+      border: 1px solid var(--line);
+      border-radius: 10px;
+      padding: 13px 15px;
+    }
+    .trend-head {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 8px;
+      margin-bottom: 6px;
+      font-weight: 700;
+      font-size: 13.5px;
+    }
+    .trend-pill {
+      display: inline-block;
+      padding: 2px 9px;
+      border-radius: 99px;
+      font-size: 11.5px;
+      font-weight: 800;
+      background: var(--blue2);
+      color: var(--blue);
+      white-space: nowrap;
+    }
+    .example-box {
+      border: 1px dashed var(--line);
+      border-radius: 12px;
+      padding: 16px 20px;
+      margin-top: 16px;
+      font-size: 13.5px;
+    }
+    .example-box strong { color: var(--blue); }
+
+    /* Tabel Materi */
+    .table-wrap {
+      overflow-x: auto;
+      margin: 16px 0;
+      border: 1px solid var(--line);
+      border-radius: 12px;
+    }
+    .bio-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 13.5px;
+      text-align: left;
+    }
+    .bio-table th {
+      background: var(--surface2);
+      color: var(--blue);
+      font-weight: 700;
+      padding: 12px 14px;
+      border-bottom: 1px solid var(--line);
+      white-space: nowrap;
+    }
+    .bio-table td {
+      padding: 11px 14px;
+      border-bottom: 1px solid var(--line);
+      vertical-align: top;
+    }
+    .bio-table tr:last-child td { border-bottom: none; }
+
+    /* Diagram Visual SVG */
+    .visual-diagram {
+      background: var(--surface2);
+      border: 1px solid var(--line);
+      border-radius: 14px;
+      padding: 16px;
+      margin: 16px 0;
+      text-align: center;
+    }
+    .visual-diagram svg {
+      width: 100%;
+      max-width: 580px;
+      height: auto;
+      display: block;
+      margin: 0 auto;
+    }
+    .diagram-caption {
+      font-size: 12px;
+      color: var(--muted);
+      font-weight: 600;
+      margin-top: 8px;
+    }
+
+    /* Layout 2 Kolom Visual Bakteriofag */
+    .phage-layout {
+      display: grid;
+      grid-template-columns: 270px minmax(0, 1fr);
+      gap: 20px;
+      align-items: center;
+      margin: 16px 0;
+    }
+
+    /* Navigasi Bawah Antar Bab */
+    .bottom-nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 12px;
+      margin-top: 10px;
+    }
+    .btn-nav {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 12px 18px;
+      border-radius: 12px;
+      text-decoration: none;
+      font-size: 13px;
+      font-weight: 700;
+      border: 1px solid var(--line);
+      background: var(--surface);
+      color: var(--text);
+    }
+    .btn-nav.primary {
+      background: var(--blue);
+      color: #fff;
+      border-color: var(--blue);
+    }
+    .btn-nav svg { width: 17px; }
+
+    .footer {
+      border-top: 1px solid var(--line);
+      padding: 26px 0;
+      color: var(--muted);
+      font-size: 12px;
+    }
+    .footer .wrap {
+      display: flex;
+      justify-content: space-between;
+      gap: 12px;
+    }
+
+    @media (max-width: 860px) {
+      .reader-layout, .phage-layout { grid-template-columns: 1fr; }
+      .toc-card { position: static; }
+      .formula-grid { grid-template-columns: 1fr; }
+    }
+    @media (max-width: 620px) {
+      .wrap { padding: 0 18px; }
+      .sub-section { padding: 22px; }
+      .bottom-nav { flex-direction: column; align-items: stretch; }
+      .btn-nav { justify-content: center; }
+      .footer .wrap { flex-direction: column; }
+    }
+  </style>
+</head>
+<body>
+
+  <header class="site-header">
+    <div class="wrap nav-inner">
+      <a href="../index.html" class="brand" aria-label="Kembali ke Beranda Shira's Archive">
+        <span class="brand-mark"><i data-lucide="book-open"></i></span>
+        <span>Shira's Archive</span>
+      </a>
+      <button id="theme-toggle" class="icon-button" type="button" aria-label="Aktifkan tema gelap" title="Tukar tema">
+        <i data-lucide="moon"></i>
+      </button>
+    </div>
+  </header>
+
+  <main class="wrap">
+    <div class="reader-top">
+      <a href="../index.html" class="back-link"><i data-lucide="arrow-left"></i> Kembali ke Daftar Mata Pelajaran</a>
+      <p class="eyebrow">Biologi • Kelas 10 • Bab 03</p>
+      <h1>Virus</h1>
+      <p class="desc">Rangkuman sejarah penemuan virus, ciri aseluler dan anatomi bakteriofag, siklus reproduksi litik dan lisogenik, peranan virus dalam kehidupan, serta mekanisme pertahanan tubuh.</p>
+    </div>
+
+    <div class="reader-layout">
+      <!-- Navigasi Lompat Sub-bab (Sticky Sidebar) -->
+      <aside class="toc-card" aria-label="Daftar sub-bab">
+        <p class="toc-title">Daftar Sub-bab</p>
+        <ul class="toc-list">
+          <li><a href="#sub-1" class="active"><span class="toc-num">01</span><span>Sejarah Penemuan Virus</span></a></li>
+          <li><a href="#sub-2"><span class="toc-num">02</span><span>Ciri-Ciri &amp; Struktur Tubuh</span></a></li>
+          <li><a href="#sub-3"><span class="toc-num">03</span><span>Cara Hidup &amp; Reproduksi</span></a></li>
+          <li><a href="#sub-4"><span class="toc-num">04</span><span>Peranan Virus &amp; Prion</span></a></li>
+          <li><a href="#sub-5"><span class="toc-num">05</span><span>Pertahanan Tubuh</span></a></li>
+        </ul>
+      </aside>
+
+      <!-- Area Baca Utama -->
+      <div class="content-area">
+
+        <!-- Sub-bab 1 -->
+        <article id="sub-1" class="sub-section">
+          <span class="sub-badge">Sub-bab 01</span>
+          <h2>Sejarah Penemuan Virus</h2>
+          <p>Penemuan virus berawal dari penelitian penyakit mosaik (bercak kuning) pada daun tembakau yang melibatkan tiga ilmuwan kunci:</p>
+
+          <div class="table-wrap">
+            <table class="bio-table">
+              <thead>
+                <tr>
+                  <th>Ilmuwan &amp; Tahun</th>
+                  <th>Asal</th>
+                  <th>Eksperimen &amp; Kesimpulan Penting</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td><strong>Dmitri Ivanovsky</strong><br><span style="color:var(--muted); font-size:12px;">(1892–1893)</span></td>
+                  <td>Rusia</td>
+                  <td>Meneliti penyakit bercak kuning pada daun tembakau (mosaik tembakau). Ia menyaring ekstrak daun sakit dan menduga penyebabnya adalah <strong>bakteri patogen yang ukurannya sangat kecil</strong> karena lolos saringan.</td>
+                </tr>
+                <tr>
+                  <td><strong>Martinus Willem Beijerinck</strong></td>
+                  <td>Belanda</td>
+                  <td>Mengoleskan getah tembakau hasil saringan keramik secara berjenjang ke tanaman sehat. Ia menyimpulkan agen tersebut berukuran sangat kecil (lolos saringan keramik) dan <strong>mampu berkembang biak di dalam tanaman</strong>.</td>
+                </tr>
+                <tr>
+                  <td><strong>Wendell Meredith Stanley</strong><br><span style="color:var(--muted); font-size:12px;">(1935)</span></td>
+                  <td>Amerika Serikat</td>
+                  <td>Berhasil mengisolasi dan <strong>mengkristalkan partikel</strong> penyebab penyakit tersebut, lalu menamainya <em><strong>Tobacco Mosaic Virus (TMV)</strong></em>. Karena dapat dikristalkan, virus bukanlah sel dan dianggap sebagai <strong>peralihan antara benda mati (abiotik) dan makhluk hidup (biotik)</strong>.</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </article>
+
+        <!-- Sub-bab 2 -->
+        <article id="sub-2" class="sub-section">
+          <span class="sub-badge">Sub-bab 02</span>
+          <h2>Ciri-Ciri &amp; Struktur Tubuh Virus</h2>
+
+          <div class="formula-box">
+            <strong class="box-label">Ciri-Ciri Umum Virus</strong>
+            <p style="margin:0; font-size:13.5px;">
+              • Berukuran ultramikroskopis sekitar <strong>20–300 milimikron</strong> (1 milimikron = <strong>1 &times; 10<sup>-6</sup> mm</strong>), jauh lebih kecil dari bakteri dan lolos dari saringan keramik.<br>
+              • Hanya dapat diamati menggunakan <strong>mikroskop elektron</strong>.<br>
+              • Bukanlah sel (<strong>aseluler</strong>) karena tidak memiliki sitoplasma, membran sel, maupun organel (seperti ribosom), sehingga tidak melakukan metabolisme dan dapat dikristalkan.<br>
+              • Satu unit lengkap virus yang mampu menginfeksi sel hidup disebut <strong>virion</strong>.
+            </p>
+          </div>
+
+          <h3>Struktur Tubuh Virus &amp; Anatomi Bakteriofag</h3>
+          <div class="phage-layout">
+            <!-- Ilustrasi Anatomi Bakteriofag -->
+            <div class="visual-diagram" style="margin:0;">
+              <svg viewBox="0 0 260 270" fill="none" xmlns="http://www.w3.org/2000/svg" aria-label="Ilustrasi Struktur Tubuh Bakteriofag">
+                <!-- Kepala Segi Delapan (Kapsid) -->
+                <polygon points="105,22 155,22 175,46 175,78 155,102 105,102 85,78 85,46" fill="#537fda" fill-opacity="0.18" stroke="#537fda" stroke-width="2.5"/>
+                <!-- DNA di dalam kepala -->
+                <path d="M114 42 C135 42, 118 56, 142 56 C120 56, 138 72, 114 72 C136 72, 120 86, 144 86" stroke="#dc2626" stroke-width="2.4" stroke-linecap="round"/>
+                <!-- Leher -->
+                <rect x="120" y="102" width="20" height="12" rx="2" fill="#0284c7"/>
+                <!-- Selubung Ekor -->
+                <rect x="116" y="114" width="28" height="68" rx="3" fill="#537fda" fill-opacity="0.25" stroke="#537fda" stroke-width="2"/>
+                <line x1="116" y1="128" x2="144" y2="128" stroke="#537fda" stroke-width="1.5"/>
+                <line x1="116" y1="142" x2="144" y2="142" stroke="#537fda" stroke-width="1.5"/>
+                <line x1="116" y1="156" x2="144" y2="156" stroke="#537fda" stroke-width="1.5"/>
+                <line x1="116" y1="170" x2="144" y2="170" stroke="#537fda" stroke-width="1.5"/>
+                <!-- Lempeng Dasar & Jarum Penusuk -->
+                <rect x="108" y="182" width="44" height="8" rx="2" fill="#1e3a8a"/>
+                <polygon points="126,190 134,190 130,204" fill="#dc2626"/>
+                <!-- Serabut Ekor -->
+                <polyline points="112,188 76,208 62,244" stroke="#537fda" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
+                <polyline points="116,190 92,216 84,248" stroke="#537fda" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
+                <polyline points="148,188 184,208 198,244" stroke="#537fda" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
+                <polyline points="144,190 168,216 176,248" stroke="#537fda" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
+
+                <!-- Label -->
+                <g font-family="Plus Jakarta Sans, sans-serif" font-size="10" font-weight="700" fill="#334155">
+                  <text x="42" y="42" text-anchor="middle">Kapsid</text>
+                  <line x1="62" y1="40" x2="88" y2="48" stroke="#64748b" stroke-width="1.1"/>
+
+                  <text x="218" y="64" text-anchor="middle">DNA Virus</text>
+                  <line x1="190" y1="62" x2="146" y2="62" stroke="#dc2626" stroke-width="1.1"/>
+
+                  <text x="44" y="110" text-anchor="middle">Leher</text>
+                  <line x1="62" y1="108" x2="118" y2="108" stroke="#64748b" stroke-width="1.1"/>
+
+                  <text x="218" y="146" text-anchor="middle">Selubung Ekor</text>
+                  <line x1="180" y1="144" x2="146" y2="144" stroke="#64748b" stroke-width="1.1"/>
+
+                  <text x="44" y="185" text-anchor="middle">Lempeng Dasar</text>
+                  <line x1="82" y1="185" x2="106" y2="185" stroke="#64748b" stroke-width="1.1"/>
+
+                  <text x="130" y="222" text-anchor="middle" fill="#dc2626">Jarum Penusuk</text>
+                  <text x="218" y="232" text-anchor="middle">Serabut Ekor</text>
+                </g>
+              </svg>
+              <div class="diagram-caption">Struktur Anatomi Bakteriofag</div>
+            </div>
+
+            <div>
+              <div class="trend-card" style="margin-bottom:12px;">
+                <div class="trend-head"><span>1. Kapsid</span><span class="trend-pill">Pelindung Luar</span></div>
+                <p style="margin:0; font-size:13px; color:var(--muted);">Selubung luar pelindung yang tersusun atas molekul <strong>protein</strong>.</p>
+              </div>
+              <div class="trend-card" style="margin-bottom:12px;">
+                <div class="trend-head"><span>2. Isi (Materi Genetik)</span><span class="trend-pill">DNA atau RNA</span></div>
+                <p style="margin:0; font-size:13px; color:var(--muted);">Tersusun atas <strong>salah satu jenis asam nukleat saja</strong>—<strong>DNA</strong> (contoh: virus cacar) atau <strong>RNA</strong> (contoh: virus influenza dan HIV). Di dalamnya juga terdapat beberapa macam enzim.</p>
+              </div>
+              <div class="trend-card">
+                <div class="trend-head"><span>3. Struktur Tambahan Bakteriofag</span><span class="trend-pill">Virus Bakteri</span></div>
+                <p style="margin:0; font-size:13px; color:var(--muted);">Terdiri dari <strong>kepala</strong> (berbentuk segi delapan berisi DNA), <strong>leher</strong>, <strong>ekor</strong> (selubung memanjang sebagai alat penginfeksi), <strong>lempeng dasar</strong>, <strong>jarum penusuk</strong>, dan <strong>serabut ekor</strong> (penerima rangsang/reseptor).</p>
+              </div>
+            </div>
+          </div>
+        </article>
+
+        <!-- Sub-bab 3 -->
+        <article id="sub-3" class="sub-section">
+          <span class="sub-badge">Sub-bab 03</span>
+          <h2>Cara Hidup &amp; Reproduksi Virus</h2>
+          <p><strong>Cara Hidup:</strong> Virus bersifat <strong>parasit obligat intraseluler</strong> (tidak bisa hidup bebas di alam dan wajib berada di dalam sel hidup lain seperti manusia, hewan, tumbuhan, atau bakteri). Di laboratorium, virus dapat dibiakkan di dalam <strong>embrio telur ayam</strong>.</p>
+          <p><strong>Reproduksi Virus:</strong> Bakteriofag menempelkan reseptornya di dinding sel bakteri, sedangkan virus hewan masuk melalui mekanisme <strong>endositosis</strong>. Reproduksi virus terbagi menjadi dua siklus utama:</p>
+
+          <!-- Ilustrasi Perbandingan Daur Litik vs Lisogenik -->
+          <div class="visual-diagram">
+            <svg viewBox="0 0 600 155" fill="none" xmlns="http://www.w3.org/2000/svg" aria-label="Diagram Alur Siklus Litik dan Lisogenik">
+              <!-- Tahap Awal Bersama -->
+              <rect x="10" y="42" width="118" height="72" rx="12" fill="#537fda" fill-opacity="0.18" stroke="#537fda" stroke-width="1.8"/>
+              <text x="69" y="68" font-family="Plus Jakarta Sans, sans-serif" font-size="11" font-weight="800" fill="#537fda" text-anchor="middle">1. Adsorbsi</text>
+              <text x="69" y="85" font-family="Plus Jakarta Sans, sans-serif" font-size="11" font-weight="800" fill="#537fda" text-anchor="middle">2. Injeksi</text>
+              <text x="69" y="102" font-family="Plus Jakarta Sans, sans-serif" font-size="9.5" fill="#64748b" text-anchor="middle">(Penetrasi DNA/RNA)</text>
+
+              <!-- Cabang Atas: Litik -->
+              <path d="M132 62 L166 36" stroke="#ef4444" stroke-width="2.2" stroke-linecap="round"/>
+              <rect x="170" y="12" width="235" height="52" rx="10" fill="#ef4444" fill-opacity="0.12" stroke="#ef4444" stroke-width="1.6"/>
+              <text x="287" y="32" font-family="Plus Jakarta Sans, sans-serif" font-size="11" font-weight="800" fill="#dc2626" text-anchor="middle">DAUR LITIK (Langsung Aktif)</text>
+              <text x="287" y="49" font-family="Plus Jakarta Sans, sans-serif" font-size="10" font-weight="600" fill="#475569" text-anchor="middle">Sintesis &rarr; Perakitan &rarr; Lisis (Sel Inang Pecah)</text>
+
+              <!-- Cabang Bawah: Lisogenik -->
+              <path d="M132 94 L166 118" stroke="#059669" stroke-width="2.2" stroke-linecap="round"/>
+              <rect x="170" y="92" width="235" height="52" rx="10" fill="#10b981" fill-opacity="0.14" stroke="#059669" stroke-width="1.6"/>
+              <text x="287" y="112" font-family="Plus Jakarta Sans, sans-serif" font-size="11" font-weight="800" fill="#047857" text-anchor="middle">DAUR LISOGENIK (Membentuk Profag)</text>
+              <text x="287" y="129" font-family="Plus Jakarta Sans, sans-serif" font-size="10" font-weight="600" fill="#475569" text-anchor="middle">Penggabungan DNA &rarr; Pembelahan Sel Inang</text>
+
+              <!-- Panah Induksi dari Lisogenik ke Litik -->
+              <path d="M409 118 Q442 118 442 78 Q442 38 409 38" stroke="#d97706" stroke-width="2" stroke-dasharray="4 3"/>
+              <text x="520" y="72" font-family="Plus Jakarta Sans, sans-serif" font-size="10" font-weight="800" fill="#b45309" text-anchor="middle">Jika Imun Inang Turun</text>
+              <text x="520" y="86" font-family="Plus Jakarta Sans, sans-serif" font-size="9.5" fill="#64748b" text-anchor="middle">Profag aktif menjadi virulen</text>
+              <text x="520" y="99" font-family="Plus Jakarta Sans, sans-serif" font-size="9.5" fill="#64748b" text-anchor="middle">&amp; masuk tahap Sintesis–Lisis</text>
+            </svg>
+          </div>
+
+          <div class="table-wrap">
+            <table class="bio-table">
+              <thead>
+                <tr>
+                  <th>Tahapan</th>
+                  <th>Daur Litik (Menghancurkan Sel Inang)</th>
+                  <th>Daur Lisogenik (Menyisip pada DNA Inang)</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td><strong>1. Adsorbsi</strong></td>
+                  <td>Ekor virus menempel pada dinding sel bakteri dan mengeluarkan enzim lisozim untuk melubangi dinding sel.</td>
+                  <td>Sama seperti daur litik.</td>
+                </tr>
+                <tr>
+                  <td><strong>2. Injeksi (Penetrasi)</strong></td>
+                  <td>DNA atau RNA virus disuntikkan masuk ke dalam sel bakteri.</td>
+                  <td>Sama seperti daur litik.</td>
+                </tr>
+                <tr>
+                  <td><strong>3. Penggabungan &amp; Pembelahan</strong></td>
+                  <td><em>(Tidak terjadi)</em></td>
+                  <td>DNA virus menyisip pada DNA bakteri membentuk <strong>profag</strong> (tidak aktif). Saat bakteri membelah, profag ikut mengganda di tiap sel anak.</td>
+                </tr>
+                <tr>
+                  <td><strong>4. Sintesis (Replikasi)</strong></td>
+                  <td>DNA virus menghancurkan DNA bakteri, mengambil alih sel, dan menggandakan materi genetik serta komponen tubuh virus.</td>
+                  <td>Jika imun bakteri turun atau terkena radiasi/zat kimia, profag menjadi aktif/virulen lalu menghancurkan DNA bakteri dan mensintesis bagian virus.</td>
+                </tr>
+                <tr>
+                  <td><strong>5. Perakitan</strong></td>
+                  <td>Bagian-bagian tubuh virus dirakit menjadi <strong>&plusmn;100–200 virus baru</strong> yang lengkap.</td>
+                  <td>Sama seperti daur litik (&plusmn;100–200 virus baru terbentuk).</td>
+                </tr>
+                <tr>
+                  <td><strong>6. Lisis</strong></td>
+                  <td>Virus mengeluarkan enzim lisozim untuk memecah dinding sel bakteri (<strong>lisis</strong>) sehingga virus-virus baru keluar.</td>
+                  <td>Sama seperti daur litik (sel bakteri pecah/lisis).</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </article>
+
+        <!-- Sub-bab 4 -->
+        <article id="sub-4" class="sub-section">
+          <span class="sub-badge">Sub-bab 04</span>
+          <h2>Peranan Virus dalam Kehidupan</h2>
+
+          <div class="formula-box">
+            <strong class="box-label">Virus yang Menguntungkan</strong>
+            <p style="margin:0; font-size:13.5px;">
+              1. <strong>Membuat antitoksin</strong> (dengan menyisipkan gen penghasil antitoksin ke DNA bakteri melalui rekayasa genetika).<br>
+              2. <strong>Melemahkan bakteri patogen</strong> (bakteri berbahaya menjadi tidak ganas setelah disisipi profag tertentu).<br>
+              3. <strong>Memproduksi vaksin</strong> (menggunakan virus yang dilemahkan atau dimatikan untuk memicu pembentukan antibodi).
+            </p>
+          </div>
+
+          <h3>1. Penyakit Akibat Virus pada Manusia (Merugikan)</h3>
+          <div class="table-wrap">
+            <table class="bio-table">
+              <thead>
+                <tr>
+                  <th>Nama Penyakit</th>
+                  <th>Penyebab / Keterangan</th>
+                  <th>Gejala &amp; Penularan</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td><strong>Mata Belek</strong></td>
+                  <td>Infeksi virus pada mata</td>
+                  <td>Membuat mata merah, bengkak, dan berair.</td>
+                </tr>
+                <tr>
+                  <td><strong>Influenza</strong></td>
+                  <td>Virus RNA berbentuk bola</td>
+                  <td>Menyerang saluran pernapasan bagian atas.</td>
+                </tr>
+                <tr>
+                  <td><strong>Polio</strong></td>
+                  <td>Poliovirus</td>
+                  <td>Menyerang sel saraf otak depan hingga dapat menyebabkan kelumpuhan (dicegah dengan <strong>vaksin Salk dan Sabin</strong>).</td>
+                </tr>
+                <tr>
+                  <td><strong>Cacar</strong></td>
+                  <td>Virus cacar (DNA)</td>
+                  <td>Menimbulkan luka melepuh di sekujur tubuh.</td>
+                </tr>
+                <tr>
+                  <td><strong>Hepatitis (A, B, C, D, E)</strong></td>
+                  <td>Virus Hepatitis</td>
+                  <td>Menyerang organ hati hingga mengalami pembengkakan.</td>
+                </tr>
+                <tr>
+                  <td><strong>Campak</strong></td>
+                  <td>Paramyxovirus</td>
+                  <td>Menyerang anak-anak dengan gejala demam tinggi, batuk, dan mata pedih.</td>
+                </tr>
+                <tr>
+                  <td><strong>Rabies</strong></td>
+                  <td>Virus berbentuk peluru (<em>Rhabdovirus</em>)</td>
+                  <td>Menyerang sistem saraf pusat melalui gigitan hewan mamalia berdarah panas.</td>
+                </tr>
+                <tr>
+                  <td><strong>AIDS</strong></td>
+                  <td><strong>HIV</strong> (virus lisogenik)</td>
+                  <td>Merusak sistem kekebalan tubuh; menular lewat hubungan seksual, transfusi darah, dan jarum suntik.</td>
+                </tr>
+                <tr>
+                  <td><strong>Ebola</strong></td>
+                  <td>Ebolavirus</td>
+                  <td>Menyebabkan pendarahan hebat di seluruh tubuh melalui kontak cairan/tubuh penderita.</td>
+                </tr>
+                <tr>
+                  <td><strong>Demam Berdarah (DBD)</strong></td>
+                  <td>Virus Dengue (DEN-1 s.d. DEN-4)</td>
+                  <td>Menular melalui gigitan nyamuk <em>Aedes aegypti</em>.</td>
+                </tr>
+                <tr>
+                  <td><strong>Cacar Air &amp; Herpes Zoster</strong></td>
+                  <td>Virus <em>Varicella zoster</em></td>
+                  <td>Menimbulkan ruam lenting berisi cairan pada kulit.</td>
+                </tr>
+                <tr>
+                  <td><strong>Flu Burung</strong></td>
+                  <td>Virus <strong>H5N1</strong></td>
+                  <td>Menular lewat unggas, mati pada suhu <strong>&gt;80&deg;C</strong>.</td>
+                </tr>
+                <tr>
+                  <td><strong>SARS, MERS, &amp; COVID-19</strong></td>
+                  <td>Kelompok <em>Coronavirus</em> (<strong>SARS-CoV-2</strong>)</td>
+                  <td>Menyerang sistem pernapasan. Gejala umum COVID-19 meliputi demam (<strong>&gt;38&deg;C</strong>), batuk kering, sesak napas, hilangnya penciuman (<strong>anosmia</strong>), serta kondisi penurunan oksigen tanpa gejala (<strong><em>happy hypoxia</em></strong>).</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+          <h3>2. Penyakit pada Hewan, Tumbuhan, &amp; Catatan Tambahan (Prion)</h3>
+          <div class="formula-grid" style="margin:12px 0;">
+            <div class="trend-card">
+              <div class="trend-head"><span>Pada Hewan &amp; Tumbuhan</span><span class="trend-pill">Pertanian &amp; Ternak</span></div>
+              <p style="margin:0; font-size:13px; color:var(--muted);">
+                • <strong>Hewan:</strong> Penyakit sampar ayam serta penyakit kuku dan mulut (PMK) pada hewan ternak.<br>
+                • <strong>Tumbuhan:</strong> Penyakit mosaik tembakau (TMV), kanker jeruk, dan busuk sayuran.
+              </p>
+            </div>
+            <div class="trend-card">
+              <div class="trend-head"><span>Catatan Tambahan: Prion</span><span class="trend-pill" style="background:#fee2e2; color:#dc2626;">Lebih Sederhana dari Virus</span></div>
+              <p style="margin:0; font-size:13px; color:var(--muted);">
+                Protein asing penginfeksi yang strukturnya <strong>lebih sederhana daripada virus</strong> (tidak memiliki asam nukleat), tahan panas/radiasi/formalin, dan merusak sistem saraf pusat (penyebab <strong>penyakit sapi gila</strong> pada sapi, kambing, dan domba).
+              </p>
+            </div>
+          </div>
+        </article>
+
+        <!-- Sub-bab 5 -->
+        <article id="sub-5" class="sub-section">
+          <span class="sub-badge">Sub-bab 05</span>
+          <h2>Pertahanan Tubuh Terhadap Virus</h2>
+          <p><strong>Penting:</strong> Antibiotik hanya digunakan untuk melawan <strong>bakteri</strong> dan <strong>tidak dapat mematikan virus</strong>. Pertahanan alami tubuh melawan virus dilakukan melalui dua mekanisme utama:</p>
+
+          <div class="formula-grid" style="margin:14px 0;">
+            <div class="trend-card">
+              <div class="trend-head"><span>1. Fagositosis</span><span class="trend-pill">Pertahanan Nonspesifik</span></div>
+              <p style="margin:0; font-size:13px; color:var(--muted);">
+                Sel darah putih (<strong>fagosit</strong>) akan langsung memakan dan menghancurkan partikel virus yang masuk ke dalam tubuh.
+              </p>
+            </div>
+            <div class="trend-card">
+              <div class="trend-head"><span>2. Pembentukan Antibodi</span><span class="trend-pill">Pertahanan Spesifik</span></div>
+              <p style="margin:0; font-size:13px; color:var(--muted);">
+                Tubuh mengenali virus sebagai <strong>antigen</strong> (benda asing), lalu memproduksi protein <strong>antibodi spesifik</strong> untuk melumpuhkan antigen tersebut.
+              </p>
+            </div>
+          </div>
+
+          <div class="example-box">
+            <strong>Contoh Soal Latihan:</strong> Mengapa penderita flu atau COVID-19 ringan tidak dianjurkan mengonsumsi obat antibiotik seperti amoksisilin, dan bagaimana cara tubuh memulihkan diri dari infeksi virus tersebut?<br>
+            <strong>Pembahasan:</strong> Karena flu dan COVID-19 disebabkan oleh <strong>virus</strong>, sedangkan antibiotik hanya bekerja merusak struktur sel bakteri (virus bersifat aseluler dan tidak punya dinding sel peptidoglikan). Tubuh melawan infeksi virus melalui mekanisme <strong>fagositosis</strong> oleh sel darah putih serta <strong>pembentukan antibodi spesifik</strong> terhadap antigen virus tersebut.
+          </div>
+        </article>
+
+        <!-- Navigasi Bawah -->
+        <div class="bottom-nav">
+          <a href="biologi-bab2.html" class="btn-nav"><i data-lucide="arrow-left"></i> Bab Sebelumnya: Klasifikasi Makhluk Hidup &amp; Monera</a>
+          <a href="biologi-bab4.html" class="btn-nav primary">Bab Selanjutnya: Bakteri <i data-lucide="arrow-right"></i></a>
+        </div>
+
+      </div>
+    </div>
+  </main>
+
+  <footer class="footer">
+    <div class="wrap">
+      <span>© Shira's Archive</span>
+      <span>Belajar sedikit demi sedikit, setiap hari.</span>
+    </div>
+  </footer>
+
+  <script>
+    lucide.createIcons();
+
+    // Sinkronisasi Dark Mode dengan halaman beranda
+    const themeBtn = document.getElementById("theme-toggle");
+    if (localStorage.getItem("shira-theme") === "dark") {
+      document.body.classList.add("dark");
+      themeBtn.innerHTML = '<i data-lucide="sun"></i>';
+      lucide.createIcons();
+    }
+
+    themeBtn.onclick = () => {
+      const dark = document.body.classList.toggle("dark");
+      localStorage.setItem("shira-theme", dark ? "dark" : "light");
+      themeBtn.innerHTML = '<i data-lucide="' + (dark ? "sun" : "moon") + '"></i>';
+      lucide.createIcons();
+    };
+
+    // Highlight otomatis daftar sub-bab saat halaman di-scroll
+    const sections = document.querySelectorAll(".sub-section");
+    const navLinks = document.querySelectorAll(".toc-list a");
+
+    window.addEventListener("scroll", () => {
+      let current = "";
+      sections.forEach(sec => {
+        const top = sec.offsetTop - 150;
+        if (window.scrollY >= top) current = sec.getAttribute("id");
+      });
+      navLinks.forEach(link => {
+        link.classList.remove("active");
+        if (link.getAttribute("href") === "#" + current) {
+          link.classList.add("active");
+        }
+      });
+    });
+  </script>
+</body>
+</html>

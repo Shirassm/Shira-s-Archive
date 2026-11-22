@@ -1,0 +1,887 @@
+<!doctype html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Bab 3: Konfigurasi Elektron — Shira's Archive</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/lucide@0.577.0/dist/umd/lucide.min.js"></script>
+  <style>
+    :root {
+      --bg: #f5f8fd;
+      --surface: #fff;
+      --surface2: #edf4fd;
+      --text: #25334a;
+      --muted: #718099;
+      --line: #e3eaf4;
+      --blue: #537fda;
+      --blue2: #e8f0ff;
+      --shadow: 0 12px 36px rgba(48, 79, 129, .07);
+    }
+    body.dark {
+      --bg: #101827;
+      --surface: #192437;
+      --surface2: #202e45;
+      --text: #eef4ff;
+      --muted: #a7b5cb;
+      --line: #344159;
+      --blue: #8bb3ff;
+      --blue2: #263d65;
+      --shadow: 0 12px 36px rgba(0, 0, 0, .17);
+    }
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      background: var(--bg);
+      color: var(--text);
+      font-family: "Plus Jakarta Sans", sans-serif;
+      line-height: 1.7;
+      transition: background .25s, color .25s;
+    }
+    button { font-family: "Plus Jakarta Sans", sans-serif; cursor: pointer; }
+    .wrap { max-width: 1190px; margin: auto; padding: 0 28px; }
+
+    /* Header (Sama persis dengan index.html) */
+    .site-header {
+      background: var(--surface);
+      border-bottom: 1px solid var(--line);
+      position: sticky;
+      top: 0;
+      z-index: 10;
+    }
+    .nav-inner {
+      min-height: 78px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+    }
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 11px;
+      font-weight: 800;
+      font-size: 18px;
+      text-decoration: none;
+      color: var(--text);
+    }
+    .brand-mark {
+      width: 38px;
+      height: 38px;
+      display: grid;
+      place-items: center;
+      border-radius: 12px;
+      background: var(--blue);
+      color: white;
+    }
+    .brand-mark svg { width: 21px; }
+    .icon-button {
+      width: 41px;
+      height: 41px;
+      border: 1px solid var(--line);
+      border-radius: 12px;
+      background: var(--surface);
+      color: var(--text);
+      display: grid;
+      place-items: center;
+    }
+    .icon-button svg { width: 19px; }
+
+    /* Breadcrumb & Judul Bab */
+    .reader-top { padding: 34px 0 24px; }
+    .back-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      color: var(--blue);
+      text-decoration: none;
+      font-weight: 700;
+      font-size: 13px;
+      margin-bottom: 18px;
+    }
+    .back-link svg { width: 17px; }
+    .eyebrow {
+      color: var(--blue);
+      font-size: 12px;
+      font-weight: 800;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+      margin: 0 0 8px;
+    }
+    .reader-top h1 {
+      font-size: clamp(28px, 4vw, 40px);
+      letter-spacing: -.04em;
+      line-height: 1.2;
+      margin: 0 0 10px;
+      font-weight: 800;
+    }
+    .reader-top p.desc {
+      color: var(--muted);
+      font-size: 14px;
+      margin: 0;
+      max-width: 680px;
+    }
+
+    /* Layout Dua Kolom: Sidebar Sub-bab + Area Baca */
+    .reader-layout {
+      display: grid;
+      grid-template-columns: 280px minmax(0, 1fr);
+      gap: 28px;
+      padding-bottom: 80px;
+      align-items: start;
+    }
+
+    /* Sidebar Daftar Sub-bab */
+    .toc-card {
+      background: var(--surface);
+      border: 1px solid var(--line);
+      border-radius: 18px;
+      padding: 20px;
+      box-shadow: var(--shadow);
+      position: sticky;
+      top: 102px;
+    }
+    .toc-title {
+      font-size: 12px;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: .08em;
+      color: var(--muted);
+      margin: 0 0 14px;
+    }
+    .toc-list {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      display: grid;
+      gap: 6px;
+    }
+    .toc-list a {
+      display: flex;
+      align-items: start;
+      gap: 9px;
+      padding: 9px 12px;
+      border-radius: 10px;
+      text-decoration: none;
+      color: var(--muted);
+      font-size: 13px;
+      font-weight: 600;
+      line-height: 1.4;
+      transition: background .2s, color .2s;
+    }
+    .toc-list a:hover {
+      background: var(--surface2);
+      color: var(--text);
+    }
+    .toc-list a.active {
+      background: var(--blue2);
+      color: var(--blue);
+      font-weight: 700;
+    }
+    .toc-num {
+      font-size: 11px;
+      font-weight: 800;
+      opacity: .8;
+      margin-top: 2px;
+    }
+
+    /* Area Konten Catatan */
+    .content-area {
+      display: grid;
+      gap: 24px;
+    }
+    .sub-section {
+      background: var(--surface);
+      border: 1px solid var(--line);
+      border-radius: 20px;
+      padding: 30px;
+      box-shadow: var(--shadow);
+      scroll-margin-top: 102px;
+    }
+    .sub-badge {
+      display: inline-block;
+      background: var(--blue2);
+      color: var(--blue);
+      font-size: 11px;
+      font-weight: 800;
+      padding: 4px 10px;
+      border-radius: 20px;
+      margin-bottom: 10px;
+    }
+    .sub-section h2 {
+      font-size: 22px;
+      letter-spacing: -.03em;
+      margin: 0 0 14px;
+    }
+    .sub-section h3 {
+      font-size: 16px;
+      font-weight: 700;
+      color: var(--blue);
+      margin: 22px 0 10px;
+    }
+    .sub-section p {
+      font-size: 14px;
+      margin: 0 0 14px;
+    }
+
+    /* Kotak Rumus & Contoh Soal */
+    .formula-box {
+      background: var(--surface2);
+      border-left: 4px solid var(--blue);
+      border-radius: 12px;
+      padding: 18px 20px;
+      margin: 18px 0;
+    }
+    .formula-box strong.box-label {
+      display: block;
+      font-size: 12px;
+      text-transform: uppercase;
+      letter-spacing: .06em;
+      color: var(--blue);
+      margin-bottom: 10px;
+    }
+    .formula-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 10px 20px;
+      font-size: 14px;
+      font-weight: 600;
+    }
+    .example-box {
+      border: 1px dashed var(--line);
+      border-radius: 12px;
+      padding: 16px 20px;
+      margin-top: 16px;
+      font-size: 13.5px;
+    }
+    .example-box strong { color: var(--blue); }
+
+    /* Tabel Materi */
+    .table-wrap {
+      overflow-x: auto;
+      margin: 16px 0;
+      border: 1px solid var(--line);
+      border-radius: 12px;
+    }
+    .chem-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 13.5px;
+      text-align: left;
+    }
+    .chem-table th {
+      background: var(--surface2);
+      color: var(--blue);
+      font-weight: 700;
+      padding: 12px 14px;
+      border-bottom: 1px solid var(--line);
+      white-space: nowrap;
+    }
+    .chem-table td {
+      padding: 11px 14px;
+      border-bottom: 1px solid var(--line);
+      vertical-align: middle;
+    }
+    .chem-table tr:last-child td { border-bottom: none; }
+
+    /* Layout Diagram Mnemonik Aufbau */
+    .aufbau-layout {
+      display: grid;
+      grid-template-columns: 290px minmax(0, 1fr);
+      gap: 20px;
+      align-items: center;
+      margin: 18px 0;
+    }
+    .aufbau-card {
+      background: var(--surface2);
+      border: 1px solid var(--line);
+      border-radius: 16px;
+      padding: 16px;
+      text-align: center;
+    }
+    .aufbau-card svg {
+      width: 100%;
+      max-width: 245px;
+      height: auto;
+      display: block;
+      margin: 0 auto;
+    }
+    .aufbau-caption {
+      font-size: 12px;
+      color: var(--muted);
+      font-weight: 600;
+      margin-top: 8px;
+    }
+
+    /* Kotak Orbital Mini */
+    .orbital-boxes {
+      display: inline-flex;
+      gap: 4px;
+      flex-wrap: wrap;
+    }
+    .orb-cell {
+      display: inline-flex;
+      flex-direction: column;
+      align-items: center;
+      min-width: 34px;
+      padding: 4px 6px;
+      background: var(--surface2);
+      border: 1px solid var(--line);
+      border-radius: 7px;
+      font-size: 12px;
+      font-weight: 700;
+      line-height: 1.2;
+    }
+    .orb-cell span.orb-idx {
+      font-size: 10.5px;
+      color: var(--muted);
+      margin-top: 2px;
+    }
+    .orb-cell.highlight {
+      background: var(--blue2);
+      border-color: var(--blue);
+      color: var(--blue);
+    }
+
+    /* Pecahan Biasa Rapi */
+    .frac {
+      display: inline-flex;
+      flex-direction: column;
+      align-items: center;
+      vertical-align: middle;
+      font-size: 0.78em;
+      line-height: 1.05;
+      margin: 0 2px;
+    }
+    .frac span:first-child {
+      border-bottom: 1.5px solid currentColor;
+      padding: 0 2px;
+    }
+
+    /* Navigasi Bawah Antar Bab */
+    .bottom-nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 12px;
+      margin-top: 10px;
+    }
+    .btn-nav {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 12px 18px;
+      border-radius: 12px;
+      text-decoration: none;
+      font-size: 13px;
+      font-weight: 700;
+      border: 1px solid var(--line);
+      background: var(--surface);
+      color: var(--text);
+    }
+    .btn-nav.primary {
+      background: var(--blue);
+      color: #fff;
+      border-color: var(--blue);
+    }
+    .btn-nav svg { width: 17px; }
+
+    .footer {
+      border-top: 1px solid var(--line);
+      padding: 26px 0;
+      color: var(--muted);
+      font-size: 12px;
+    }
+    .footer .wrap {
+      display: flex;
+      justify-content: space-between;
+      gap: 12px;
+    }
+
+    @media (max-width: 860px) {
+      .reader-layout, .aufbau-layout { grid-template-columns: 1fr; }
+      .toc-card { position: static; }
+      .formula-grid { grid-template-columns: 1fr; }
+    }
+    @media (max-width: 620px) {
+      .wrap { padding: 0 18px; }
+      .sub-section { padding: 22px; }
+      .bottom-nav { flex-direction: column; align-items: stretch; }
+      .btn-nav { justify-content: center; }
+      .footer .wrap { flex-direction: column; }
+    }
+  </style>
+</head>
+<body>
+
+  <header class="site-header">
+    <div class="wrap nav-inner">
+      <a href="../index.html" class="brand" aria-label="Kembali ke Beranda Shira's Archive">
+        <span class="brand-mark"><i data-lucide="book-open"></i></span>
+        <span>Shira's Archive</span>
+      </a>
+      <button id="theme-toggle" class="icon-button" type="button" aria-label="Aktifkan tema gelap" title="Tukar tema">
+        <i data-lucide="moon"></i>
+      </button>
+    </div>
+  </header>
+
+  <main class="wrap">
+    <div class="reader-top">
+      <a href="../index.html" class="back-link"><i data-lucide="arrow-left"></i> Kembali ke Daftar Mata Pelajaran</a>
+      <p class="eyebrow">Kimia • Kelas 10 • Bab 03</p>
+      <h1>Konfigurasi Elektron</h1>
+      <p class="desc">Rangkuman penyusunan elektron per kulit (Model Bohr) dan per subkulit (Mekanika Kuantum), penyingkatan Gas Mulia, penentuan periode dan golongan, serta keempat bilangan kuantum.</p>
+    </div>
+
+    <div class="reader-layout">
+      <!-- Navigasi Lompat Sub-bab (Sticky Sidebar) -->
+      <aside class="toc-card" aria-label="Daftar sub-bab">
+        <p class="toc-title">Daftar Sub-bab</p>
+        <ul class="toc-list">
+          <li><a href="#sub-1" class="active"><span class="toc-num">01</span><span>Konfigurasi Per Kulit (Bohr)</span></a></li>
+          <li><a href="#sub-2"><span class="toc-num">02</span><span>Konfigurasi Subkulit &amp; Gas Mulia</span></a></li>
+          <li><a href="#sub-3"><span class="toc-num">03</span><span>Menentukan Periode dan Golongan</span></a></li>
+          <li><a href="#sub-4"><span class="toc-num">04</span><span>Bilangan Kuantum</span></a></li>
+        </ul>
+      </aside>
+
+      <!-- Area Baca Utama -->
+      <div class="content-area">
+
+        <!-- Sub-bab 1 -->
+        <article id="sub-1" class="sub-section">
+          <span class="sub-badge">Sub-bab 01</span>
+          <h2>Konfigurasi Per Kulit (Model Niels Bohr: K, L, M, N)</h2>
+          <p>Konfigurasi elektron per kulit umumnya digunakan untuk unsur-unsur <strong>golongan utama (Golongan A)</strong>. Elektron disusun berurutan mulai dari kulit terdalam (<strong>kulit K</strong>) menuju kulit terluar.</p>
+
+          <div class="table-wrap">
+            <table class="chem-table">
+              <thead>
+                <tr>
+                  <th>Nomor Kulit (n)</th>
+                  <th>Nama Kulit</th>
+                  <th>Rumus (2n<sup>2</sup>)</th>
+                  <th>Jumlah Elektron Maksimal</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>Kulit ke-1 (n = 1)</td>
+                  <td><strong>Kulit K</strong></td>
+                  <td>2 × 1<sup>2</sup></td>
+                  <td><strong>Maksimal 2 elektron</strong></td>
+                </tr>
+                <tr>
+                  <td>Kulit ke-2 (n = 2)</td>
+                  <td><strong>Kulit L</strong></td>
+                  <td>2 × 2<sup>2</sup></td>
+                  <td><strong>Maksimal 8 elektron</strong></td>
+                </tr>
+                <tr>
+                  <td>Kulit ke-3 (n = 3)</td>
+                  <td><strong>Kulit M</strong></td>
+                  <td>2 × 3<sup>2</sup></td>
+                  <td><strong>Maksimal 18 elektron</strong></td>
+                </tr>
+                <tr>
+                  <td>Kulit ke-4 (n = 4)</td>
+                  <td><strong>Kulit N</strong></td>
+                  <td>2 × 4<sup>2</sup></td>
+                  <td><strong>Maksimal 32 elektron</strong></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+          <div class="formula-box">
+            <strong class="box-label">Aturan Penting Konfigurasi Per Kulit</strong>
+            <p style="margin:0; font-size:13.5px;">
+              • Elektron yang menempati kulit terluar/terakhir disebut <strong>elektron valensi</strong>.<br>
+              • Jumlah <strong>elektron valensi maksimal adalah 8</strong>.<br>
+              • Jika sisa elektron lebih dari 8 (dan belum cukup untuk memenuhi kapasitas maksimal kulit tersebut), maka <strong>diisikan sesuai kapasitas maksimal kulit sebelumnya</strong>, lalu sisanya diletakkan pada kulit berikutnya.
+            </p>
+          </div>
+
+          <div class="example-box">
+            <strong>Contoh Konfigurasi Per Kulit:</strong><br>
+            • <strong><sub>11</sub>Na</strong> = <strong>2, 8, 1</strong> &rarr; (Elektron valensi = <strong>1</strong>)<br>
+            • <strong><sub>20</sub>Ca</strong> = <strong>2, 8, 8, 2</strong> &rarr; <em>(Bukan 2, 8, 10 karena kulit terluar maksimal 8 elektron, sehingga sisa 10 dipecah menjadi 8 dan 2)</em><br>
+            • <strong><sub>35</sub>Br</strong> = <strong>2, 8, 18, 7</strong> &rarr; (Elektron valensi = <strong>7</strong>)
+          </div>
+        </article>
+
+        <!-- Sub-bab 2 -->
+        <article id="sub-2" class="sub-section">
+          <span class="sub-badge">Sub-bab 02</span>
+          <h2>Konfigurasi Subkulit (Model Mekanika Kuantum: s, p, d, f)</h2>
+          <p>Dalam model mekanika kuantum, setiap kulit atom terbagi lagi menjadi subkulit-subkulit dengan kapasitas elektron maksimal sebagai berikut:</p>
+
+          <div class="aufbau-layout">
+            <!-- Diagram Mnemonik Aufbau (s sampai 7s, f hanya sampai 4f) -->
+            <div class="aufbau-card">
+              <svg viewBox="0 0 260 365" fill="none" xmlns="http://www.w3.org/2000/svg" aria-label="Diagram Mnemonik Aufbau dari 1s sampai 7s dan 4f">
+                <defs>
+                  <marker id="arrowRed" viewBox="0 0 10 10" refX="7" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+                    <path d="M 1 1.5 L 8.5 5 L 1 8.5 z" fill="#e11d48"/>
+                  </marker>
+                </defs>
+
+                <!-- Garis putus penghubung kelanjutan diagonal -->
+                <path d="M 60 28 C 82 14, 94 34, 60 72" stroke="#64748b" stroke-width="1.6" stroke-dasharray="3 3"/>
+                <path d="M 60 72 C 95 45, 132 54, 118 72" stroke="#64748b" stroke-width="1.6" stroke-dasharray="3 3"/>
+                <path d="M 60 116 C 102 82, 138 92, 118 116" stroke="#64748b" stroke-width="1.6" stroke-dasharray="3 3"/>
+                <path d="M 60 160 C 125 102, 194 94, 176 116" stroke="#64748b" stroke-width="1.6" stroke-dasharray="3 3"/>
+                <path d="M 60 204 C 132 144, 196 138, 176 160" stroke="#64748b" stroke-width="1.6" stroke-dasharray="3 3"/>
+                <path d="M 60 248 C 155 162, 252 136, 234 160" stroke="#64748b" stroke-width="1.6" stroke-dasharray="3 3"/>
+                <path d="M 60 292 C 138 225, 196 226, 176 248" stroke="#64748b" stroke-width="1.6" stroke-dasharray="3 3"/>
+
+                <!-- Panah Diagonal Pengisian Aufbau -->
+                <line x1="72" y1="16" x2="36" y2="48" stroke="#e11d48" stroke-width="2.4" stroke-linecap="round" marker-end="url(#arrowRed)"/>
+                <line x1="72" y1="60" x2="36" y2="92" stroke="#e11d48" stroke-width="2.4" stroke-linecap="round" marker-end="url(#arrowRed)"/>
+                <line x1="130" y1="60" x2="36" y2="138" stroke="#e11d48" stroke-width="2.4" stroke-linecap="round" marker-end="url(#arrowRed)"/>
+                <line x1="130" y1="104" x2="36" y2="182" stroke="#e11d48" stroke-width="2.4" stroke-linecap="round" marker-end="url(#arrowRed)"/>
+                <line x1="188" y1="104" x2="36" y2="226" stroke="#e11d48" stroke-width="2.4" stroke-linecap="round" marker-end="url(#arrowRed)"/>
+                <line x1="188" y1="148" x2="36" y2="270" stroke="#e11d48" stroke-width="2.4" stroke-linecap="round" marker-end="url(#arrowRed)"/>
+                <line x1="246" y1="148" x2="36" y2="314" stroke="#e11d48" stroke-width="2.4" stroke-linecap="round" marker-end="url(#arrowRed)"/>
+                <line x1="188" y1="236" x2="94" y2="314" stroke="#e11d48" stroke-width="2.4" stroke-linecap="round" marker-end="url(#arrowRed)"/>
+
+                <!-- Kolom s (1s - 7s) -->
+                <g font-family="Plus Jakarta Sans, sans-serif" font-size="13" font-weight="800" text-anchor="middle" dominant-baseline="central">
+                  <circle cx="60" cy="28" r="15" fill="#fef08a" stroke="#ca8a04" stroke-width="1.8"/><text x="60" y="28" fill="#1e293b">1s</text>
+                  <circle cx="60" cy="72" r="15" fill="#fef08a" stroke="#ca8a04" stroke-width="1.8"/><text x="60" y="72" fill="#1e293b">2s</text>
+                  <circle cx="60" cy="116" r="15" fill="#fef08a" stroke="#ca8a04" stroke-width="1.8"/><text x="60" y="116" fill="#1e293b">3s</text>
+                  <circle cx="60" cy="160" r="15" fill="#fef08a" stroke="#ca8a04" stroke-width="1.8"/><text x="60" y="160" fill="#1e293b">4s</text>
+                  <circle cx="60" cy="204" r="15" fill="#fef08a" stroke="#ca8a04" stroke-width="1.8"/><text x="60" y="204" fill="#1e293b">5s</text>
+                  <circle cx="60" cy="248" r="15" fill="#fef08a" stroke="#ca8a04" stroke-width="1.8"/><text x="60" y="248" fill="#1e293b">6s</text>
+                  <circle cx="60" cy="292" r="15" fill="#fef08a" stroke="#ca8a04" stroke-width="1.8"/><text x="60" y="292" fill="#1e293b">7s</text>
+
+                  <!-- Kolom p (2p - 7p) -->
+                  <circle cx="118" cy="72" r="15" fill="#bae6fd" stroke="#0284c7" stroke-width="1.8"/><text x="118" y="72" fill="#1e293b">2p</text>
+                  <circle cx="118" cy="116" r="15" fill="#bae6fd" stroke="#0284c7" stroke-width="1.8"/><text x="118" y="116" fill="#1e293b">3p</text>
+                  <circle cx="118" cy="160" r="15" fill="#bae6fd" stroke="#0284c7" stroke-width="1.8"/><text x="118" y="160" fill="#1e293b">4p</text>
+                  <circle cx="118" cy="204" r="15" fill="#bae6fd" stroke="#0284c7" stroke-width="1.8"/><text x="118" y="204" fill="#1e293b">5p</text>
+                  <circle cx="118" cy="248" r="15" fill="#bae6fd" stroke="#0284c7" stroke-width="1.8"/><text x="118" y="248" fill="#1e293b">6p</text>
+                  <circle cx="118" cy="292" r="15" fill="#bae6fd" stroke="#0284c7" stroke-width="1.8"/><text x="118" y="292" fill="#1e293b">7p</text>
+
+                  <!-- Kolom d (3d - 6d) -->
+                  <circle cx="176" cy="116" r="15" fill="#fbcfe8" stroke="#db2777" stroke-width="1.8"/><text x="176" y="116" fill="#1e293b">3d</text>
+                  <circle cx="176" cy="160" r="15" fill="#fbcfe8" stroke="#db2777" stroke-width="1.8"/><text x="176" y="160" fill="#1e293b">4d</text>
+                  <circle cx="176" cy="204" r="15" fill="#fbcfe8" stroke="#db2777" stroke-width="1.8"/><text x="176" y="204" fill="#1e293b">5d</text>
+                  <circle cx="176" cy="248" r="15" fill="#fbcfe8" stroke="#db2777" stroke-width="1.8"/><text x="176" y="248" fill="#1e293b">6d</text>
+
+                  <!-- Kolom f (hanya 4f) -->
+                  <circle cx="234" cy="160" r="15" fill="#bbf7d0" stroke="#16a34a" stroke-width="1.8"/><text x="234" y="160" fill="#1e293b">4f</text>
+                </g>
+              </svg>
+              <div class="aufbau-caption">Diagram Mnemonik Aufbau (1s–7s, f sampai 4f)</div>
+            </div>
+
+            <!-- Keterangan Kapasitas & Urutan -->
+            <div>
+              <div class="formula-box" style="margin-top:0;">
+                <strong class="box-label">Kapasitas Elektron Maksimal Tiap Subkulit</strong>
+                <div class="formula-grid">
+                  <div>• Subkulit <strong>s</strong> = maksimal <strong>2 elektron</strong></div>
+                  <div>• Subkulit <strong>p</strong> = maksimal <strong>6 elektron</strong></div>
+                  <div>• Subkulit <strong>d</strong> = maksimal <strong>10 elektron</strong></div>
+                  <div>• Subkulit <strong>f</strong> = maksimal <strong>14 elektron</strong></div>
+                </div>
+              </div>
+              <div class="formula-box" style="margin-bottom:0;">
+                <strong class="box-label">Urutan Pengisian Tingkat Energi (Aufbau)</strong>
+                <p style="margin:0; font-size:13.5px; font-weight:600; line-height:1.8;">
+                  1s<sup>2</sup> &rarr; 2s<sup>2</sup> &rarr; 2p<sup>6</sup> &rarr; 3s<sup>2</sup> &rarr; 3p<sup>6</sup> &rarr; 4s<sup>2</sup> &rarr; 3d<sup>10</sup> &rarr; 4p<sup>6</sup> &rarr; 5s<sup>2</sup> &rarr; 4d<sup>10</sup> &rarr; 5p<sup>6</sup> &rarr; 6s<sup>2</sup> &rarr; 4f<sup>14</sup> &rarr; 5d<sup>10</sup> &rarr; 6p<sup>6</sup> &rarr; 7s<sup>2</sup> &rarr; 6d<sup>10</sup> &rarr; 7p<sup>6</sup>
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <h3>Catatan Tambahan: Menyingkat Konfigurasi dengan Gas Mulia</h3>
+          <p>Untuk nomor atom yang besar, konfigurasi subkulit disingkat menggunakan unsur-unsur <strong>Gas Mulia (Golongan VIIIA)</strong> yang nomor atomnya terdekat di bawah nomor atom unsur tersebut.</p>
+
+          <div class="table-wrap">
+            <table class="chem-table">
+              <thead>
+                <tr>
+                  <th>Unsur Gas Mulia</th>
+                  <th>Nomor Atom</th>
+                  <th>Subkulit s Lanjutannya</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td><strong>[He]</strong> (Helium)</td>
+                  <td>2</td>
+                  <td>Lanjutannya adalah <strong>2s</strong></td>
+                </tr>
+                <tr>
+                  <td><strong>[Ne]</strong> (Neon)</td>
+                  <td>10</td>
+                  <td>Lanjutannya adalah <strong>3s</strong></td>
+                </tr>
+                <tr>
+                  <td><strong>[Ar]</strong> (Argon)</td>
+                  <td>18</td>
+                  <td>Lanjutannya adalah <strong>4s</strong></td>
+                </tr>
+                <tr>
+                  <td><strong>[Kr]</strong> (Kripton)</td>
+                  <td>36</td>
+                  <td>Lanjutannya adalah <strong>5s</strong></td>
+                </tr>
+                <tr>
+                  <td><strong>[Xe]</strong> (Xenon)</td>
+                  <td>54</td>
+                  <td>Lanjutannya adalah <strong>6s</strong></td>
+                </tr>
+                <tr>
+                  <td><strong>[Rn]</strong> (Radon)</td>
+                  <td>86</td>
+                  <td>Lanjutannya adalah <strong>7s</strong></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+          <div class="formula-box">
+            <strong class="box-label">Langkah-Langkah Menyingkat Konfigurasi</strong>
+            <p style="margin:0; font-size:13.5px;">
+              1. Pilih Gas Mulia dengan nomor atom terdekat namun <strong>lebih kecil</strong> dari nomor atom unsur yang dicari.<br>
+              2. Tuliskan lambang Gas Mulia dalam kurung siku, lalu langsung sambung dengan <strong>kulit s lanjutannya</strong>, kemudian ikuti urutan Aufbau biasa hingga total elektron pas.
+            </p>
+          </div>
+
+          <div class="example-box">
+            <strong>Contoh Penerapan Penyingkatan Gas Mulia:</strong><br>
+            • <strong><sub>15</sub>P</strong>: Gas mulia terdekat di bawah 15 adalah <strong>Ne = 10</strong> (lanjutannya 3s). Sisa 5 elektron &rarr; <strong>[Ne] 3s<sup>2</sup> 3p<sup>3</sup></strong><br>
+            • <strong><sub>26</sub>Fe</strong>: Gas mulia terdekat di bawah 26 adalah <strong>Ar = 18</strong> (lanjutannya 4s). Sisa 8 elektron &rarr; <strong>[Ar] 4s<sup>2</sup> 3d<sup>6</sup></strong><br>
+            • <strong><sub>50</sub>Sn</strong>: Gas mulia terdekat di bawah 50 adalah <strong>Kr = 36</strong> (lanjutannya 5s). Sisa 14 elektron &rarr; <strong>[Kr] 5s<sup>2</sup> 4d<sup>10</sup> 5p<sup>2</sup></strong>
+          </div>
+        </article>
+
+        <!-- Sub-bab 3 -->
+        <article id="sub-3" class="sub-section">
+          <span class="sub-badge">Sub-bab 03</span>
+          <h2>Menentukan Periode dan Golongan</h2>
+          <p>Letak suatu unsur dalam Sistem Periodik Unsur (SPU) terdiri atas <strong>Periode</strong> (baris horizontal SPU) dan <strong>Golongan</strong> (kolom vertikal SPU) yang dapat ditentukan langsung dari konfigurasi subkulitnya:</p>
+
+          <div class="formula-box">
+            <strong class="box-label">Aturan Penentuan Periode &amp; Golongan</strong>
+            <div class="formula-grid">
+              <div>
+                <strong>1. Menentukan Periode:</strong><br>
+                • Dilihat dari <strong>nomor kulit terbesar</strong> (angka koefisien terbesar di depan subkulit).<br><br>
+                <strong>2. Menentukan Golongan Utama (Golongan A):</strong><br>
+                • Jika berakhir di subkulit <strong>s</strong> &rarr; pasti <strong>Golongan A</strong> (elektron valensi = elektron pada kulit s).<br>
+                • Jika berakhir di subkulit <strong>p</strong> &rarr; harus dilihat bersama kulit <strong>s</strong> terakhirnya (<strong>s + p = Golongan A</strong>).
+              </div>
+              <div>
+                <strong>3. Menentukan Golongan Transisi (Golongan B):</strong><br>
+                • Jika berakhir di subkulit <strong>d</strong> &rarr; dilihat bersama kulit <strong>s</strong> terakhirnya (<strong>s + d = Golongan B</strong>).<br>
+                • <strong>Aturan Khusus Golongan B (jumlah s + d):</strong><br>
+                &nbsp;&nbsp;- Jumlah 8, 9, dan 10 (VIII B, IX B, X B) &rarr; ditulis <strong>Golongan VIIIB</strong><br>
+                &nbsp;&nbsp;- Jumlah 11 (XI B) &rarr; ditulis <strong>Golongan IB</strong><br>
+                &nbsp;&nbsp;- Jumlah 12 (XII B) &rarr; ditulis <strong>Golongan IIB</strong>
+              </div>
+            </div>
+          </div>
+
+          <div class="example-box">
+            <strong>Contoh Penentuan Periode &amp; Golongan:</strong><br>
+            1. <strong><sub>17</sub>Cl</strong> = [Ne] 3s<sup>2</sup> 3p<sup>5</sup><br>
+            &nbsp;&nbsp;&bull; Kulit terbesar = 3 &rarr; <strong>Periode 3</strong><br>
+            &nbsp;&nbsp;&bull; Blok p, elektron valensi (3s<sup>2</sup> + 3p<sup>5</sup>) = 2 + 5 = 7 &rarr; <strong>Golongan VIIA</strong><br><br>
+            2. <strong><sub>26</sub>Fe</strong> = [Ar] 4s<sup>2</sup> 3d<sup>6</sup><br>
+            &nbsp;&nbsp;&bull; Kulit terbesar = 4 &rarr; <strong>Periode 4</strong><br>
+            &nbsp;&nbsp;&bull; Blok d, elektron valensi (4s<sup>2</sup> + 3d<sup>6</sup>) = 2 + 6 = 8 &rarr; <strong>Golongan VIIIB</strong>
+          </div>
+        </article>
+
+        <!-- Sub-bab 4 -->
+        <article id="sub-4" class="sub-section">
+          <span class="sub-badge">Sub-bab 04</span>
+          <h2>Bilangan Kuantum</h2>
+          <p><strong>Bilangan kuantum</strong> adalah empat nilai yang menggambarkan kedudukan tingkat energi, bentuk orbital, orientasi ruang, serta arah rotasi suatu elektron (umumnya elektron terakhir) di dalam atom.</p>
+
+          <div class="formula-box">
+            <strong class="box-label">1. Bilangan Kuantum Utama (n)</strong>
+            <p style="margin:0; font-size:13.5px;">
+              Menunjukkan <strong>nomor kulit</strong> tempat elektron berada (<strong>n = 1, 2, 3, 4, ...</strong>). Nilainya sama dengan angka koefisien di depan subkulit terakhir (misalnya pada 3p<sup>5</sup>, nilai <strong>n = 3</strong>).
+            </p>
+          </div>
+
+          <h3>2. Tabel Bilangan Kuantum Azimut (l) dan Magnetik (m)</h3>
+          <p><strong>Bilangan Kuantum Azimut (l)</strong> menunjukkan bentuk subkulit, sedangkan <strong>Bilangan Kuantum Magnetik (m)</strong> menunjukkan nomor kotak orbital tempat elektron terakhir berhenti dengan rentang nilai dari <strong>-l sampai +l</strong>:</p>
+
+          <div class="table-wrap">
+            <table class="chem-table">
+              <thead>
+                <tr>
+                  <th>Subkulit</th>
+                  <th>Kuantum Azimut (l)</th>
+                  <th>Jumlah Kotak Orbital</th>
+                  <th>Nilai Kuantum Magnetik (m)</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td><strong>Subkulit s</strong></td>
+                  <td><strong>l = 0</strong></td>
+                  <td>1 kotak</td>
+                  <td>
+                    <div class="orbital-boxes">
+                      <span class="orb-cell">0</span>
+                    </div>
+                  </td>
+                </tr>
+                <tr>
+                  <td><strong>Subkulit p</strong></td>
+                  <td><strong>l = 1</strong></td>
+                  <td>3 kotak</td>
+                  <td>
+                    <div class="orbital-boxes">
+                      <span class="orb-cell">-1</span>
+                      <span class="orb-cell">0</span>
+                      <span class="orb-cell">+1</span>
+                    </div>
+                  </td>
+                </tr>
+                <tr>
+                  <td><strong>Subkulit d</strong></td>
+                  <td><strong>l = 2</strong></td>
+                  <td>5 kotak</td>
+                  <td>
+                    <div class="orbital-boxes">
+                      <span class="orb-cell">-2</span>
+                      <span class="orb-cell">-1</span>
+                      <span class="orb-cell">0</span>
+                      <span class="orb-cell">+1</span>
+                      <span class="orb-cell">+2</span>
+                    </div>
+                  </td>
+                </tr>
+                <tr>
+                  <td><strong>Subkulit f</strong></td>
+                  <td><strong>l = 3</strong></td>
+                  <td>7 kotak</td>
+                  <td>
+                    <div class="orbital-boxes">
+                      <span class="orb-cell">-3</span>
+                      <span class="orb-cell">-2</span>
+                      <span class="orb-cell">-1</span>
+                      <span class="orb-cell">0</span>
+                      <span class="orb-cell">+1</span>
+                      <span class="orb-cell">+2</span>
+                      <span class="orb-cell">+3</span>
+                    </div>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+          <h3>3. Tabel Bilangan Kuantum Spin (s)</h3>
+          <p><strong>Bilangan Kuantum Spin (s)</strong> menunjukkan arah rotasi (panah) elektron terakhir di dalam kotak orbital:</p>
+
+          <div class="table-wrap">
+            <table class="chem-table">
+              <thead>
+                <tr>
+                  <th>Arah Panah Elektron</th>
+                  <th>Keterangan Pengisian Orbital</th>
+                  <th>Nilai Kuantum Spin (s)</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td style="font-size:18px; font-weight:800; color:var(--blue);">&uarr; (Menghadap ke atas)</td>
+                  <td>Pengisian pertama / elektron tunggal (searah jarum jam)</td>
+                  <td><strong>s = +<span class="frac"><span>1</span><span>2</span></span></strong></td>
+                </tr>
+                <tr>
+                  <td style="font-size:18px; font-weight:800; color:var(--blue);">&darr; (Menghadap ke bawah)</td>
+                  <td>Pengisian kedua / elektron berpasangan (berlawanan arah jarum jam)</td>
+                  <td><strong>s = -<span class="frac"><span>1</span><span>2</span></span></strong></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+          <div class="example-box">
+            <strong>Contoh Menentukan Bilangan Kuantum Elektron Terakhir <sub>17</sub>Cl:</strong><br>
+            Konfigurasi: 1s<sup>2</sup> 2s<sup>2</sup> 2p<sup>6</sup> 3s<sup>2</sup> <strong>3p<sup>5</sup></strong> (elektron terakhir berada di <strong>3p<sup>5</sup></strong>).<br>
+            • <strong>n = 3</strong> (karena berada di kulit ke-3)<br>
+            • <strong>l = 1</strong> (karena subkulit p)<br>
+            • Gambarkan 3 kotak untuk subkulit p (-1, 0, +1), lalu isi 5 panah satu per satu ke atas dahulu sesuai aturan Hund sebelum berpasangan:<br>
+            <div class="orbital-boxes" style="margin:8px 0;">
+              <span class="orb-cell">&uarr;&darr;<span class="orb-idx">-1</span></span>
+              <span class="orb-cell highlight">&uarr;&darr;<span class="orb-idx">0</span></span>
+              <span class="orb-cell">&uarr;<span class="orb-idx">+1</span></span>
+            </div><br>
+            &nbsp;&nbsp;- Kotak -1: &uarr;&darr; (panah ke-1 dan ke-4)<br>
+            &nbsp;&nbsp;- Kotak 0: &uarr;&darr; (panah ke-2 dan ke-5 &rarr; <strong>panah terakhir jatuh di sini</strong>)<br>
+            &nbsp;&nbsp;- Kotak +1: &uarr; (panah ke-3)<br>
+            • <strong>m = 0</strong> (panah ke-5 jatuh di kotak tengah bernilai 0)<br>
+            • <strong>s = -<span class="frac"><span>1</span><span>2</span></span></strong> (karena panah ke-5 menghadap ke bawah / berpasangan)
+          </div>
+        </article>
+
+        <!-- Navigasi Bawah -->
+        <div class="bottom-nav">
+          <a href="kimia-bab2.html" class="btn-nav"><i data-lucide="arrow-left"></i> Bab Sebelumnya: Teori Atom dan Notasi Unsur</a>
+          <a href="kimia-bab4.html" class="btn-nav primary">Bab Selanjutnya: SPU (Sistem Periodik Unsur) <i data-lucide="arrow-right"></i></a>
+        </div>
+
+      </div>
+    </div>
+  </main>
+
+  <footer class="footer">
+    <div class="wrap">
+      <span>© Shira's Archive</span>
+      <span>Belajar sedikit demi sedikit, setiap hari.</span>
+    </div>
+  </footer>
+
+  <script>
+    lucide.createIcons();
+
+    // Sinkronisasi Dark Mode dengan halaman beranda
+    const themeBtn = document.getElementById("theme-toggle");
+    if (localStorage.getItem("shira-theme") === "dark") {
+      document.body.classList.add("dark");
+      themeBtn.innerHTML = '<i data-lucide="sun"></i>';
+      lucide.createIcons();
+    }
+
+    themeBtn.onclick = () => {
+      const dark = document.body.classList.toggle("dark");
+      localStorage.setItem("shira-theme", dark ? "dark" : "light");
+      themeBtn.innerHTML = '<i data-lucide="' + (dark ? "sun" : "moon") + '"></i>';
+      lucide.createIcons();
+    };
+
+    // Highlight otomatis daftar sub-bab saat halaman di-scroll
+    const sections = document.querySelectorAll(".sub-section");
+    const navLinks = document.querySelectorAll(".toc-list a");
+
+    window.addEventListener("scroll", () => {
+      let current = "";
+      sections.forEach(sec => {
+        const top = sec.offsetTop - 150;
+        if (window.scrollY >= top) current = sec.getAttribute("id");
+      });
+      navLinks.forEach(link => {
+        link.classList.remove("active");
+        if (link.getAttribute("href") === "#" + current) {
+          link.classList.add("active");
+        }
+      });
+    });
+  </script>
+</body>
+</html>

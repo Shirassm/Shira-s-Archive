@@ -1,0 +1,511 @@
+<!doctype html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Bab 1: Eksponen dan Bentuk Akar — Shira's Archive</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/lucide@0.577.0/dist/umd/lucide.min.js"></script>
+  <style>
+    :root {
+      --bg: #f5f8fd;
+      --surface: #fff;
+      --surface2: #edf4fd;
+      --text: #25334a;
+      --muted: #718099;
+      --line: #e3eaf4;
+      --blue: #537fda;
+      --blue2: #e8f0ff;
+      --shadow: 0 12px 36px rgba(48, 79, 129, .07);
+    }
+    body.dark {
+      --bg: #101827;
+      --surface: #192437;
+      --surface2: #202e45;
+      --text: #eef4ff;
+      --muted: #a7b5cb;
+      --line: #344159;
+      --blue: #8bb3ff;
+      --blue2: #263d65;
+      --shadow: 0 12px 36px rgba(0, 0, 0, .17);
+    }
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      background: var(--bg);
+      color: var(--text);
+      font-family: "Plus Jakarta Sans", sans-serif;
+      line-height: 1.7;
+      transition: background .25s, color .25s;
+    }
+    button { font-family: "Plus Jakarta Sans", sans-serif; cursor: pointer; }
+    .wrap { max-width: 1190px; margin: auto; padding: 0 28px; }
+
+    /* Header (Sama persis dengan index.html) */
+    .site-header {
+      background: var(--surface);
+      border-bottom: 1px solid var(--line);
+      position: sticky;
+      top: 0;
+      z-index: 10;
+    }
+    .nav-inner {
+      min-height: 78px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+    }
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 11px;
+      font-weight: 800;
+      font-size: 18px;
+      text-decoration: none;
+      color: var(--text);
+    }
+    .brand-mark {
+      width: 38px;
+      height: 38px;
+      display: grid;
+      place-items: center;
+      border-radius: 12px;
+      background: var(--blue);
+      color: white;
+    }
+    .brand-mark svg { width: 21px; }
+    .icon-button {
+      width: 41px;
+      height: 41px;
+      border: 1px solid var(--line);
+      border-radius: 12px;
+      background: var(--surface);
+      color: var(--text);
+      display: grid;
+      place-items: center;
+    }
+    .icon-button svg { width: 19px; }
+
+    /* Breadcrumb & Judul Bab */
+    .reader-top { padding: 34px 0 24px; }
+    .back-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      color: var(--blue);
+      text-decoration: none;
+      font-weight: 700;
+      font-size: 13px;
+      margin-bottom: 18px;
+    }
+    .back-link svg { width: 17px; }
+    .eyebrow {
+      color: var(--blue);
+      font-size: 12px;
+      font-weight: 800;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+      margin: 0 0 8px;
+    }
+    .reader-top h1 {
+      font-size: clamp(28px, 4vw, 40px);
+      letter-spacing: -.04em;
+      line-height: 1.2;
+      margin: 0 0 10px;
+      font-weight: 800;
+    }
+    .reader-top p.desc {
+      color: var(--muted);
+      font-size: 14px;
+      margin: 0;
+      max-width: 680px;
+    }
+
+    /* Layout Dua Kolom: Sidebar Sub-bab + Area Baca */
+    .reader-layout {
+      display: grid;
+      grid-template-columns: 280px minmax(0, 1fr);
+      gap: 28px;
+      padding-bottom: 80px;
+      align-items: start;
+    }
+
+    /* Sidebar Daftar Sub-bab */
+    .toc-card {
+      background: var(--surface);
+      border: 1px solid var(--line);
+      border-radius: 18px;
+      padding: 20px;
+      box-shadow: var(--shadow);
+      position: sticky;
+      top: 102px;
+    }
+    .toc-title {
+      font-size: 12px;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: .08em;
+      color: var(--muted);
+      margin: 0 0 14px;
+    }
+    .toc-list {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      display: grid;
+      gap: 6px;
+    }
+    .toc-list a {
+      display: flex;
+      align-items: start;
+      gap: 9px;
+      padding: 9px 12px;
+      border-radius: 10px;
+      text-decoration: none;
+      color: var(--muted);
+      font-size: 13px;
+      font-weight: 600;
+      line-height: 1.4;
+      transition: background .2s, color .2s;
+    }
+    .toc-list a:hover {
+      background: var(--surface2);
+      color: var(--text);
+    }
+    .toc-list a.active {
+      background: var(--blue2);
+      color: var(--blue);
+      font-weight: 700;
+    }
+    .toc-num {
+      font-size: 11px;
+      font-weight: 800;
+      opacity: .8;
+      margin-top: 2px;
+    }
+
+    /* Area Konten Catatan */
+    .content-area {
+      display: grid;
+      gap: 24px;
+    }
+    .sub-section {
+      background: var(--surface);
+      border: 1px solid var(--line);
+      border-radius: 20px;
+      padding: 30px;
+      box-shadow: var(--shadow);
+      scroll-margin-top: 102px;
+    }
+    .sub-badge {
+      display: inline-block;
+      background: var(--blue2);
+      color: var(--blue);
+      font-size: 11px;
+      font-weight: 800;
+      padding: 4px 10px;
+      border-radius: 20px;
+      margin-bottom: 10px;
+    }
+    .sub-section h2 {
+      font-size: 22px;
+      letter-spacing: -.03em;
+      margin: 0 0 14px;
+    }
+    .sub-section p {
+      font-size: 14px;
+      margin: 0 0 14px;
+    }
+
+    /* Kotak Rumus & Contoh Soal */
+    .formula-box {
+      background: var(--surface2);
+      border-left: 4px solid var(--blue);
+      border-radius: 12px;
+      padding: 18px 20px;
+      margin: 18px 0;
+    }
+    .formula-box strong.box-label {
+      display: block;
+      font-size: 12px;
+      text-transform: uppercase;
+      letter-spacing: .06em;
+      color: var(--blue);
+      margin-bottom: 10px;
+    }
+    .formula-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 10px 20px;
+      font-size: 14px;
+      font-weight: 600;
+    }
+    .example-box {
+      border: 1px dashed var(--line);
+      border-radius: 12px;
+      padding: 16px 20px;
+      margin-top: 16px;
+      font-size: 13.5px;
+    }
+    .example-box strong { color: var(--blue); }
+
+    /* Navigasi Bawah Antar Bab */
+    .bottom-nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 12px;
+      margin-top: 10px;
+    }
+    .btn-nav {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 12px 18px;
+      border-radius: 12px;
+      text-decoration: none;
+      font-size: 13px;
+      font-weight: 700;
+      border: 1px solid var(--line);
+      background: var(--surface);
+      color: var(--text);
+    }
+    .btn-nav.primary {
+      background: var(--blue);
+      color: #fff;
+      border-color: var(--blue);
+    }
+    .btn-nav svg { width: 17px; }
+
+    .footer {
+      border-top: 1px solid var(--line);
+      padding: 26px 0;
+      color: var(--muted);
+      font-size: 12px;
+    }
+    .footer .wrap {
+      display: flex;
+      justify-content: space-between;
+      gap: 12px;
+    }
+
+    @media (max-width: 860px) {
+      .reader-layout { grid-template-columns: 1fr; }
+      .toc-card { position: static; }
+      .formula-grid { grid-template-columns: 1fr; }
+    }
+    @media (max-width: 620px) {
+      .wrap { padding: 0 18px; }
+      .sub-section { padding: 22px; }
+      .bottom-nav { flex-direction: column; align-items: stretch; }
+      .btn-nav { justify-content: center; }
+      .footer .wrap { flex-direction: column; }
+    }
+  </style>
+</head>
+<body>
+
+  <header class="site-header">
+    <div class="wrap nav-inner">
+      <a href="index.html" class="brand" aria-label="Kembali ke Beranda Shira's Archive">
+        <span class="brand-mark"><i data-lucide="book-open"></i></span>
+        <span>Shira's Archive</span>
+      </a>
+      <button id="theme-toggle" class="icon-button" type="button" aria-label="Aktifkan tema gelap" title="Tukar tema">
+        <i data-lucide="moon"></i>
+      </button>
+    </div>
+  </header>
+
+  <main class="wrap">
+    <div class="reader-top">
+      <a href="index.html" class="back-link"><i data-lucide="arrow-left"></i> Kembali ke Daftar Mata Pelajaran</a>
+      <p class="eyebrow">Matematika • Kelas 10 • Bab 01</p>
+      <h1>Eksponen dan Bentuk Akar</h1>
+      <p class="desc">Rangkuman lengkap konsep bilangan berpangkat, persamaan dan fungsi eksponen, hingga operasi dan penyederhanaan bentuk akar.</p>
+    </div>
+
+    <div class="reader-layout">
+      <!-- Navigasi Lompat Sub-bab (Sticky Sidebar) -->
+      <aside class="toc-card" aria-label="Daftar sub-bab">
+        <p class="toc-title">Daftar Sub-bab</p>
+        <ul class="toc-list">
+          <li><a href="#sub-1" class="active"><span class="toc-num">01</span><span>Sifat-Sifat Eksponen</span></a></li>
+          <li><a href="#sub-2"><span class="toc-num">02</span><span>Persamaan Eksponen</span></a></li>
+          <li><a href="#sub-3"><span class="toc-num">03</span><span>Fungsi Eksponen</span></a></li>
+          <li><a href="#sub-4"><span class="toc-num">04</span><span>Sifat-Sifat Operasi Bilangan Bentuk Akar</span></a></li>
+          <li><a href="#sub-5"><span class="toc-num">05</span><span>Menyederhanakan Bentuk Akar</span></a></li>
+          <li><a href="#sub-6"><span class="toc-num">06</span><span>Merasionalkan Penyebut</span></a></li>
+        </ul>
+      </aside>
+
+      <!-- Area Baca Utama -->
+      <div class="content-area">
+
+        <!-- Sub-bab 1 -->
+        <article id="sub-1" class="sub-section">
+          <span class="sub-badge">Sub-bab 01</span>
+          <h2>Sifat-Sifat Eksponen</h2>
+          <p>Eksponen adalah bentuk perkalian berulang dari suatu bilangan pokok (<em>basis</em>) yang sama. Jika <strong>a</strong> adalah bilangan real dan <strong>n</strong> adalah bilangan bulat positif, maka <strong>a<sup>n</sup> = a × a × a × ... × a</strong> (sebanyak n faktor).</p>
+          <div class="formula-box">
+            <strong class="box-label">Rumus & Sifat Utama Eksponen</strong>
+            <div class="formula-grid">
+              <div>1. a<sup>m</sup> × a<sup>n</sup> = a<sup>m + n</sup></div>
+              <div>5. (a / b)<sup>m</sup> = a<sup>m</sup> / b<sup>m</sup></div>
+              <div>2. a<sup>m</sup> / a<sup>n</sup> = a<sup>m - n</sup></div>
+              <div>6. a<sup>0</sup> = 1 (untuk a ≠ 0)</div>
+              <div>3. (a<sup>m</sup>)<sup>n</sup> = a<sup>m × n</sup></div>
+              <div>7. a<sup>-n</sup> = 1 / a<sup>n</sup></div>
+              <div>4. (a × b)<sup>m</sup> = a<sup>m</sup> × b<sup>m</sup></div>
+              <div>8. a<sup>m/n</sup> = <sup>n</sup>√(a<sup>m</sup>)</div>
+            </div>
+          </div>
+          <div class="example-box">
+            <strong>Contoh Singkat:</strong> Sederhanakan 2<sup>3</sup> × 2<sup>4</sup> / 2<sup>5</sup><br>
+            Penyelesaian: 2<sup>(3 + 4 - 5)</sup> = 2<sup>2</sup> = <strong>4</strong>.
+          </div>
+        </article>
+
+        <!-- Sub-bab 2 -->
+        <article id="sub-2" class="sub-section">
+          <span class="sub-badge">Sub-bab 02</span>
+          <h2>Persamaan Eksponen</h2>
+          <p>Persamaan eksponen adalah persamaan yang pangkatnya (atau bilangan pokok dan pangkatnya) memuat suatu variabel (misalnya <em>x</em>). Kunci menyelesaikannya adalah menyamakan bilangan pokok di ruas kiri dan kanan.</p>
+          <div class="formula-box">
+            <strong class="box-label">Bentuk Dasar Persamaan Eksponen</strong>
+            <div class="formula-grid">
+              <div>• Jika a<sup>f(x)</sup> = a<sup>p</sup>, maka <strong>f(x) = p</strong></div>
+              <div>• Jika a<sup>f(x)</sup> = a<sup>g(x)</sup>, maka <strong>f(x) = g(x)</strong></div>
+              <div>• Jika a<sup>f(x)</sup> = 1, maka <strong>f(x) = 0</strong></div>
+              <div>• Jika a<sup>f(x)</sup> = b<sup>f(x)</sup> (a ≠ b), maka <strong>f(x) = 0</strong></div>
+            </div>
+          </div>
+          <div class="example-box">
+            <strong>Contoh Singkat:</strong> Tentukan nilai x dari 3<sup>2x - 1</sup> = 27<br>
+            Penyelesaian: Ubah 27 menjadi 3<sup>3</sup> &rarr; 3<sup>2x - 1</sup> = 3<sup>3</sup> &rarr; 2x - 1 = 3 &rarr; 2x = 4 &rarr; <strong>x = 2</strong>.
+          </div>
+        </article>
+
+        <!-- Sub-bab 3 -->
+        <article id="sub-3" class="sub-section">
+          <span class="sub-badge">Sub-bab 03</span>
+          <h2>Fungsi Eksponen</h2>
+          <p>Fungsi eksponen memetakan setiap bilangan real <em>x</em> ke bilangan <strong>f(x) = k · a<sup>x</sup></strong>, dengan syarat bilangan pokok <strong>a &gt; 0</strong> dan <strong>a ≠ 1</strong>.</p>
+          <div class="formula-box">
+            <strong class="box-label">Karakteristik Grafik Fungsi Eksponen</strong>
+            <p style="margin:0; font-size:13.5px;">
+              • <strong>Monoton Naik (Pertumbuhan):</strong> Terjadi jika <strong>a &gt; 1</strong> (grafik menanjak ke kanan atas).<br>
+              • <strong>Monoton Turun (Peluruhan):</strong> Terjadi jika <strong>0 &lt; a &lt; 1</strong> (grafik menurun ke kanan bawah).<br>
+              • <strong>Asimtot Datar:</strong> Grafik selalu mendekati sumbu-X (y = 0) tetapi tidak pernah memotongnya.
+            </p>
+          </div>
+        </article>
+
+        <!-- Sub-bab 4 -->
+        <article id="sub-4" class="sub-section">
+          <span class="sub-badge">Sub-bab 04</span>
+          <h2>Sifat-Sifat Operasi Bilangan Bentuk Akar</h2>
+          <p>Bentuk akar adalah akar dari suatu bilangan rasional yang hasilnya merupakan bilangan irasional (seperti &radic;2, &radic;3, &radic;5).</p>
+          <div class="formula-box">
+            <strong class="box-label">Aturan Penjumlahan, Pengurangan, & Perkalian Akar</strong>
+            <div class="formula-grid">
+              <div>1. p&radic;a + q&radic;a = (p + q)&radic;a</div>
+              <div>3. &radic;a × &radic;b = &radic;(a × b)</div>
+              <div>2. p&radic;a - q&radic;a = (p - q)&radic;a</div>
+              <div>4. &radic;a / &radic;b = &radic;(a / b)</div>
+            </div>
+          </div>
+        </article>
+
+        <!-- Sub-bab 5 -->
+        <article id="sub-5" class="sub-section">
+          <span class="sub-badge">Sub-bab 05</span>
+          <h2>Menyederhanakan Bentuk Akar</h2>
+          <p>Suatu bentuk akar dapat disederhanakan dengan cara memecah bilangan di dalam akar menjadi perkalian dua bilangan, di mana salah satunya adalah <strong>bilangan kuadrat sempurna</strong> (4, 9, 16, 25, 36, 49, dst.).</p>
+          <div class="formula-box">
+            <strong class="box-label">Rumus Penyederhanaan</strong>
+            <div>&radic;(a<sup>2</sup> × b) = a&radic;b</div>
+          </div>
+          <div class="example-box">
+            <strong>Contoh Singkat:</strong> Sederhanakan &radic;72<br>
+            Penyelesaian: &radic;72 = &radic;(36 × 2) = &radic;36 × &radic;2 = <strong>6&radic;2</strong>.
+          </div>
+        </article>
+
+        <!-- Sub-bab 6 -->
+        <article id="sub-6" class="sub-section">
+          <span class="sub-badge">Sub-bab 06</span>
+          <h2>Merasionalkan Penyebut</h2>
+          <p>Dalam matematika, pecahan yang penyebutnya masih memuat bentuk akar dianggap belum sederhana. Merasionalkan penyebut dilakukan dengan mengalikan pembilang dan penyebut menggunakan <strong>akar sekawan</strong>.</p>
+          <div class="formula-box">
+            <strong class="box-label">Pola Perkalian Sekawan</strong>
+            <div class="formula-grid">
+              <div>• Bentuk a / &radic;b &rarr; kalikan dengan <strong>&radic;b / &radic;b</strong></div>
+              <div>• Bentuk c / (a + &radic;b) &rarr; kalikan dengan <strong>(a - &radic;b) / (a - &radic;b)</strong></div>
+            </div>
+          </div>
+          <div class="example-box">
+            <strong>Contoh Singkat:</strong> Rasionalkan 6 / &radic;3<br>
+            Penyelesaian: (6 / &radic;3) × (&radic;3 / &radic;3) = (6&radic;3) / 3 = <strong>2&radic;3</strong>.
+          </div>
+        </article>
+
+        <!-- Navigasi Bawah -->
+        <div class="bottom-nav">
+          <a href="index.html" class="btn-nav"><i data-lucide="layout-grid"></i> Daftar Mata Pelajaran</a>
+          <a href="#" class="btn-nav primary" onclick="alert('Halaman Bab 2: SPLTV sedang disiapkan!'); return false;">Bab Selanjutnya: SPLTV <i data-lucide="arrow-right"></i></a>
+        </div>
+
+      </div>
+    </div>
+  </main>
+
+  <footer class="footer">
+    <div class="wrap">
+      <span>© Shira's Archive</span>
+      <span>Belajar sedikit demi sedikit, setiap hari.</span>
+    </div>
+  </footer>
+
+  <script>
+    lucide.createIcons();
+
+    // Sinkronisasi Dark Mode dengan halaman beranda
+    const themeBtn = document.getElementById("theme-toggle");
+    if (localStorage.getItem("shira-theme") === "dark") {
+      document.body.classList.add("dark");
+      themeBtn.innerHTML = '<i data-lucide="sun"></i>';
+      lucide.createIcons();
+    }
+
+    themeBtn.onclick = () => {
+      const dark = document.body.classList.toggle("dark");
+      localStorage.setItem("shira-theme", dark ? "dark" : "light");
+      themeBtn.innerHTML = '<i data-lucide="' + (dark ? "sun" : "moon") + '"></i>';
+      lucide.createIcons();
+    };
+
+    // Highlight otomatis daftar sub-bab saat halaman di-scroll
+    const sections = document.querySelectorAll(".sub-section");
+    const navLinks = document.querySelectorAll(".toc-list a");
+
+    window.addEventListener("scroll", () => {
+      let current = "";
+      sections.forEach(sec => {
+        const top = sec.offsetTop - 150;
+        if (window.scrollY >= top) current = sec.getAttribute("id");
+      });
+      navLinks.forEach(link => {
+        link.classList.remove("active");
+        if (link.getAttribute("href") === "#" + current) {
+          link.classList.add("active");
+        }
+      });
+    });
+  </script>
+</body>
+</html>
