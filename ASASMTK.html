@@ -1,0 +1,2266 @@
+<!doctype html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Shira's Archive — Matematika Kelas 10 (ASAS)</title>
+  <!-- Google Fonts: Plus Jakarta Sans -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <!-- Lucide Icons -->
+  <script src="https://cdn.jsdelivr.net/npm/lucide@0.577.0/dist/umd/lucide.min.js"></script>
+  <!-- KaTeX untuk tampilan rumus matematika yang tajam dan rapi -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css">
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js" onload="renderMath()"></script>
+
+  <style>
+    :root {
+      --bg: #f5f8fd;
+      --surface: #ffffff;
+      --surface2: #edf4fd;
+      --text: #25334a;
+      --muted: #718099;
+      --line: #e3eaf4;
+      --blue: #537fda;
+      --blue-hover: #426ec9;
+      --blue2: #e8f0ff;
+      --green-bg: #e7f7f0;
+      --green-text: #1c7c54;
+      --amber-bg: #fff6e0;
+      --amber-text: #b37812;
+      --shadow: 0 12px 36px rgba(48, 79, 129, 0.07);
+    }
+
+    body.dark {
+      --bg: #101827;
+      --surface: #192437;
+      --surface2: #202e45;
+      --text: #eef4ff;
+      --muted: #a7b5cb;
+      --line: #344159;
+      --blue: #8bb3ff;
+      --blue-hover: #a3c3ff;
+      --blue2: #263d65;
+      --green-bg: rgba(45, 185, 128, 0.14);
+      --green-text: #6ee7b7;
+      --amber-bg: rgba(245, 178, 56, 0.14);
+      --amber-text: #fcd34d;
+      --shadow: 0 12px 36px rgba(0, 0, 0, 0.22);
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      margin: 0;
+      background: var(--bg);
+      color: var(--text);
+      font-family: "Plus Jakarta Sans", sans-serif;
+      line-height: 1.6;
+      transition: background 0.25s ease, color 0.25s ease;
+    }
+
+    button, input {
+      font-family: "Plus Jakarta Sans", sans-serif;
+    }
+
+    button {
+      cursor: pointer;
+    }
+
+    button:focus-visible, input:focus-visible {
+      outline: 3px solid var(--blue);
+      outline-offset: 2px;
+    }
+
+    .wrap {
+      max-width: 1190px;
+      margin: auto;
+      padding: 0 28px;
+    }
+
+    /* Header & Navigasi */
+    .site-header {
+      background: var(--surface);
+      border-bottom: 1px solid var(--line);
+      position: sticky;
+      top: 0;
+      z-index: 30;
+      transition: background 0.25s ease, border-color 0.25s ease;
+    }
+
+    .nav-inner {
+      min-height: 76px;
+      display: flex;
+      align-items: center;
+      gap: 20px;
+      flex-wrap: wrap;
+      padding-top: 12px;
+      padding-bottom: 12px;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 11px;
+      font-weight: 800;
+      font-size: 18px;
+      white-space: nowrap;
+      color: var(--text);
+      text-decoration: none;
+    }
+
+    .brand-mark {
+      width: 38px;
+      height: 38px;
+      display: grid;
+      place-items: center;
+      border-radius: 12px;
+      background: var(--blue);
+      color: #fff;
+      flex: none;
+    }
+
+    body.dark .brand-mark {
+      color: #101827;
+    }
+
+    .brand-mark svg {
+      width: 20px;
+      height: 20px;
+    }
+
+    .brand-sub {
+      font-size: 11px;
+      font-weight: 700;
+      color: var(--blue);
+      background: var(--blue2);
+      padding: 3px 9px;
+      border-radius: 99px;
+    }
+
+    .tabs {
+      display: flex;
+      gap: 5px;
+      background: var(--surface2);
+      padding: 5px;
+      border-radius: 13px;
+    }
+
+    .tab {
+      border: 0;
+      background: transparent;
+      padding: 9px 17px;
+      border-radius: 10px;
+      color: var(--muted);
+      font-weight: 700;
+      font-size: 13px;
+      white-space: nowrap;
+      transition: all 0.2s ease;
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+    }
+
+    .tab svg {
+      width: 15px;
+      height: 15px;
+    }
+
+    .tab.active {
+      background: var(--surface);
+      color: var(--blue);
+      box-shadow: 0 2px 8px rgba(30, 60, 100, 0.08);
+    }
+
+    .nav-actions {
+      margin-left: auto;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .search-box {
+      display: flex;
+      align-items: center;
+      gap: 9px;
+      background: var(--bg);
+      border: 1px solid var(--line);
+      border-radius: 12px;
+      padding: 0 13px;
+      color: var(--muted);
+      min-width: 250px;
+      transition: border-color 0.2s ease;
+    }
+
+    .search-box:focus-within {
+      border-color: var(--blue);
+    }
+
+    .search-box svg {
+      width: 17px;
+      flex: none;
+    }
+
+    .search-box input {
+      border: 0;
+      background: transparent;
+      outline: 0;
+      color: var(--text);
+      height: 40px;
+      width: 100%;
+      font-size: 13px;
+    }
+
+    .search-box input::placeholder {
+      color: var(--muted);
+    }
+
+    .icon-button {
+      width: 41px;
+      height: 41px;
+      border: 1px solid var(--line);
+      border-radius: 12px;
+      background: var(--surface);
+      color: var(--text);
+      display: grid;
+      place-items: center;
+      flex: none;
+      transition: border-color 0.2s ease, transform 0.15s ease;
+    }
+
+    .icon-button:hover {
+      border-color: var(--blue);
+      transform: translateY(-1px);
+    }
+
+    .icon-button svg {
+      width: 19px;
+      height: 19px;
+    }
+
+    /* Hero Section */
+    .hero {
+      padding: 54px 0 46px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 36px;
+    }
+
+    .hero-copy {
+      max-width: 640px;
+    }
+
+    .eyebrow {
+      color: var(--blue);
+      font-size: 12px;
+      font-weight: 800;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      margin: 0 0 14px;
+    }
+
+    .hero h1 {
+      font-size: clamp(32px, 4.5vw, 52px);
+      letter-spacing: -0.045em;
+      line-height: 1.15;
+      margin: 0 0 16px;
+      font-weight: 800;
+    }
+
+    .hero p.lead {
+      font-size: 15px;
+      color: var(--muted);
+      max-width: 540px;
+      margin: 0 0 24px;
+    }
+
+    .hero-btns {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+
+    .primary {
+      border: 0;
+      border-radius: 12px;
+      padding: 13px 20px;
+      background: var(--blue);
+      color: #fff;
+      font-size: 13px;
+      font-weight: 800;
+      display: inline-flex;
+      align-items: center;
+      gap: 9px;
+      box-shadow: 0 8px 20px rgba(83, 127, 218, 0.23);
+      transition: transform 0.15s ease, opacity 0.2s ease;
+    }
+
+    body.dark .primary {
+      color: #101827;
+    }
+
+    .primary:hover {
+      transform: translateY(-2px);
+      opacity: 0.95;
+    }
+
+    .primary svg, .secondary svg {
+      width: 17px;
+      height: 17px;
+    }
+
+    .secondary {
+      border: 1px solid var(--line);
+      background: var(--surface);
+      color: var(--text);
+      border-radius: 12px;
+      padding: 13px 18px;
+      font-size: 13px;
+      font-weight: 700;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      transition: border-color 0.2s ease, transform 0.15s ease;
+    }
+
+    .secondary:hover {
+      border-color: var(--blue);
+      transform: translateY(-2px);
+    }
+
+    .hero-art {
+      width: 300px;
+      height: 245px;
+      flex: none;
+      position: relative;
+      display: grid;
+      place-items: center;
+    }
+
+    .art-orbit {
+      width: 215px;
+      height: 215px;
+      border-radius: 50%;
+      background: var(--blue2);
+      position: absolute;
+    }
+
+    .art-card {
+      position: relative;
+      width: 158px;
+      height: 185px;
+      border-radius: 19px;
+      background: var(--surface);
+      border: 1px solid var(--line);
+      box-shadow: 0 20px 45px rgba(53, 87, 150, 0.14);
+      transform: rotate(-8deg);
+      padding: 22px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+
+    .art-formula {
+      background: var(--blue2);
+      color: var(--blue);
+      font-weight: 800;
+      font-size: 13px;
+      padding: 10px 12px;
+      border-radius: 12px;
+      text-align: center;
+    }
+
+    .art-lines span {
+      display: block;
+      height: 8px;
+      border-radius: 8px;
+      background: var(--line);
+      margin: 9px 0;
+    }
+
+    .art-lines span:nth-child(2) {
+      width: 80%;
+    }
+
+    .art-lines span:nth-child(3) {
+      width: 60%;
+    }
+
+    .float-icon {
+      position: absolute;
+      right: 20px;
+      top: 18px;
+      background: #fff5d9;
+      color: #d39a34;
+      padding: 14px;
+      border-radius: 16px;
+      box-shadow: var(--shadow);
+      transform: rotate(12deg);
+    }
+
+    body.dark .float-icon {
+      background: #2c281b;
+      color: #fcd34d;
+    }
+
+    .float-icon svg {
+      width: 26px;
+      height: 26px;
+    }
+
+    .float-star {
+      position: absolute;
+      left: 18px;
+      bottom: 24px;
+      color: var(--blue);
+    }
+
+    /* Filter Chips */
+    .filter-bar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 14px;
+      margin-bottom: 24px;
+    }
+
+    .chips {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+
+    .chip {
+      border: 1px solid var(--line);
+      background: var(--surface);
+      color: var(--muted);
+      padding: 8px 14px;
+      border-radius: 99px;
+      font-size: 12px;
+      font-weight: 700;
+      transition: all 0.2s ease;
+    }
+
+    .chip:hover {
+      border-color: var(--blue);
+      color: var(--text);
+    }
+
+    .chip.active {
+      background: var(--blue);
+      border-color: var(--blue);
+      color: #fff;
+    }
+
+    body.dark .chip.active {
+      color: #101827;
+    }
+
+    .count-tag {
+      font-size: 12px;
+      font-weight: 700;
+      color: var(--blue);
+      background: var(--blue2);
+      padding: 7px 13px;
+      border-radius: 99px;
+      white-space: nowrap;
+    }
+
+    /* Section Materi */
+    .content-section {
+      padding: 10px 0 80px;
+    }
+
+    .materi-list {
+      display: grid;
+      gap: 22px;
+    }
+
+    .materi-card {
+      background: var(--surface);
+      border: 1px solid var(--line);
+      border-radius: 20px;
+      padding: 28px;
+      box-shadow: var(--shadow);
+      transition: border-color 0.2s ease;
+    }
+
+    .materi-card:hover {
+      border-color: var(--blue);
+    }
+
+    .materi-head {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 16px;
+      margin-bottom: 20px;
+      padding-bottom: 18px;
+      border-bottom: 1px solid var(--line);
+    }
+
+    .materi-title-group {
+      display: flex;
+      align-items: center;
+      gap: 15px;
+    }
+
+    .materi-icon {
+      width: 48px;
+      height: 48px;
+      border-radius: 14px;
+      background: var(--blue2);
+      color: var(--blue);
+      display: grid;
+      place-items: center;
+      flex: none;
+    }
+
+    .materi-icon svg {
+      width: 24px;
+      height: 24px;
+    }
+
+    .materi-badge {
+      font-size: 11px;
+      font-weight: 800;
+      color: var(--blue);
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      display: block;
+      margin-bottom: 3px;
+    }
+
+    .materi-head h2 {
+      font-size: 21px;
+      margin: 0;
+      letter-spacing: -0.02em;
+    }
+
+    .materi-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 16px;
+    }
+
+    .concept-box {
+      background: var(--bg);
+      border: 1px solid var(--line);
+      border-radius: 15px;
+      padding: 18px 20px;
+    }
+
+    .concept-box.full {
+      grid-column: 1 / -1;
+    }
+
+    .concept-box h3 {
+      font-size: 15px;
+      margin: 0 0 10px;
+      color: var(--blue);
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .concept-box h3 svg {
+      width: 16px;
+      height: 16px;
+    }
+
+    .concept-box p, .concept-box li {
+      font-size: 13.5px;
+      color: var(--text);
+      margin: 0 0 8px;
+    }
+
+    .concept-box ul {
+      margin: 0;
+      padding-left: 18px;
+    }
+
+    .concept-box li:last-child, .concept-box p:last-child {
+      margin-bottom: 0;
+    }
+
+    .formula-pill {
+      display: inline-block;
+      background: var(--surface);
+      border: 1px solid var(--line);
+      padding: 4px 10px;
+      border-radius: 8px;
+      font-weight: 600;
+      margin: 3px 4px 3px 0;
+      font-size: 13px;
+    }
+
+    .logic-tip {
+      margin-top: 16px;
+      background: var(--blue2);
+      border-radius: 14px;
+      padding: 14px 18px;
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+      font-size: 13.5px;
+    }
+
+    .logic-tip svg {
+      width: 19px;
+      height: 19px;
+      color: var(--blue);
+      flex: none;
+      margin-top: 2px;
+    }
+
+    /* Tabel Sudut Istimewa */
+    .trig-table-wrap {
+      overflow-x: auto;
+      margin-top: 8px;
+    }
+
+    .trig-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 13px;
+      text-align: center;
+      background: var(--surface);
+      border-radius: 12px;
+      overflow: hidden;
+    }
+
+    .trig-table th, .trig-table td {
+      padding: 9px 12px;
+      border: 1px solid var(--line);
+    }
+
+    .trig-table th {
+      background: var(--surface2);
+      color: var(--blue);
+      font-weight: 800;
+    }
+
+    /* Section Pembahasan Soal */
+    .quiz-section {
+      padding: 36px 0 90px;
+    }
+
+    .jump-panel {
+      background: var(--surface);
+      border: 1px solid var(--line);
+      border-radius: 18px;
+      padding: 18px 20px;
+      margin-bottom: 24px;
+      box-shadow: var(--shadow);
+    }
+
+    .jump-head {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-bottom: 12px;
+    }
+
+    .jump-head span {
+      font-size: 12px;
+      font-weight: 800;
+      color: var(--muted);
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+    }
+
+    .toggle-all-btn {
+      border: 1px solid var(--line);
+      background: var(--surface2);
+      color: var(--blue);
+      font-size: 12px;
+      font-weight: 700;
+      padding: 6px 12px;
+      border-radius: 9px;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .toggle-all-btn svg {
+      width: 14px;
+      height: 14px;
+    }
+
+    .jump-grid {
+      display: grid;
+      grid-template-columns: repeat(20, minmax(0, 1fr));
+      gap: 6px;
+    }
+
+    .jump-btn {
+      border: 1px solid var(--line);
+      background: var(--bg);
+      color: var(--text);
+      font-size: 12px;
+      font-weight: 700;
+      height: 32px;
+      border-radius: 8px;
+      display: grid;
+      place-items: center;
+      transition: all 0.15s ease;
+    }
+
+    .jump-btn:hover {
+      border-color: var(--blue);
+      background: var(--blue2);
+      color: var(--blue);
+    }
+
+    .soal-list {
+      display: grid;
+      gap: 16px;
+    }
+
+    .soal-card {
+      background: var(--surface);
+      border: 1px solid var(--line);
+      border-radius: 18px;
+      padding: 22px 24px;
+      box-shadow: var(--shadow);
+      scroll-margin-top: 96px;
+      transition: border-color 0.2s ease;
+    }
+
+    .soal-card:hover {
+      border-color: var(--blue);
+    }
+
+    .soal-top {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      margin-bottom: 12px;
+    }
+
+    .soal-meta {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .soal-num {
+      background: var(--blue);
+      color: #fff;
+      font-weight: 800;
+      font-size: 12px;
+      padding: 4px 11px;
+      border-radius: 8px;
+    }
+
+    body.dark .soal-num {
+      color: #101827;
+    }
+
+    .soal-bab {
+      font-size: 11.5px;
+      font-weight: 700;
+      color: var(--blue);
+      background: var(--blue2);
+      padding: 4px 10px;
+      border-radius: 99px;
+    }
+
+    .soal-question {
+      font-size: 15px;
+      font-weight: 600;
+      margin: 0 0 16px;
+      color: var(--text);
+      line-height: 1.65;
+    }
+
+    .soal-actions {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+
+    .answer-box {
+      background: var(--blue2);
+      color: var(--text);
+      border-radius: 11px;
+      padding: 8px 14px;
+      font-size: 13.5px;
+      font-weight: 700;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .answer-label {
+      color: var(--blue);
+      font-weight: 800;
+      font-size: 12px;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+    }
+
+    .step-toggle {
+      border: 1px solid var(--line);
+      background: var(--bg);
+      color: var(--text);
+      font-size: 12.5px;
+      font-weight: 700;
+      padding: 8px 14px;
+      border-radius: 10px;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      transition: all 0.2s ease;
+    }
+
+    .step-toggle:hover {
+      border-color: var(--blue);
+      color: var(--blue);
+    }
+
+    .step-toggle svg {
+      width: 15px;
+      height: 15px;
+      transition: transform 0.2s ease;
+    }
+
+    .step-toggle.open svg {
+      transform: rotate(180deg);
+    }
+
+    .steps-body {
+      margin-top: 16px;
+      padding-top: 16px;
+      border-top: 1px dashed var(--line);
+      font-size: 14px;
+      color: var(--text);
+    }
+
+    .steps-body p {
+      margin: 0 0 8px;
+    }
+
+    .steps-body p:last-child {
+      margin-bottom: 0;
+    }
+
+    .steps-body ul, .steps-body ol {
+      margin: 6px 0 8px;
+      padding-left: 20px;
+    }
+
+    .steps-body li {
+      margin-bottom: 6px;
+    }
+
+    .note-warning {
+      margin-top: 10px;
+      background: var(--amber-bg);
+      color: var(--amber-text);
+      padding: 10px 14px;
+      border-radius: 10px;
+      font-size: 12.5px;
+      font-weight: 600;
+    }
+
+    /* Grafik SVG kecil untuk soal 25/27 & 31 */
+    .diagram-box {
+      background: var(--bg);
+      border: 1px solid var(--line);
+      border-radius: 12px;
+      padding: 12px;
+      margin: 10px 0;
+      display: inline-block;
+      max-width: 100%;
+    }
+
+    .hidden {
+      display: none !important;
+    }
+
+    .empty-state {
+      text-align: center;
+      padding: 48px 20px;
+      background: var(--surface);
+      border: 1px solid var(--line);
+      border-radius: 18px;
+      color: var(--muted);
+    }
+
+    /* Footer */
+    .footer {
+      border-top: 1px solid var(--line);
+      padding: 26px 0;
+      color: var(--muted);
+      font-size: 12px;
+      background: var(--surface);
+    }
+
+    .footer .wrap {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 12px;
+    }
+
+    /* Responsif Mobile & Tablet */
+    @media (max-width: 900px) {
+      .nav-inner {
+        gap: 12px;
+      }
+      .nav-actions {
+        width: 100%;
+        margin-left: 0;
+        justify-content: space-between;
+      }
+      .search-box {
+        flex: 1;
+      }
+      .hero-art {
+        width: 230px;
+      }
+      .materi-grid {
+        grid-template-columns: 1fr;
+      }
+      .jump-grid {
+        grid-template-columns: repeat(10, minmax(0, 1fr));
+      }
+    }
+
+    @media (max-width: 620px) {
+      .wrap {
+        padding-left: 16px;
+        padding-right: 16px;
+      }
+      .brand {
+        font-size: 16px;
+      }
+      .tabs {
+        margin-left: auto;
+      }
+      .tab {
+        padding: 8px 12px;
+        font-size: 12px;
+      }
+      .nav-actions {
+        order: 3;
+      }
+      .search-box {
+        min-width: 0;
+      }
+      .hero {
+        padding: 36px 0 30px;
+      }
+      .hero-art {
+        display: none;
+      }
+      .materi-card {
+        padding: 20px;
+      }
+      .soal-card {
+        padding: 18px;
+      }
+      .jump-grid {
+        grid-template-columns: repeat(8, minmax(0, 1fr));
+      }
+      .footer .wrap {
+        flex-direction: column;
+        text-align: center;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Header Sticky -->
+  <header class="site-header">
+    <div class="wrap nav-inner">
+      <a href="#" class="brand" onclick="switchTab('materi'); return false;">
+        <span class="brand-mark"><i data-lucide="book-open"></i></span>
+        <span>Shira's Archive</span>
+        <span class="brand-sub">MTK X</span>
+      </a>
+
+      <nav class="tabs" aria-label="Navigasi utama">
+        <button id="tab-materi" class="tab active" type="button" aria-current="page">
+          <i data-lucide="layers"></i> Materi
+        </button>
+        <button id="tab-soal" class="tab" type="button">
+          <i data-lucide="check-circle-2"></i> Pembahasan Soal (1–40)
+        </button>
+      </nav>
+
+      <div class="nav-actions">
+        <label class="search-box" for="search-input">
+          <i data-lucide="search"></i>
+          <input id="search-input" type="search" placeholder="Cari rumus, bab, atau no. soal..." autocomplete="off">
+        </label>
+        <button id="theme-toggle" class="icon-button" type="button" aria-label="Aktifkan tema gelap" title="Tukar tema">
+          <i data-lucide="moon"></i>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <!-- TAB 1: MATERI -->
+    <div id="view-materi">
+      <section class="hero">
+        <div class="wrap hero-inner">
+          <div class="hero-copy">
+            <p class="eyebrow">Persiapan ASAS • Matematika Kelas 10</p>
+            <h1>Ringkasan Materi &amp; Pembahasan 40 Soal<span style="color:var(--blue)">.</span></h1>
+            <p class="lead">Kumpulan konsep inti, trik logika cepat, serta langkah penyelesaian lengkap dari nomor 1 sampai 40 dalam satu halaman yang nyaman dipelajari kapan saja.</p>
+            <div class="hero-btns">
+              <button type="button" class="primary" onclick="switchTab('soal')">
+                Buka Pembahasan 1–40 <i data-lucide="arrow-right"></i>
+              </button>
+              <button type="button" class="secondary" onclick="document.getElementById('materi-section').scrollIntoView({behavior:'smooth'})">
+                Pelajari Ringkasan Bab <i data-lucide="book-marked"></i>
+              </button>
+            </div>
+          </div>
+
+          <div class="hero-art" aria-hidden="true">
+            <div class="art-orbit"></div>
+            <div class="art-card">
+              <div class="art-formula">$\sin^2\theta + \cos^2\theta = 1$</div>
+              <div class="art-lines">
+                <span></span>
+                <span></span>
+                <span></span>
+              </div>
+            </div>
+            <div class="float-icon"><i data-lucide="sparkles"></i></div>
+            <div class="float-star"><i data-lucide="sigma"></i></div>
+          </div>
+        </div>
+      </section>
+
+      <section id="materi-section" class="content-section">
+        <div class="wrap">
+          <div class="filter-bar">
+            <div class="chips" id="materi-filters">
+              <button class="chip active" data-bab="all">Semua Bab (4)</button>
+              <button class="chip" data-bab="1">Bab 1: Eksponen &amp; Akar</button>
+              <button class="chip" data-bab="2">Bab 2: SPLTV</button>
+              <button class="chip" data-bab="3">Bab 3: Program Linear</button>
+              <button class="chip" data-bab="4">Bab 4: Trigonometri</button>
+            </div>
+            <span id="materi-count" class="count-tag">4 Bab Materi Utama</span>
+          </div>
+
+          <div class="materi-list" id="materi-list">
+            <!-- BAB 1 -->
+            <article class="materi-card" data-bab="1">
+              <div class="materi-head">
+                <div class="materi-title-group">
+                  <span class="materi-icon"><i data-lucide="superscript"></i></span>
+                  <div>
+                    <span class="materi-badge">Bab 1 • Mencakup Soal No. 1 – 10</span>
+                    <h2>Eksponen dan Bentuk Akar</h2>
+                  </div>
+                </div>
+                <button class="secondary" style="padding:8px 14px;font-size:12px;" onclick="goToSoalBab('1')">
+                  Lihat Soal 1–10 <i data-lucide="arrow-up-right"></i>
+                </button>
+              </div>
+
+              <div class="materi-grid">
+                <div class="concept-box">
+                  <h3><i data-lucide="zap"></i> Sifat-Sifat Dasar Eksponen</h3>
+                  <p>Untuk basis $a \neq 0$ dan bilangan bulat $m, n$:</p>
+                  <div>
+                    <span class="formula-pill">$a^m \cdot a^n = a^{m+n}$</span>
+                    <span class="formula-pill">$a^m : a^n = a^{m-n}$</span>
+                    <span class="formula-pill">$(a^m)^n = a^{m \cdot n}$</span>
+                    <span class="formula-pill">$a^{-n} = \frac{1}{a^n}$</span>
+                    <span class="formula-pill">$a^0 = 1$</span>
+                  </div>
+                </div>
+
+                <div class="concept-box">
+                  <h3><i data-lucide="trending-up"></i> Pertumbuhan &amp; Bunga Majemuk</h3>
+                  <ul>
+                    <li><strong>Persamaan Eksponen:</strong> Jika $a^{f(x)} = a^{g(x)}$ ($a > 0, a \neq 1$), maka samakan pangkatnya: $f(x) = g(x)$.</li>
+                    <li><strong>Pertumbuhan / Bunga Majemuk:</strong> $M_n = M_0 (1 + i)^n$, dengan $M_0$ = nilai awal, $i$ = persentase kenaikan, dan $n$ = banyaknya periode waktu.</li>
+                  </ul>
+                </div>
+
+                <div class="concept-box full">
+                  <h3><i data-lucide="radical"></i> Menyederhanakan &amp; Merasionalkan Bentuk Akar</h3>
+                  <ul>
+                    <li><strong>Operasi Penjumlahan Akar:</strong> Samakan dulu angka di dalam akar dengan mencari faktor bilangan kuadrat ($4, 9, 16, 25, 36, \dots$). Contoh: $\sqrt{48} = \sqrt{16 \cdot 3} = 4\sqrt{3}$.</li>
+                    <li><strong>Merasionalkan Penyebut Sekawan:</strong> Kalikan pembilang dan penyebut dengan lawan tanda penyebutnya menggunakan identitas $(a - b)(a + b) = a^2 - b^2$:
+                      <br>$\frac{c}{a - \sqrt{b}} \times \frac{a + \sqrt{b}}{a + \sqrt{b}} = \frac{c(a + \sqrt{b})}{a^2 - b}$ &nbsp;atau&nbsp; $\frac{c}{\sqrt{a} + \sqrt{b}} \times \frac{\sqrt{a} - \sqrt{b}}{\sqrt{a} - \sqrt{b}} = \frac{c(\sqrt{a} - \sqrt{b})}{a - b}$.
+                    </li>
+                  </ul>
+                </div>
+              </div>
+
+              <div class="logic-tip">
+                <i data-lucide="lightbulb"></i>
+                <div><strong>Kunci Logika Bab 1:</strong> Jika ketemu pangkat negatif di penyebut seperti $\frac{1}{((3a)^2 b^2)^{-1}}$, cukup naikkan ke atas maka pangkat negatifnya otomatis berubah menjadi positif: $((3a)^2 b^2)^1$.</div>
+              </div>
+            </article>
+
+            <!-- BAB 2 -->
+            <article class="materi-card" data-bab="2">
+              <div class="materi-head">
+                <div class="materi-title-group">
+                  <span class="materi-icon"><i data-lucide="variable"></i></span>
+                  <div>
+                    <span class="materi-badge">Bab 2 • Mencakup Soal No. 11 – 20</span>
+                    <h2>Sistem Persamaan Linear Tiga Variabel (SPLTV)</h2>
+                  </div>
+                </div>
+                <button class="secondary" style="padding:8px 14px;font-size:12px;" onclick="goToSoalBab('2')">
+                  Lihat Soal 11–20 <i data-lucide="arrow-up-right"></i>
+                </button>
+              </div>
+
+              <div class="materi-grid">
+                <div class="concept-box">
+                  <h3><i data-lucide="check-square"></i> Ciri Utama SPLTV</h3>
+                  <ul>
+                    <li>Terdiri atas <strong>3 persamaan linear</strong>.</li>
+                    <li>Memuat <strong>3 variabel</strong> (misalnya $x, y, z$).</li>
+                    <li>Semua variabel wajib <strong>berpangkat satu</strong> (tidak boleh ada $x^2$, $xy$, atau $\frac{1}{x}$).</li>
+                  </ul>
+                </div>
+
+                <div class="concept-box">
+                  <h3><i data-lucide="git-merge"></i> Strategi Logika Penyelesaian</h3>
+                  <ul>
+                    <li><strong>Metode Eliminasi-Substitusi:</strong> Hilangkan satu variabel yang koefisiennya paling mudah dicoret dari dua pasang persamaan hingga menjadi SPLDV (2 variabel).</li>
+                    <li><strong>Trik Substitusi Cepat:</strong> Jika ada persamaan yang cuma punya 2 variabel (misal $x + y = 3 \implies y = 3 - x$), langsung substitusikan ke persamaan lain tanpa perlu eliminasi panjang.</li>
+                  </ul>
+                </div>
+
+                <div class="concept-box full">
+                  <h3><i data-lucide="file-text"></i> Memodelkan Soal Cerita ke Matematika</h3>
+                  <ul>
+                    <li><strong>Soal Umur:</strong> Kata <em>"4 tahun yang lalu"</em> artinya usia masing-masing orang dikurangi 4. Jika ada 3 orang, total pengurangannya adalah $3 \times 4 = 12$ tahun.</li>
+                    <li><strong>Soal Uang / Barang / Berat:</strong> Tetapkan permisalan variabel secara jelas di awal (misal $x$ = buku, $y$ = kotak pensil, $z$ = penggaris), lalu terjemahkan kalimat demi kalimat menjadi persamaan.</li>
+                  </ul>
+                </div>
+              </div>
+
+              <div class="logic-tip">
+                <i data-lucide="lightbulb"></i>
+                <div><strong>Kunci Logika Bab 2:</strong> Aljabar bukan hafalan langkah kaku—lihat dulu struktur persamaannya! Kalau dua persamaan bisa langsung dijumlahkan untuk mencoret dua variabel sekaligus (seperti di No. 15 dan No. 18), gunakan jalan pintas itu.</div>
+              </div>
+            </article>
+
+            <!-- BAB 3 -->
+            <article class="materi-card" data-bab="3">
+              <div class="materi-head">
+                <div class="materi-title-group">
+                  <span class="materi-icon"><i data-lucide="chart-spline"></i></span>
+                  <div>
+                    <span class="materi-badge">Bab 3 • Mencakup Soal No. 21 – 30</span>
+                    <h2>SPtLDV &amp; Program Linear</h2>
+                  </div>
+                </div>
+                <button class="secondary" style="padding:8px 14px;font-size:12px;" onclick="goToSoalBab('3')">
+                  Lihat Soal 21–30 <i data-lucide="arrow-up-right"></i>
+                </button>
+              </div>
+
+              <div class="materi-grid">
+                <div class="concept-box">
+                  <h3><i data-lucide="pen-tool"></i> Menggambar Garis &amp; Daerah Arsiran (DHP)</h3>
+                  <ul>
+                    <li><strong>Titik Potong Sumbu:</strong> Untuk garis $ax + by = c$, tutup $x=0$ untuk dapat $y = \frac{c}{b}$, dan tutup $y=0$ untuk dapat $x = \frac{c}{a}$.</li>
+                    <li><strong>Jenis Garis:</strong> Tanda $\le$ atau $\ge$ digambar <strong>garis penuh</strong>; tanda $<$ atau $>$ digambar <strong>garis putus-putus</strong>.</li>
+                    <li><strong>Uji Titik $(0,0)$:</strong> Masukkan $(0,0)$ ke pertidaksamaan. Jika pernyataan <strong>Benar</strong>, arsir mengarah ke $(0,0)$; jika <strong>Salah</strong>, arsir menjauhi $(0,0)$.</li>
+                  </ul>
+                </div>
+
+                <div class="concept-box">
+                  <h3><i data-lucide="target"></i> Nilai Optimum (Maksimum / Minimum)</h3>
+                  <ul>
+                    <li><strong>Model Matematika:</strong> Kata <em>"persediaan paling banyak / maksimal"</em> memakai tanda $\le$. Kata <em>"paling sedikit / minimal"</em> memakai tanda $\ge$. Jangan lupa tambahkan $x \ge 0, y \ge 0$.</li>
+                    <li><strong>Metode Uji Titik Pojok:</strong> Cari koordinat semua titik sudut DHP (gunakan eliminasi untuk titik potong dua garis), lalu substitusikan ke fungsi objektif $f(x, y) = ax + by$.</li>
+                  </ul>
+                </div>
+              </div>
+
+              <div class="logic-tip">
+                <i data-lucide="lightbulb"></i>
+                <div><strong>Kunci Logika Bab 3:</strong> Kalau koefisien $y$ bernilai positif ($+by$), trik cepat tanpa uji titik adalah: tanda <strong>$\ge$ selalu di atas/kanan garis</strong>, sedangkan tanda <strong>$\le$ selalu di bawah/kiri garis</strong>.</div>
+              </div>
+            </article>
+
+            <!-- BAB 4 -->
+            <article class="materi-card" data-bab="4">
+              <div class="materi-head">
+                <div class="materi-title-group">
+                  <span class="materi-icon"><i data-lucide="triangle"></i></span>
+                  <div>
+                    <span class="materi-badge">Bab 4 • Mencakup Soal No. 31 – 40</span>
+                    <h2>Trigonometri</h2>
+                  </div>
+                </div>
+                <button class="secondary" style="padding:8px 14px;font-size:12px;" onclick="goToSoalBab('4')">
+                  Lihat Soal 31–40 <i data-lucide="arrow-up-right"></i>
+                </button>
+              </div>
+
+              <div class="materi-grid">
+                <div class="concept-box">
+                  <h3><i data-lucide="compass"></i> Perbandingan Segitiga Siku-Siku &amp; Kuadran</h3>
+                  <ul>
+                    <li><strong>De-Mi, Sa-Mi, De-Sa:</strong> $\sin \alpha = \frac{\text{Depan}}{\text{Miring}}$, &nbsp;$\cos \alpha = \frac{\text{Samping}}{\text{Miring}}$, &nbsp;$\tan \alpha = \frac{\text{Depan}}{\text{Samping}}$.</li>
+                    <li><strong>Tanda Kuadran ("Semua Sindikat Tangan Kosong"):</strong>
+                      <br><strong>Kuadran I ($0^\circ–90^\circ$):</strong> Semua positif.
+                      <br><strong>Kuadran II ($90^\circ–180^\circ$):</strong> Hanya $\sin$ (dan $\csc$) positif.
+                      <br><strong>Kuadran III ($180^\circ–270^\circ$):</strong> Hanya $\tan$ (dan $\cot$) positif.
+                      <br><strong>Kuadran IV ($270^\circ–360^\circ$):</strong> Hanya $\cos$ (dan $\sec$) positif.
+                    </li>
+                  </ul>
+                </div>
+
+                <div class="concept-box">
+                  <h3><i data-lucide="ruler"></i> Segitiga Sembarang (Luas, Sinus, Cosinus)</h3>
+                  <ul>
+                    <li><strong>Luas Segitiga:</strong> $L = \frac{1}{2} \cdot b \cdot c \cdot \sin A$ (dua sisi mengapit satu sudut).</li>
+                    <li><strong>Aturan Sinus:</strong> $\frac{a}{\sin A} = \frac{b}{\sin B} = \frac{c}{\sin C}$ (dipakai jika diketahui pasangan sisi dan sudut di hadapannya).</li>
+                    <li><strong>Aturan Cosinus:</strong> $a^2 = b^2 + c^2 - 2bc \cos A$ (dipakai jika diketahui dua sisi dan satu sudut apit).</li>
+                  </ul>
+                </div>
+
+                <div class="concept-box full">
+                  <h3><i data-lucide="table"></i> Tabel Sudut Istimewa (Pola Tinggal Dibalik)</h3>
+                  <div class="trig-table-wrap">
+                    <table class="trig-table">
+                      <thead>
+                        <tr>
+                          <th>Fungsi</th>
+                          <th>$0^\circ$</th>
+                          <th>$30^\circ$</th>
+                          <th>$45^\circ$</th>
+                          <th>$60^\circ$</th>
+                          <th>$90^\circ$</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <tr>
+                          <th>$\sin \alpha$</th>
+                          <td>$0$</td>
+                          <td>$\frac{1}{2}$</td>
+                          <td>$\frac{1}{2}\sqrt{2}$</td>
+                          <td>$\frac{1}{2}\sqrt{3}$</td>
+                          <td>$1$</td>
+                        </tr>
+                        <tr>
+                          <th>$\cos \alpha$</th>
+                          <td>$1$</td>
+                          <td>$\frac{1}{2}\sqrt{3}$</td>
+                          <td>$\frac{1}{2}\sqrt{2}$</td>
+                          <td>$\frac{1}{2}$</td>
+                          <td>$0$</td>
+                        </tr>
+                        <tr>
+                          <th>$\tan \alpha = \frac{\sin}{\cos}$</th>
+                          <td>$0$</td>
+                          <td>$\frac{1}{3}\sqrt{3}$ atau $\frac{1}{\sqrt{3}}$</td>
+                          <td>$1$</td>
+                          <td>$\sqrt{3}$</td>
+                          <td>$\infty$</td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
+              </div>
+
+              <div class="logic-tip">
+                <i data-lucide="lightbulb"></i>
+                <div><strong>Kunci Logika Bab 4:</strong> Sudut berelasi dengan sumbu-$X$ ($180^\circ \pm \alpha$ atau $360^\circ - \alpha$) <strong>tidak mengubah jenis fungsinya</strong> ($\sin$ tetap $\sin$, $\cos$ tetap $\cos$, $\tan$ tetap $\tan$). Cukup cek kuadrannya untuk menentukan tanda $+$ atau $-$.</div>
+              </div>
+            </article>
+          </div>
+        </div>
+      </section>
+    </div>
+
+    <!-- TAB 2: PEMBAHASAN SOAL 1-40 -->
+    <div id="view-soal" class="hidden">
+      <section class="quiz-section">
+        <div class="wrap">
+          <div style="margin-bottom: 22px;">
+            <p class="eyebrow">Pembahasan Lengkap Langkah demi Langkah</p>
+            <h2 style="font-size: 30px; margin: 0 0 6px; letter-spacing: -0.03em;">Latihan Soal ASAS Matematika Kelas X (No. 1–40)</h2>
+            <p style="color: var(--muted); margin: 0; font-size: 14px;">Klik tombol <strong>Lihat Langkah</strong> pada masing-masing soal untuk membuka penjelasan detailnya.</p>
+          </div>
+
+          <div class="filter-bar">
+            <div class="chips" id="soal-filters">
+              <button class="chip active" data-bab="all">Semua Soal (1–40)</button>
+              <button class="chip" data-bab="1">Bab 1: Eksponen &amp; Akar (1–10)</button>
+              <button class="chip" data-bab="2">Bab 2: SPLTV (11–20)</button>
+              <button class="chip" data-bab="3">Bab 3: Program Linear (21–30)</button>
+              <button class="chip" data-bab="4">Bab 4: Trigonometri (31–40)</button>
+            </div>
+            <span id="soal-count" class="count-tag">Menampilkan 40 soal</span>
+          </div>
+
+          <!-- Navigasi Lompat Cepat Nomor 1-40 -->
+          <div class="jump-panel">
+            <div class="jump-head">
+              <span>Lompat Cepat ke Nomor Soal</span>
+              <button id="toggle-all-steps" class="toggle-all-btn" type="button">
+                <i data-lucide="chevrons-down"></i> Buka Semua Pembahasan
+              </button>
+            </div>
+            <div class="jump-grid" id="jump-grid"></div>
+          </div>
+
+          <!-- Daftar Kartu Soal -->
+          <div class="soal-list" id="soal-list"></div>
+        </div>
+      </section>
+    </div>
+  </main>
+
+  <footer class="footer">
+    <div class="wrap">
+      <span>© Shira's Archive — Matematika Kelas 10 (ASAS)</span>
+      <span>Belajar pakai logika, sedikit demi sedikit setiap hari.</span>
+    </div>
+  </footer>
+
+  <script>
+    // Data lengkap 40 Soal ASAS Kelas X beserta jawaban dan pembahasan rinci
+    const soalData = [
+      // BAB 1: EKSPONEN DAN BENTUK AKAR (1-10)
+      {
+        num: 1,
+        bab: "1",
+        babLabel: "Bab 1 • Eksponen",
+        question: "Tentukan bentuk sederhana dari sifat-sifat eksponen berikut:<br>a) $a^m \\cdot a^n = \\dots$<br>b) $a^m : a^n = \\dots$<br>c) $(a^m)^n = \\dots$<br>d) $a^{-n} = \\dots$<br>e) $a^0 = \\dots$ (untuk $a \\neq 0$)",
+        answer: "a) $a^{m+n}$, b) $a^{m-n}$, c) $a^{m \\cdot n}$, d) $\\frac{1}{a^n}$, e) $1$",
+        steps: `
+          <p>Berdasarkan definisi dan sifat-sifat dasar bilangan berpangkat (eksponen):</p>
+          <ul>
+            <li><strong>a) Perkalian basis sama:</strong> Pangkatnya dijumlahkan $\\rightarrow a^m \\cdot a^n = \\mathbf{a^{m+n}}$</li>
+            <li><strong>b) Pembagian basis sama:</strong> Pangkatnya dikurangkan $\\rightarrow a^m : a^n = \\mathbf{a^{m-n}}$</li>
+            <li><strong>c) Pangkat dipangkatkan:</strong> Pangkatnya dikalikan $\\rightarrow (a^m)^n = \\mathbf{a^{m \\cdot n}}$</li>
+            <li><strong>d) Pangkat negatif:</strong> Diubah menjadi bentuk pecahan pangkat positif $\\rightarrow a^{-n} = \\mathbf{\\frac{1}{a^n}}$</li>
+            <li><strong>e) Pangkat nol:</strong> Semua bilangan (selain $0$) yang dipangkatkan $0$ hasilnya $1$ $\\rightarrow a^0 = \\mathbf{1}$</li>
+          </ul>
+        `
+      },
+      {
+        num: 2,
+        bab: "1",
+        babLabel: "Bab 1 • Eksponen",
+        question: "Bentuk sederhana dari $\\dfrac{(a^4 b^{-2})^5}{((3a)^2 b^2)^{-1}}$ adalah...",
+        answer: "$9a^{22}b^{-8}$ atau $\\dfrac{9a^{22}}{b^8}$",
+        steps: `
+          <p><strong>Langkah 1:</strong> Sederhanakan bagian pembilang (atas) dengan mengalikan pangkat ke dalam kurung:</p>
+          <p>$(a^4 b^{-2})^5 = a^{4 \\cdot 5} \\cdot b^{-2 \\cdot 5} = a^{20}b^{-10}$</p>
+          <p><strong>Langkah 2:</strong> Karena penyebut (bawah) berpangkat $-1$, naikkan ke atas sehingga pangkatnya berubah menjadi $+1$:</p>
+          <p>$\\dfrac{a^{20}b^{-10}}{((3a)^2 b^2)^{-1}} = a^{20}b^{-10} \\cdot ((3a)^2 b^2)^1$</p>
+          <p><strong>Langkah 3:</strong> Jabarkan $(3a)^2 = 3^2 a^2 = 9a^2$, lalu gabungkan variabel yang sama:</p>
+          <p>$= a^{20}b^{-10} \\cdot 9a^2 b^2 = 9 \\cdot a^{20+2} \\cdot b^{-10+2} = \\mathbf{9a^{22}b^{-8}} = \\mathbf{\\dfrac{9a^{22}}{b^8}}$</p>
+        `
+      },
+      {
+        num: 3,
+        bab: "1",
+        babLabel: "Bab 1 • Eksponen",
+        question: "Jika $6^m = 216$ dan $7^{n - 2m} = 49$, maka nilai $2n - m$ adalah...",
+        answer: "$13$",
+        steps: `
+          <p><strong>Langkah 1:</strong> Cari nilai $m$ dari persamaan pertama dengan mengubah $216$ menjadi basis $6$:</p>
+          <p>$6^m = 216 \\implies 6^m = 6^3 \\implies m = 3$</p>
+          <p><strong>Langkah 2:</strong> Cari nilai $n$ dari persamaan kedua dengan mengubah $49 = 7^2$:</p>
+          <p>$7^{n - 2m} = 7^2 \\implies n - 2m = 2$</p>
+          <p>Substitusikan $m = 3$: $n - 2(3) = 2 \\implies n - 6 = 2 \\implies n = 8$</p>
+          <p><strong>Langkah 3:</strong> Hitung nilai $2n - m$:</p>
+          <p>$2(8) - 3 = 16 - 3 = \\mathbf{13}$</p>
+        `
+      },
+      {
+        num: 4,
+        bab: "1",
+        babLabel: "Bab 1 • Persamaan Eksponen",
+        question: "Diketahui persamaan $\\left(\\dfrac{1}{3}\\right)^{x^2 - 4x + 3} = \\left(\\dfrac{1}{9}\\right)^{2x - x^2 + 3}$. Nilai $x$ yang memenuhi persamaan tersebut adalah...",
+        answer: "$x = -\\dfrac{1}{3}$ atau $x = 3$",
+        steps: `
+          <p><strong>Langkah 1:</strong> Samakan kedua basis menjadi $\\frac{1}{3}$, ingat bahwa $\\frac{1}{9} = \\left(\\frac{1}{3}\\right)^2$:</p>
+          <p>$\\left(\\dfrac{1}{3}\\right)^{x^2 - 4x + 3} = \\left(\\left(\\dfrac{1}{3}\\right)^2\\right)^{2x - x^2 + 3}$</p>
+          <p>$\\left(\\dfrac{1}{3}\\right)^{x^2 - 4x + 3} = \\left(\\dfrac{1}{3}\\right)^{4x - 2x^2 + 6}$</p>
+          <p><strong>Langkah 2:</strong> Karena basis sudah sama, samakan kedua pangkatnya:</p>
+          <p>$x^2 - 4x + 3 = 4x - 2x^2 + 6$</p>
+          <p>$x^2 + 2x^2 - 4x - 4x + 3 - 6 = 0$</p>
+          <p>$3x^2 - 8x - 3 = 0$</p>
+          <p><strong>Langkah 3:</strong> Faktorkan persamaan kuadrat tersebut:</p>
+          <p>$(3x + 1)(x - 3) = 0 \\implies \\mathbf{x = -\\dfrac{1}{3}}$ atau $\\mathbf{x = 3}$</p>
+        `
+      },
+      {
+        num: 5,
+        bab: "1",
+        babLabel: "Bab 1 • Grafik Eksponen",
+        question: "Grafik fungsi eksponen menunjukkan kurva monoton naik/turun melalui titik $(0, k)$ dan $(x_1, y_1)$. Bagaimana cara menentukan rumus fungsi eksponen $f(x) = k \\cdot a^x$ dari grafiknya?",
+        answer: "$f(x) = k \\cdot a^x$ (cari $k$ dari titik potong sumbu-$Y$, lalu cari basis $a$ dari titik kedua)",
+        steps: `
+          <p>Pada naskah asli, gambar grafik pada nomor 5 terpotong, namun berikut adalah cara pasti menyelesaikan soal membaca grafik fungsi eksponen:</p>
+          <ol>
+            <li><strong>Cek titik potong dengan sumbu-$Y$ di $(0, k)$:</strong> Substitusikan $x = 0$ ke $f(x) = k \\cdot a^x$, sehingga $f(0) = k \\cdot a^0 = k$. Nilai $k$ adalah ordinat titik potong sumbu-$Y$ (jika memotong di $(0,1)$, maka $k = 1$).</li>
+            <li><strong>Substitusikan satu titik lain $(x_1, y_1)$ yang dilalui kurva:</strong> Masukkan nilai $x_1$ dan $y_1$ untuk menemukan nilai basis $a$.</li>
+            <li><strong>Cek arah grafik untuk validasi:</strong> Jika grafik naik ke kanan, nilai $a > 1$ (misal $2^x$ atau $3^x$). Jika grafik turun ke kanan, nilai $0 < a < 1$ (misal $(\\frac{1}{2})^x$).</li>
+          </ol>
+        `
+      },
+      {
+        num: 6,
+        bab: "1",
+        babLabel: "Bab 1 • Pertumbuhan Eksponen",
+        question: "Sebuah kultur mikroorganisme memiliki $1.000$ sel pada pukul $08.00$. Jumlah sel tersebut bertambah $50\\%$ setiap $2$ jam karena proses reproduksi. Banyak mikroorganisme pada pukul $14.00$ adalah...",
+        answer: "$3.375$ sel",
+        steps: `
+          <p><strong>Langkah 1:</strong> Tentukan banyaknya periode pembelahan ($n$) dari pukul $08.00$ hingga pukul $14.00$:</p>
+          <p>Selisih waktu $= 14.00 - 08.00 = 6$ jam.</p>
+          <p>Karena membelah setiap $2$ jam, maka $n = \\dfrac{6}{2} = 3$ kali periode.</p>
+          <p><strong>Langkah 2:</strong> Gunakan rumus pertumbuhan eksponensial dengan $M_0 = 1.000$ dan kenaikan $i = 50\\% = 0,5$:</p>
+          <p>$M_3 = 1.000 \\times (1 + 0,5)^3$</p>
+          <p>$M_3 = 1.000 \\times (1,5)^3 = 1.000 \\times 3,375 = \\mathbf{3.375\\text{ sel}}$</p>
+        `
+      },
+      {
+        num: 7,
+        bab: "1",
+        babLabel: "Bab 1 • Bunga Majemuk",
+        question: "Raihan menyimpan uang di sebuah bank sebesar $\\text{Rp}2.500.000,00$. Bank tersebut memberikan suku bunga majemuk sebesar $20\\%$ per tahun. Jika Raihan tidak pernah menarik atau menyetor uangnya selama $3$ tahun, total saldo tabungan Raihan pada akhir tahun ketiga adalah...",
+        answer: "$\\text{Rp}4.320.000,00$",
+        steps: `
+          <p>Diketahui modal awal $M_0 = 2.500.000$, suku bunga $i = 20\\% = 0,2$, dan lama menabung $n = 3$ tahun.</p>
+          <p>Gunakan rumus bunga majemuk $M_n = M_0 (1 + i)^n$:</p>
+          <p>$M_3 = 2.500.000 \\times (1 + 0,2)^3$</p>
+          <p>$M_3 = 2.500.000 \\times (1,2)^3$</p>
+          <p>$M_3 = 2.500.000 \\times 1,728 = \\mathbf{\\text{Rp}4.320.000,00}$</p>
+        `
+      },
+      {
+        num: 8,
+        bab: "1",
+        babLabel: "Bab 1 • Bentuk Akar",
+        question: "Tentukan hasil dari:<br>a) $3\\sqrt{8} - \\sqrt{50} + 2\\sqrt{18} = \\dots$<br>b) $\\dfrac{8}{3 - \\sqrt{5}} = \\dots$<br>c) $\\sqrt{20} + \\sqrt{45} - \\sqrt{125} = \\dots$",
+        answer: "a) $7\\sqrt{2}$, &nbsp; b) $6 + 2\\sqrt{5}$, &nbsp; c) $0$",
+        steps: `
+          <ul>
+            <li><strong>Bagian a:</strong> Sederhanakan tiap akar ke bentuk $\\sqrt{2}$:<br>
+            $3\\sqrt{4 \\cdot 2} - \\sqrt{25 \\cdot 2} + 2\\sqrt{9 \\cdot 2} = 3(2\\sqrt{2}) - 5\\sqrt{2} + 2(3\\sqrt{2}) = 6\\sqrt{2} - 5\\sqrt{2} + 6\\sqrt{2} = \\mathbf{7\\sqrt{2}}$</li>
+            <li><strong>Bagian b:</strong> Kalikan dengan akar sekawan penyebutnya ($3 + \\sqrt{5}$):<br>
+            $\\dfrac{8}{3 - \\sqrt{5}} \\times \\dfrac{3 + \\sqrt{5}}{3 + \\sqrt{5}} = \\dfrac{8(3 + \\sqrt{5})}{3^2 - (\\sqrt{5})^2} = \\dfrac{8(3 + \\sqrt{5})}{9 - 5} = \\dfrac{8(3 + \\sqrt{5})}{4} = 2(3 + \\sqrt{5}) = \\mathbf{6 + 2\\sqrt{5}}$</li>
+            <li><strong>Bagian c:</strong> Sederhanakan tiap akar ke bentuk $\\sqrt{5}$:<br>
+            $\\sqrt{4 \\cdot 5} + \\sqrt{9 \\cdot 5} - \\sqrt{25 \\cdot 5} = 2\\sqrt{5} + 3\\sqrt{5} - 5\\sqrt{5} = \\mathbf{0}$</li>
+          </ul>
+        `
+      },
+      {
+        num: 9,
+        bab: "1",
+        babLabel: "Bab 1 • Rasionalisasi Akar",
+        question: "Bentuk rasional dari $\\dfrac{12}{\\sqrt{6} + \\sqrt{2}}$ adalah...",
+        answer: "$3\\sqrt{6} - 3\\sqrt{2}$ atau $3(\\sqrt{6} - \\sqrt{2})$",
+        steps: `
+          <p>Kalikan pembilang dan penyebut dengan sekawan dari $(\\sqrt{6} + \\sqrt{2})$, yaitu $(\\sqrt{6} - \\sqrt{2})$:</p>
+          <p>$\\dfrac{12}{\\sqrt{6} + \\sqrt{2}} \\times \\dfrac{\\sqrt{6} - \\sqrt{2}}{\\sqrt{6} - \\sqrt{2}} = \\dfrac{12(\\sqrt{6} - \\sqrt{2})}{(\\sqrt{6})^2 - (\\sqrt{2})^2}$</p>
+          <p>$= \\dfrac{12(\\sqrt{6} - \\sqrt{2})}{6 - 2} = \\dfrac{12(\\sqrt{6} - \\sqrt{2})}{4}$</p>
+          <p>$= 3(\\sqrt{6} - \\sqrt{2}) = \\mathbf{3\\sqrt{6} - 3\\sqrt{2}}$</p>
+        `
+      },
+      {
+        num: 10,
+        bab: "1",
+        babLabel: "Bab 1 • Bentuk Akar",
+        question: "Hasil dari $2\\sqrt{48} - 3\\sqrt{108} + 4\\sqrt{144}$ adalah...",
+        answer: "$48 - 10\\sqrt{3}$",
+        steps: `
+          <p>Sederhanakan masing-masing bentuk akar:</p>
+          <ul>
+            <li>$2\\sqrt{48} = 2\\sqrt{16 \\cdot 3} = 2(4\\sqrt{3}) = 8\\sqrt{3}$</li>
+            <li>$3\\sqrt{108} = 3\\sqrt{36 \\cdot 3} = 3(6\\sqrt{3}) = 18\\sqrt{3}$</li>
+            <li>$4\\sqrt{144} = 4(12) = 48$</li>
+          </ul>
+          <p>Gabungkan semuanya:</p>
+          <p>$8\\sqrt{3} - 18\\sqrt{3} + 48 = -10\\sqrt{3} + 48 = \\mathbf{48 - 10\\sqrt{3}}$</p>
+        `
+      },
+
+      // BAB 2: SPLTV (11-20)
+      {
+        num: 11,
+        bab: "2",
+        babLabel: "Bab 2 • Konsep SPLTV",
+        question: "Manakah yang merupakan Sistem Persamaan Linear Tiga Variabel (SPLTV)?<br>a) $\\begin{cases} 2x+y-z=4 \\\\ x-3y+2z=5 \\\\ 3x+2y+z=6 \\end{cases}$ &nbsp; b) $\\begin{cases} x^2+y+z=6 \\\\ 2x-y+z=3 \\\\ x+y-2z=1 \\end{cases}$ &nbsp; c) $\\begin{cases} x+y+z=5 \\\\ 2x-y=4 \\end{cases}$ &nbsp; d) $\\begin{cases} x+2y-z=5 \\\\ 3x-y+2z=8 \\\\ 2x+y+3z=12 \\end{cases}$",
+        answer: "Pilihan (a) dan (d)",
+        steps: `
+          <p>Syarat sebuah sistem disebut SPLTV adalah terdiri dari <strong>3 persamaan linear</strong> dengan <strong>3 variabel berpangkat satu</strong>:</p>
+          <ul>
+            <li><strong>(a) Memenuhi SPLTV:</strong> Ada 3 persamaan, 3 variabel ($x, y, z$), dan semuanya berpangkat 1.</li>
+            <li><strong>(b) Bukan SPLTV:</strong> Terdapat variabel $x^2$ (berpangkat dua/kuadrat).</li>
+            <li><strong>(c) Bukan SPLTV:</strong> Hanya terdiri dari 2 persamaan (kurang satu persamaan).</li>
+            <li><strong>(d) Memenuhi SPLTV:</strong> Ada 3 persamaan, 3 variabel ($x, y, z$), dan semuanya berpangkat 1.</li>
+          </ul>
+        `
+      },
+      {
+        num: 12,
+        bab: "2",
+        babLabel: "Bab 2 • SPLTV",
+        question: "Himpunan penyelesaian dari sistem persamaan linear tiga variabel $\\begin{cases} x + y + z = 4 \\\\ 2x - y + z = 8 \\\\ x + 2y - z = -3 \\end{cases}$ adalah...",
+        answer: "$\\{(2, -1, 3)\\}$",
+        steps: `
+          <p><strong>Langkah 1:</strong> Jumlahkan persamaan (1) dan (3) untuk langsung mencoret $z$:</p>
+          <p>$(x + y + z) + (x + 2y - z) = 4 + (-3) \\implies 2x + 3y = 1 \\quad \\text{...(Pers. 4)}$</p>
+          <p><strong>Langkah 2:</strong> Kurangkan persamaan (2) dengan persamaan (1) untuk mencoret $z$:</p>
+          <p>$(2x - y + z) - (x + y + z) = 8 - 4 \\implies x - 2y = 4 \\implies x = 4 + 2y \\quad \\text{...(Pers. 5)}$</p>
+          <p><strong>Langkah 3:</strong> Substitusikan $x = 4 + 2y$ ke persamaan (4):</p>
+          <p>$2(4 + 2y) + 3y = 1 \\implies 8 + 7y = 1 \\implies 7y = -7 \\implies y = -1$</p>
+          <p><strong>Langkah 4:</strong> Cari $x$ dan $z$:</p>
+          <p>$x = 4 + 2(-1) = 2$</p>
+          <p>$2 + (-1) + z = 4 \\implies 1 + z = 4 \\implies z = 3$</p>
+          <p>Jadi, himpunan penyelesaiannya adalah $\\mathbf{\\{(2, -1, 3)\\}}$.</p>
+        `
+      },
+      {
+        num: 13,
+        bab: "2",
+        babLabel: "Bab 2 • SPLTV",
+        question: "Diketahui sistem persamaan $\\begin{cases} 3x - 2y + z = 5 \\\\ 6x - 4y + 2z = a \\\\ 9x - 6y + 3z = b \\end{cases}$. Nilai $a$ dan $b$ yang memenuhi agar sistem konsisten adalah...",
+        answer: "$a = 10$ dan $b = 15$",
+        steps: `
+          <p>Perhatikan pola kelipatan pada ruas kiri masing-masing persamaan:</p>
+          <ul>
+            <li>Ruas kiri persamaan (2) adalah <strong>$2$ kali</strong> persamaan (1):<br>
+            $2(3x - 2y + z) = 2(5) \\implies 6x - 4y + 2z = 10$, maka $\\mathbf{a = 10}$.</li>
+            <li>Ruas kiri persamaan (3) adalah <strong>$3$ kali</strong> persamaan (1):<br>
+            $3(3x - 2y + z) = 3(5) \\implies 9x - 6y + 3z = 15$, maka $\\mathbf{b = 15}$.</li>
+          </ul>
+        `
+      },
+      {
+        num: 14,
+        bab: "2",
+        babLabel: "Bab 2 • SPLTV",
+        question: "Himpunan penyelesaian dari $\\begin{cases} 3x + 2y - z = 4 \\\\ 2x + z = 5 \\\\ x + y = 3 \\end{cases}$ adalah...",
+        answer: "$\\{(1, 2, 3)\\}$",
+        steps: `
+          <p>Gunakan strategi substitusi cepat karena persamaan (2) dan (3) hanya memiliki 2 variabel:</p>
+          <ul>
+            <li>Dari persamaan (2): $z = 5 - 2x$</li>
+            <li>Dari persamaan (3): $y = 3 - x$</li>
+          </ul>
+          <p>Substitusikan kedua bentuk tersebut ke persamaan (1):</p>
+          <p>$3x + 2(3 - x) - (5 - 2x) = 4$</p>
+          <p>$3x + 6 - 2x - 5 + 2x = 4$</p>
+          <p>$3x + 1 = 4 \\implies 3x = 3 \\implies x = 1$</p>
+          <p>Masukkan $x = 1$: diperoleh $y = 3 - 1 = 2$ dan $z = 5 - 2(1) = 3$.</p>
+          <p>Jadi, himpunan penyelesaiannya adalah $\\mathbf{\\{(1, 2, 3)\\}}$.</p>
+        `
+      },
+      {
+        num: 15,
+        bab: "2",
+        babLabel: "Bab 2 • SPLTV",
+        question: "Diketahui $\\begin{cases} 3x + 2y - z = 9 \\\\ 2x - y + 3z = 5 \\\\ 4x + y - 3z = 3 \\end{cases}$. Nilai $5x - 2y + z = \\dots$",
+        answer: "$\\dfrac{5}{3}$ atau $1\\dfrac{2}{3}$",
+        steps: `
+          <p><strong>Langkah 1:</strong> Jumlahkan persamaan (2) dan (3) karena $-y+y$ dan $+3z-3z$ langsung habis:</p>
+          <p>$(2x - y + 3z) + (4x + y - 3z) = 5 + 3 \\implies 6x = 8 \\implies x = \\dfrac{4}{3}$</p>
+          <p><strong>Langkah 2:</strong> Substitusi $x = \\frac{4}{3}$ ke persamaan (1) dan (2):</p>
+          <ul>
+            <li>Pers. (1): $3(\\frac{4}{3}) + 2y - z = 9 \\implies 4 + 2y - z = 9 \\implies 2y - z = 5$</li>
+            <li>Pers. (2): $2(\\frac{4}{3}) - y + 3z = 5 \\implies \\frac{8}{3} - y + 3z = 5 \\implies -y + 3z = \\frac{7}{3}$</li>
+          </ul>
+          <p><strong>Langkah 3:</strong> Eliminasi $y$ dengan menjumlahkan $(2y - z = 5)$ dan $2(-y + 3z = \\frac{7}{3})$:</p>
+          <p>$5z = 5 + \\dfrac{14}{3} = \\dfrac{29}{3} \\implies z = \\dfrac{29}{15}$</p>
+          <p>Lalu $2y = 5 + \\dfrac{29}{15} = \\dfrac{104}{15} \\implies y = \\dfrac{52}{15}$.</p>
+          <p><strong>Langkah 4:</strong> Hitung $5x - 2y + z$:</p>
+          <p>$5\\left(\\dfrac{4}{3}\\right) - 2\\left(\\dfrac{52}{15}\\right) + \\dfrac{29}{15} = \\dfrac{100 - 104 + 29}{15} = \\dfrac{25}{15} = \\mathbf{\\dfrac{5}{3}}$</p>
+        `
+      },
+      {
+        num: 16,
+        bab: "2",
+        babLabel: "Bab 2 • Aplikasi SPLTV",
+        question: "Empat tahun yang lalu, jumlah usia Gilang, Hesti, dan Indah adalah $30$ tahun. Sekarang usia Gilang $3$ tahun kurang dari Hesti. Jika jumlah usia Hesti dan Indah sekarang adalah $28$ tahun, maka usia Gilang sekarang adalah...",
+        answer: "$14$ tahun",
+        steps: `
+          <p>Misalkan usia sekarang: Gilang $= G$, Hesti $= H$, dan Indah $= I$.</p>
+          <ul>
+            <li><strong>Empat tahun lalu jumlah usia $30$ tahun:</strong><br>
+            $(G - 4) + (H - 4) + (I - 4) = 30 \\implies G + H + I - 12 = 30 \\implies G + H + I = 42$</li>
+            <li><strong>Diketahui jumlah usia Hesti dan Indah sekarang:</strong><br>
+            $H + I = 28$</li>
+          </ul>
+          <p>Substitusikan $H + I = 28$ ke dalam persamaan total usia sekarang:</p>
+          <p>$G + (H + I) = 42 \\implies G + 28 = 42 \\implies G = 42 - 28 = \\mathbf{14\\text{ tahun}}$</p>
+        `
+      },
+      {
+        num: 17,
+        bab: "2",
+        babLabel: "Bab 2 • Aplikasi SPLTV",
+        question: "Koperasi sekolah menyediakan 3 jenis alat tulis, yaitu pulpen, pensil, dan spidol. Harga 2 pulpen dan 3 pensil adalah $\\text{Rp}23.000,00$. Harga 4 pulpen dan 3 spidol adalah $\\text{Rp}35.000,00$. Harga 1 pulpen, 2 pensil, dan 3 spidol adalah $\\text{Rp}30.000,00$. Jika Dinda membeli 2 spidol dan menyerahkan uang $\\text{Rp}20.000,00$, uang kembalian yang ia terima sebesar...",
+        answer: "$\\text{Rp}9.179,49$ (atau sekitar $\\text{Rp}9.200,00$)",
+        steps: `
+          <p>Misalkan harga 1 pulpen $= x$, 1 pensil $= y$, dan 1 spidol $= z$:</p>
+          <ul>
+            <li>(1) $2x + 3y = 23.000$</li>
+            <li>(2) $4x + 3z = 35.000$</li>
+            <li>(3) $x + 2y + 3z = 30.000$</li>
+          </ul>
+          <p><strong>Langkah 1:</strong> Kurangkan pers. (2) dengan pers. (3) untuk menghilangkan $3z$:</p>
+          <p>$(4x + 3z) - (x + 2y + 3z) = 35.000 - 30.000 \\implies 3x - 2y = 5.000 \\quad \\text{...(Pers. 4)}$</p>
+          <p><strong>Langkah 2:</strong> Eliminasi $y$ dari pers. (1) kali $2$ dan pers. (4) kali $3$:</p>
+          <p>$(4x + 6y) + (9x - 6y) = 46.000 + 15.000 \\implies 13x = 61.000 \\implies x = \\dfrac{61.000}{13}$</p>
+          <p><strong>Langkah 3:</strong> Cari harga 1 spidol ($z$) dari pers. (2):</p>
+          <p>$3z = 35.000 - 4\\left(\\dfrac{61.000}{13}\\right) = \\dfrac{455.000 - 244.000}{13} = \\dfrac{211.000}{13} \\implies z = \\dfrac{211.000}{39} \\approx \\text{Rp}5.410,26$</p>
+          <p><strong>Langkah 4:</strong> Harga 2 spidol $= \\frac{422.000}{39} \\approx \\text{Rp}10.820,51$.<br>
+          Kembalian $= 20.000 - 10.820,51 = \\mathbf{\\text{Rp}9.179,49}$.</p>
+          <div class="note-warning">Catatan: Soal ini memiliki angka asli yang menghasilkan pecahan desimal tidak bulat (kemungkinan salah ketik angka oleh pembuat soal).</div>
+        `
+      },
+      {
+        num: 18,
+        bab: "2",
+        babLabel: "Bab 2 • Aplikasi SPLTV",
+        question: "Rani mempunyai uang $\\text{Rp}430.000,00$ ($a$ lembar $10\\text{rb}$, $b$ lembar $20\\text{rb}$, $c$ lembar $50\\text{rb}$). Sinta mempunyai $\\text{Rp}370.000,00$ ($b$ lembar $20\\text{rb}$ dan $c$ lembar $50\\text{rb}$). Tari mempunyai $\\text{Rp}310.000,00$ ($a$ lembar $10\\text{rb}$ dan $c$ lembar $50\\text{rb}$). Jika Wulan hanya mempunyai uang seratus ribuan sebanyak $c$ lembar, banyak uang Wulan adalah...",
+        answer: "$\\text{Rp}500.000,00$",
+        steps: `
+          <p>Susun persamaan dalam satuan ribuan:</p>
+          <ul>
+            <li>Rani: $10a + 20b + 50c = 430 \\quad \\text{...(Pers. 1)}$</li>
+            <li>Sinta: $20b + 50c = 370 \\quad \\text{...(Pers. 2)}$</li>
+            <li>Tari: $10a + 50c = 310 \\quad \\text{...(Pers. 3)}$</li>
+          </ul>
+          <p><strong>Trik Cepat:</strong> Jumlahkan persamaan Sinta (2) dan Tari (3):</p>
+          <p>$(20b + 50c) + (10a + 50c) = 370 + 310$</p>
+          <p>$(10a + 20b + 50c) + 50c = 680$</p>
+          <p>Substitusikan persamaan Rani ($10a + 20b + 50c = 430$):</p>
+          <p>$430 + 50c = 680 \\implies 50c = 250 \\implies c = 5\\text{ lembar}$</p>
+          <p>Jadi, uang Wulan $= 5 \\times \\text{Rp}100.000,00 = \\mathbf{\\text{Rp}500.000,00}$.</p>
+        `
+      },
+      {
+        num: 19,
+        bab: "2",
+        babLabel: "Bab 2 • Aplikasi SPLTV",
+        question: "Dalam sebuah segitiga $ABC$, jumlah ketiga sudutnya adalah $180^\\circ$. Jumlah sudut $A$ dan sudut $B$ adalah dua kali sudut $C$. Jika sudut $B$ dikurangi sudut $A$ sama dengan $20^\\circ$, tentukan himpunan penyelesaiannya.",
+        answer: "$\\{(50^\\circ, 70^\\circ, 60^\\circ)\\}$",
+        steps: `
+          <ul>
+            <li>(1) $A + B + C = 180^\\circ$</li>
+            <li>(2) $A + B = 2C$</li>
+            <li>(3) $B - A = 20^\\circ \\implies B = A + 20^\\circ$</li>
+          </ul>
+          <p><strong>Langkah 1:</strong> Substitusikan $A + B = 2C$ ke persamaan (1):</p>
+          <p>$2C + C = 180^\\circ \\implies 3C = 180^\\circ \\implies C = 60^\\circ$</p>
+          <p><strong>Langkah 2:</strong> Substitusikan $C = 60^\\circ$ dan $B = A + 20^\\circ$ ke persamaan (2):</p>
+          <p>$A + (A + 20^\\circ) = 2(60^\\circ) \\implies 2A + 20^\\circ = 120^\\circ \\implies 2A = 100^\\circ \\implies A = 50^\\circ$</p>
+          <p><strong>Langkah 3:</strong> Cari sudut $B$: $B = 50^\\circ + 20^\\circ = 70^\\circ$.</p>
+          <p>Jadi, himpunan penyelesaian $(A, B, C)$ adalah $\\mathbf{\\{(50^\\circ, 70^\\circ, 60^\\circ)\\}}$.</p>
+        `
+      },
+      {
+        num: 20,
+        bab: "2",
+        babLabel: "Bab 2 • Aplikasi SPLTV",
+        question: "Berat 1 buah buku tulis, 1 buah kotak pensil, dan 1 buah penggaris adalah $2,1\\text{ kg}$. Sedangkan berat 6 buah buku tulis, 1 buah kotak pensil, dan 3 buah penggaris adalah $4,1\\text{ kg}$. Jika berat 1 buah kotak pensil dan 1 buah buku tulis adalah $1,8\\text{ kg}$, maka berat 1 buah buku tulis adalah...",
+        answer: "$0,28\\text{ kg}$ (atau $280\\text{ gram}$)",
+        steps: `
+          <p>Misalkan berat 1 buku tulis $= x$, 1 kotak pensil $= y$, dan 1 penggaris $= z$:</p>
+          <ul>
+            <li>(1) $x + y + z = 2,1$</li>
+            <li>(2) $6x + y + 3z = 4,1$</li>
+            <li>(3) $x + y = 1,8 \\implies y = 1,8 - x$</li>
+          </ul>
+          <p><strong>Langkah 1:</strong> Substitusikan $x + y = 1,8$ ke persamaan (1):</p>
+          <p>$1,8 + z = 2,1 \\implies z = 0,3\\text{ kg}$</p>
+          <p><strong>Langkah 2:</strong> Substitusikan $y = 1,8 - x$ dan $z = 0,3$ ke persamaan (2):</p>
+          <p>$6x + (1,8 - x) + 3(0,3) = 4,1$</p>
+          <p>$5x + 1,8 + 0,9 = 4,1 \\implies 5x + 2,7 = 4,1 \\implies 5x = 1,4 \\implies x = \\mathbf{0,28\\text{ kg}}$</p>
+        `
+      },
+
+      // BAB 3: PROGRAM LINEAR (21-30)
+      {
+        num: 21,
+        bab: "3",
+        babLabel: "Bab 3 • SPtLDV",
+        question: "Tentukan Daerah Himpunan Penyelesaian (DHP) pertidaksamaan $10x + 2y \\ge 10$.",
+        answer: "Daerah di sebelah kanan/atas garis penuh melalui $(1,0)$ dan $(0,5)$",
+        steps: `
+          <p><strong>Langkah 1:</strong> Sederhanakan pertidaksamaan dengan membagi kedua ruas dengan $2$: $5x + y \\ge 5$.</p>
+          <p><strong>Langkah 2:</strong> Tentukan titik potong garis $5x + y = 5$ terhadap sumbu koordinat:</p>
+          <ul>
+            <li>Jika $x = 0 \\implies y = 5$, titik $(0, 5)$</li>
+            <li>Jika $y = 0 \\implies 5x = 5 \\implies x = 1$, titik $(1, 0)$</li>
+          </ul>
+          <p><strong>Langkah 3:</strong> Uji titik $(0, 0)$: $5(0) + 0 \\ge 5 \\implies 0 \\ge 5$ (Salah). Karena tanda $\\ge$, garis digambar <strong>penuh</strong> dan arsiran menjauhi $(0,0)$ yaitu ke <strong>kanan / atas</strong> garis.</p>
+        `
+      },
+      {
+        num: 22,
+        bab: "3",
+        babLabel: "Bab 3 • SPtLDV",
+        question: "Tentukan daerah himpunan penyelesaian dari sistem pertidaksamaan $x + 5y > 10$; $4x + 3y \\le 12$; $x \\ge 0$; $y \\ge 0$.",
+        answer: "Kuadran I, di atas garis putus-putus $x+5y=10$ dan di bawah garis penuh $4x+3y=12$",
+        steps: `
+          <ol>
+            <li><strong>Garis $x + 5y > 10$:</strong> Melewati $(10, 0)$ dan $(0, 2)$. Karena tanda $>$, garis digambar <strong>putus-putus</strong> dan arsiran mengarah ke <strong>atas/kanan</strong>.</li>
+            <li><strong>Garis $4x + 3y \\le 12$:</strong> Melewati $(3, 0)$ dan $(0, 4)$. Karena tanda $\\le$, garis digambar <strong>penuh</strong> dan arsiran mengarah ke <strong>bawah/kiri</strong> menuju $(0,0)$.</li>
+            <li><strong>Syarat $x \\ge 0, y \\ge 0$:</strong> Daerah terbatas di Kuadran I (kanan sumbu-$Y$ dan atas sumbu-$X$).</li>
+          </ol>
+        `
+      },
+      {
+        num: 23,
+        bab: "3",
+        babLabel: "Bab 3 • SPtLDV",
+        question: "Tentukan DHP dari $\\begin{cases} x + 2y \\le 8 \\\\ 3x + 2y \\ge 12 \\\\ x \\ge 0, y \\ge 0 \\end{cases}$.",
+        answer: "Daerah segitiga di Kuadran I dengan titik sudut $(4, 0)$, $(8, 0)$, dan $(2, 3)$",
+        steps: `
+          <ul>
+            <li><strong>Garis 1 ($x + 2y \\le 8$):</strong> Melewati $(8, 0)$ dan $(0, 4)$, arsiran ke <strong>bawah</strong>.</li>
+            <li><strong>Garis 2 ($3x + 2y \\ge 12$):</strong> Melewati $(4, 0)$ dan $(0, 6)$, arsiran ke <strong>atas/kanan</strong>.</li>
+            <li><strong>Titik potong kedua garis:</strong> Kurangkan keduanya: $(3x + 2y) - (x + 2y) = 12 - 8 \\implies 2x = 4 \\implies x = 2$, lalu $2 + 2y = 8 \\implies y = 3$, titik $(2, 3)$.</li>
+            <li>Irisannya membentuk daerah <strong>segitiga</strong> dengan titik pojok $\\mathbf{(4,0)}$, $\\mathbf{(8,0)}$, dan $\\mathbf{(2,3)}$.</li>
+          </ul>
+        `
+      },
+      {
+        num: 24,
+        bab: "3",
+        babLabel: "Bab 3 • SPtLDV",
+        question: "Daerah penyelesaian sistem pertidaksamaan $x + y \\le 6$, $2x + y \\ge 3$, $x \\ge 1$, $x \\le 4$, dan $y \\ge 0$ memiliki bentuk...",
+        answer: "Segi lima (Pentagon)",
+        steps: `
+          <p>Cari semua titik sudut yang terbentuk oleh perpotongan batas-batas daerahnya:</p>
+          <ol>
+            <li>Perpotongan $x = 1$ dan $2x + y = 3 \\implies 2(1) + y = 3 \\implies (1, 1)$</li>
+            <li>Perpotongan $x = 1$ dan $x + y = 6 \\implies 1 + y = 6 \\implies (1, 5)$</li>
+            <li>Perpotongan $x = 4$ dan $x + y = 6 \\implies 4 + y = 6 \\implies (4, 2)$</li>
+            <li>Perpotongan $x = 4$ dan $y = 0 \\implies (4, 0)$</li>
+            <li>Perpotongan $2x + y = 3$ dan $y = 0 \\implies 2x = 3 \\implies (1{,}5; 0)$</li>
+          </ol>
+          <p>Karena dibatasi oleh <strong>5 titik sudut</strong>, bentuk daerah penyelesaiannya adalah <strong>segi lima</strong>.</p>
+        `
+      },
+      {
+        num: 25,
+        bab: "3",
+        babLabel: "Bab 3 • Program Linear",
+        question: "Perhatikan grafik pertidaksamaan (garis melalui $(0,8)-(4,0)$ dan $(0,6)-(12,0)$). Nilai minimum dari daerah penyelesaian di atas garis-garis tersebut dengan fungsi objektif $f(x, y) = 5x + 4y$ adalah...",
+        answer: "$28$",
+        steps: `
+          <p><strong>Langkah 1:</strong> Tentukan persamaan garis dan titik pojok daerah luar (atas):</p>
+          <ul>
+            <li>Garis 1 melalui $(0,8)$ dan $(4,0) \\implies 2x + y = 8$</li>
+            <li>Garis 2 melalui $(0,6)$ dan $(12,0) \\implies x + 2y = 12$</li>
+            <li><strong>Titik potong kedua garis:</strong> Substitusi $y = 8 - 2x$ ke garis 2:<br>
+            $x + 2(8 - 2x) = 12 \\implies 16 - 3x = 12 \\implies x = \\frac{4}{3}$, sehingga $y = 8 - \\frac{8}{3} = \\frac{16}{3}$.</li>
+          </ul>
+          <p><strong>Langkah 2:</strong> Uji ketiga titik pojok ke $f(x, y) = 5x + 4y$:</p>
+          <ul>
+            <li>Titik $(0, 8) \\implies 5(0) + 4(8) = 32$</li>
+            <li>Titik $(\\frac{4}{3}, \\frac{16}{3}) \\implies 5(\\frac{4}{3}) + 4(\\frac{16}{3}) = \\frac{20 + 64}{3} = \\frac{84}{3} = \\mathbf{28}$ (Minimum)</li>
+            <li>Titik $(12, 0) \\implies 5(12) + 4(0) = 60$</li>
+          </ul>
+        `
+      },
+      {
+        num: 26,
+        bab: "3",
+        babLabel: "Bab 3 • Program Linear",
+        question: "Nilai maksimum fungsi objektif $f(x, y) = 2x + 3y$ yang memenuhi pertidaksamaan $2x + y \\le 12$; $5x + 4y \\le 40$; $x, y \\ge 0$ adalah...",
+        answer: "$30$",
+        steps: `
+          <p><strong>Langkah 1:</strong> Tentukan titik-titik sudut daerah penyelesaian:</p>
+          <ul>
+            <li>$(0, 0)$</li>
+            <li>Titik potong $2x + y = 12$ dengan sumbu-$X$ ($y=0$) $\\implies (6, 0)$</li>
+            <li>Titik potong $5x + 4y = 40$ dengan sumbu-$Y$ ($x=0$) $\\implies (0, 10)$</li>
+            <li><strong>Titik potong kedua garis:</strong> Substitusi $y = 12 - 2x$ ke $5x + 4y = 40$:<br>
+            $5x + 4(12 - 2x) = 40 \\implies 48 - 3x = 40 \\implies x = \\frac{8}{3}$, dan $y = 12 - \\frac{16}{3} = \\frac{20}{3}$.</li>
+          </ul>
+          <p><strong>Langkah 2:</strong> Uji titik pojok ke $f(x, y) = 2x + 3y$:</p>
+          <ul>
+            <li>$(0, 0) \\implies 0$</li>
+            <li>$(6, 0) \\implies 2(6) + 0 = 12$</li>
+            <li>$(0, 10) \\implies 0 + 3(10) = \\mathbf{30}$ (Maksimum)</li>
+            <li>$(\\frac{8}{3}, \\frac{20}{3}) \\implies \\frac{16}{3} + 20 = 25\\frac{1}{3}$</li>
+          </ul>
+        `
+      },
+      {
+        num: 27,
+        bab: "3",
+        babLabel: "Bab 3 • SPtLDV",
+        question: "Daerah penyelesaian sistem pertidaksamaan linear $2x + y \\ge 8$, $x + 2y \\ge 12$, $y \\ge 3$ yang ditunjukkan pada gambar grafik adalah...",
+        answer: "Daerah II",
+        steps: `
+          <div class="diagram-box">
+            <svg width="240" height="150" viewBox="0 0 240 150" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <line x1="25" y1="10" x2="25" y2="135" stroke="currentColor" stroke-width="1.5"/>
+              <line x1="15" y1="125" x2="225" y2="125" stroke="currentColor" stroke-width="1.5"/>
+              <line x1="25" y1="20" x2="95" y2="135" stroke="#537fda" stroke-width="1.5"/>
+              <line x1="15" y1="45" x2="215" y2="130" stroke="#537fda" stroke-width="1.5"/>
+              <line x1="15" y1="88" x2="215" y2="88" stroke="#537fda" stroke-width="1.5"/>
+              <text x="12" y="25" fill="currentColor" font-size="10">8</text>
+              <text x="12" y="52" fill="currentColor" font-size="10">6</text>
+              <text x="12" y="91" fill="currentColor" font-size="10">3</text>
+              <text x="85" y="138" fill="currentColor" font-size="10">4</text>
+              <text x="195" y="138" fill="currentColor" font-size="10">12</text>
+              <text x="30" y="42" fill="currentColor" font-size="10">I</text>
+              <text x="115" y="55" fill="#537fda" font-weight="bold" font-size="12">II</text>
+              <text x="72" y="80" fill="currentColor" font-size="10">III</text>
+              <text x="40" y="75" fill="currentColor" font-size="10">IV</text>
+              <text x="105" y="112" fill="currentColor" font-size="10">V</text>
+              <text x="45" y="112" fill="currentColor" font-size="10">VI</text>
+            </svg>
+          </div>
+          <ul>
+            <li>$2x + y \\ge 8$ (garis curam melalui $(0,8)$ dan $(4,0)$) $\\implies$ arsiran di sebelah <strong>kanan</strong> garis.</li>
+            <li>$x + 2y \\ge 12$ (garis landai melalui $(0,6)$ dan $(12,0)$) $\\implies$ arsiran di sebelah <strong>atas</strong> garis.</li>
+            <li>$y \\ge 3$ (garis mendatar) $\\implies$ arsiran di <strong>atas</strong> garis mendatar.</li>
+            <li>Irisan ketiga syarat tersebut berada pada <strong>Daerah II</strong>.</li>
+          </ul>
+        `
+      },
+      {
+        num: 28,
+        bab: "3",
+        babLabel: "Bab 3 • Model Matematika",
+        question: "Sebuah industri rumah tangga memproduksi tas ransel ($x$) dan tas selempang ($y$). Persediaan bahan adalah $48\\text{ m}^2$ kulit sintetis dan $60\\text{ m}^2$ kain kanvas. Setiap tas ransel memerlukan $3\\text{ m}^2$ kulit sintetis dan $2\\text{ m}^2$ kain kanvas, sedangkan tas selempang memerlukan $2\\text{ m}^2$ kulit sintetis dan $4\\text{ m}^2$ kain kanvas. Model matematika yang sesuai adalah...",
+        answer: "$3x + 2y \\le 48$; &nbsp;$x + 2y \\le 30$; &nbsp;$x \\ge 0$; &nbsp;$y \\ge 0$",
+        steps: `
+          <ul>
+            <li><strong>Kendala Kulit Sintetis (maks. $48\\text{ m}^2$):</strong> $3x + 2y \\le 48$</li>
+            <li><strong>Kendala Kain Kanvas (maks. $60\\text{ m}^2$):</strong> $2x + 4y \\le 60$ (sederhanakan dibagi $2$) $\\implies x + 2y \\le 30$</li>
+            <li><strong>Syarat banyak barang tidak negatif:</strong> $x \\ge 0$, $y \\ge 0$</li>
+          </ul>
+        `
+      },
+      {
+        num: 29,
+        bab: "3",
+        babLabel: "Bab 3 • Model Matematika",
+        question: "Seorang pembuat kue memproduksi dua jenis roti basah. Roti jenis pertama ($x$) memerlukan $200\\text{ gram}$ tepung terigu dan $100\\text{ gram}$ gula pasir. Roti jenis kedua ($y$) memerlukan $100\\text{ gram}$ tepung terigu dan $300\\text{ gram}$ gula pasir. Persediaan tepung terigu $4\\text{ kg}$ dan gula pasir $6\\text{ kg}$. Sistem pertidaksamaan yang memenuhi adalah...",
+        answer: "$2x + y \\le 40$; &nbsp;$x + 3y \\le 60$; &nbsp;$x \\ge 0$; &nbsp;$y \\ge 0$",
+        steps: `
+          <p>Ubah terlebih dahulu persediaan bahan ke satuan gram: $4\\text{ kg} = 4.000\\text{ gram}$ dan $6\\text{ kg} = 6.000\\text{ gram}$.</p>
+          <ul>
+            <li><strong>Tepung terigu:</strong> $200x + 100y \\le 4.000$ (bagi $100$) $\\implies \\mathbf{2x + y \\le 40}$</li>
+            <li><strong>Gula pasir:</strong> $100x + 300y \\le 6.000$ (bagi $100$) $\\implies \\mathbf{x + 3y \\le 60}$</li>
+            <li><strong>Syarat non-negatif:</strong> $\\mathbf{x \\ge 0, y \\ge 0}$</li>
+          </ul>
+        `
+      },
+      {
+        num: 30,
+        bab: "3",
+        babLabel: "Bab 3 • Optimasi Program Linear",
+        question: "Industri rumahan memproduksi Sepatu Sekolah ($x$) dan Sepatu Olahraga ($y$). Sepatu Sekolah butuh $2\\text{ jam}$ mesin pemotong dan $1\\text{ jam}$ mesin penjahit sol. Sepatu Olahraga butuh $1\\text{ jam}$ mesin pemotong dan $2\\text{ jam}$ mesin penjahit sol. Kapasitas mesin pemotong maks. $24\\text{ jam}$ dan penjahit sol maks. $30\\text{ jam}$. Keuntungan Sepatu Sekolah $\\text{Rp}50.000$ dan Sepatu Olahraga $\\text{Rp}40.000$. Keuntungan maksimumnya adalah...",
+        answer: "$\\text{Rp}780.000,00$",
+        steps: `
+          <p><strong>Model Matematika:</strong> $2x + y \\le 24$; $x + 2y \\le 30$; $x, y \\ge 0$, dengan $f(x, y) = 50.000x + 40.000y$.</p>
+          <p><strong>Cari titik potong kedua garis:</strong> Substitusi $y = 24 - 2x$ ke $x + 2y = 30$:</p>
+          <p>$x + 2(24 - 2x) = 30 \\implies 48 - 3x = 30 \\implies 3x = 18 \\implies x = 6$, dan $y = 24 - 12 = 12$.</p>
+          <p><strong>Uji titik-titik sudut DHP:</strong></p>
+          <ul>
+            <li>$(0, 0) \\implies \\text{Rp}0$</li>
+            <li>$(12, 0) \\implies 50.000(12) = \\text{Rp}600.000$</li>
+            <li>$(0, 15) \\implies 40.000(15) = \\text{Rp}600.000$</li>
+            <li>$(6, 12) \\implies 50.000(6) + 40.000(12) = 300.000 + 480.000 = \\mathbf{\\text{Rp}780.000,00}$ (Maksimum)</li>
+          </ul>
+        `
+      },
+
+      // BAB 4: TRIGONOMETRI (31-40)
+      {
+        num: 31,
+        bab: "4",
+        babLabel: "Bab 4 • Perbandingan Trigonometri",
+        question: "Diketahui segitiga $ABC$ siku-siku di $B$ dengan panjang sisi tegak $AB = 24\\text{ cm}$ dan sisi miring $AC = 26\\text{ cm}$. Nilai dari $\\tan C$ adalah...",
+        answer: "$\\dfrac{12}{5}$ atau $2,4$",
+        steps: `
+          <p><strong>Langkah 1:</strong> Cari panjang sisi mendatar $BC$ menggunakan Teorema Pythagoras:</p>
+          <p>$BC = \\sqrt{AC^2 - AB^2} = \\sqrt{26^2 - 24^2} = \\sqrt{676 - 576} = \\sqrt{100} = 10\\text{ cm}$</p>
+          <p><strong>Langkah 2:</strong> Dari sudut $C$, sisi depannya adalah $AB = 24$ dan sisi sampingnya adalah $BC = 10$:</p>
+          <p>$\\tan C = \\dfrac{\\text{Depan}}{\\text{Samping}} = \\dfrac{AB}{BC} = \\dfrac{24}{10} = \\mathbf{\\dfrac{12}{5}} = \\mathbf{2,4}$</p>
+        `
+      },
+      {
+        num: 32,
+        bab: "4",
+        babLabel: "Bab 4 • Kuadran Trigonometri",
+        question: "Jika diketahui $\\tan A = -\\dfrac{1}{3}$ dan sudut $A$ merupakan sudut tumpul, tentukan:<br>a) Letak Kuadran sudut $A$<br>b) Nilai $\\sin A$<br>c) Nilai $\\cos A$<br>d) Nilai $\\sin A \\cdot \\cos A$",
+        answer: "a) Kuadran II, &nbsp; b) $\\frac{1}{10}\\sqrt{10}$, &nbsp; c) $-\\frac{3}{10}\\sqrt{10}$, &nbsp; d) $-\\frac{3}{10}$",
+        steps: `
+          <ul>
+            <li><strong>a) Kuadran:</strong> Sudut tumpul ($90^\\circ < A < 180^\\circ$) berada di <strong>Kuadran II</strong> (nilai $\\sin$ positif, nilai $\\cos$ negatif).</li>
+            <li><strong>Menentukan sisi segitiga:</strong> Dari $\\tan A = \\frac{y}{x} = \\frac{1}{-3}$, sisi miring $r = \\sqrt{(-3)^2 + 1^2} = \\sqrt{10}$.</li>
+            <li><strong>b) Nilai $\\sin A$:</strong> $\\dfrac{y}{r} = \\dfrac{1}{\\sqrt{10}} = \\mathbf{\\dfrac{1}{10}\\sqrt{10}}$</li>
+            <li><strong>c) Nilai $\\cos A$:</strong> $\\dfrac{x}{r} = \\dfrac{-3}{\\sqrt{10}} = \\mathbf{-\\dfrac{3}{10}\\sqrt{10}}$</li>
+            <li><strong>d) Perkalian:</strong> $\\sin A \\cdot \\cos A = \\left(\\dfrac{1}{\\sqrt{10}}\\right)\\left(-\\dfrac{3}{\\sqrt{10}}\\right) = \\mathbf{-\\dfrac{3}{10}}$</li>
+          </ul>
+        `
+      },
+      {
+        num: 33,
+        bab: "4",
+        babLabel: "Bab 4 • Sudut Berelasi",
+        question: "Nilai dari $\\dfrac{\\cos 45^\\circ \\cdot \\sin 150^\\circ \\cdot \\tan 315^\\circ}{\\sin 45^\\circ \\cdot \\cos 300^\\circ \\cdot \\cot 135^\\circ}$ adalah...",
+        answer: "$1$",
+        steps: `
+          <p>Ubah masing-masing sudut ke sudut lancip istimewa menggunakan relasi kuadran:</p>
+          <ul>
+            <li>$\\cos 45^\\circ = \\frac{1}{2}\\sqrt{2}$</li>
+            <li>$\\sin 150^\\circ = \\sin(180^\\circ - 30^\\circ) = +\\sin 30^\\circ = \\frac{1}{2}$ (Kuadran II)</li>
+            <li>$\\tan 315^\\circ = \\tan(360^\\circ - 45^\\circ) = -\\tan 45^\\circ = -1$ (Kuadran IV)</li>
+            <li>$\\sin 45^\\circ = \\frac{1}{2}\\sqrt{2}$</li>
+            <li>$\\cos 300^\\circ = \\cos(360^\\circ - 60^\\circ) = +\\cos 60^\\circ = \\frac{1}{2}$ (Kuadran IV)</li>
+            <li>$\\cot 135^\\circ = \\cot(180^\\circ - 45^\\circ) = -\\cot 45^\\circ = -1$ (Kuadran II)</li>
+          </ul>
+          <p>Substitusikan ke pecahan: $\\dfrac{\\left(\\frac{1}{2}\\sqrt{2}\\right) \\cdot \\left(\\frac{1}{2}\\right) \\cdot (-1)}{\\left(\\frac{1}{2}\\sqrt{2}\\right) \\cdot \\left(\\frac{1}{2}\\right) \\cdot (-1)} = \\mathbf{1}$</p>
+        `
+      },
+      {
+        num: 34,
+        bab: "4",
+        babLabel: "Bab 4 • Kuadran Trigonometri",
+        question: "Diketahui $\\tan \\beta = -\\dfrac{4}{3}$ dan sudut $\\beta$ berada di Kuadran II. Nilai dari $\\cos \\beta$ adalah...",
+        answer: "$-\\dfrac{3}{5}$",
+        steps: `
+          <p>Di Kuadran II, koordinat $y$ bernilai positif dan $x$ bernilai negatif, sehingga dari $\\tan \\beta = \\frac{y}{x} = \\frac{4}{-3}$:</p>
+          <p>$r = \\sqrt{(-3)^2 + 4^2} = \\sqrt{9 + 16} = \\sqrt{25} = 5$</p>
+          <p>Maka $\\cos \\beta = \\dfrac{x}{r} = \\mathbf{-\\dfrac{3}{5}}$.</p>
+        `
+      },
+      {
+        num: 35,
+        bab: "4",
+        babLabel: "Bab 4 • Luas Segitiga",
+        question: "Diketahui segitiga $ABC$ dengan panjang $AC = 12\\text{ cm}$ dan $AB = 9\\text{ cm}$. Tentukan luas segitiga jika diketahui besar sudut $A = 135^\\circ$!",
+        answer: "$27\\sqrt{2}\\text{ cm}^2$",
+        steps: `
+          <p>Gunakan rumus luas segitiga jika diketahui dua sisi dan satu sudut apit ($L = \\frac{1}{2} \\cdot b \\cdot c \\cdot \\sin A$):</p>
+          <p>$L = \\dfrac{1}{2} \\cdot 12 \\cdot 9 \\cdot \\sin 135^\\circ$</p>
+          <p>Ingat $\\sin 135^\\circ = \\sin(180^\\circ - 45^\\circ) = \\sin 45^\\circ = \\frac{1}{2}\\sqrt{2}$:</p>
+          <p>$L = 54 \\cdot \\left(\\dfrac{1}{2}\\sqrt{2}\\right) = \\mathbf{27\\sqrt{2}\\text{ cm}^2}$</p>
+        `
+      },
+      {
+        num: 36,
+        bab: "4",
+        babLabel: "Bab 4 • Aturan Sinus",
+        question: "Pada segitiga $ABC$, jika diketahui sisi $a = 8\\text{ cm}$, sisi $b = 4\\sqrt{2}\\text{ cm}$, dan sudut $A = 45^\\circ$, maka besar sudut $B$ adalah...",
+        answer: "$30^\\circ$",
+        steps: `
+          <p>Gunakan <strong>Aturan Sinus</strong> $\\dfrac{a}{\\sin A} = \\dfrac{b}{\\sin B}$:</p>
+          <p>$\\dfrac{8}{\\sin 45^\\circ} = \\dfrac{4\\sqrt{2}}{\\sin B}$</p>
+          <p>$\\sin B = \\dfrac{4\\sqrt{2} \\cdot \\sin 45^\\circ}{8} = \\dfrac{4\\sqrt{2} \\cdot \\frac{1}{2}\\sqrt{2}}{8} = \\dfrac{4 \\cdot 1}{8} = \\dfrac{1}{2}$</p>
+          <p>Karena sisi $b < a$ ($4\\sqrt{2} < 8$), maka sudut $B$ harus lebih kecil dari $45^\\circ$, sehingga $\\angle B = \\mathbf{30^\\circ}$.</p>
+        `
+      },
+      {
+        num: 37,
+        bab: "4",
+        babLabel: "Bab 4 • Aturan Sinus",
+        question: "Suatu segitiga $ABC$ memiliki panjang $BC = 12\\text{ cm}$, besar sudut $A = 60^\\circ$, dan sudut $C = 30^\\circ$. Panjang sisi $AB$ adalah...",
+        answer: "$4\\sqrt{3}\\text{ cm}$",
+        steps: `
+          <p>Sisi $BC$ berada di depan sudut $A$, dan sisi $AB$ berada di depan sudut $C$. Gunakan <strong>Aturan Sinus</strong>:</p>
+          <p>$\\dfrac{AB}{\\sin C} = \\dfrac{BC}{\\sin A}$</p>
+          <p>$\\dfrac{AB}{\\sin 30^\\circ} = \\dfrac{12}{\\sin 60^\\circ}$</p>
+          <p>$AB = \\dfrac{12 \\cdot \\frac{1}{2}}{\\frac{1}{2}\\sqrt{3}} = \\dfrac{6}{\\frac{1}{2}\\sqrt{3}} = \\dfrac{12}{\\sqrt{3}} \\times \\dfrac{\\sqrt{3}}{\\sqrt{3}} = \\mathbf{4\\sqrt{3}\\text{ cm}}$</p>
+        `
+      },
+      {
+        num: 38,
+        bab: "4",
+        babLabel: "Bab 4 • Aturan Cosinus",
+        question: "Sebuah kapal berlayar dari pelabuhan $P$ ke pelabuhan $Q$ dengan jurusan tiga angka $120^\\circ$ sejauh $60\\text{ km}$, kemudian berlayar menuju pelabuhan $R$ dengan jurusan $240^\\circ$ sejauh $100\\text{ km}$. Jarak antara pelabuhan $R$ dan $P$ adalah...",
+        answer: "$20\\sqrt{19}\\text{ km}$",
+        steps: `
+          <p><strong>Langkah 1:</strong> Tentukan besar sudut apit $\\angle PQR$ di pelabuhan $Q$:</p>
+          <ul>
+            <li>Arah datang dari $P$ ke $Q$ adalah $120^\\circ$, sehingga arah balik dari $Q$ ke $P$ adalah $120^\\circ + 180^\\circ = 300^\\circ$.</li>
+            <li>Arah dari $Q$ ke $R$ adalah $240^\\circ$, maka $\\angle PQR = 300^\\circ - 240^\\circ = 60^\\circ$.</li>
+          </ul>
+          <p><strong>Langkah 2:</strong> Gunakan <strong>Aturan Cosinus</strong> untuk mencari $PR$:</p>
+          <p>$PR^2 = PQ^2 + QR^2 - 2(PQ)(QR)\\cos 60^\\circ$</p>
+          <p>$PR^2 = 60^2 + 100^2 - 2(60)(100)\\left(\\frac{1}{2}\\right) = 3.600 + 10.000 - 6.000 = 7.600$</p>
+          <p>$PR = \\sqrt{7.600} = \\sqrt{400 \\cdot 19} = \\mathbf{20\\sqrt{19}\\text{ km}}$</p>
+        `
+      },
+      {
+        num: 39,
+        bab: "4",
+        babLabel: "Bab 4 • Aplikasi Trigonometri",
+        question: "Sebuah tangga yang panjangnya $10\\text{ meter}$ disandarkan pada dinding sebuah gedung. Jika ujung bawah tangga berada di lantai dan membentuk sudut $45^\\circ$ dengan permukaan lantai, maka tinggi dinding yang dapat dicapai ujung atas tangga adalah...",
+        answer: "$5\\sqrt{2}\\text{ meter}$",
+        steps: `
+          <p>Panjang tangga merupakan sisi miring ($10\\text{ m}$), sedangkan tinggi dinding berada di depan sudut $45^\\circ$:</p>
+          <p>$\\sin 45^\\circ = \\dfrac{\\text{Tinggi dinding}}{\\text{Panjang tangga}}$</p>
+          <p>$\\text{Tinggi dinding} = 10 \\cdot \\sin 45^\\circ = 10 \\cdot \\left(\\dfrac{1}{2}\\sqrt{2}\\right) = \\mathbf{5\\sqrt{2}\\text{ meter}}$</p>
+        `
+      },
+      {
+        num: 40,
+        bab: "4",
+        babLabel: "Bab 4 • Sudut Elevasi",
+        question: "Wiwit memandang puncak sebuah tebing dari posisi berbaring di tanah dengan sudut elevasi $30^\\circ$, sedangkan Wanda berada tepat $10\\text{ m}$ di depan Wiwit. Jika tinggi tebing tersebut $25\\text{ m}$, maka jarak horizontal Wanda ke dasar tebing tersebut adalah...",
+        answer: "$(25\\sqrt{3} - 10)\\text{ meter}$ (atau sekitar $33,3\\text{ meter}$)",
+        steps: `
+          <p>Misalkan jarak horizontal Wanda ke dasar tebing $= x$. Karena Wiwit berada $10\\text{ m}$ di belakang Wanda, jarak Wiwit ke dasar tebing adalah $x + 10$.</p>
+          <p>Gunakan perbandingan $\\tan 30^\\circ = \\dfrac{\\text{depan (tinggi tebing)}}{\\text{samping (jarak Wiwit)}}$:</p>
+          <p>$\\tan 30^\\circ = \\dfrac{25}{x + 10}$</p>
+          <p>$\\dfrac{1}{\\sqrt{3}} = \\dfrac{25}{x + 10}$</p>
+          <p>$x + 10 = 25\\sqrt{3} \\implies x = \\mathbf{(25\\sqrt{3} - 10)\\text{ meter}}$</p>
+          <p>Jika dihitung desimal ($\\sqrt{3} \\approx 1,732$): $25(1,732) - 10 = 43,3 - 10 = \\mathbf{33,3\\text{ meter}}$.</p>
+        `
+      }
+    ];
+
+    const $ = id => document.getElementById(id);
+    let currentTab = "materi";
+    let currentMateriBab = "all";
+    let currentSoalBab = "all";
+    let allStepsExpanded = false;
+
+    // Render ulang rumus KaTeX
+    function renderMath() {
+      if (typeof renderMathInElement === "function") {
+        renderMathInElement(document.body, {
+          delimiters: [
+            { left: "$$", right: "$$", display: true },
+            { left: "$", right: "$", display: false }
+          ],
+          throwOnError: false
+        });
+      }
+    }
+
+    // Navigasi Tab Atas
+    function switchTab(tab) {
+      currentTab = tab;
+      const isMateri = tab === "materi";
+      $("view-materi").classList.toggle("hidden", !isMateri);
+      $("view-soal").classList.toggle("hidden", isMateri);
+
+      $("tab-materi").classList.toggle("active", isMateri);
+      $("tab-soal").classList.toggle("active", !isMateri);
+
+      if (isMateri) {
+        $("tab-materi").setAttribute("aria-current", "page");
+        $("tab-soal").removeAttribute("aria-current");
+      } else {
+        $("tab-soal").setAttribute("aria-current", "page");
+        $("tab-materi").removeAttribute("aria-current");
+      }
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    }
+
+    $("tab-materi").addEventListener("click", () => switchTab("materi"));
+    $("tab-soal").addEventListener("click", () => switchTab("soal"));
+
+    // Lompat dari kartu Materi langsung ke filter Soal bab terkait
+    function goToSoalBab(bab) {
+      switchTab("soal");
+      currentSoalBab = bab;
+      document.querySelectorAll("#soal-filters .chip").forEach(btn => {
+        btn.classList.toggle("active", btn.dataset.bab === bab);
+      });
+      renderSoal();
+    }
+
+    // Filter Materi
+    function renderMateri() {
+      const q = $("search-input").value.trim().toLowerCase();
+      const cards = document.querySelectorAll("#materi-list .materi-card");
+      let visibleCount = 0;
+
+      cards.forEach(card => {
+        const matchBab = currentMateriBab === "all" || card.dataset.bab === currentMateriBab;
+        const matchText = !q || card.textContent.toLowerCase().includes(q);
+        const show = matchBab && matchText;
+        card.classList.toggle("hidden", !show);
+        if (show) visibleCount++;
+      });
+
+      $("materi-count").textContent = `${visibleCount} Bab Materi`;
+    }
+
+    document.querySelectorAll("#materi-filters .chip").forEach(chip => {
+      chip.addEventListener("click", () => {
+        currentMateriBab = chip.dataset.bab;
+        document.querySelectorAll("#materi-filters .chip").forEach(c => c.classList.remove("active"));
+        chip.classList.add("active");
+        renderMateri();
+      });
+    });
+
+    // Render Jump Grid (Nomor 1-40)
+    function renderJumpGrid(filteredSoal) {
+      const grid = $("jump-grid");
+      grid.innerHTML = "";
+      filteredSoal.forEach(item => {
+        const btn = document.createElement("button");
+        btn.type = "button";
+        btn.className = "jump-btn";
+        btn.textContent = item.num;
+        btn.title = `Lompat ke Soal No. ${item.num}`;
+        btn.addEventListener("click", () => {
+          const target = $(`soal-${item.num}`);
+          if (target) {
+            target.scrollIntoView({ behavior: "smooth", block: "start" });
+          }
+        });
+        grid.appendChild(btn);
+      });
+    }
+
+    // Render Daftar Soal 1-40
+    function renderSoal() {
+      const q = $("search-input").value.trim().toLowerCase();
+      const list = $("soal-list");
+
+      const filtered = soalData.filter(item => {
+        const matchBab = currentSoalBab === "all" || item.bab === currentSoalBab;
+        if (!matchBab) return false;
+        if (!q) return true;
+        const searchable = `no ${item.num} nomor ${item.num} ${item.babLabel} ${item.question} ${item.answer} ${item.steps}`.toLowerCase();
+        return searchable.includes(q);
+      });
+
+      $("soal-count").textContent = `Menampilkan ${filtered.length} dari 40 soal`;
+      renderJumpGrid(filtered);
+
+      if (!filtered.length) {
+        list.innerHTML = `<div class="empty-state">Tidak ada soal yang cocok dengan pencarian "<strong>${q}</strong>". Coba kata kunci atau nomor lain.</div>`;
+        return;
+      }
+
+      list.innerHTML = filtered.map(item => `
+        <article class="soal-card" id="soal-${item.num}">
+          <div class="soal-top">
+            <div class="soal-meta">
+              <span class="soal-num">No. ${item.num}</span>
+              <span class="soal-bab">${item.babLabel}</span>
+            </div>
+          </div>
+
+          <div class="soal-question">${item.question}</div>
+
+          <div class="soal-actions">
+            <div class="answer-box">
+              <span class="answer-label">Jawaban:</span>
+              <span>${item.answer}</span>
+            </div>
+
+            <button type="button" class="step-toggle ${allStepsExpanded ? "open" : ""}" data-target="steps-${item.num}">
+              <span>${allStepsExpanded ? "Sembunyikan Langkah" : "Lihat Langkah"}</span>
+              <i data-lucide="chevron-down"></i>
+            </button>
+          </div>
+
+          <div id="steps-${item.num}" class="steps-body ${allStepsExpanded ? "" : "hidden"}">
+            ${item.steps}
+          </div>
+        </article>
+      `).join("");
+
+      // Pasang event listener untuk tiap tombol buka/tutup langkah
+      list.querySelectorAll(".step-toggle").forEach(btn => {
+        btn.addEventListener("click", () => {
+          const body = $(btn.dataset.target);
+          const isHidden = body.classList.toggle("hidden");
+          btn.classList.toggle("open", !isHidden);
+          btn.querySelector("span").textContent = isHidden ? "Lihat Langkah" : "Sembunyikan Langkah";
+        });
+      });
+
+      lucide.createIcons();
+      renderMath();
+    }
+
+    // Filter Bab pada Tab Soal
+    document.querySelectorAll("#soal-filters .chip").forEach(chip => {
+      chip.addEventListener("click", () => {
+        currentSoalBab = chip.dataset.bab;
+        document.querySelectorAll("#soal-filters .chip").forEach(c => c.classList.remove("active"));
+        chip.classList.add("active");
+        renderSoal();
+      });
+    });
+
+    // Tombol Buka/Tutup Semua Pembahasan
+    $("toggle-all-steps").addEventListener("click", () => {
+      allStepsExpanded = !allStepsExpanded;
+      $("toggle-all-steps").innerHTML = allStepsExpanded
+        ? `<i data-lucide="chevrons-up"></i> Tutup Semua Pembahasan`
+        : `<i data-lucide="chevrons-down"></i> Buka Semua Pembahasan`;
+      renderSoal();
+    });
+
+    // Pencarian Real-Time di kedua tab
+    $("search-input").addEventListener("input", () => {
+      renderMateri();
+      renderSoal();
+    });
+
+    // Tema Terang & Gelap (sesuai localStorage shira-theme)
+    const applyTheme = dark => {
+      document.body.classList.toggle("dark", dark);
+      $("theme-toggle").setAttribute("aria-label", dark ? "Aktifkan tema terang" : "Aktifkan tema gelap");
+      $("theme-toggle").innerHTML = `<i data-lucide="${dark ? "sun" : "moon"}"></i>`;
+      lucide.createIcons();
+    };
+
+    if (localStorage.getItem("shira-theme") === "dark") {
+      applyTheme(true);
+    }
+
+    $("theme-toggle").addEventListener("click", () => {
+      const dark = !document.body.classList.contains("dark");
+      localStorage.setItem("shira-theme", dark ? "dark" : "light");
+      applyTheme(dark);
+    });
+
+    // Inisialisasi awal
+    renderMateri();
+    renderSoal();
+    lucide.createIcons();
+  </script>
+</body>
+</html>
