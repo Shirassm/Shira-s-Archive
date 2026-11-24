@@ -1,0 +1,2225 @@
+<!doctype html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Shira's Archive — Arsip Materi & Kisi-Kisi IPS Kelas 10</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/lucide@0.577.0/dist/umd/lucide.min.js"></script>
+  <style>
+    :root {
+      --bg: #f5f8fd;
+      --surface: #fff;
+      --surface2: #edf4fd;
+      --text: #25334a;
+      --muted: #718099;
+      --line: #e3eaf4;
+      --blue: #537fda;
+      --blue2: #e8f0ff;
+      --shadow: 0 12px 36px rgba(48, 79, 129, .07);
+    }
+    body.dark {
+      --bg: #101827;
+      --surface: #192437;
+      --surface2: #202e45;
+      --text: #eef4ff;
+      --muted: #a7b5cb;
+      --line: #344159;
+      --blue: #8bb3ff;
+      --blue2: #263d65;
+      --shadow: 0 12px 36px rgba(0, 0, 0, .17);
+    }
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      background: var(--bg);
+      color: var(--text);
+      font-family: "Plus Jakarta Sans", sans-serif;
+      line-height: 1.65;
+      transition: background .25s, color .25s;
+    }
+    button, input, textarea { font-family: "Plus Jakarta Sans", sans-serif; }
+    button { cursor: pointer; }
+    button:focus-visible, input:focus-visible {
+      outline: 3px solid var(--blue);
+      outline-offset: 3px;
+    }
+    .wrap {
+      max-width: 1190px;
+      margin: auto;
+      padding: 0 28px;
+    }
+
+    /* Header (Persis template Shira's Archive) */
+    .site-header {
+      background: var(--surface);
+      border-bottom: 1px solid var(--line);
+      position: sticky;
+      top: 0;
+      z-index: 20;
+    }
+    .nav-inner {
+      min-height: 78px;
+      display: flex;
+      align-items: center;
+      gap: 24px;
+      flex-wrap: wrap;
+      padding-top: 12px;
+      padding-bottom: 12px;
+    }
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 11px;
+      font-weight: 800;
+      font-size: 18px;
+      white-space: nowrap;
+      border: 0;
+      background: transparent;
+      color: var(--text);
+      padding: 0;
+    }
+    .brand-mark {
+      width: 38px;
+      height: 38px;
+      display: grid;
+      place-items: center;
+      border-radius: 12px;
+      background: var(--blue);
+      color: white;
+    }
+    .brand-mark svg { width: 21px; }
+    .tabs {
+      display: flex;
+      gap: 5px;
+      background: var(--surface2);
+      padding: 5px;
+      border-radius: 13px;
+    }
+    .tab {
+      border: 0;
+      background: transparent;
+      padding: 9px 17px;
+      border-radius: 10px;
+      color: var(--muted);
+      font-weight: 700;
+      font-size: 13px;
+      white-space: nowrap;
+      transition: background .2s, color .2s;
+    }
+    .tab.active {
+      background: var(--surface);
+      color: var(--blue);
+      box-shadow: 0 2px 8px rgba(30, 60, 100, .08);
+    }
+    .nav-actions {
+      margin-left: auto;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+    .search-box {
+      display: flex;
+      align-items: center;
+      gap: 9px;
+      background: var(--bg);
+      border: 1px solid var(--line);
+      border-radius: 12px;
+      padding: 0 13px;
+      color: var(--muted);
+      min-width: 255px;
+    }
+    .search-box svg { width: 17px; flex-shrink: 0; }
+    .search-box input {
+      border: 0;
+      background: transparent;
+      outline: 0;
+      color: var(--text);
+      height: 40px;
+      width: 100%;
+      font-size: 13px;
+    }
+    .search-box input::placeholder { color: var(--muted); }
+    .icon-button {
+      width: 41px;
+      height: 41px;
+      border: 1px solid var(--line);
+      border-radius: 12px;
+      background: var(--surface);
+      color: var(--text);
+      display: grid;
+      place-items: center;
+      flex-shrink: 0;
+    }
+    .icon-button svg { width: 19px; }
+
+    /* Hero Section */
+    .hero {
+      padding: 68px 0 60px;
+      position: relative;
+      overflow: hidden;
+    }
+    .hero-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 36px;
+    }
+    .hero-copy { max-width: 610px; }
+    .eyebrow {
+      color: var(--blue);
+      font-size: 12px;
+      font-weight: 800;
+      letter-spacing: .14em;
+      text-transform: uppercase;
+      margin: 0 0 14px;
+    }
+    .hero h1 {
+      font-size: clamp(36px, 5vw, 58px);
+      letter-spacing: -.05em;
+      line-height: 1.13;
+      margin: 0 0 18px;
+      font-weight: 800;
+    }
+    .hero p.lead {
+      font-size: 15.5px;
+      color: var(--muted);
+      max-width: 500px;
+      margin: 0 0 26px;
+    }
+    .primary {
+      border: 0;
+      border-radius: 12px;
+      padding: 13px 20px;
+      background: var(--blue);
+      color: #fff;
+      font-size: 13px;
+      font-weight: 800;
+      display: inline-flex;
+      align-items: center;
+      gap: 9px;
+      box-shadow: 0 8px 20px rgba(83, 127, 218, .23);
+    }
+    .primary svg { width: 17px; }
+    .hero-art {
+      width: 310px;
+      height: 255px;
+      flex: none;
+      position: relative;
+      display: grid;
+      place-items: center;
+    }
+    .art-orbit {
+      width: 225px;
+      height: 225px;
+      border-radius: 50%;
+      background: var(--blue2);
+      position: absolute;
+    }
+    .art-card {
+      position: relative;
+      width: 156px;
+      height: 185px;
+      border-radius: 19px;
+      background: var(--surface);
+      box-shadow: 0 20px 45px rgba(53, 87, 150, .16);
+      transform: rotate(-9deg);
+      padding: 24px;
+    }
+    .art-card:before {
+      content: "";
+      display: block;
+      width: 48px;
+      height: 48px;
+      background: var(--blue2);
+      border-radius: 14px;
+      margin-bottom: 20px;
+    }
+    .art-card span {
+      display: block;
+      height: 9px;
+      border-radius: 8px;
+      background: var(--line);
+      margin: 11px 0;
+    }
+    .art-card span:nth-child(2) { width: 82%; }
+    .art-card span:nth-child(3) { width: 63%; }
+    .float-icon {
+      position: absolute;
+      right: 22px;
+      top: 20px;
+      background: #fff5d9;
+      color: #d39a34;
+      padding: 14px;
+      border-radius: 17px;
+      box-shadow: var(--shadow);
+      transform: rotate(12deg);
+    }
+    .float-icon svg { width: 28px; height: 28px; }
+    .float-star {
+      position: absolute;
+      left: 18px;
+      bottom: 26px;
+      color: var(--blue);
+    }
+
+    /* Section Heading & Subject Cards (4 Mapel IPS) */
+    .section-heading {
+      display: flex;
+      align-items: end;
+      justify-content: space-between;
+      gap: 16px;
+      margin-bottom: 25px;
+    }
+    .section-heading h2 {
+      font-size: 26px;
+      letter-spacing: -.035em;
+      margin: 0 0 5px;
+    }
+    .section-heading p {
+      color: var(--muted);
+      font-size: 13.5px;
+      margin: 0;
+    }
+    .count {
+      font-size: 12px;
+      font-weight: 700;
+      color: var(--blue);
+      background: var(--blue2);
+      padding: 8px 13px;
+      border-radius: 30px;
+      white-space: nowrap;
+    }
+    .subjects { padding-bottom: 85px; }
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 20px;
+    }
+    .subject-card {
+      width: 100%;
+      text-align: left;
+      background: var(--surface);
+      border: 1px solid var(--line);
+      border-radius: 19px;
+      padding: 25px;
+      box-shadow: var(--shadow);
+      color: var(--text);
+      transition: transform .2s, border-color .2s, box-shadow .2s;
+    }
+    .subject-card:hover {
+      transform: translateY(-4px);
+      border-color: var(--blue);
+      box-shadow: 0 16px 36px rgba(48, 79, 129, .13);
+    }
+    .card-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: start;
+    }
+    .subject-icon {
+      width: 48px;
+      height: 48px;
+      border-radius: 14px;
+      background: var(--blue2);
+      color: var(--blue);
+      display: grid;
+      place-items: center;
+    }
+    .subject-icon svg { width: 24px; height: 24px; }
+    .card-arrow { color: var(--muted); }
+    .card-arrow svg { width: 18px; }
+    .subject-card h3 {
+      font-size: 18px;
+      margin: 18px 0 6px;
+      letter-spacing: -.02em;
+    }
+    .subject-card p {
+      font-size: 13px;
+      color: var(--muted);
+      margin: 0;
+      line-height: 1.5;
+    }
+    .card-chapters-preview {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      margin-top: 14px;
+    }
+    .chap-pill {
+      font-size: 11px;
+      font-weight: 600;
+      background: var(--surface2);
+      color: var(--text);
+      padding: 4px 10px;
+      border-radius: 8px;
+    }
+    .subject-card .mini-line {
+      height: 4px;
+      border-radius: 8px;
+      background: var(--surface2);
+      margin-top: 18px;
+      overflow: hidden;
+    }
+    .mini-line span {
+      display: block;
+      height: 100%;
+      background: var(--blue);
+      border-radius: 8px;
+      width: 100%;
+    }
+
+    /* Reader Layout (Persis gaya kimia-bab1.html) */
+    .reader-section { padding: 34px 0 80px; }
+    .back-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      color: var(--blue);
+      border: 0;
+      background: none;
+      padding: 0;
+      font-weight: 700;
+      font-size: 13px;
+      margin-bottom: 18px;
+    }
+    .back-link svg { width: 17px; }
+    .reader-top { margin-bottom: 26px; }
+    .reader-top h1 {
+      font-size: clamp(28px, 4vw, 38px);
+      letter-spacing: -.04em;
+      line-height: 1.2;
+      margin: 0 0 10px;
+      font-weight: 800;
+    }
+    .reader-top p.desc {
+      color: var(--muted);
+      font-size: 14px;
+      margin: 0;
+      max-width: 720px;
+    }
+    .reader-layout {
+      display: grid;
+      grid-template-columns: 280px minmax(0, 1fr);
+      gap: 28px;
+      align-items: start;
+    }
+
+    /* Sticky Sidebar TOC */
+    .toc-card {
+      background: var(--surface);
+      border: 1px solid var(--line);
+      border-radius: 18px;
+      padding: 20px;
+      box-shadow: var(--shadow);
+      position: sticky;
+      top: 102px;
+    }
+    .toc-title {
+      font-size: 12px;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: .08em;
+      color: var(--muted);
+      margin: 0 0 14px;
+    }
+    .toc-list {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      display: grid;
+      gap: 6px;
+    }
+    .toc-list a {
+      display: flex;
+      align-items: start;
+      gap: 9px;
+      padding: 9px 12px;
+      border-radius: 10px;
+      text-decoration: none;
+      color: var(--muted);
+      font-size: 13px;
+      font-weight: 600;
+      line-height: 1.4;
+      transition: background .2s, color .2s;
+    }
+    .toc-list a:hover {
+      background: var(--surface2);
+      color: var(--text);
+    }
+    .toc-list a.active {
+      background: var(--blue2);
+      color: var(--blue);
+      font-weight: 700;
+    }
+    .toc-num {
+      font-size: 11px;
+      font-weight: 800;
+      opacity: .85;
+      margin-top: 2px;
+    }
+
+    /* Konten Sub-bab */
+    .content-area {
+      display: grid;
+      gap: 24px;
+    }
+    .sub-section {
+      background: var(--surface);
+      border: 1px solid var(--line);
+      border-radius: 20px;
+      padding: 30px;
+      box-shadow: var(--shadow);
+      scroll-margin-top: 102px;
+    }
+    .sub-badge {
+      display: inline-block;
+      background: var(--blue2);
+      color: var(--blue);
+      font-size: 11px;
+      font-weight: 800;
+      padding: 4px 11px;
+      border-radius: 20px;
+      margin-bottom: 10px;
+    }
+    .sub-section h2 {
+      font-size: 22px;
+      letter-spacing: -.03em;
+      margin: 0 0 14px;
+    }
+    .sub-section h3 {
+      font-size: 16px;
+      margin: 18px 0 8px;
+      color: var(--blue);
+    }
+    .sub-section p, .sub-section li {
+      font-size: 14px;
+      margin: 0 0 10px;
+    }
+    .sub-section ul, .sub-section ol {
+      padding-left: 20px;
+      margin: 0 0 14px;
+    }
+
+    /* Kotak Rumus & Contoh Soal (Dari kimia-bab1.html) */
+    .formula-box {
+      background: var(--surface2);
+      border-left: 4px solid var(--blue);
+      border-radius: 12px;
+      padding: 18px 20px;
+      margin: 18px 0;
+    }
+    .formula-box strong.box-label {
+      display: block;
+      font-size: 12px;
+      text-transform: uppercase;
+      letter-spacing: .06em;
+      color: var(--blue);
+      margin-bottom: 10px;
+    }
+    .formula-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 12px 20px;
+      font-size: 13.5px;
+    }
+    .formula-pill {
+      background: var(--surface);
+      border: 1px solid var(--line);
+      border-radius: 10px;
+      padding: 11px 14px;
+      font-size: 13.5px;
+      font-weight: 700;
+      color: var(--text);
+    }
+    .formula-pill small {
+      display: block;
+      font-weight: 500;
+      font-size: 12px;
+      color: var(--muted);
+      margin-top: 3px;
+    }
+    .fraction {
+      display: inline-flex;
+      flex-direction: column;
+      align-items: center;
+      vertical-align: middle;
+      margin: 0 4px;
+      font-size: 12.5px;
+    }
+    .fraction > span:first-child {
+      border-bottom: 1.5px solid currentColor;
+      padding: 0 5px 1px;
+      line-height: 1.2;
+    }
+    .fraction > span:last-child {
+      padding: 1px 5px 0;
+      line-height: 1.2;
+    }
+    .example-box {
+      border: 1px dashed var(--line);
+      border-radius: 12px;
+      padding: 16px 20px;
+      margin-top: 16px;
+      font-size: 13.5px;
+      background: var(--bg);
+    }
+    .example-box strong { color: var(--blue); }
+
+    /* Tabel Materi (.chem-table) */
+    .table-wrap {
+      overflow-x: auto;
+      margin: 16px 0;
+      border: 1px solid var(--line);
+      border-radius: 12px;
+    }
+    .chem-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 13.5px;
+      text-align: left;
+    }
+    .chem-table th {
+      background: var(--surface2);
+      color: var(--blue);
+      font-weight: 700;
+      padding: 12px 14px;
+      border-bottom: 1px solid var(--line);
+    }
+    .chem-table td {
+      padding: 11px 14px;
+      border-bottom: 1px solid var(--line);
+      vertical-align: top;
+    }
+    .chem-table tr:last-child td { border-bottom: none; }
+
+    /* Kartu Visual (.visual-card) & Kurva SVG */
+    .visual-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 14px;
+      margin: 16px 0;
+    }
+    .visual-card {
+      display: flex;
+      align-items: flex-start;
+      gap: 14px;
+      background: var(--surface2);
+      border: 1px solid var(--line);
+      border-radius: 14px;
+      padding: 15px;
+    }
+    .visual-thumb {
+      width: 68px;
+      height: 68px;
+      flex-shrink: 0;
+      background: var(--surface);
+      border: 1px solid var(--line);
+      border-radius: 12px;
+      display: grid;
+      place-items: center;
+      padding: 6px;
+    }
+    .visual-thumb svg { width: 52px; height: 52px; }
+    .visual-info h4 {
+      font-size: 14px;
+      font-weight: 700;
+      margin: 0 0 4px;
+      color: var(--text);
+    }
+    .visual-info p {
+      font-size: 12.5px;
+      margin: 0;
+      color: var(--muted);
+      line-height: 1.5;
+    }
+    .curve-card {
+      background: var(--surface2);
+      border: 1px solid var(--line);
+      border-radius: 16px;
+      padding: 18px;
+      margin: 18px 0;
+    }
+    .curve-header {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      align-items: center;
+      gap: 8px;
+      margin-bottom: 12px;
+    }
+    .curve-title {
+      font-size: 13.5px;
+      font-weight: 800;
+      color: var(--blue);
+    }
+    .curve-badge {
+      font-size: 11px;
+      font-weight: 700;
+      background: var(--surface);
+      border: 1px solid var(--line);
+      color: var(--text);
+      padding: 3px 10px;
+      border-radius: 20px;
+    }
+    .curve-svg-wrap {
+      background: var(--surface);
+      border: 1px solid var(--line);
+      border-radius: 12px;
+      padding: 12px;
+      display: flex;
+      justify-content: center;
+    }
+    .curve-svg-wrap svg {
+      width: 100%;
+      max-width: 520px;
+      height: auto;
+    }
+    .curve-caption {
+      font-size: 12.5px;
+      color: var(--muted);
+      margin: 10px 0 0;
+      line-height: 1.55;
+    }
+
+    /* Kisi-Kisi Section */
+    .kisi-section { padding: 42px 0 85px; }
+    .filter-pills {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-bottom: 24px;
+    }
+    .filter-pill {
+      border: 1px solid var(--line);
+      background: var(--surface);
+      color: var(--muted);
+      padding: 9px 16px;
+      border-radius: 12px;
+      font-size: 13px;
+      font-weight: 700;
+      transition: all .2s;
+    }
+    .filter-pill:hover {
+      border-color: var(--blue);
+      color: var(--text);
+    }
+    .filter-pill.active {
+      background: var(--blue);
+      border-color: var(--blue);
+      color: #fff;
+      box-shadow: 0 6px 16px rgba(83, 127, 218, .22);
+    }
+    .kisi-group-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin: 28px 0 14px;
+      padding-bottom: 10px;
+      border-bottom: 1px solid var(--line);
+    }
+    .kisi-group-header h3 {
+      margin: 0;
+      font-size: 20px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .kisi-list {
+      display: grid;
+      gap: 14px;
+    }
+    .kisi-item {
+      background: var(--surface);
+      border: 1px solid var(--line);
+      border-radius: 16px;
+      padding: 20px 22px;
+      box-shadow: var(--shadow);
+      display: flex;
+      gap: 16px;
+      align-items: flex-start;
+    }
+    .kisi-num {
+      width: 38px;
+      height: 38px;
+      flex-shrink: 0;
+      border-radius: 11px;
+      background: var(--blue2);
+      color: var(--blue);
+      display: grid;
+      place-items: center;
+      font-size: 12.5px;
+      font-weight: 800;
+    }
+    .kisi-body { flex: 1; min-width: 0; }
+    .kisi-meta {
+      display: inline-block;
+      font-size: 11px;
+      font-weight: 700;
+      color: var(--blue);
+      margin-bottom: 4px;
+    }
+    .kisi-q {
+      font-size: 15px;
+      font-weight: 800;
+      margin: 0 0 10px;
+      color: var(--text);
+      line-height: 1.45;
+    }
+    .kisi-a {
+      font-size: 13.5px;
+      color: var(--text);
+      line-height: 1.65;
+    }
+    .kisi-a p { margin: 0 0 8px; }
+    .kisi-a ul { margin: 4px 0 8px; padding-left: 18px; }
+    .kisi-a li { margin-bottom: 4px; }
+
+    /* Bottom Navigation */
+    .bottom-nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 12px;
+      margin-top: 10px;
+    }
+    .btn-nav {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 12px 18px;
+      border-radius: 12px;
+      font-size: 13px;
+      font-weight: 700;
+      border: 1px solid var(--line);
+      background: var(--surface);
+      color: var(--text);
+    }
+    .btn-nav.primary {
+      background: var(--blue);
+      color: #fff;
+      border-color: var(--blue);
+    }
+    .btn-nav svg { width: 17px; }
+
+    .hidden { display: none !important; }
+    .empty-search {
+      padding: 35px;
+      text-align: center;
+      color: var(--muted);
+      background: var(--surface);
+      border: 1px solid var(--line);
+      border-radius: 16px;
+    }
+
+    .footer {
+      border-top: 1px solid var(--line);
+      padding: 26px 0;
+      color: var(--muted);
+      font-size: 12px;
+    }
+    .footer .wrap {
+      display: flex;
+      justify-content: space-between;
+      gap: 12px;
+    }
+
+    @media (max-width: 900px) {
+      .nav-inner { gap: 12px; }
+      .nav-actions { width: 100%; margin-left: 0; justify-content: space-between; }
+      .search-box { flex: 1; }
+      .hero-art { width: 240px; }
+      .reader-layout { grid-template-columns: 1fr; }
+      .toc-card { position: static; }
+      .formula-grid, .visual-grid { grid-template-columns: 1fr; }
+    }
+    @media (max-width: 640px) {
+      .wrap { padding-left: 18px; padding-right: 18px; }
+      .brand { font-size: 16px; }
+      .tabs { margin-left: auto; }
+      .tab { padding: 8px 12px; font-size: 12px; }
+      .nav-actions { order: 3; }
+      .search-box { min-width: 0; }
+      .hero { padding: 48px 0; }
+      .hero-art { display: none; }
+      .grid { grid-template-columns: 1fr; }
+      .sub-section { padding: 22px; }
+      .kisi-item { flex-direction: column; gap: 10px; padding: 18px; }
+      .bottom-nav { flex-direction: column; align-items: stretch; }
+      .btn-nav { justify-content: center; }
+      .footer .wrap { flex-direction: column; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- HEADER STICKY (SHIRA'S ARCHIVE) -->
+  <header class="site-header">
+    <div class="wrap nav-inner">
+      <button id="brand-home" class="brand" type="button" aria-label="Beranda Shira's Archive">
+        <span class="brand-mark"><i data-lucide="book-open"></i></span>
+        <span>Shira's Archive</span>
+      </button>
+
+      <nav class="tabs" aria-label="Navigasi utama">
+        <button id="tab-materi" class="tab active" type="button" aria-current="page">Materi</button>
+        <button id="tab-kisikisi" class="tab" type="button">Kisi-Kisi</button>
+      </nav>
+
+      <div class="nav-actions">
+        <label class="search-box" for="search">
+          <i data-lucide="search"></i>
+          <input id="search" type="search" placeholder="Cari materi atau kisi-kisi..." autocomplete="off">
+        </label>
+        <button id="theme-toggle" class="icon-button" type="button" aria-label="Aktifkan tema gelap" title="Tukar tema">
+          <i data-lucide="moon"></i>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <main id="main">
+    <!-- ========================================================= -->
+    <!-- VIEW 1: MATERI (HERO + 4 MAPEL IPS + READER DETAIL)       -->
+    <!-- ========================================================= -->
+    <div id="materi-view">
+      <section id="hero-section" class="hero" aria-labelledby="hero-title">
+        <div class="wrap hero-inner">
+          <div class="hero-copy">
+            <p class="eyebrow">Ruang belajar kelas 10</p>
+            <h1 id="hero-title">Arsip Materi<br>IPS Kelas 10<span style="color:var(--blue)">.</span></h1>
+            <p class="lead">Rangkuman lengkap 4 mata pelajaran IPS (Sejarah, Ekonomi, Sosiologi, Geografi) dilengkapi kurva, rumus visual, dan pembahasan kisi-kisi 1 per 1.</p>
+            <button id="start-button" class="primary" type="button">Mulai Belajar <i data-lucide="arrow-right"></i></button>
+          </div>
+          <div class="hero-art" aria-hidden="true">
+            <div class="art-orbit"></div>
+            <div class="art-card">
+              <span></span><span></span><span></span>
+            </div>
+            <div class="float-icon">
+              <i data-lucide="sparkles"></i>
+            </div>
+            <div class="float-star">
+              <i data-lucide="asterisk"></i>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- GRID 4 MATA PELAJARAN IPS -->
+      <section id="subjects-section" class="subjects" aria-labelledby="subjects-title">
+        <div class="wrap">
+          <div class="section-heading">
+            <div>
+              <h2 id="subjects-title">Jelajahi mata pelajaran</h2>
+              <p>Pilih salah satu dari 4 mata pelajaran IPS untuk membaca rangkuman, kurva, dan rumusnya.</p>
+            </div>
+            <span id="subject-count" class="count">4 mata pelajaran</span>
+          </div>
+          <div id="subject-grid" class="grid"></div>
+        </div>
+      </section>
+
+      <!-- DETAIL READER MATA PELAJARAN (GAYA KIMIA-BAB1.HTML) -->
+      <section id="detail-section" class="reader-section hidden" aria-labelledby="detail-title">
+        <div class="wrap">
+          <button id="back-button" class="back-link" type="button"><i data-lucide="arrow-left"></i> Semua mata pelajaran</button>
+          <div class="reader-top">
+            <p id="detail-eyebrow" class="eyebrow">IPS • Kelas 10</p>
+            <h1 id="detail-title"></h1>
+            <p id="detail-subtitle" class="desc"></p>
+          </div>
+
+          <div class="reader-layout">
+            <!-- Sticky Sidebar Daftar Bab/Sub-bab -->
+            <aside class="toc-card" aria-label="Daftar bab dan sub-bab">
+              <p class="toc-title">Daftar Bab</p>
+              <ul id="toc-list" class="toc-list"></ul>
+            </aside>
+
+            <!-- Konten Materi -->
+            <div id="detail-content-area" class="content-area"></div>
+          </div>
+        </div>
+      </section>
+    </div>
+
+    <!-- ========================================================= -->
+    <!-- VIEW 2: KISI-KISI (DIJAWAB 1 PER 1)                       -->
+    <!-- ========================================================= -->
+    <section id="kisikisi-view" class="kisi-section hidden" aria-labelledby="kisikisi-title">
+      <div class="wrap">
+        <div class="section-heading">
+          <div>
+            <p class="eyebrow">Bedah indikator soal • Semester 1</p>
+            <h2 id="kisikisi-title">Jawaban Kisi-Kisi IPS Kelas 10</h2>
+            <p>Setiap nomor kisi-kisi dijawab secara berurutan dan rinci untuk memudahkan persiapan ujianmu.</p>
+          </div>
+          <span id="kisi-count-badge" class="count">55 indikator</span>
+        </div>
+
+        <!-- Filter Pills Mapel -->
+        <div class="filter-pills" role="tablist" aria-label="Filter mata pelajaran kisi-kisi">
+          <button class="filter-pill active" data-filter="semua" type="button">Semua Mapel (55)</button>
+          <button class="filter-pill" data-filter="sejarah" type="button">Sejarah (20)</button>
+          <button class="filter-pill" data-filter="ekonomi" type="button">Ekonomi (14)</button>
+          <button class="filter-pill" data-filter="sosiologi" type="button">Sosiologi (15)</button>
+          <button class="filter-pill" data-filter="geografi" type="button">Geografi (6)</button>
+        </div>
+
+        <div id="kisikisi-container"></div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="wrap">
+      <span>© Shira's Archive</span>
+      <span>Belajar sedikit demi sedikit, setiap hari.</span>
+    </div>
+  </footer>
+
+  <script>
+    // =========================================================================
+    // KUMPULAN DIAGRAM KURVA SVG & VISUALISASI RUMUS (EKONOMI & GEOGRAFI)
+    // =========================================================================
+    const SVG_DIAGRAMS = {
+      gossen1: `
+        <div class="curve-card">
+          <div class="curve-header">
+            <span class="curve-title">Kurva Hukum Gossen I (Total Utility & Marginal Utility)</span>
+            <span class="curve-badge">TU Maksimum saat MU = 0</span>
+          </div>
+          <div class="curve-svg-wrap">
+            <svg viewBox="0 0 460 245" aria-label="Kurva Hukum Gossen I">
+              <!-- Grid & Axes -->
+              <line x1="55" y1="20" x2="55" y2="185" stroke="currentColor" stroke-width="2"/>
+              <line x1="55" y1="185" x2="425" y2="185" stroke="currentColor" stroke-width="2"/>
+              <!-- Labels -->
+              <text x="16" y="28" font-size="11" font-weight="700" fill="currentColor">Kepuasan</text>
+              <text x="16" y="42" font-size="10" fill="currentColor">(Util)</text>
+              <text x="360" y="204" font-size="11" font-weight="700" fill="currentColor">Jumlah Barang (Q)</text>
+              <!-- Dashed Guide Lines -->
+              <line x1="290" y1="38" x2="290" y2="185" stroke="#537fda" stroke-width="1.5" stroke-dasharray="5 4"/>
+              <line x1="55" y1="38" x2="290" y2="38" stroke="#537fda" stroke-width="1.5" stroke-dasharray="5 4"/>
+              <!-- Curve TU -->
+              <path d="M 55 185 Q 165 28, 290 38 T 395 92" fill="none" stroke="#537fda" stroke-width="3.2" stroke-linecap="round"/>
+              <text x="335" y="65" font-size="12" font-weight="800" fill="#537fda">TU (Total Utility)</text>
+              <!-- Curve MU -->
+              <path d="M 55 185 Q 125 90, 180 110 T 290 185 L 348 228" fill="none" stroke="#e07a38" stroke-width="2.8" stroke-linecap="round"/>
+              <text x="135" y="88" font-size="12" font-weight="800" fill="#e07a38">MU (Marginal Utility)</text>
+              <!-- Key Points -->
+              <circle cx="290" cy="38" r="5" fill="#537fda"/>
+              <text x="235" y="26" font-size="10.5" font-weight="800" fill="#537fda">Titik Jenuh (TU Max)</text>
+              <circle cx="290" cy="185" r="5" fill="#e07a38"/>
+              <text x="298" y="178" font-size="10.5" font-weight="800" fill="#e07a38">MU = 0</text>
+              <text x="352" y="226" font-size="10" font-weight="700" fill="#dc2626">MU Negatif (-)</text>
+            </svg>
+          </div>
+          <p class="curve-caption">
+            <strong>Cara Membaca Kurva:</strong> Saat barang dikonsumsi terus-menerus, tambahan kepuasan (<strong>MU</strong>) semakin berkurang. Kepuasan total (<strong>TU</strong>) mencapai titik puncak (jenuh) tepat ketika <strong>MU = 0</strong>. Jika konsumsi dipaksakan terus, TU menurun dan MU bernilai negatif (disutility).
+          </p>
+        </div>
+      `,
+      indifference: `
+        <div class="curve-card">
+          <div class="curve-header">
+            <span class="curve-title">Kurva Keseimbangan Konsumen (Indifference Curve & Budget Line)</span>
+            <span class="curve-badge">Pendekatan Ordinal</span>
+          </div>
+          <div class="curve-svg-wrap">
+            <svg viewBox="0 0 420 235" aria-label="Kurva Indiferensi dan Garis Anggaran">
+              <line x1="55" y1="20" x2="55" y2="190" stroke="currentColor" stroke-width="2"/>
+              <line x1="55" y1="190" x2="375" y2="190" stroke="currentColor" stroke-width="2"/>
+              <text x="16" y="28" font-size="11" font-weight="700" fill="currentColor">Barang Y</text>
+              <text x="320" y="208" font-size="11" font-weight="700" fill="currentColor">Barang X</text>
+              <!-- Budget Line -->
+              <line x1="55" y1="45" x2="330" y2="190" stroke="#537fda" stroke-width="2.8"/>
+              <text x="275" y="152" font-size="11.5" font-weight="800" fill="#537fda">Budget Line (BL)</text>
+              <text x="22" y="48" font-size="10" fill="#537fda" font-weight="700">I/Py</text>
+              <text x="320" y="222" font-size="10" fill="#537fda" font-weight="700">I/Px</text>
+              <!-- IC1 & IC2 -->
+              <path d="M 95 35 Q 142 142, 335 162" fill="none" stroke="#2f9e6e" stroke-width="3"/>
+              <text x="305" y="176" font-size="11.5" font-weight="800" fill="#2f9e6e">IC₂</text>
+              <path d="M 135 28 Q 182 115, 355 132" fill="none" stroke="#94a3b8" stroke-width="1.8" stroke-dasharray="4 4"/>
+              <text x="335" y="124" font-size="10.5" font-weight="700" fill="#94a3b8">IC₃ (Tak terjangkau)</text>
+              <!-- Tangent Point -->
+              <line x1="55" y1="117" x2="192" y2="117" stroke="#2f9e6e" stroke-dasharray="4 4"/>
+              <line x1="192" y1="117" x2="192" y2="190" stroke="#2f9e6e" stroke-dasharray="4 4"/>
+              <circle cx="192" cy="117" r="5.5" fill="#2f9e6e"/>
+              <text x="202" y="110" font-size="11" font-weight="800" fill="#2f9e6e">Titik Keseimbangan (E)</text>
+              <text x="34" y="121" font-size="10.5" font-weight="700" fill="currentColor">Y*</text>
+              <text x="187" y="206" font-size="10.5" font-weight="700" fill="currentColor">X*</text>
+            </svg>
+          </div>
+          <p class="curve-caption">
+            <strong>Syarat Keseimbangan Konsumen:</strong> Kurva Indiferensi (<strong>IC</strong>) bersinggungan dengan Garis Anggaran (<strong>BL</strong>) pada titik E, yaitu saat kemiringan kedua kurva sama (<strong>MRS<sub>xy</sub> = P<sub>x</sub> / P<sub>y</sub></strong>).
+          </p>
+        </div>
+      `,
+      production1: `
+        <div class="curve-card">
+          <div class="curve-header">
+            <span class="curve-title">Kurva Produksi 1 Faktor Variabel (TP, AP, MP)</span>
+            <span class="curve-badge">The Law of Diminishing Returns</span>
+          </div>
+          <div class="curve-svg-wrap">
+            <svg viewBox="0 0 460 245" aria-label="Kurva Produksi TP AP MP">
+              <line x1="55" y1="18" x2="55" y2="195" stroke="currentColor" stroke-width="2"/>
+              <line x1="55" y1="195" x2="425" y2="195" stroke="currentColor" stroke-width="2"/>
+              <text x="14" y="28" font-size="11" font-weight="700" fill="currentColor">Output</text>
+              <text x="345" y="213" font-size="11" font-weight="700" fill="currentColor">Tenaga Kerja (L)</text>
+              <!-- TP Curve -->
+              <path d="M 55 195 C 135 182, 205 30, 295 35 C 338 38, 368 62, 390 85" fill="none" stroke="#dc2626" stroke-width="3"/>
+              <text x="292" y="24" font-size="11.5" font-weight="800" fill="#dc2626">TP Maksimum</text>
+              <!-- Vertical Guide -->
+              <line x1="295" y1="35" x2="295" y2="195" stroke="#dc2626" stroke-width="1.5" stroke-dasharray="4 4"/>
+              <!-- AP Curve -->
+              <path d="M 55 195 Q 165 120, 222 132 T 370 168" fill="none" stroke="#2f9e6e" stroke-width="2.6"/>
+              <text x="374" y="168" font-size="11.5" font-weight="800" fill="#2f9e6e">AP</text>
+              <!-- MP Curve -->
+              <path d="M 55 195 Q 128 80, 170 102 T 295 195 L 332 228" fill="none" stroke="#537fda" stroke-width="2.6"/>
+              <text x="142" y="80" font-size="11.5" font-weight="800" fill="#537fda">MP</text>
+              <!-- Key Dots -->
+              <circle cx="295" cy="35" r="4.5" fill="#dc2626"/>
+              <circle cx="222" cy="132" r="4.5" fill="#2f9e6e"/>
+              <text x="188" y="120" font-size="10" font-weight="800" fill="#2f9e6e">AP Max (AP = MP)</text>
+              <circle cx="295" cy="195" r="4.5" fill="#537fda"/>
+              <text x="303" y="189" font-size="10.5" font-weight="800" fill="#537fda">MP = 0</text>
+            </svg>
+          </div>
+          <p class="curve-caption">
+            <strong>Hubungan Penting:</strong> (1) Produk Total (<strong>TP</strong>) mencapai puncak maksimum tepat ketika Produk Marjinal (<strong>MP</strong>) = 0; (2) Produk Rata-rata (<strong>AP</strong>) mencapai maksimum saat kurva <strong>AP = MP</strong>; (3) Setelah MP = 0, penambahan tenaga kerja justru menurunkan TP (MP negatif).
+          </p>
+        </div>
+      `,
+      isoquant: `
+        <div class="curve-card">
+          <div class="curve-header">
+            <span class="curve-title">Kurva Keseimbangan Produsen (Isoquant & Isocost)</span>
+            <span class="curve-badge">Produksi 2 Faktor Variabel</span>
+          </div>
+          <div class="curve-svg-wrap">
+            <svg viewBox="0 0 420 225" aria-label="Kurva Isoquant dan Isocost">
+              <line x1="55" y1="20" x2="55" y2="185" stroke="currentColor" stroke-width="2"/>
+              <line x1="55" y1="185" x2="375" y2="185" stroke="currentColor" stroke-width="2"/>
+              <text x="14" y="28" font-size="11" font-weight="700" fill="currentColor">Modal (K)</text>
+              <text x="295" y="204" font-size="11" font-weight="700" fill="currentColor">Tenaga Kerja (L)</text>
+              <!-- Isocost -->
+              <line x1="55" y1="42" x2="325" y2="185" stroke="#537fda" stroke-width="2.8"/>
+              <text x="275" y="150" font-size="11.5" font-weight="800" fill="#537fda">Isocost</text>
+              <!-- Isoquant -->
+              <path d="M 95 32 Q 138 138, 330 158" fill="none" stroke="#e07a38" stroke-width="3"/>
+              <text x="290" y="175" font-size="11.5" font-weight="800" fill="#e07a38">Isoquant</text>
+              <!-- Tangent -->
+              <circle cx="188" cy="112" r="5.5" fill="#2f9e6e"/>
+              <text x="198" y="106" font-size="11" font-weight="800" fill="#2f9e6e">Keseimbangan Produsen</text>
+            </svg>
+          </div>
+          <p class="curve-caption">
+            <strong>Isoquant</strong> menunjukkan kombinasi Modal (K) dan Tenaga Kerja (L) yang menghasilkan tingkat output sama. <strong>Isocost</strong> menunjukkan kombinasi K dan L yang dapat dibeli dengan anggaran biaya produksi sama. Keseimbangan tercapai saat keduanya bersinggungan (<strong>MRTS = w / r</strong>).
+          </p>
+        </div>
+      `,
+      costCurves: `
+        <div class="curve-card">
+          <div class="curve-header">
+            <span class="curve-title">Kurva Biaya Produksi Jangka Pendek (TC, FC, VC & MC, AC, AVC, AFC)</span>
+            <span class="curve-badge">Analisis Biaya Produsen</span>
+          </div>
+          <div class="visual-grid" style="margin:0;">
+            <div class="curve-svg-wrap" style="flex-direction:column; align-items:center;">
+              <strong style="font-size:12px; color:var(--blue); margin-bottom:6px;">1. Kurva Biaya Total (TC = FC + VC)</strong>
+              <svg viewBox="0 0 260 185" aria-label="Kurva TC FC VC">
+                <line x1="35" y1="15" x2="35" y2="152" stroke="currentColor" stroke-width="1.8"/>
+                <line x1="35" y1="152" x2="242" y2="152" stroke="currentColor" stroke-width="1.8"/>
+                <text x="8" y="22" font-size="10" font-weight="700" fill="currentColor">Biaya</text>
+                <text x="230" y="166" font-size="10" font-weight="700" fill="currentColor">Q</text>
+                <!-- FC -->
+                <line x1="35" y1="112" x2="225" y2="112" stroke="#dc2626" stroke-width="2.2"/>
+                <text x="228" y="115" font-size="10" font-weight="800" fill="#dc2626">FC</text>
+                <!-- VC -->
+                <path d="M 35 152 Q 112 125, 225 68" fill="none" stroke="#2f9e6e" stroke-width="2.2"/>
+                <text x="228" y="71" font-size="10" font-weight="800" fill="#2f9e6e">VC</text>
+                <!-- TC -->
+                <path d="M 35 112 Q 112 85, 225 28" fill="none" stroke="#537fda" stroke-width="2.6"/>
+                <text x="228" y="31" font-size="10" font-weight="800" fill="#537fda">TC</text>
+              </svg>
+              <span style="font-size:11.5px; color:var(--muted); margin-top:6px;"><strong>FC</strong> lurus mendatar (tetap), <strong>VC</strong> mulai dari titik 0, dan <strong>TC</strong> sejajar di atas VC dimulai dari titik FC.</span>
+            </div>
+
+            <div class="curve-svg-wrap" style="flex-direction:column; align-items:center;">
+              <strong style="font-size:12px; color:var(--blue); margin-bottom:6px;">2. Kurva Biaya Rata-rata & Marjinal</strong>
+              <svg viewBox="0 0 260 185" aria-label="Kurva MC AC AVC AFC">
+                <line x1="35" y1="15" x2="35" y2="152" stroke="currentColor" stroke-width="1.8"/>
+                <line x1="35" y1="152" x2="242" y2="152" stroke="currentColor" stroke-width="1.8"/>
+                <text x="8" y="22" font-size="10" font-weight="700" fill="currentColor">Biaya</text>
+                <text x="230" y="166" font-size="10" font-weight="700" fill="currentColor">Q</text>
+                <!-- AFC -->
+                <path d="M 45 36 Q 78 130, 225 142" fill="none" stroke="#dc2626" stroke-width="2"/>
+                <text x="227" y="144" font-size="9.5" font-weight="800" fill="#dc2626">AFC</text>
+                <!-- AVC -->
+                <path d="M 65 80 Q 130 130, 215 74" fill="none" stroke="#2f9e6e" stroke-width="2.2"/>
+                <text x="218" y="76" font-size="9.5" font-weight="800" fill="#2f9e6e">AVC</text>
+                <!-- AC -->
+                <path d="M 60 36 Q 135 104, 215 42" fill="none" stroke="#537fda" stroke-width="2.2"/>
+                <text x="218" y="44" font-size="9.5" font-weight="800" fill="#537fda">AC</text>
+                <!-- MC -->
+                <path d="M 85 115 Q 116 130, 176 24" fill="none" stroke="#e07a38" stroke-width="2.6"/>
+                <text x="179" y="26" font-size="10" font-weight="800" fill="#e07a38">MC</text>
+                <circle cx="131" cy="104" r="3.5" fill="currentColor"/>
+                <circle cx="144" cy="74" r="3.5" fill="currentColor"/>
+              </svg>
+              <span style="font-size:11.5px; color:var(--muted); margin-top:6px;">Kurva <strong>MC</strong> selalu memotong titik minimum kurva <strong>AVC</strong> dan <strong>AC</strong> dari bawah. <strong>AFC</strong> terus menurun mendekati 0.</span>
+            </div>
+          </div>
+        </div>
+      `,
+      circularFlow: `
+        <div class="curve-card">
+          <div class="curve-header">
+            <span class="curve-title">Circular Flow Diagram (Interaksi 2, 3, & 4 Pelaku Ekonomi)</span>
+            <span class="curve-badge">Arus Barang & Arus Uang</span>
+          </div>
+          <div class="curve-svg-wrap">
+            <svg viewBox="0 0 560 305" aria-label="Circular Flow Diagram 4 Sektor">
+              <!-- Pasar Input (Top) -->
+              <rect x="180" y="14" width="200" height="38" rx="9" fill="#537fda"/>
+              <text x="280" y="30" text-anchor="middle" font-size="10.5" font-weight="800" fill="#fff">PASAR INPUT</text>
+              <text x="280" y="43" text-anchor="middle" font-size="8.5" fill="#e8f0ff">(Faktor Produksi: Alam, TK, Modal, Skill)</text>
+
+              <!-- Pasar Output (Bottom) -->
+              <rect x="180" y="248" width="200" height="38" rx="9" fill="#2f9e6e"/>
+              <text x="280" y="264" text-anchor="middle" font-size="10.5" font-weight="800" fill="#fff">PASAR OUTPUT</text>
+              <text x="280" y="277" text-anchor="middle" font-size="8.5" fill="#dcfce7">(Pasar Barang & Jasa)</text>
+
+              <!-- RTP (Left) -->
+              <rect x="18" y="122" width="112" height="58" rx="11" fill="#192437" stroke="#537fda" stroke-width="2"/>
+              <text x="74" y="147" text-anchor="middle" font-size="12.5" font-weight="800" fill="#8bb3ff">RTP</text>
+              <text x="74" y="163" text-anchor="middle" font-size="9.5" fill="#eef4ff">Produsen</text>
+
+              <!-- RTK (Right) -->
+              <rect x="430" y="122" width="112" height="58" rx="11" fill="#192437" stroke="#2f9e6e" stroke-width="2"/>
+              <text x="486" y="147" text-anchor="middle" font-size="12.5" font-weight="800" fill="#6ee7b7">RTK</text>
+              <text x="486" y="163" text-anchor="middle" font-size="9.5" fill="#eef4ff">Konsumen</text>
+
+              <!-- Pemerintah (Center) -->
+              <rect x="220" y="96" width="120" height="44" rx="9" fill="#e07a38"/>
+              <text x="280" y="116" text-anchor="middle" font-size="10.5" font-weight="800" fill="#fff">PEMERINTAH</text>
+              <text x="280" y="129" text-anchor="middle" font-size="8.5" fill="#ffedd5">(Sektor ke-3: Pajak/Subsidi)</text>
+
+              <!-- Masyarakat Luar Negeri (Bottom Center) -->
+              <rect x="210" y="164" width="140" height="44" rx="9" fill="#7c3aed"/>
+              <text x="280" y="184" text-anchor="middle" font-size="10" font-weight="800" fill="#fff">LUAR NEGERI (MLN)</text>
+              <text x="280" y="197" text-anchor="middle" font-size="8.5" fill="#ede9fe">(Sektor ke-4: Ekspor/Impor)</text>
+
+              <!-- Arrows Top -->
+              <path d="M 486 122 L 486 33 L 383 33" fill="none" stroke="#2f9e6e" stroke-width="2"/>
+              <path d="M 180 33 L 74 33 L 74 119" fill="none" stroke="#2f9e6e" stroke-width="2"/>
+              <text x="492" y="75" font-size="8.5" font-weight="700" fill="#2f9e6e">1. Faktor Produksi</text>
+              <text x="80" y="75" font-size="8.5" font-weight="700" fill="#537fda">2. Sewa, Upah, Bunga, Laba</text>
+
+              <!-- Arrows Bottom -->
+              <path d="M 74 180 L 74 267 L 177 267" fill="none" stroke="#537fda" stroke-width="2"/>
+              <path d="M 380 267 L 486 267 L 486 183" fill="none" stroke="#537fda" stroke-width="2"/>
+              <text x="80" y="228" font-size="8.5" font-weight="700" fill="#537fda">3. Barang & Jasa</text>
+              <text x="404" y="228" font-size="8.5" font-weight="700" fill="#dc2626">4. Uang Belanja</text>
+
+              <!-- Center Arrows -->
+              <line x1="130" y1="128" x2="218" y2="118" stroke="#e07a38" stroke-width="1.6"/>
+              <line x1="430" y1="128" x2="342" y2="118" stroke="#e07a38" stroke-width="1.6"/>
+              <line x1="130" y1="168" x2="208" y2="184" stroke="#7c3aed" stroke-width="1.6"/>
+              <line x1="430" y1="168" x2="352" y2="184" stroke="#7c3aed" stroke-width="1.6"/>
+            </svg>
+          </div>
+          <p class="curve-caption">
+            • <strong>2 Sektor (Tertutup Sederhana):</strong> Hanya melibatkan <strong>RTK</strong> dan <strong>RTP</strong> melalui Pasar Input & Pasar Output.<br>
+            • <strong>3 Sektor (Tertutup):</strong> Ditambah <strong>Pemerintah</strong> yang menarik <em>pajak</em> dari RTK/RTP serta menyalurkan <em>subsidi</em> & belanja negara.<br>
+            • <strong>4 Sektor (Terbuka):</strong> Ditambah <strong>Masyarakat Luar Negeri</strong> melalui kegiatan <em>Ekspor</em> (menerima devisa) dan <em>Impor</em> (membayar devisa).
+          </p>
+        </div>
+      `,
+      mapProjection: `
+        <div class="curve-card">
+          <div class="curve-header">
+            <span class="curve-title">3 Jenis Proyeksi Peta & Rumus Skala / Kontur Interval</span>
+            <span class="curve-badge">Kartografi Dasar</span>
+          </div>
+          <div class="visual-grid" style="margin:0 0 14px;">
+            <div class="visual-card">
+              <div class="visual-thumb">
+                <svg viewBox="0 0 64 64" fill="none" stroke="#537fda" stroke-width="2.4">
+                  <circle cx="32" cy="36" r="18"/>
+                  <line x1="10" y1="18" x2="54" y2="18" stroke="#e07a38" stroke-width="2.8"/>
+                  <path d="M 14 36 Q 32 26, 50 36" stroke-dasharray="3 2"/>
+                </svg>
+              </div>
+              <div class="visual-info">
+                <h4>1. Proyeksi Azimutal (Zenital)</h4>
+                <p>Bidang proyeksi datar menyinggung kutub. Paling tepat untuk memetakan <strong>daerah kutub</strong>.</p>
+              </div>
+            </div>
+            <div class="visual-card">
+              <div class="visual-thumb">
+                <svg viewBox="0 0 64 64" fill="none" stroke="#537fda" stroke-width="2.4">
+                  <circle cx="32" cy="32" r="16"/>
+                  <rect x="16" y="12" width="32" height="40" stroke="#e07a38" stroke-width="2.4"/>
+                </svg>
+              </div>
+              <div class="visual-info">
+                <h4>2. Proyeksi Silinder (Tabung)</h4>
+                <p>Bidang tabung menyinggung khatulistiwa. Paling tepat untuk <strong>wilayah tropis/khatulistiwa (Indonesia)</strong>.</p>
+              </div>
+            </div>
+            <div class="visual-card">
+              <div class="visual-thumb">
+                <svg viewBox="0 0 64 64" fill="none" stroke="#537fda" stroke-width="2.4">
+                  <circle cx="32" cy="38" r="16"/>
+                  <polygon points="32,10 12,46 52,46" stroke="#e07a38" stroke-width="2.4"/>
+                </svg>
+              </div>
+              <div class="visual-info">
+                <h4>3. Proyeksi Kerucut (Conical)</h4>
+                <p>Bidang kerucut menyinggung lintang tengah. Paling tepat untuk <strong>wilayah lintang sedang (Eropa/AS)</strong>.</p>
+              </div>
+            </div>
+            <div class="visual-card">
+              <div class="visual-thumb">
+                <svg viewBox="0 0 64 64" fill="none" stroke="#537fda" stroke-width="2.4">
+                  <polygon points="32,8 8,54 56,54"/>
+                  <line x1="20" y1="32" x2="44" y2="32"/>
+                  <line x1="32" y1="32" x2="32" y2="54"/>
+                  <text x="32" y="26" text-anchor="middle" font-size="9" font-weight="800" fill="currentColor" stroke="none">Jp</text>
+                  <text x="21" y="47" text-anchor="middle" font-size="9" font-weight="800" fill="currentColor" stroke="none">S</text>
+                  <text x="43" y="47" text-anchor="middle" font-size="9" font-weight="800" fill="currentColor" stroke="none">Js</text>
+                </svg>
+              </div>
+              <div class="visual-info">
+                <h4>Segitiga Skala & Kontur (CI)</h4>
+                <p><strong>S = Jp / Js</strong> &nbsp;|&nbsp; <strong>Jp = S × Js</strong> &nbsp;|&nbsp; <strong>Js = Jp / S</strong><br>
+                <strong>CI = (1 / 2.000) × Penyebut Skala</strong></p>
+              </div>
+            </div>
+          </div>
+        </div>
+      `
+    };
+
+    // =========================================================================
+    // DATA MATERI 4 MATA PELAJARAN IPS KELAS 10
+    // =========================================================================
+    const IPS_SUBJECTS = [
+      {
+        id: "sejarah",
+        name: "Sejarah",
+        icon: "landmark",
+        eyebrow: "Sejarah • Kelas 10 • Semester 1",
+        subtitle: "Pengantar ilmu sejarah, konsep diakronik-sinkronik, unsur waktu, sumber sejarah, penelitian sejarah, dan historiografi.",
+        chapters: [
+          {
+            id: "sej-1",
+            num: "01",
+            title: "Pengantar Ilmu Sejarah",
+            badge: "Bab 01",
+            html: `
+              <p>Secara etimologis, kata sejarah berasal dari beberapa bahasa dunia yang menggambarkan asal-usul dan peristiwa masa lampau:</p>
+              <div class="formula-box">
+                <strong class="box-label">Pengertian Etimologis Sejarah</strong>
+                <div class="formula-grid">
+                  <div class="formula-pill">Bahasa Arab: <em>Syajaratun</em><small>Artinya <strong>pohon</strong> — melambangkan silsilah atau asal-usul yang terus tumbuh dan berkembang.</small></div>
+                  <div class="formula-pill">Bahasa Jerman: <em>Geschichte</em><small>Dari kata <em>geschehen</em>, artinya <strong>sesuatu yang telah terjadi</strong>.</small></div>
+                  <div class="formula-pill">Bahasa Inggris: <em>History</em><small>Dari bahasa Yunani <em>historia</em>, artinya <strong>penyelidikan / informasi</strong> hasil penelitian.</small></div>
+                  <div class="formula-pill">Subjek &amp; Objek Sejarah<small><strong>Subjek:</strong> Pelaku sejarah (tokoh). <strong>Objek:</strong> Peristiwa masa lalu yang dikaji.</small></div>
+                </div>
+              </div>
+
+              <h3>Definisi Sejarah Menurut Para Ahli</h3>
+              <ul>
+                <li><strong>Ibnu Khaldun:</strong> Catatan tentang masyarakat umat manusia atau peradaban dunia dan perubahan watak masyarakat tersebut.</li>
+                <li><strong>Sartono Kartodirdjo:</strong> Membagi sejarah menjadi <strong>Sejarah Objektif</strong> (kejadian itu sendiri yang tidak terulang) dan <strong>Sejarah Subjektif</strong> (kisah yang ditulis sejarawan sesuai sudut pandangnya).</li>
+                <li><strong>Kuntowijoyo:</strong> Rekonstruksi masa lalu berdasarkan fakta mengenai apa yang sudah dipikirkan, dikatakan, dikerjakan, dirasakan, dan dialami manusia.</li>
+                <li><strong>Muhammad Yamin (1958):</strong> Ilmu pengetahuan yang disusun atas hasil penyelidikan beberapa peristiwa yang dapat dibuktikan dengan bahan kenyataan.</li>
+                <li><strong>E.H. Carr (1982):</strong> Proses interaksi terus-menerus antara sejarawan dengan fakta-faktanya; dialog tak berkesudahan antara masa sekarang dan masa lampau.</li>
+                <li><strong>Jackson J. Spielvogel (2005):</strong> Catatan tentang masa lalu manusia (<em>the record of the human past</em>) yang membantu memahami siapa kita sekarang.</li>
+              </ul>
+
+              <h3>Ciri Peristiwa, Ciri Seni, Unsur, &amp; Fungsi Sejarah</h3>
+              <div class="table-wrap">
+                <table class="chem-table">
+                  <thead>
+                    <tr>
+                      <th>Aspek Kajian</th>
+                      <th>Penjelasan Rinci</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td><strong>3 Ciri Sejarah sebagai Peristiwa</strong></td>
+                      <td><strong>Abadi</strong> (tidak berubah dan selalu dikenang), <strong>Unik / <em>Einmalig</em></strong> (hanya terjadi satu kali dan tak terulang persis sama), serta <strong>Penting</strong> (memiliki pengaruh luas bagi masyarakat).</td>
+                    </tr>
+                    <tr>
+                      <td><strong>4 Ciri Sejarah sebagai Seni</strong></td>
+                      <td>Membutuhkan <strong>Intuisi</strong> (insting memahami peristiwa), <strong>Imajinasi</strong> (membayangkan masa lalu berbasis fakta), <strong>Emosi</strong> (merasakan suasana batin pelaku), dan <strong>Gaya Bahasa</strong> yang menarik.</td>
+                    </tr>
+                    <tr>
+                      <td><strong>3 Unsur Utama Sejarah</strong></td>
+                      <td><strong>Manusia</strong> (pelaku/penggerak), <strong>Ruang</strong> (lokasi/tempat kejadian), dan <strong>Waktu</strong> (kapan peristiwa berlangsung: masa lalu, masa kini, masa depan).</td>
+                    </tr>
+                    <tr>
+                      <td><strong>4 Fungsi Sejarah</strong></td>
+                      <td><strong>Edukatif</strong> (pelajaran/guru kehidupan), <strong>Inspiratif</strong> (memberi semangat &amp; keteladanan), <strong>Instruktif</strong> (alat bantu pengajaran strategi/keterampilan), dan <strong>Rekreatif</strong> (hiburan batin seolah bertamasya melintasi waktu).</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            `
+          },
+          {
+            id: "sej-2",
+            num: "02",
+            title: "Penelitian dan Penulisan Sejarah",
+            badge: "Bab 02",
+            html: `
+              <h3>Cara Berpikir Diakronik vs Sinkronik</h3>
+              <div class="formula-box">
+                <strong class="box-label">Perbandingan Pendekatan Waktu &amp; Ruang</strong>
+                <div class="formula-grid">
+                  <div class="formula-pill">Diakronik (Memanjang dalam Waktu)<small>Menyempit dalam ruang, fokus pada urutan waktu (kronologi) &amp; proses sebab-akibat. <em>Contoh:</em> Perkembangan Kerajaan Majapahit 1293–1527.</small></div>
+                  <div class="formula-pill">Sinkronik (Melebar dalam Ruang)<small>Menyempit dalam waktu, mengkaji berbagai aspek (sosial, ekonomi, budaya) di satu titik waktu. <em>Contoh:</em> Kondisi Sosial Ekonomi Jakarta Saat Krisis 1998.</small></div>
+                </div>
+              </div>
+
+              <h3>4 Aspek Unsur Waktu dalam Sejarah (Kuntowijoyo)</h3>
+              <ul>
+                <li><strong>Perkembangan:</strong> Masyarakat bergerak dari bentuk sederhana ke kompleks (contoh: evolusi alat tukar dari barter &rarr; uang logam &rarr; uang kertas &rarr; QRIS).</li>
+                <li><strong>Kesinambungan (Keberlanjutan):</strong> Kebijakan atau tradisi lama yang tetap diteruskan pada masa berikutnya (contoh: sistem pemungutan pajak dan tradisi mudik).</li>
+                <li><strong>Pengulangan:</strong> Peristiwa dengan pola serupa terjadi kembali pada era berbeda (contoh: lengsernya Soekarno tahun 1966 dan Soeharto tahun 1998 akibat gelombang aksi mahasiswa).</li>
+                <li><strong>Perubahan:</strong> Pergeseran besar-besaran dalam masyarakat dalam waktu relatif singkat (contoh: peralihan Orde Baru ke Reformasi 1998).</li>
+              </ul>
+
+              <h3>5 Tahapan Metode Penelitian Sejarah</h3>
+              <ol>
+                <li><strong>Pemilihan Topik:</strong> Menentukan tema berdasarkan kedekatan emosional dan kedekatan intelektual.</li>
+                <li><strong>Heuristik:</strong> Tahap mencari dan mengumpulkan sumber sejarah (primer, sekunder, tersier; tertulis, lisan, benda, audiovisual).</li>
+                <li><strong>Verifikasi (Kritik Sumber):</strong> Menguji keaslian <strong>fisik/material</strong> dokumen (<em>Kritik Ekstern</em>) serta menguji kebenaran/kredibilitas <strong>isi</strong> informasi (<em>Kritik Intern</em>).</li>
+                <li><strong>Interpretasi:</strong> Menafsirkan fakta-fakta yang lolos verifikasi melalui analisis (menguraikan) dan sintesis (menyatukan).</li>
+                <li><strong>Historiografi:</strong> Tahap akhir berupa penulisan kisah sejarah secara sistematis.</li>
+              </ol>
+
+              <h3>Perkembangan Historiografi di Indonesia</h3>
+              <div class="table-wrap">
+                <table class="chem-table">
+                  <thead>
+                    <tr>
+                      <th>Jenis Historiografi</th>
+                      <th>Ciri Utama &amp; Kelemahan</th>
+                      <th>Contoh Karya</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td><strong>1. Tradisional</strong></td>
+                      <td>Istanasentris (berpusat pada raja), religiomagis, etnosentris. <em>Kelemahan:</em> subjektivitas tinggi, bercampur mitos/dongeng, abai rakyat kecil, kronologi kabur.</td>
+                      <td><em>Babad Tanah Jawi, Kitab Pararaton, Hikayat Raja-Raja Pasai</em></td>
+                    </tr>
+                    <tr>
+                      <td><strong>2. Kolonial</strong></td>
+                      <td>Neerlandosentris / Eropasentris; mengagungkan penjajah Belanda dan menyebut pejuang lokal sebagai pemberontak.</td>
+                      <td><em>Geschiedenis van Nederlandsch Indie</em> (F.W. Stapel)</td>
+                    </tr>
+                    <tr>
+                      <td><strong>3. Modern / Nasional</strong></td>
+                      <td>Indonesiasentris, memakai metode ilmiah kritis, mengangkat peran rakyat kecil dan pahlawan nasional.</td>
+                      <td><em>Sejarah Nasional Indonesia</em> (Nugroho Notosusanto), <em>Pemberontakan Petani Banten 1888</em> (Sartono K.)</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            `
+          },
+          {
+            id: "sej-3",
+            num: "03",
+            title: "Catatan Tambahan Sejarah",
+            badge: "Bab 03",
+            html: `
+              <p>Rangkuman konsep pendukung untuk memudahkan analisis soal berbasis narasi sejarah:</p>
+              <ul>
+                <li><strong>Kronologi vs Periodisasi:</strong> <em>Kronologi</em> menyusun peristiwa urut waktu dari awal hingga akhir agar terhindar dari <strong>anakronisme</strong> (kerancuan waktu). <em>Periodisasi</em> membagi rangkaian waktu panjang menjadi babak-babak zaman (Praaksara &rarr; Hindu-Buddha &rarr; Islam &rarr; Kolonial &rarr; Kemerdekaan).</li>
+                <li><strong>Penggolongan Sumber Berdasarkan Sifat:</strong> <strong>Primer</strong> (kesaksian langsung pelaku/saksi mata, seperti naskah Proklamasi asli), <strong>Sekunder</strong> (hasil kajian pihak kedua seperti buku sejarah), dan <strong>Tersier</strong> (ringkasan seperti ensiklopedia sejarah).</li>
+                <li><strong>Penggolongan Sumber Berdasarkan Wujud:</strong> <strong>Tertulis</strong> (prasasti, koran lama, arsip), <strong>Lisan</strong> (wawancara pelaku/saksi), <strong>Benda/Artefak</strong> (candi, fosil, keris), dan <strong>Audio/Visual</strong> (foto, rekaman pidato, film dokumenter).</li>
+              </ul>
+              <div class="example-box">
+                <strong>Tips Analisis Soal Narasi Sejarah:</strong> Jika soal menanyakan <em>siapa yang melakukan</em> &rarr; jawab <strong>Subjek Sejarah</strong>. Jika menanyakan <em>peristiwa apa yang dibahas</em> &rarr; jawab <strong>Objek Sejarah</strong>. Jika menanyakan <em>mengapa membaca sejarah terasa menyenangkan seperti bertamasya ke masa lalu</em> &rarr; jawab <strong>Fungsi Rekreatif</strong>.
+              </div>
+            `
+          }
+        ]
+      },
+      {
+        id: "ekonomi",
+        name: "Ekonomi",
+        icon: "chart-no-axes-combined",
+        eyebrow: "Ekonomi • Kelas 10 • Semester 1",
+        subtitle: "Konsep dasar, biaya peluang, masalah & sistem ekonomi, perilaku konsumen & produsen lengkap dengan kurva SVG dan rumus biaya.",
+        chapters: [
+          {
+            id: "eko-1",
+            num: "01",
+            title: "Konsep Dasar Ilmu Ekonomi & Biaya Peluang",
+            badge: "Bab 01",
+            html: `
+              <p>Secara etimologis, ekonomi berasal dari bahasa Yunani <em>Oikos</em> (rumah tangga) dan <em>Nomos</em> (aturan). Menurut <strong>Prof. P.A. Samuelson</strong>, ilmu ekonomi adalah studi tentang bagaimana masyarakat membuat pilihan menggunakan sumber daya yang terbatas untuk menghasilkan berbagai komoditas dan mendistribusikannya.</p>
+
+              <h3>Pembagian Ilmu Ekonomi &amp; Pernyataan Positif vs Normatif</h3>
+              <div class="table-wrap">
+                <table class="chem-table">
+                  <thead>
+                    <tr>
+                      <th>Cabang / Jenis</th>
+                      <th>Fokus Kajian &amp; Contoh</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td><strong>Ekonomi Deskriptif</strong></td>
+                      <td>Menggambarkan fakta/data ekonomi apa adanya (contoh: data angka inflasi BPS tahun 2025).</td>
+                    </tr>
+                    <tr>
+                      <td><strong>Ekonomi Teori Mikro</strong></td>
+                      <td>Membahas bagian kecil/parsial: perilaku konsumen, perilaku produsen, permintaan-penawaran 1 barang, harga pasar, dan biaya produksi.</td>
+                    </tr>
+                    <tr>
+                      <td><strong>Ekonomi Teori Makro</strong></td>
+                      <td>Membahas ekonomi secara menyeluruh/agregat: pendapatan nasional (PDB), inflasi, pengangguran, APBN, dan jumlah uang beredar.</td>
+                    </tr>
+                    <tr>
+                      <td><strong>Positif vs Normatif</strong></td>
+                      <td><strong>Positif</strong> (objektif, <em>"apa yang terjadi"</em>: Jika harga BBM naik, ongkos angkut naik). <strong>Normatif</strong> (pertimbangan moral, <em>"apa yang seharusnya"</em>: Pemerintah <strong>seharusnya</strong> menambah subsidi pupuk).</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+
+              <h3>Kelangkaan, Skala Prioritas, Hukum Engel, &amp; Rumus Biaya Peluang</h3>
+              <p><strong>Kelangkaan (<em>Scarcity</em>)</strong> terjadi karena kebutuhan manusia tidak terbatas sementara alat pemuas (SDA, SDM, Modal, Kewirausahaan) terbatas. Diatasi dengan menyusun <strong>Skala Prioritas</strong> (Primer &rarr; Sekunder &rarr; Tersier), menghemat SDA, teknologi, dan barang substitusi. Menurut <strong>Hukum Engel</strong>, semakin besar pendapatan seseorang, semakin kecil persentase pendapatan yang digunakan untuk kebutuhan pokok.</p>
+
+              <div class="formula-box">
+                <strong class="box-label">Rumus Biaya Peluang (Opportunity Cost) &amp; Laba</strong>
+                <div class="formula-grid">
+                  <div class="formula-pill">Biaya Sesungguhnya = Biaya Implisit + Biaya Eksplisit<small>Biaya implisit adalah nilai kesempatan terbaik yang dikorbankan (biaya peluang).</small></div>
+                  <div class="formula-pill">Laba Akuntansi = Pendapatan Total − Biaya Eksplisit<small>Hanya menghitung pengeluaran uang tunai yang tercatat nyata.</small></div>
+                  <div class="formula-pill">Laba Ekonomi = Pendapatan Total − Biaya Sesungguhnya<small>Memperhitungkan biaya peluang (implisit) selain biaya eksplisit.</small></div>
+                  <div class="formula-pill">Prinsip Ekonomi<small>Pengorbanan sekecil-kecilnya untuk hasil tertentu, atau pengorbanan tertentu untuk hasil maksimal.</small></div>
+                </div>
+              </div>
+
+              <div class="example-box">
+                <strong>Contoh Hitungan (Kasus Tn. Amir):</strong> Tn. Amir berhenti bekerja (gaji Rp3.000.000 = <strong>Biaya Implisit</strong>) untuk membuka usaha batu bata dengan pendapatan Rp5.000.000. Biaya bahan, upah, &amp; operasional = Rp4.250.000 (<strong>Biaya Eksplisit</strong>).<br>
+                • <strong>Biaya Sesungguhnya</strong> = Rp3.000.000 + Rp4.250.000 = <strong>Rp7.250.000</strong><br>
+                • <strong>Laba Akuntansi</strong> = Rp5.000.000 − Rp4.250.000 = <strong>Rp750.000 (Untung Akuntansi)</strong><br>
+                • <strong>Laba Ekonomi</strong> = Rp5.000.000 − Rp7.250.000 = <strong>−Rp2.250.000 (Rugi Ekonomi)</strong>
+              </div>
+            `
+          },
+          {
+            id: "eko-2",
+            num: "02",
+            title: "Masalah dan Sistem Ekonomi",
+            badge: "Bab 02",
+            html: `
+              <div class="formula-box">
+                <strong class="box-label">Masalah Pokok Ekonomi Klasik vs Modern</strong>
+                <div class="formula-grid">
+                  <div class="formula-pill">Masalah Ekonomi Klasik<small>1. <strong>Produksi</strong> (membuat barang), 2. <strong>Distribusi</strong> (menyalurkan barang), 3. <strong>Konsumsi</strong> (memanfaatkan barang).</small></div>
+                  <div class="formula-pill">Masalah Ekonomi Modern (3W)<small>1. <strong>What</strong> (barang apa &amp; berapa banyak), 2. <strong>How</strong> (bagaimana teknik produksinya), 3. <strong>For Whom</strong> (untuk siapa barang dibuat).</small></div>
+                </div>
+              </div>
+
+              <h3>Perbandingan 4 Sistem Ekonomi</h3>
+              <div class="table-wrap">
+                <table class="chem-table">
+                  <thead>
+                    <tr>
+                      <th>Sistem Ekonomi</th>
+                      <th>Ciri Utama</th>
+                      <th>Kelebihan &amp; Kelemahan</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td><strong>1. Tradisional</strong></td>
+                      <td>Berdasarkan adat istiadat turun-temurun, transaksi barter, belum ada pembagian kerja.</td>
+                      <td>(+) Kekeluargaan erat, alam terjaga. (−) Produktivitas rendah, sulit berkembang.</td>
+                    </tr>
+                    <tr>
+                      <td><strong>2. Komando / Sosialis</strong><br><small>(Tokoh: Karl Marx)</small></td>
+                      <td>Seluruh sumber daya dan alat produksi dikuasai penuh oleh pemerintah pusat.</td>
+                      <td>(+) Pemerataan pendapatan tinggi, jarang krisis. (−) Mematikan kreativitas &amp; hak milik individu.</td>
+                    </tr>
+                    <tr>
+                      <td><strong>3. Liberal / Pasar</strong><br><small>(Tokoh: Adam Smith)</small></td>
+                      <td>Didominasi swasta, harga ditentukan mekanisme pasar bebas (permintaan &amp; penawaran).</td>
+                      <td>(+) Efisiensi &amp; inovasi tinggi. (−) Kesenjangan kaya-miskin lebar, memicu monopoli.</td>
+                    </tr>
+                    <tr>
+                      <td><strong>4. Campuran (+ Pancasila)</strong></td>
+                      <td>Kerja sama pemerintah &amp; swasta. Indonesia menganut <strong>Demokrasi Ekonomi Pancasila</strong> (Pasal 33 UUD 1945).</td>
+                      <td>(+) Sektor vital dikuasai negara, swasta tetap bebas berkreasi dalam koridor hukum.</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            `
+          },
+          {
+            id: "eko-3",
+            num: "03",
+            title: "Pelaku Kegiatan Ekonomi & Circular Flow Diagram",
+            badge: "Bab 03",
+            html: `
+              <p>Kegiatan ekonomi terdiri atas <strong>Produksi</strong> (menambah nilai guna barang), <strong>Distribusi</strong> (menyalurkan barang secara langsung maupun tak langsung), dan <strong>Konsumsi</strong> (menghabiskan nilai guna barang). Menurut <strong>Al Meyers</strong>, terdapat 5 kegunaan barang: <em>Element Utility</em> (zat asli), <em>Form Utility</em> (ubah bentuk), <em>Place Utility</em> (pindah tempat), <em>Time Utility</em> (waktu tepat), dan <em>Ownership Utility</em> (hak milik).</p>
+
+              ${SVG_DIAGRAMS.circularFlow}
+            `
+          },
+          {
+            id: "eko-4",
+            num: "04",
+            title: "Teori Perilaku Konsumen, Produsen & Biaya Produksi (Kurva & Rumus)",
+            badge: "Bab 04",
+            html: `
+              <h3>A. Perilaku Konsumen (Pendekatan Kardinal &amp; Ordinal)</h3>
+              <div class="formula-box">
+                <strong class="box-label">Rumus Perilaku Konsumen</strong>
+                <div class="formula-grid">
+                  <div class="formula-pill">
+                    Marginal Utility: MU = <span class="fraction"><span>&Delta;TU</span><span>&Delta;Q</span></span> = TU'
+                    <small>Kepuasan total (TU) mencapai maksimum tepat ketika <strong>MU = 0</strong> (Hukum Gossen I).</small>
+                  </div>
+                  <div class="formula-pill">
+                    Hukum Gossen II: <span class="fraction"><span>MU<sub>A</sub></span><span>P<sub>A</sub></span></span> = <span class="fraction"><span>MU<sub>B</sub></span><span>P<sub>B</sub></span></span> = <span class="fraction"><span>MU<sub>C</sub></span><span>P<sub>C</sub></span></span>
+                    <small>Konsumen membagi pendapatan hingga kepuasan per rupiah terakhir tiap barang sama besar.</small>
+                  </div>
+                  <div class="formula-pill">
+                    Budget Line: I = P<sub>x</sub> &middot; X + P<sub>y</sub> &middot; Y
+                    <small>I = Pendapatan konsumen; P<sub>x</sub>, P<sub>y</sub> = harga barang X dan Y.</small>
+                  </div>
+                  <div class="formula-pill">
+                    Keseimbangan Ordinal: MRS<sub>xy</sub> = <span class="fraction"><span>P<sub>x</sub></span><span>P<sub>y</sub></span></span>
+                    <small>Kurva Indiferensi (IC) bersinggungan dengan garis anggaran (Budget Line).</small>
+                  </div>
+                </div>
+              </div>
+
+              ${SVG_DIAGRAMS.gossen1}
+              ${SVG_DIAGRAMS.indifference}
+
+              <h3>B. Perilaku Produsen &amp; Rumus Biaya Produksi</h3>
+              <div class="formula-box">
+                <strong class="box-label">Rumus Produksi, Biaya, Penerimaan, BEP, &amp; Laba Maksimum</strong>
+                <div class="formula-grid">
+                  <div class="formula-pill">
+                    Marginal Product: MP = <span class="fraction"><span>&Delta;TP</span><span>&Delta;L</span></span> = TP'
+                    <small>TP maksimum saat <strong>MP = 0</strong>.</small>
+                  </div>
+                  <div class="formula-pill">
+                    Average Product: AP = <span class="fraction"><span>TP</span><span>L</span></span>
+                    <small>AP maksimum saat <strong>AP = MP</strong>.</small>
+                  </div>
+                  <div class="formula-pill">
+                    Biaya Total: TC = FC + VC
+                    <small>FC = Biaya Tetap (Fixed Cost); VC = Biaya Variabel (Variable Cost).</small>
+                  </div>
+                  <div class="formula-pill">
+                    Biaya Rata-rata: AC = <span class="fraction"><span>TC</span><span>Q</span></span> = AFC + AVC
+                    <small>AFC = FC/Q; AVC = VC/Q.</small>
+                  </div>
+                  <div class="formula-pill">
+                    Marginal Cost: MC = <span class="fraction"><span>&Delta;TC</span><span>&Delta;Q</span></span> = TC'
+                    <small>Tambahan biaya akibat menambah 1 unit output produksi.</small>
+                  </div>
+                  <div class="formula-pill">
+                    Penerimaan: TR = P &times; Q &nbsp;|&nbsp; MR = TR'
+                    <small>TR = Total Revenue; MR = Marginal Revenue; AR = TR/Q = P.</small>
+                  </div>
+                  <div class="formula-pill">
+                    Titik Impas (BEP): TR = TC
+                    <small>Produsen tidak untung dan tidak rugi (Laba = 0).</small>
+                  </div>
+                  <div class="formula-pill">
+                    Syarat Laba Maksimum: MR = MC
+                    <small>Laba (&pi;) = TR − TC mencapai titik terbesar saat MR = MC.</small>
+                  </div>
+                </div>
+              </div>
+
+              ${SVG_DIAGRAMS.production1}
+              ${SVG_DIAGRAMS.isoquant}
+              ${SVG_DIAGRAMS.costCurves}
+            `
+          }
+        ]
+      },
+      {
+        id: "sosiologi",
+        name: "Sosiologi",
+        icon: "users-round",
+        eyebrow: "Sosiologi • Kelas 10 • Semester 1",
+        subtitle: "Hakikat & ciri ilmu sosiologi, tokoh perintis, tindakan sosial Weber, interaksi, identitas sosial, paradigma ganda, dan penyimpangan sosial.",
+        chapters: [
+          {
+            id: "sos-1",
+            num: "01",
+            title: "Hakikat, Ciri Ilmu, Fungsi, Peran & Tokoh Sosiologi",
+            badge: "Bab 01",
+            html: `
+              <p>Secara etimologis, sosiologi berasal dari bahasa Latin <em>Socius</em> (teman/masyarakat) dan bahasa Yunani <em>Logos</em> (ilmu). Sosiologi adalah <strong>ilmu yang mempelajari tentang masyarakat</strong>, hubungan timbal balik antarmanusia, serta gejala sosial yang ditimbulkannya.</p>
+
+              <div class="formula-box">
+                <strong class="box-label">4 Ciri Ilmu Sosiologi</strong>
+                <div class="formula-grid">
+                  <div class="formula-pill">1. Empiris<small>Berdasarkan observasi kenyataan di lapangan dan akal sehat (tidak spekulatif).</small></div>
+                  <div class="formula-pill">2. Teoretis<small>Menyusun abstraksi/teori logis dari hasil pengamatan sebab-akibat.</small></div>
+                  <div class="formula-pill">3. Kumulatif<small>Dibangun atas dasar teori-teori lama yang diperbaiki, diperluas, dan diperhalus.</small></div>
+                  <div class="formula-pill">4. Non-etis<small>Tidak menilai baik atau buruk suatu fakta secara moral, melainkan menjelaskan fakta secara objektif.</small></div>
+                </div>
+              </div>
+
+              <h3>4 Fungsi Sosiologi &amp; 4 Peran Sosiolog</h3>
+              <ul>
+                <li><strong>4 Fungsi Sosiologi:</strong> (1) <strong>Perencanaan Sosial</strong> (menyediakan data awal &amp; prediksi perubahan), (2) <strong>Penelitian</strong> (riset ilmiah fenomena masyarakat), (3) <strong>Pembangunan</strong> (tahap perencanaan, pelaksanaan, &amp; evaluasi dampak), dan (4) <strong>Pemecahan Masalah Sosial</strong> (solusi kemiskinan, kriminalitas).</li>
+                <li><strong>4 Peran Sosiolog:</strong> (1) <strong>Ahli Riset</strong> (pengumpul &amp; penganalisis data ilmiah), (2) <strong>Konsultan Kebijakan</strong> (memberi saran &amp; prediksi dampak kebijakan publik), (3) <strong>Praktisi / Teknisi</strong> (terjun langsung mendampingi masyarakat), dan (4) <strong>Guru / Pendidik</strong> (mengajarkan ilmu sosiologi).</li>
+              </ul>
+
+              <h3>Tokoh-Tokoh Sosiologi &amp; Gagasan Utamanya</h3>
+              <div class="table-wrap">
+                <table class="chem-table">
+                  <thead>
+                    <tr>
+                      <th>Nama Tokoh</th>
+                      <th>Gagasan / Definisi Sosiologi</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td><strong>Auguste Comte</strong><br><small>(Bapak Sosiologi)</small></td>
+                      <td>Pencetus istilah sosiologi, ilmu positif tentang masyarakat, dan <em>Hukum Tiga Tahap</em> (Teologis, Metafisik, Positivistik).</td>
+                    </tr>
+                    <tr>
+                      <td><strong>Émile Durkheim</strong></td>
+                      <td>Objek kajian sosiologi adalah <strong>Fakta Sosial</strong> (cara bertindak, berpikir, berperasaan di luar individu yang bersifat memaksa) &amp; solidaritas mekanik-organik.</td>
+                    </tr>
+                    <tr>
+                      <td><strong>Max Weber</strong></td>
+                      <td>Ilmu yang berusaha memahami <strong>Tindakan Sosial</strong> secara interpretatif (<em>Verstehen</em>) untuk menjelaskan sebab dan akibatnya.</td>
+                    </tr>
+                    <tr>
+                      <td><strong>Karl Marx</strong></td>
+                      <td>Teori konflik kelas sosial antara kaum pemilik modal (<em>Borjuis</em>) dan kaum buruh (<em>Proletar</em>).</td>
+                    </tr>
+                    <tr>
+                      <td><strong>Selo Soemardjan &amp; Soelaeman Soemardi</strong></td>
+                      <td>Ilmu yang mempelajari <strong>struktur sosial, proses sosial, dan perubahan sosial</strong> di masyarakat.</td>
+                    </tr>
+                    <tr>
+                      <td><strong>Pitirim A. Sorokin</strong></td>
+                      <td>Ilmu yang mempelajari hubungan dan pengaruh timbal balik antara aneka macam gejala sosial (ekonomi, agama) dan gejala nonsosial (geografis, biologis).</td>
+                    </tr>
+                    <tr>
+                      <td><strong>Herbert Spencer &amp; Ibnu Khaldun</strong></td>
+                      <td><strong>Spencer:</strong> Evolusi sosial, masyarakat diibaratkan organisme biologis. <strong>Ibnu Khaldun:</strong> Penulis kitab <em>Muqaddimah</em> tentang solidaritas kelompok (<em>Ashabiyah</em>).</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            `
+          },
+          {
+            id: "sos-2",
+            num: "02",
+            title: "Tindakan Sosial, Interaksi Sosial & Identitas Sosial",
+            badge: "Bab 02",
+            html: `
+              <h3>4 Bentuk Tindakan Sosial (Max Weber)</h3>
+              <div class="formula-box">
+                <strong class="box-label">Klasifikasi Tindakan Sosial Weber</strong>
+                <div class="formula-grid">
+                  <div class="formula-pill">1. Rasional Instrumental<small>Memperhitungkan efisiensi <strong>cara dan tujuan</strong> secara logis (contoh: belajar giat demi lolos PTN).</small></div>
+                  <div class="formula-pill">2. Rasional Berorientasi Nilai<small>Berdasarkan <strong>nilai moral, agama, atau etika</strong> tanpa hitung untung-rugi (contoh: menolong korban kecelakaan, beribadah).</small></div>
+                  <div class="formula-pill">3. Tindakan Afektif<small>Dikuasai oleh <strong>emosi atau perasaan</strong> spontan (contoh: menangis haru, memukul meja karena marah).</small></div>
+                  <div class="formula-pill">4. Tindakan Tradisional<small>Berdasarkan <strong>adat atau kebiasaan</strong> turun-temurun tanpa dipertanyakan (contoh: upacara adat, mudik).</small></div>
+                </div>
+              </div>
+
+              <h3>Interaksi Sosial &amp; Identitas Sosial</h3>
+              <ul>
+                <li><strong>2 Syarat Mutlak Interaksi Sosial:</strong> (1) <strong>Kontak Sosial</strong> (primer/langsung maupun sekunder/perantara) dan (2) <strong>Komunikasi</strong> (penyampaian pesan yang dimaknai dan mendapat respons).</li>
+                <li><strong>6 Faktor Pendorong Interaksi:</strong> <strong>Imitasi</strong> (meniru sebagian), <strong>Identifikasi</strong> (meniru menyeluruh agar sama persis), <strong>Sugesti</strong> (pengaruh diterima tanpa pikir kritis), <strong>Motivasi</strong> (dorongan yang dipikir logis), <strong>Simpati</strong> (ikut merasakan), dan <strong>Empati</strong> (simpati mendalam disertai tindakan nyata menolong).</li>
+                <li><strong>Identitas Sosial:</strong> Dibentuk oleh faktor bawaan (ras, suku, gender), keluarga, teman sebaya (<em>peer group</em>), profesi/pendidikan, serta budaya. <em>Konsekuensi:</em> positif (solidaritas <em>in-group</em>), negatif (<strong>etnosentrisme</strong>, <strong>stereotip</strong>, &amp; <strong>diskriminasi</strong> terhadap <em>out-group</em>).</li>
+              </ul>
+            `
+          },
+          {
+            id: "sos-3",
+            num: "03",
+            title: "Paradigma Sosiologi & Penyimpangan Sosial",
+            badge: "Bab 03",
+            html: `
+              <h3>Sosiologi Berparadigma Ganda (George Ritzer)</h3>
+              <p>Menurut <strong>George Ritzer</strong>, sosiologi merupakan ilmu berparadigma ganda (<em>multiple paradigm science</em>) karena perilaku manusia sangat kompleks sehingga membutuhkan tiga sudut pandang utama:</p>
+              <ol>
+                <li><strong>Paradigma Fakta Sosial (Émile Durkheim):</strong> Perilaku manusia dikendalikan oleh struktur, norma, dan aturan sosial di luar individu (contoh: siswa memakai seragam sesuai tata tertib sekolah).</li>
+                <li><strong>Paradigma Definisi Sosial (Max Weber):</strong> Manusia adalah aktor kreatif yang menafsirkan situasi dan bertindak sesuai makna subjektifnya (contoh: memilih jurusan kuliah berdasarkan minat pribadi).</li>
+                <li><strong>Paradigma Perilaku Sosial (B.F. Skinner):</strong> Perilaku manusia merupakan respons otomatis terhadap stimulus, hadiah (<em>reward</em>), atau hukuman (<em>punishment</em>).</li>
+              </ol>
+
+              <h3>Bentuk Penyimpangan Sosial &amp; Sanksinya</h3>
+              <div class="table-wrap">
+                <table class="chem-table">
+                  <thead>
+                    <tr>
+                      <th>Bentuk Penyimpangan</th>
+                      <th>Karakteristik &amp; Contoh</th>
+                      <th>Sanksi yang Diterima</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td><strong>Penyimpangan Primer</strong></td>
+                      <td>Bersifat sementara/baru pertama kali dilakukan dan masih ditoleransi masyarakat (contoh: menerobos lampu merah karena terburu-buru).</td>
+                      <td>Teguran lisan, nasihat, atau sanksi ringan.</td>
+                    </tr>
+                    <tr>
+                      <td><strong>Penyimpangan Sekunder</strong></td>
+                      <td>Dilakukan berulang-ulang dan sudah menjadi kebiasaan/gaya hidup sehingga tidak ditoleransi (contoh: pencuri kambuhan, koruptor).</td>
+                      <td>Hukuman pidana penjara, denda berat, atau pengucilan sosial.</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            `
+          }
+        ]
+      },
+      {
+        id: "geografi",
+        name: "Geografi",
+        icon: "globe-2",
+        eyebrow: "Geografi • Kelas 10 • Semester 1",
+        subtitle: "10 konsep esensial geografi, objek material & formal, pendekatan, prinsip, aspek geografi, proyeksi peta, skala, kontur, dan interpretasi citra.",
+        chapters: [
+          {
+            id: "geo-1",
+            num: "01",
+            title: "Konsep Dasar, Pendekatan, Prinsip & Objek Geografi",
+            badge: "Bab 01",
+            html: `
+              <h3>10 Konsep Esensial Geografi</h3>
+              <div class="table-wrap">
+                <table class="chem-table">
+                  <thead>
+                    <tr>
+                      <th>No &amp; Konsep</th>
+                      <th>Pengertian &amp; Contoh Penerapan</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr><td><strong>1. Lokasi</strong></td><td>Letak fenomena di bumi. <em>Absolut</em> (koordinat lintang-bujur, tetap) &amp; <em>Relatif</em> (berubah tergantung wilayah sekitar).</td></tr>
+                    <tr><td><strong>2. Jarak</strong></td><td>Jauh-dekat dua objek. <em>Absolut</em> (satuan meter/km) &amp; <em>Relatif</em> (waktu tempuh atau biaya perjalanan).</td></tr>
+                    <tr><td><strong>3. Keterjangkauan</strong></td><td>Kemudahan mencapai suatu wilayah (dipengaruhi sarana transportasi dan kondisi medan).</td></tr>
+                    <tr><td><strong>4. Pola</strong></td><td>Susunan bentuk atau persebaran fenomena (contoh: permukiman memanjang mengikuti aliran sungai/jalan).</td></tr>
+                    <tr><td><strong>5. Morfologi</strong></td><td>Bentuk permukaan bumi akibat tenaga endogen dan eksogen (dataran rendah, pegunungan, lembah).</td></tr>
+                    <tr><td><strong>6. Aglomerasi</strong></td><td>Pemusatan atau pengelompokan aktivitas sejenis di satu kawasan (contoh: kawasan industri Cikarang).</td></tr>
+                    <tr><td><strong>7. Nilai Kegunaan</strong></td><td>Manfaat suatu tempat yang berbeda-beda bagi tiap orang (pantai bagi nelayan vs bagi wisatawan).</td></tr>
+                    <tr><td><strong>8. Interaksi / Interdependensi</strong></td><td>Hubungan timbal balik dan saling ketergantungan antarwilayah (desa pemasok pangan, kota pemasok teknologi).</td></tr>
+                    <tr><td><strong>9. Diferensiasi Area</strong></td><td>Perbedaan karakteristik/keunikan antarwilayah (wilayah pantai bermata pencaharian nelayan, pegunungan petani teh).</td></tr>
+                    <tr><td><strong>10. Keterkaitan Keruangan</strong></td><td>Hubungan sebab-akibat antarfenomena di ruang berbeda (penggundulan hutan di hulu menyebabkan banjir di hilir).</td></tr>
+                  </tbody>
+                </table>
+              </div>
+
+              <h3>Objek Kajian, 3 Pendekatan, 4 Prinsip &amp; Aspek Geografi</h3>
+              <div class="formula-box">
+                <strong class="box-label">Kerangka Analisis Geografi</strong>
+                <div class="formula-grid">
+                  <div class="formula-pill">Objek Material (6 Lapisan Geosfer)<small>Atmosfer (udara), Litosfer (batuan), Pedosfer (tanah), Hidrosfer (air), Biosfer (flora-fauna), Antroposfer (manusia).</small></div>
+                  <div class="formula-pill">Objek Formal &amp; 3 Pendekatan<small>Sudut pandang keruangan melalui <strong>Pendekatan Keruangan</strong> (lokasi fisik), <strong>Kelingkungan</strong> (interaksi manusia-alam), dan <strong>Kompleks Wilayah</strong> (antarwilayah).</small></div>
+                  <div class="formula-pill">4 Prinsip Geografi<small><strong>Distribusi</strong> (persebaran), <strong>Interelasi</strong> (sebab-akibat), <strong>Deskripsi</strong> (penjelasan 5W+1H/peta/grafik), <strong>Korologi</strong> (gabungan ketiganya).</small></div>
+                  <div class="formula-pill">Aspek Fisik &amp; Nonfisik (Sosial)<small><strong>Fisik:</strong> Topologi, Biotik, Abiotik. <strong>Nonfisik:</strong> Sosial, Ekonomi, Budaya, Politik/Kependudukan.</small></div>
+                </div>
+              </div>
+            `
+          },
+          {
+            id: "geo-2",
+            num: "02",
+            title: "Pemetaan, Proyeksi Peta & Unsur Interpretasi Citra",
+            badge: "Bab 02",
+            html: `
+              <p>Peta adalah gambaran permukaan bumi pada bidang datar yang diperkecil dengan skala tertentu. Sebuah peta yang baik wajib memenuhi <strong>3 syarat utama</strong>: <strong>Equidistant</strong> (jarak di peta sebanding jarak asli), <strong>Equivalent</strong> (luas di peta sebanding luas asli), dan <strong>Conform</strong> (bentuk wilayah sesuai aslinya).</p>
+
+              ${SVG_DIAGRAMS.mapProjection}
+
+              <div class="example-box">
+                <strong>Contoh Perhitungan Kontur Interval (CI):</strong> Diketahui peta topografi berskala <strong>1 : 80.000</strong>. Berapa selisih ketinggian antargaris konturnya?<br>
+                <strong>Pembahasan:</strong> CI = (1 / 2.000) &times; 80.000 = <strong>40 meter</strong>. Jika garis kontur A berada pada ketinggian 700 mdpl, maka satu garis kontur tepat di bawahnya adalah 700 − 40 = <strong>660 mdpl</strong>. Ingat: garis kontur <em>rapat</em> menandakan lereng terjal/curam, sedangkan garis kontur <em>jarang</em> menandakan lereng landai.
+              </div>
+
+              <h3>Unsur Interpretasi Peta &amp; 9 Unsur Interpretasi Citra Pengindraan Jauh</h3>
+              <ul>
+                <li><strong>Unsur / Simbol Peta:</strong> Judul peta, skala (angka/garis), orientasi arah utara, garis astronomis, inset, legenda, simbol titik (kota/gunung), garis (sungai/jalan), area (danau/hutan), serta simbol warna (hijau = dataran rendah, cokelat = pegunungan, biru = perairan).</li>
+                <li><strong>9 Unsur Interpretasi Citra:</strong> <strong>Rona &amp; Warna</strong> (tingkat kecerahan objek), <strong>Bentuk</strong> (gedung sekolah huruf I/L/U), <strong>Ukuran</strong> (lapangan bola vs rumah), <strong>Tekstur</strong> (halus pada sawah, kasar pada hutan), <strong>Pola</strong> (perumahan teratur vs permukiman mengikuti sungai), <strong>Bayangan</strong> (menunjukkan ketinggian/lereng), <strong>Situs</strong> (letak objek terhadap lingkungan sekitar), <strong>Asosiasi</strong> (stasiun berasosiasi dengan rel kereta), dan <strong>Konvergensi Bukti</strong>.</li>
+              </ul>
+            `
+          }
+        ]
+      }
+    ];
+
+    // =========================================================================
+    // DATA KISI-KISI LENGKAP (55 INDIKATOR DIJAWAB 1 PER 1)
+    // =========================================================================
+    const KISI_KISI = [
+      // SEJARAH (20 NOMOR)
+      { mapel: "sejarah", label: "Sejarah", no: 1, q: "Arti kata sejarah secara etimologis dalam Bahasa Arab dan Jerman", a: "<p>• <strong>Bahasa Arab:</strong> <em>Syajaratun</em> artinya <strong>pohon</strong> (melambangkan silsilah atau asal-usul yang terus tumbuh dan berkembang).<br>• <strong>Bahasa Jerman:</strong> <em>Geschichte</em> (dari kata <em>geschehen</em>) artinya <strong>sesuatu yang telah terjadi</strong>.<br>• <em>Tambahan:</em> Bahasa Inggris <em>History</em> berasal dari bahasa Yunani <em>historia</em> yang artinya penyelidikan atau informasi hasil penelitian.</p>" },
+      { mapel: "sejarah", label: "Sejarah", no: 2, q: "Definisi sejarah menurut ahli (Sartono Kartodirdjo, Kuntowijoyo, Ibnu Khaldun)", a: "<ul><li><strong>Sartono Kartodirdjo:</strong> Membagi sejarah menjadi <strong>Sejarah Objektif</strong> (kejadian itu sendiri yang tidak terulang) dan <strong>Sejarah Subjektif</strong> (kisah/tulisan sejarawan sesuai sudut pandangnya).</li><li><strong>Kuntowijoyo:</strong> Rekonstruksi masa lalu berdasarkan fakta mengenai apa yang sudah dipikirkan, dikatakan, dikerjakan, dirasakan, dan dialami manusia.</li><li><strong>Ibnu Khaldun:</strong> Catatan tentang masyarakat umat manusia atau peradaban dunia dan perubahan watak masyarakat tersebut.</li><li><strong>Muhammad Yamin &amp; E.H. Carr:</strong> Yamin menekankan penyelidikan peristiwa yang terbukti kenyataan; E.H. Carr menyebutnya dialog tak berkesudahan antara masa kini dan masa lampau.</li></ul>" },
+      { mapel: "sejarah", label: "Sejarah", no: 3, q: "Menentukan subjek dan objek sejarah dari sebuah narasi", a: "<p>• <strong>Subjek Sejarah:</strong> <strong>Pelaku</strong> atau tokoh yang menggerakkan peristiwa tersebut (contoh: Ir. Soekarno dan Drs. Moh. Hatta dalam narasi Proklamasi).<br>• <strong>Objek Sejarah:</strong> <strong>Peristiwa</strong> masa lalu itu sendiri yang sedang dikaji atau diceritakan (contoh: Peristiwa Proklamasi Kemerdekaan 17 Agustus 1945).</p>" },
+      { mapel: "sejarah", label: "Sejarah", no: 4, q: "Ciri-ciri sejarah sebagai peristiwa dan seni", a: "<p>• <strong>Sebagai Peristiwa:</strong> (1) <strong>Abadi</strong> (tidak berubah dan tetap dikenang), (2) <strong>Unik / <em>Einmalig</em></strong> (hanya terjadi satu kali), dan (3) <strong>Penting</strong> (berpengaruh besar bagi kehidupan masyarakat).<br>• <strong>Sebagai Seni:</strong> Membutuhkan (1) <strong>Intuisi</strong>, (2) <strong>Imajinasi</strong> (berbasis fakta), (3) <strong>Emosi</strong>, dan (4) <strong>Gaya Bahasa</strong> yang menarik.</p>" },
+      { mapel: "sejarah", label: "Sejarah", no: 5, q: "Arti fungsi inspiratif dalam mempelajari sejarah", a: "<p>Sejarah memberikan <strong>inspirasi, semangat, dan motivasi</strong> bagi pembacanya untuk meneladani sikap kepahlawanan, cinta tanah air, dan pantang menyerah dari tokoh-tokoh masa lalu. (Fungsi lainnya: <em>Edukatif</em> = pelajaran hidup, <em>Instruktif</em> = alat bantu pengajaran, <em>Rekreatif</em> = hiburan batin).</p>" },
+      { mapel: "sejarah", label: "Sejarah", no: 6, q: "Menentukan unsur sejarah manusia, ruang, waktu dari sebuah narasi", a: "<p>• <strong>Manusia:</strong> Siapa tokoh atau kelompok pelakunya.<br>• <strong>Ruang:</strong> Di mana lokasi peristiwa itu berlangsung (gedung, kota, jalan).<br>• <strong>Waktu:</strong> Kapan peristiwa itu terjadi (jam, tanggal, bulan, tahun, abad).</p>" },
+      { mapel: "sejarah", label: "Sejarah", no: 7, q: "Mengapa sejarah dapat berfungsi rekreatif?", a: "<p>Karena kisah sejarah yang ditulis dengan gaya bahasa hidup dan menarik mampu memberikan <strong>hiburan, kesenangan, dan kepuasan batin</strong>, seolah-olah pembaca diajak \"bertamasya\" melintasi ruang dan waktu ke masa lampau.</p>" },
+      { mapel: "sejarah", label: "Sejarah", no: 8, q: "Pengertian mempelajari sejarah secara diakronik dan sinkronik", a: "<p>• <strong>Diakronik:</strong> Memanjang dalam waktu, menyempit dalam ruang (fokus pada kronologi, urutan waktu, dan proses sebab-akibat).<br>• <strong>Sinkronik:</strong> Melebar dalam ruang, menyempit dalam waktu (fokus menganalisis berbagai aspek sosial, ekonomi, budaya pada satu titik waktu tertentu secara mendalam).</p>" },
+      { mapel: "sejarah", label: "Sejarah", no: 9, q: "Menentukan contoh sinkronik atau diakronik sebuah penelitian sejarah", a: "<p>• <strong>Contoh Diakronik:</strong> <em>Perkembangan Kerajaan Majapahit dari Tahun 1293 hingga 1527</em> (rentang waktu panjang).<br>• <strong>Contoh Sinkronik:</strong> <em>Kondisi Sosial dan Ekonomi Masyarakat Jakarta pada Masa Krisis Moneter 1998</em> (waktu spesifik, bahasan aspek melebar).</p>" },
+      { mapel: "sejarah", label: "Sejarah", no: 10, q: "Pembagian waktu dalam sejarah beserta menentukan contohnya", a: "<p>1. <strong>Masa Lalu:</strong> Peristiwa yang telah terjadi (contoh: Sumpah Pemuda 28 Oktober 1928).<br>2. <strong>Masa Kini:</strong> Kondisi yang sedang dijalani saat ini sebagai hasil masa lalu (contoh: penggunaan Bahasa Indonesia sebagai bahasa persatuan).<br>3. <strong>Masa Depan:</strong> Perencanaan dan harapan berdasarkan pengalaman masa lalu &amp; kini (contoh: visi Indonesia Emas 2045).</p>" },
+      { mapel: "sejarah", label: "Sejarah", no: 11, q: "Menentukan 4 aspek pada unsur waktu dalam sejarah", a: "<p>1. <strong>Perkembangan:</strong> Bergerak dari bentuk sederhana ke kompleks.<br>2. <strong>Kesinambungan (Keberlanjutan):</strong> Kebijakan atau tradisi lama yang tetap diteruskan.<br>3. <strong>Pengulangan:</strong> Peristiwa dengan pola serupa terulang kembali di zaman berbeda.<br>4. <strong>Perubahan:</strong> Pergeseran besar-besaran dalam masyarakat dalam waktu relatif singkat.</p>" },
+      { mapel: "sejarah", label: "Sejarah", no: 12, q: "Membuat contoh perubahan dan keberlanjutan dalam sejarah", a: "<p>• <strong>Contoh Perubahan:</strong> Pergantian sistem pemerintahan dari era Orde Baru ke era Reformasi 1998; masuknya internet dan telepon pintar yang mengubah cara komunikasi masyarakat.<br>• <strong>Contoh Keberlanjutan:</strong> Sistem penarikan pajak/upeti yang terus berlanjut dari masa kerajaan, kolonial, hingga negara modern; tradisi mudik Lebaran.</p>" },
+      { mapel: "sejarah", label: "Sejarah", no: 13, q: "Menentukan jenis pengulangan dan perkembangan dalam sebuah narasi", a: "<p>• <strong>Pengulangan:</strong> Terjadi pola kejadian serupa di masa berbeda (contoh: lengsernya Presiden Soekarno tahun 1966 dan Presiden Soeharto tahun 1998 yang sama-sama dipicu gelombang demonstrasi mahasiswa).<br>• <strong>Perkembangan:</strong> Terjadi evolusi bertahap dari sederhana ke modern (contoh: alat pembayaran dari barter &rarr; uang logam &rarr; uang kertas &rarr; QRIS).</p>" },
+      { mapel: "sejarah", label: "Sejarah", no: 14, q: "Pengertian dan jenis penggolongan sumber sejarah", a: "<p><strong>Pengertian:</strong> Segala sesuatu yang memberi informasi atau bukti tentang peristiwa masa lalu.<br><strong>Berdasarkan Sifatnya:</strong> (1) <strong>Primer</strong> (kesaksian langsung pelaku/saksi mata, seperti naskah Proklamasi asli), (2) <strong>Sekunder</strong> (hasil kajian tangan kedua seperti buku pelajaran sejarah), (3) <strong>Tersier</strong> (ringkasan seperti ensiklopedia).</p>" },
+      { mapel: "sejarah", label: "Sejarah", no: 15, q: "Menentukan jenis sumber sejarah berdasarkan wujudnya", a: "<p>1. <strong>Sumber Tertulis:</strong> Prasasti, naskah kuno, surat kabar lama, arsip.<br>2. <strong>Sumber Lisan:</strong> Keterangan wawancara langsung dengan pelaku/saksi sejarah.<br>3. <strong>Sumber Benda (Artefak):</strong> Candi, fosil, kapak genggam, keris, bangunan bersejarah.<br>4. <strong>Sumber Audio/Visual/Audiovisual:</strong> Foto, rekaman pidato, film dokumenter.</p>" },
+      { mapel: "sejarah", label: "Sejarah", no: 16, q: "Menyebutkan 5 tahapan metode penelitian sejarah", a: "<p>1. <strong>Pemilihan Topik</strong> (kedekatan emosional &amp; intelektual) &rarr; 2. <strong>Heuristik</strong> (mengumpulkan sumber sejarah) &rarr; 3. <strong>Verifikasi</strong> (kritik sumber) &rarr; 4. <strong>Interpretasi</strong> (menafsirkan fakta) &rarr; 5. <strong>Historiografi</strong> (penulisan sejarah).</p>" },
+      { mapel: "sejarah", label: "Sejarah", no: 17, q: "Arti dan jenis verifikasi/kritik sumber", a: "<p><strong>Arti:</strong> Pengujian kritis terhadap keaslian dan kebenaran sumber sejarah.<br>• <strong>Kritik Ekstern:</strong> Menguji <strong>keaslian fisik</strong> sumber (kertas, tinta, gaya huruf, usia material).<br>• <strong>Kritik Intern:</strong> Menguji <strong>kebenaran dan kredibilitas isi</strong> informasi di dalam sumber tersebut.</p>" },
+      { mapel: "sejarah", label: "Sejarah", no: 18, q: "Jenis-jenis historiografi dan ciri-cirinya", a: "<p>1. <strong>Historiografi Tradisional:</strong> Istanasentris (berpusat pada raja), religiomagis (mitos/kesaktian), etnosentris.<br>2. <strong>Historiografi Kolonial:</strong> Neerlandosentris/Eropasentris, mengagungkan Belanda, menyebut pejuang Indonesia sebagai pemberontak.<br>3. <strong>Historiografi Modern/Nasional:</strong> Indonesiasentris, ilmiah/kritis, mengangkat peran rakyat dan pahlawan nasional.</p>" },
+      { mapel: "sejarah", label: "Sejarah", no: 19, q: "Menentukan contoh jenis historiografi dari sebuah contoh buku sejarah", a: "<p>• <strong>Tradisional:</strong> <em>Babad Tanah Jawi, Kitab Pararaton, Hikayat Raja-Raja Pasai</em>.<br>• <strong>Kolonial:</strong> <em>Geschiedenis van Nederlandsch Indie</em> (F.W. Stapel).<br>• <strong>Modern/Nasional:</strong> <em>Sejarah Nasional Indonesia</em> (Nugroho Notosusanto), <em>Pemberontakan Petani Banten 1888</em> (Sartono Kartodirdjo).</p>" },
+      { mapel: "sejarah", label: "Sejarah", no: 20, q: "Menjelaskan kelemahan historiografi tradisional", a: "<p>1. Subjektivitas tinggi karena bertujuan mengagungkan raja/penguasa.<br>2. Bercampur dengan mitos, dongeng, dan unsur gaib.<br>3. Mengabaikan kehidupan rakyat biasa.<br>4. Urutan waktu (kronologi) sering kurang jelas atau melompat-lompat.</p>" },
+
+      // EKONOMI (14 NOMOR)
+      { mapel: "ekonomi", label: "Ekonomi", no: 1, q: "Pengertian Ilmu Ekonomi", a: "<p>• <strong>Etimologis:</strong> Dari bahasa Yunani <em>Oikos</em> (rumah tangga) &amp; <em>Nomos</em> (aturan), berarti aturan mengelola rumah tangga agar tercapai kemakmuran.<br>• <strong>Prof. P.A. Samuelson:</strong> Studi tentang bagaimana masyarakat membuat pilihan menggunakan sumber daya yang terbatas untuk menghasilkan barang dan jasa serta mendistribusikannya.</p>" },
+      { mapel: "ekonomi", label: "Ekonomi", no: 2, q: "Pembagian Ilmu Ekonomi (Ekonomi Mikro & Makro: Apa Saja)", a: "<p>Ilmu ekonomi dibagi menjadi <strong>Deskriptif</strong>, <strong>Teori</strong>, dan <strong>Terapan</strong>. Ekonomi Teori terbagi dua:<br>• <strong>Ekonomi Mikro (Bagian kecil/parsial):</strong> Perilaku konsumen, perilaku produsen, permintaan &amp; penawaran 1 barang, harga pasar, biaya produksi, dan masalah <em>What, How, For Whom</em>.<br>• <strong>Ekonomi Makro (Keseluruhan/agregat):</strong> Pendapatan nasional (PDB), inflasi, pengangguran, APBN, jumlah uang beredar, investasi nasional, dan neraca pembayaran.</p>" },
+      { mapel: "ekonomi", label: "Ekonomi", no: 3, q: "Ekonomi Positif & Normatif (Pernyataan Positif & Normatif Tentang Ekonomi)", a: "<p>• <strong>Ekonomi Positif:</strong> Objektif/bebas nilai, menjelaskan fakta <em>\"apa yang terjadi\"</em>. Contoh pernyataan: <em>\"Jika harga BBM naik, biaya distribusi barang akan ikut meningkat.\"</em><br>• <strong>Ekonomi Normatif:</strong> Mengandung pertimbangan moral/etika tentang <em>\"apa yang seharusnya terjadi\"</em>. Contoh pernyataan: <em>\"Pemerintah <strong>seharusnya</strong> memberikan subsidi pupuk agar petani sejahtera.\"</em></p>" },
+      { mapel: "ekonomi", label: "Ekonomi", no: 4, q: "Kelangkaan dan Cara Mengatasinya", a: "<p><strong>Kelangkaan (<em>Scarcity</em>):</strong> Kondisi ketika kebutuhan manusia tidak terbatas, sedangkan sumber daya (SDA, SDM, Modal, Kewirausahaan) terbatas.<br><strong>Cara Mengatasinya:</strong> Menyusun skala prioritas, menghemat pemakaian SDA &amp; menjaga kelestarian alam, mencari barang pengganti (substitusi), serta mengembangkan teknologi &amp; kualitas SDM.</p>" },
+      { mapel: "ekonomi", label: "Ekonomi", no: 5, q: "Biaya Peluang (Opportunity Cost) + Rumus", a: "<p><strong>Pengertian:</strong> Nilai kesempatan terbaik yang hilang/dikorbankan karena memilih alternatif lain.</p><div class='formula-box'><strong class='box-label'>Rumus Biaya Peluang &amp; Laba</strong><div class='formula-grid'><div class='formula-pill'>Biaya Sesungguhnya = Biaya Implisit + Biaya Eksplisit</div><div class='formula-pill'>Laba Akuntansi = Pendapatan Total − Biaya Eksplisit</div><div class='formula-pill'>Laba Ekonomi = Pendapatan Total − Biaya Sesungguhnya</div></div></div>" },
+      { mapel: "ekonomi", label: "Ekonomi", no: 6, q: "Skala Prioritas", a: "<p>Daftar urutan pemenuhan kebutuhan yang disusun dari yang <strong>paling penting dan mendesak</strong> hingga yang bisa ditunda (Primer &rarr; Sekunder &rarr; Tersier) agar pendapatan yang terbatas dapat dimanfaatkan secara optimal. Menurut <strong>Hukum Engel</strong>, makin besar pendapatan, makin kecil persentase pendapatan untuk konsumsi pokok.</p>" },
+      { mapel: "ekonomi", label: "Ekonomi", no: 7, q: "Jenis Kebutuhan (Berdasarkan Apa)", a: "<p>1. <strong>Intensitas:</strong> Primer, Sekunder, Tersier.<br>2. <strong>Sifat:</strong> Jasmani (fisik) &amp; Rohani (jiwa/batin).<br>3. <strong>Waktu Pemenuhan:</strong> Sekarang (mendesak) &amp; Masa Datang (tabungan/asuransi).<br>4. <strong>Subjek:</strong> Individu (pribadi) &amp; Kolektif/Publik (jalan raya, rumah sakit).<br>5. <strong>Wujud:</strong> Material (benda fisik) &amp; Spiritual/Immaterial (rasa aman).</p>" },
+      { mapel: "ekonomi", label: "Ekonomi", no: 8, q: "Prinsip Ekonomi", a: "<p>Pedoman bertindak dalam kegiatan ekonomi, yaitu berusaha dengan <strong>pengorbanan sekecil-kecilnya untuk memperoleh hasil tertentu</strong>, atau dengan <strong>pengorbanan tertentu untuk memperoleh hasil sebesar-besarnya</strong>.</p>" },
+      { mapel: "ekonomi", label: "Ekonomi", no: 9, q: "Masalah Ekonomi (Klasik & Modern)", a: "<p>• <strong>Masalah Ekonomi Klasik:</strong> (1) <strong>Produksi</strong> (menghasilkan barang), (2) <strong>Distribusi</strong> (menyalurkan barang), (3) <strong>Konsumsi</strong> (memanfaatkan barang).<br>• <strong>Masalah Ekonomi Modern (3W):</strong> (1) <strong>What</strong> (barang apa &amp; berapa banyak diproduksi), (2) <strong>How</strong> (bagaimana cara/teknologi memproduksinya), (3) <strong>For Whom</strong> (untuk siapa barang diproduksi).</p>" },
+      { mapel: "ekonomi", label: "Ekonomi", no: 10, q: "4 Sistem Ekonomi", a: "<p>1. <strong>Tradisional:</strong> Berdasarkan adat istiadat, transaksi barter, belum ada pembagian kerja.<br>2. <strong>Komando/Sosialis (Karl Marx):</strong> Alat produksi dikuasai negara, pemerataan tinggi tapi mematikan kreativitas individu.<br>3. <strong>Liberal/Pasar (Adam Smith):</strong> Didominasi swasta, persaingan bebas, mendorong inovasi tapi memicu kesenjangan &amp; monopoli.<br>4. <strong>Campuran:</strong> Kerja sama pemerintah &amp; swasta (Indonesia menerapkan <strong>Demokrasi Ekonomi Pancasila</strong> sesuai Pasal 33 UUD 1945).</p>" },
+      { mapel: "ekonomi", label: "Ekonomi", no: 11, q: "Perilaku Konsumen + Rumus & Gambar Kurva", a: "<p>• <strong>Pendekatan Kardinal:</strong> Kepuasan diukur dengan angka (<em>util</em>). Berlaku <strong>Hukum Gossen I</strong> (konsumsi terus-menerus membuat tambahan kepuasan/MU makin turun; TU maksimum saat <strong>MU = 0</strong>) dan <strong>Hukum Gossen II</strong>.<br>• <strong>Pendekatan Ordinal:</strong> Kepuasan dibandingkan lewat <strong>Kurva Indiferensi (IC)</strong> dan <strong>Garis Anggaran (BL)</strong>.</p><div class='formula-box'><strong class='box-label'>Rumus Perilaku Konsumen</strong><div class='formula-grid'><div class='formula-pill'>MU = &Delta;TU / &Delta;Q = TU' &nbsp;|&nbsp; TU Max saat MU = 0</div><div class='formula-pill'>Hukum Gossen II: MU<sub>A</sub> / P<sub>A</sub> = MU<sub>B</sub> / P<sub>B</sub> = MU<sub>C</sub> / P<sub>C</sub></div><div class='formula-pill'>Budget Line: I = P<sub>x</sub>&middot;X + P<sub>y</sub>&middot;Y &nbsp;|&nbsp; Keseimbangan: MRS = P<sub>x</sub> / P<sub>y</sub></div></div></div>${SVG_DIAGRAMS.gossen1}" },
+      { mapel: "ekonomi", label: "Ekonomi", no: 12, q: "Perilaku Produsen (Produksi 1 Faktor: Law of Diminishing Returns & Rumus Biaya)", a: "<p>Pada produksi jangka pendek (1 faktor variabel tenaga kerja, faktor lain tetap), berlaku <strong>The Law of Diminishing Returns</strong> (David Ricardo): penambahan tenaga kerja terus-menerus mula-mula menaikkan tambahan hasil (MP), namun setelah titik tertentu tambahan hasilnya semakin menurun.</p><div class='formula-box'><strong class='box-label'>Rumus Produksi, Biaya, BEP &amp; Laba Maksimum</strong><div class='formula-grid'><div class='formula-pill'>MP = &Delta;TP / &Delta;L &nbsp;|&nbsp; AP = TP / L &nbsp;|&nbsp; TP Max saat MP = 0</div><div class='formula-pill'>TC = FC + VC &nbsp;|&nbsp; AC = TC / Q = AFC + AVC &nbsp;|&nbsp; MC = &Delta;TC / &Delta;Q = TC'</div><div class='formula-pill'>Titik Impas (BEP): TR = TC &nbsp;|&nbsp; Laba Maksimum: MR = MC</div></div></div>${SVG_DIAGRAMS.production1}" },
+      { mapel: "ekonomi", label: "Ekonomi", no: 13, q: "Diagram Interaksi Pelaku Ekonomi (Circular Flow Diagram)", a: "<p>Menggambarkan arus faktor produksi, barang/jasa, serta arus uang antar 4 pelaku ekonomi (<strong>RTK, RTP, Pemerintah, dan Masyarakat Luar Negeri</strong>):</p>${SVG_DIAGRAMS.circularFlow}" },
+      { mapel: "ekonomi", label: "Ekonomi", no: 14, q: "Kegiatan Ekonomi (Produksi, Distribusi, Konsumsi)", a: "<p>1. <strong>Produksi:</strong> Menciptakan atau menambah nilai guna barang/jasa (5 kegunaan Al Meyers: <em>Element, Form, Place, Time, Ownership</em>).<br>2. <strong>Distribusi:</strong> Menyalurkan barang dari produsen ke konsumen (<em>distribusi langsung</em> tanpa perantara &amp; <em>tidak langsung</em> lewat agen/grosir/pengecer).<br>3. <strong>Konsumsi:</strong> Menghabiskan atau mengurangi nilai guna barang/jasa untuk memenuhi kebutuhan.</p>" },
+
+      // SOSIOLOGI (15 NOMOR)
+      { mapel: "sosiologi", label: "Sosiologi", no: 1, q: "Mengidentifikasi pengertian atau definisi sosiologi secara tepat", a: "<p>Secara etimologis berasal dari bahasa Latin <em>Socius</em> (teman/masyarakat) dan Yunani <em>Logos</em> (ilmu). Sosiologi adalah <strong>ilmu yang mempelajari tentang masyarakat</strong>, khususnya hubungan timbal balik antarmanusia dan gejala sosial yang timbul di dalamnya.</p>" },
+      { mapel: "sosiologi", label: "Sosiologi", no: 2, q: "Menentukan fungsi dan peran sosiologi yang sesuai dengan pernyataan", a: "<p>• <strong>4 Fungsi:</strong> (1) <strong>Perencanaan sosial</strong> (data awal &amp; prediksi), (2) <strong>Penelitian</strong> (riset ilmiah), (3) <strong>Pembangunan</strong> (perencanaan, pelaksanaan, evaluasi), (4) <strong>Pemecahan masalah sosial</strong>.<br>• <strong>4 Peran:</strong> Ahli riset, Konsultan kebijakan, Praktisi/teknisi lapangan, dan Guru/pendidik.</p>" },
+      { mapel: "sosiologi", label: "Sosiologi", no: 3, q: "Menentukan definisi sosiologi berdasarkan pemikiran salah satu tokoh sosiologi", a: "<p>• <strong>Auguste Comte:</strong> Ilmu positif tentang masyarakat.<br>• <strong>Émile Durkheim:</strong> Ilmu tentang <strong>fakta sosial</strong>.<br>• <strong>Max Weber:</strong> Ilmu yang memahami <strong>tindakan sosial</strong> secara interpretatif (<em>Verstehen</em>).<br>• <strong>Selo Soemardjan &amp; Soelaeman Soemardi:</strong> Ilmu tentang struktur sosial, proses sosial, dan perubahan sosial.<br>• <strong>Pitirim A. Sorokin:</strong> Hubungan timbal balik antar gejala sosial dan nonsosial.</p>" },
+      { mapel: "sosiologi", label: "Sosiologi", no: 4, q: "Menganalisis bagian atau bentuk tindakan sosial yang sesuai dengan pernyataan", a: "<p>1. <strong>Rasional Instrumental:</strong> Memperhitungkan efisiensi cara &amp; tujuan secara logis.<br>2. <strong>Rasional Berorientasi Nilai:</strong> Berdasarkan nilai moral, agama, atau etika.<br>3. <strong>Afektif:</strong> Dikuasai emosi/perasaan spontan (marah, sedih, senang).<br>4. <strong>Tradisional:</strong> Mengikuti adat/kebiasaan turun-temurun.</p>" },
+      { mapel: "sosiologi", label: "Sosiologi", no: 5, q: "Menganalisis dan menentukan paradigma sosiologi yang sesuai dengan kasus", a: "<p>1. <strong>Paradigma Fakta Sosial (Durkheim):</strong> Perilaku dikendalikan aturan, norma, &amp; institusi sosial di luar individu.<br>2. <strong>Paradigma Definisi Sosial (Weber):</strong> Manusia aktif menafsirkan situasi sesuai makna subjektifnya.<br>3. <strong>Paradigma Perilaku Sosial (B.F. Skinner):</strong> Respons terhadap stimulus, hadiah (<em>reward</em>), atau hukuman (<em>punishment</em>).</p>" },
+      { mapel: "sosiologi", label: "Sosiologi", no: 6, q: "Menganalisis peran sosiologi yang paling sesuai dengan kasus tersebut", a: "<p>• Mengumpulkan data/survei penyebab masalah = <strong>Ahli Riset</strong>.<br>• Memberi saran sebelum pemerintah membuat kebijakan = <strong>Konsultan Kebijakan</strong>.<br>• Terjun mendampingi warga/mediasi konflik = <strong>Praktisi / Teknisi</strong>.<br>• Memberi penyuluhan/pengajaran = <strong>Guru / Pendidik</strong>.</p>" },
+      { mapel: "sosiologi", label: "Sosiologi", no: 7, q: "Mengidentifikasi tokoh sosiologi yang sesuai dengan informasi pada pernyataan", a: "<p>• <strong>Auguste Comte:</strong> Bapak Sosiologi &amp; Hukum Tiga Tahap.<br>• <strong>Karl Marx:</strong> Konflik kelas Borjuis vs Proletar.<br>• <strong>Herbert Spencer:</strong> Masyarakat seperti organisme biologis.<br>• <strong>Ibnu Khaldun:</strong> Kitab <em>Muqaddimah</em> &amp; solidaritas <em>Ashabiyah</em>.</p>" },
+      { mapel: "sosiologi", label: "Sosiologi", no: 8, q: "Mengklasifikasikan tindakan sosial berdasarkan karakteristik tindakan dalam kasus", a: "<p>Periksa motif utamanya: jika ada strategi/hitung untung-rugi &rarr; <strong>Rasional Instrumental</strong>; jika karena ibadah/moral &rarr; <strong>Berorientasi Nilai</strong>; jika luapan emosi spontan &rarr; <strong>Afektif</strong>; jika mengikuti kebiasaan leluhur &rarr; <strong>Tradisional</strong>.</p>" },
+      { mapel: "sosiologi", label: "Sosiologi", no: 9, q: "Menafsirkan makna informasi/pernyataan dalam interaksi sosial", a: "<p>Interaksi sosial hanya terjadi jika memenuhi <strong>2 syarat mutlak</strong>: (1) <strong>Kontak Sosial</strong> (langsung/primer maupun lewat perantara/sekunder) dan (2) <strong>Komunikasi</strong> (penyampaian pesan yang dipahami dan mendapat respons/timbal balik).</p>" },
+      { mapel: "sosiologi", label: "Sosiologi", no: 10, q: "Mengidentifikasi faktor utama pembentukan identitas sosial", a: "<p>Faktor bawaan/asal-usul (ras, suku, jenis kelamin), sosialisasi primer dalam keluarga, lingkungan teman sebaya (<em>peer group</em>), pendidikan/profesi, serta nilai budaya &amp; media.</p>" },
+      { mapel: "sosiologi", label: "Sosiologi", no: 11, q: "Mengidentifikasi faktor pendorong terjadinya interaksi sosial", a: "<p>1. <strong>Imitasi</strong> (meniru sebagian), 2. <strong>Identifikasi</strong> (meniru menyeluruh agar sama persis), 3. <strong>Sugesti</strong> (pengaruh diterima tanpa pikir kritis), 4. <strong>Motivasi</strong> (dorongan yang tetap dipikir logis), 5. <strong>Simpati</strong> (ikut merasakan), 6. <strong>Empati</strong> (simpati disertai tindakan nyata menolong).</p>" },
+      { mapel: "sosiologi", label: "Sosiologi", no: 12, q: "Memahami gagasan sosiologi berparadigma ganda", a: "<p>Dicetuskan oleh <strong>George Ritzer</strong>: sosiologi tidak memiliki satu sudut pandang tunggal, melainkan banyak paradigma (Fakta Sosial, Definisi Sosial, Perilaku Sosial) karena realitas dan perilaku manusia sangat kompleks dan dinamis.</p>" },
+      { mapel: "sosiologi", label: "Sosiologi", no: 13, q: "Menganalisis dampak atau konsekuensi identitas sosial dalam kasus", a: "<p>• <strong>Positif:</strong> Memperkuat solidaritas dan rasa memiliki dalam kelompok (<em>in-group</em>).<br>• <strong>Negatif:</strong> Memunculkan sikap <strong>etnosentrisme</strong> (merasa kelompoknya paling unggul), <strong>stereotip</strong> (prasangka kaku), dan <strong>diskriminasi</strong> terhadap kelompok lain (<em>out-group</em>).</p>" },
+      { mapel: "sosiologi", label: "Sosiologi", no: 14, q: "Memahami makna ciri-ciri ilmu sosiologi berdasarkan pernyataan", a: "<p>1. <strong>Empiris:</strong> Berdasarkan observasi kenyataan &amp; akal sehat (tidak spekulatif).<br>2. <strong>Teoretis:</strong> Menyusun teori/abstraksi logis dari hasil pengamatan.<br>3. <strong>Kumulatif:</strong> Dibangun di atas teori lama yang disempurnakan.<br>4. <strong>Non-etis:</strong> Tidak menilai baik-buruk moral, melainkan menjelaskan fakta apa adanya.</p>" },
+      { mapel: "sosiologi", label: "Sosiologi", no: 15, q: "Menentukan bentuk penyimpangan sosial beserta sanksi yang sesuai", a: "<p>• <strong>Penyimpangan Primer:</strong> Sementara/baru pertama kali dan masih ditoleransi (contoh: menerobos lampu merah karena terburu-buru) &rarr; <strong>Sanksi:</strong> teguran, nasihat, atau denda ringan.<br>• <strong>Penyimpangan Sekunder:</strong> Dilakukan berulang-ulang dan sudah menjadi kebiasaan (contoh: pencurian berulang, korupsi) &rarr; <strong>Sanksi:</strong> hukuman pidana penjara atau pengucilan sosial.</p>" },
+
+      // GEOGRAFI (6 NOMOR)
+      { mapel: "geografi", label: "Geografi", no: 1, q: "Konsep Geografi (10 Konsep Esensial)", a: "<p>1. <strong>Lokasi</strong> (absolut/koordinat &amp; relatif), 2. <strong>Jarak</strong> (absolut/km &amp; relatif/waktu), 3. <strong>Keterjangkauan</strong> (kemudahan akses/transportasi), 4. <strong>Pola</strong> (susunan bentuk permukiman/sungai), 5. <strong>Morfologi</strong> (bentuk permukaan bumi), 6. <strong>Aglomerasi</strong> (pemusatan kawasan industri/permukiman), 7. <strong>Nilai Kegunaan</strong> (manfaat wilayah berbeda tiap orang), 8. <strong>Interaksi/Interdependensi</strong> (ketergantungan desa-kota), 9. <strong>Diferensiasi Area</strong> (perbedaan karakteristik wilayah), 10. <strong>Keterkaitan Keruangan</strong> (sebab-akibat antarwilayah, seperti hulu-hilir).</p>" },
+      { mapel: "geografi", label: "Geografi", no: 2, q: "Pendekatan Geografi (3 Pendekatan & 4 Prinsip)", a: "<p>• <strong>3 Pendekatan:</strong> (1) <strong>Keruangan (<em>Spatial</em>)</strong> fokus pada kondisi fisik ruang, (2) <strong>Kelingkungan (<em>Ecological</em>)</strong> fokus interaksi timbal balik manusia-lingkungan, (3) <strong>Kompleks Wilayah (<em>Regional Complex</em>)</strong> interaksi antarwilayah berbeda (contoh: banjir Jakarta akibat gundulnya hutan di Bogor).<br>• <strong>4 Prinsip:</strong> <strong>Distribusi</strong> (persebaran), <strong>Interelasi</strong> (sebab-akibat), <strong>Deskripsi</strong> (5W+1H/peta/grafik), <strong>Korologi</strong> (gabungan ketiganya).</p>" },
+      { mapel: "geografi", label: "Geografi", no: 3, q: "Aspek Geografi (Fisik & Nonfisik/Sosial)", a: "<p>• <strong>Aspek Fisik:</strong> Fenomena alam meliputi <strong>Topologi</strong> (bentuk muka bumi, lokasi, luas), <strong>Biotik</strong> (makhluk hidup/flora-fauna), dan <strong>Abiotik</strong> (tanah, air, iklim, batuan).<br>• <strong>Aspek Nonfisik (Sosial):</strong> Kajian manusia meliputi aspek <strong>Sosial, Ekonomi, Budaya, dan Politik/Kependudukan</strong>.</p>" },
+      { mapel: "geografi", label: "Geografi", no: 4, q: "Proyeksi Peta (+ 3 Syarat Peta & Rumus Skala/Kontur)", a: "<p>• <strong>Macam Proyeksi:</strong> <strong>Azimutal/Zenital</strong> (daerah kutub), <strong>Silinder</strong> (daerah khatulistiwa/Indonesia), <strong>Kerucut</strong> (lintang sedang/Eropa).<br>• <strong>3 Syarat Peta:</strong> <strong>Equidistant</strong> (jarak sama), <strong>Equivalent</strong> (luas sama), <strong>Conform</strong> (bentuk sama).</p>${SVG_DIAGRAMS.mapProjection}" },
+      { mapel: "geografi", label: "Geografi", no: 5, q: "Unsur Interpretasi Peta & Citra", a: "<p>• <strong>Unsur/Simbol Peta:</strong> Judul, skala, orientasi arah, garis astronomis, inset, legenda, simbol titik (kota/gunung), garis (sungai/jalan), area (danau/hutan), &amp; warna (hijau = dataran rendah, cokelat = pegunungan, biru = perairan).<br>• <strong>9 Unsur Interpretasi Citra:</strong> Rona &amp; Warna, Bentuk, Ukuran, Tekstur, Pola, Bayangan, Situs, Asosiasi, dan Konvergensi Bukti.</p>" },
+      { mapel: "geografi", label: "Geografi", no: 6, q: "Objek Material dan Objek Formal Geografi", a: "<p>• <strong>Objek Material (Apa yang dikaji):</strong> 6 lapisan fenomena geosfer yaitu <strong>Atmosfer</strong> (udara/iklim), <strong>Litosfer</strong> (batuan), <strong>Pedosfer</strong> (tanah), <strong>Hidrosfer</strong> (air), <strong>Biosfer</strong> (flora &amp; fauna), dan <strong>Antroposfer</strong> (manusia).<br>• <strong>Objek Formal (Cara pandang mengkaji):</strong> Sudut pandang keruangan melalui <strong>3 pendekatan geografi</strong> (Keruangan, Kelingkungan, dan Kompleks Wilayah).</p>" }
+    ];
+
+    // =========================================================================
+    // LOGIKA APLIKASI, NAVIGASI, PENCARIAN, & DARK MODE (SHIRA'S ARCHIVE)
+    // =========================================================================
+    const $ = id => document.getElementById(id);
+    const icons = () => lucide.createIcons();
+
+    let currentTab = "materi";
+    let activeSubject = null;
+    let currentKisiFilter = "semua";
+
+    // Render Kartu 4 Mata Pelajaran IPS
+    function renderSubjectCards() {
+      const q = $("search").value.trim().toLocaleLowerCase("id");
+      const matches = IPS_SUBJECTS.filter(s => {
+        if (!q) return true;
+        const inName = s.name.toLocaleLowerCase("id").includes(q);
+        const inChapters = s.chapters.some(c =>
+          c.title.toLocaleLowerCase("id").includes(q) ||
+          c.html.replace(/<[^>]*>?/gm, " ").toLocaleLowerCase("id").includes(q)
+        );
+        return inName || inChapters;
+      });
+
+      $("subject-count").textContent = matches.length + " mata pelajaran";
+      const grid = $("subject-grid");
+      grid.replaceChildren();
+
+      if (!matches.length) {
+        const p = document.createElement("p");
+        p.className = "empty-search";
+        p.style.gridColumn = "1 / -1";
+        p.textContent = "Tidak ada materi yang cocok dengan kata kunci \"" + $("search").value + "\".";
+        grid.append(p);
+        return;
+      }
+
+      matches.forEach(s => {
+        const btn = document.createElement("button");
+        btn.type = "button";
+        btn.className = "subject-card";
+
+        const pillsHTML = s.chapters.map(c => `<span class="chap-pill">${c.num}. ${c.title}</span>`).join("");
+
+        btn.innerHTML = `
+          <div class="card-top">
+            <span class="subject-icon"><i data-lucide="${s.icon}"></i></span>
+            <span class="card-arrow"><i data-lucide="arrow-up-right"></i></span>
+          </div>
+          <h3>${s.name}</h3>
+          <p>${s.subtitle}</p>
+          <div class="card-chapters-preview">${pillsHTML}</div>
+          <div class="mini-line"><span></span></div>
+        `;
+        btn.addEventListener("click", () => openSubjectReader(s));
+        grid.append(btn);
+      });
+      icons();
+    }
+
+    // Buka Halaman Baca Detail (Gaya kimia-bab1.html)
+    function openSubjectReader(subj) {
+      activeSubject = subj;
+      $("hero-section").classList.add("hidden");
+      $("subjects-section").classList.add("hidden");
+      $("detail-section").classList.remove("hidden");
+
+      $("detail-eyebrow").textContent = subj.eyebrow;
+      $("detail-title").textContent = subj.name;
+      $("detail-subtitle").textContent = subj.subtitle;
+
+      // Render Sticky Sidebar TOC
+      const tocList = $("toc-list");
+      tocList.innerHTML = subj.chapters.map((chap, idx) => `
+        <li>
+          <a href="#${chap.id}" class="${idx === 0 ? "active" : ""}">
+            <span class="toc-num">${chap.num}</span>
+            <span>${chap.title}</span>
+          </a>
+        </li>
+      `).join("");
+
+      // Render Konten Bab
+      const contentArea = $("detail-content-area");
+      const chaptersHTML = subj.chapters.map(chap => `
+        <article id="${chap.id}" class="sub-section">
+          <span class="sub-badge">${chap.badge}</span>
+          <h2>${chap.title}</h2>
+          ${chap.html}
+        </article>
+      `).join("");
+
+      // Navigasi Bawah ke Kisi-Kisi mapel tersebut
+      const bottomNavHTML = `
+        <div class="bottom-nav">
+          <button type="button" class="btn-nav" onclick="closeSubjectReader()">
+            <i data-lucide="layout-grid"></i> Daftar Mata Pelajaran
+          </button>
+          <button type="button" class="btn-nav primary" onclick="jumpToSubjectKisi('${subj.id}')">
+            Lihat Kisi-Kisi ${subj.name} <i data-lucide="arrow-right"></i>
+          </button>
+        </div>
+      `;
+
+      contentArea.innerHTML = chaptersHTML + bottomNavHTML;
+      icons();
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    }
+
+    function closeSubjectReader() {
+      activeSubject = null;
+      $("detail-section").classList.add("hidden");
+      $("hero-section").classList.remove("hidden");
+      $("subjects-section").classList.remove("hidden");
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    }
+
+    function jumpToSubjectKisi(subjId) {
+      switchTab("kisikisi");
+      setKisiFilter(subjId);
+    }
+
+    // Highlight otomatis TOC saat scroll di Reader View
+    window.addEventListener("scroll", () => {
+      if (!activeSubject || $("detail-section").classList.contains("hidden")) return;
+      const sections = document.querySelectorAll("#detail-content-area .sub-section");
+      const navLinks = document.querySelectorAll("#toc-list a");
+      let current = "";
+      sections.forEach(sec => {
+        if (window.scrollY >= sec.offsetTop - 150) {
+          current = sec.getAttribute("id");
+        }
+      });
+      if (!current && sections.length) current = sections[0].getAttribute("id");
+      navLinks.forEach(link => {
+        link.classList.toggle("active", link.getAttribute("href") === "#" + current);
+      });
+    });
+
+    // =========================================================================
+    // RENDER HALAMAN KISI-KISI 1 PER 1
+    // =========================================================================
+    function renderKisiKisi() {
+      const q = $("search").value.trim().toLocaleLowerCase("id");
+      const filtered = KISI_KISI.filter(item => {
+        const matchMapel = currentKisiFilter === "semua" || item.mapel === currentKisiFilter;
+        if (!matchMapel) return false;
+        if (!q) return true;
+        const plainA = item.a.replace(/<[^>]*>?/gm, " ").toLocaleLowerCase("id");
+        return item.q.toLocaleLowerCase("id").includes(q) || plainA.includes(q) || item.label.toLocaleLowerCase("id").includes(q);
+      });
+
+      $("kisi-count-badge").textContent = filtered.length + " indikator";
+      const container = $("kisikisi-container");
+      container.replaceChildren();
+
+      if (!filtered.length) {
+        const p = document.createElement("p");
+        p.className = "empty-search";
+        p.textContent = "Tidak ada indikator kisi-kisi yang cocok dengan pencarianmu.";
+        container.append(p);
+        return;
+      }
+
+      const groups = [
+        { id: "sejarah", title: "Sejarah (20 Nomor)", icon: "landmark" },
+        { id: "ekonomi", title: "Ekonomi (14 Nomor)", icon: "chart-no-axes-combined" },
+        { id: "sosiologi", title: "Sosiologi (15 Nomor)", icon: "users-round" },
+        { id: "geografi", title: "Geografi (6 Nomor)", icon: "globe-2" }
+      ];
+
+      groups.forEach(g => {
+        const groupItems = filtered.filter(item => item.mapel === g.id);
+        if (!groupItems.length) return;
+
+        const header = document.createElement("div");
+        header.className = "kisi-group-header";
+        header.innerHTML = `
+          <h3><span class="subject-icon" style="width:36px;height:36px;"><i data-lucide="${g.icon}"></i></span> ${g.title}</h3>
+          <span class="count">${groupItems.length} soal</span>
+        `;
+        container.append(header);
+
+        const list = document.createElement("div");
+        list.className = "kisi-list";
+        list.innerHTML = groupItems.map(item => `
+          <div class="kisi-item">
+            <div class="kisi-num">${String(item.no).padStart(2, "0")}</div>
+            <div class="kisi-body">
+              <span class="kisi-meta">${item.label} • Kisi-Kisi No. ${item.no}</span>
+              <h4 class="kisi-q">${item.q}</h4>
+              <div class="kisi-a">${item.a}</div>
+            </div>
+          </div>
+        `).join("");
+        container.append(list);
+      });
+
+      icons();
+    }
+
+    function setKisiFilter(filterKey) {
+      currentKisiFilter = filterKey;
+      document.querySelectorAll(".filter-pill").forEach(pill => {
+        pill.classList.toggle("active", pill.dataset.filter === filterKey);
+      });
+      renderKisiKisi();
+    }
+
+    // =========================================================================
+    // TAB SWITCHER, SEARCH & THEME TOGGLE
+    // =========================================================================
+    function switchTab(tabName) {
+      currentTab = tabName;
+      if (tabName === "materi") {
+        $("materi-view").classList.remove("hidden");
+        $("kisikisi-view").classList.add("hidden");
+        $("tab-materi").classList.add("active");
+        $("tab-kisikisi").classList.remove("active");
+        $("tab-materi").setAttribute("aria-current", "page");
+        $("tab-kisikisi").removeAttribute("aria-current");
+      } else {
+        $("materi-view").classList.add("hidden");
+        $("kisikisi-view").classList.remove("hidden");
+        $("tab-kisikisi").classList.add("active");
+        $("tab-materi").classList.remove("active");
+        $("tab-kisikisi").setAttribute("aria-current", "page");
+        $("tab-materi").removeAttribute("aria-current");
+        renderKisiKisi();
+      }
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    }
+
+    $("tab-materi").onclick = () => switchTab("materi");
+    $("tab-kisikisi").onclick = () => switchTab("kisikisi");
+    $("brand-home").onclick = () => {
+      switchTab("materi");
+      if (activeSubject) closeSubjectReader();
+    };
+    $("start-button").onclick = () => $("subjects-section").scrollIntoView({ behavior: "smooth" });
+    $("back-button").onclick = closeSubjectReader;
+
+    document.querySelectorAll(".filter-pill").forEach(pill => {
+      pill.addEventListener("click", () => setKisiFilter(pill.dataset.filter));
+    });
+
+    $("search").addEventListener("input", () => {
+      if (currentTab === "materi") {
+        if (activeSubject) closeSubjectReader();
+        renderSubjectCards();
+      } else {
+        renderKisiKisi();
+      }
+    });
+
+    // Dark Mode Persistence (shira-theme)
+    const applyTheme = dark => {
+      document.body.classList.toggle("dark", dark);
+      $("theme-toggle").setAttribute("aria-label", dark ? "Aktifkan tema terang" : "Aktifkan tema gelap");
+      $("theme-toggle").innerHTML = '<i data-lucide="' + (dark ? "sun" : "moon") + '"></i>';
+      icons();
+    };
+    if (localStorage.getItem("shira-theme") === "dark") applyTheme(true);
+    $("theme-toggle").onclick = () => {
+      const dark = !document.body.classList.contains("dark");
+      localStorage.setItem("shira-theme", dark ? "dark" : "light");
+      applyTheme(dark);
+    };
+
+    // Init
+    renderSubjectCards();
+    renderKisiKisi();
+    icons();
+  </script>
+</body>
+</html>
