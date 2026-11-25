@@ -1,0 +1,2631 @@
+<!doctype html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Shira's Archive — Arsip Materi &amp; Pembahasan Soal Bahasa Indonesia Kelas X</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/lucide@0.577.0/dist/umd/lucide.min.js"></script>
+  <style>
+    :root {
+      --bg: #f5f8fd;
+      --surface: #fff;
+      --surface2: #edf4fd;
+      --text: #25334a;
+      --muted: #718099;
+      --line: #e3eaf4;
+      --blue: #537fda;
+      --blue2: #e8f0ff;
+      --green: #16a34a;
+      --green-bg: #dcfce7;
+      --red: #dc2626;
+      --red-bg: #fee2e2;
+      --shadow: 0 12px 36px rgba(48, 79, 129, .07);
+    }
+    body.dark {
+      --bg: #101827;
+      --surface: #192437;
+      --surface2: #202e45;
+      --text: #eef4ff;
+      --muted: #a7b5cb;
+      --line: #344159;
+      --blue: #8bb3ff;
+      --blue2: #263d65;
+      --green: #4ade80;
+      --green-bg: #143624;
+      --red: #f87171;
+      --red-bg: #3b181c;
+      --shadow: 0 12px 36px rgba(0, 0, 0, .17);
+    }
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      background: var(--bg);
+      color: var(--text);
+      font-family: "Plus Jakarta Sans", sans-serif;
+      line-height: 1.65;
+      transition: background .25s, color .25s;
+    }
+    button, input, textarea { font-family: "Plus Jakarta Sans", sans-serif; }
+    button { cursor: pointer; }
+    button:focus-visible, input:focus-visible {
+      outline: 3px solid var(--blue);
+      outline-offset: 3px;
+    }
+    .wrap {
+      max-width: 1190px;
+      margin: auto;
+      padding: 0 28px;
+    }
+
+    /* Header Sticky (Persis template Shira's Archive) */
+    .site-header {
+      background: var(--surface);
+      border-bottom: 1px solid var(--line);
+      position: sticky;
+      top: 0;
+      z-index: 20;
+    }
+    .nav-inner {
+      min-height: 78px;
+      display: flex;
+      align-items: center;
+      gap: 24px;
+      flex-wrap: wrap;
+      padding-top: 12px;
+      padding-bottom: 12px;
+    }
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 11px;
+      font-weight: 800;
+      font-size: 18px;
+      white-space: nowrap;
+      border: 0;
+      background: transparent;
+      color: var(--text);
+      padding: 0;
+    }
+    .brand-mark {
+      width: 38px;
+      height: 38px;
+      display: grid;
+      place-items: center;
+      border-radius: 12px;
+      background: var(--blue);
+      color: white;
+    }
+    .brand-mark svg { width: 21px; }
+    .tabs {
+      display: flex;
+      gap: 5px;
+      background: var(--surface2);
+      padding: 5px;
+      border-radius: 13px;
+    }
+    .tab {
+      border: 0;
+      background: transparent;
+      padding: 9px 17px;
+      border-radius: 10px;
+      color: var(--muted);
+      font-weight: 700;
+      font-size: 13px;
+      white-space: nowrap;
+      transition: background .2s, color .2s;
+    }
+    .tab.active {
+      background: var(--surface);
+      color: var(--blue);
+      box-shadow: 0 2px 8px rgba(30, 60, 100, .08);
+    }
+    .nav-actions {
+      margin-left: auto;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+    .search-box {
+      display: flex;
+      align-items: center;
+      gap: 9px;
+      background: var(--bg);
+      border: 1px solid var(--line);
+      border-radius: 12px;
+      padding: 0 13px;
+      color: var(--muted);
+      min-width: 265px;
+    }
+    .search-box svg { width: 17px; flex-shrink: 0; }
+    .search-box input {
+      border: 0;
+      background: transparent;
+      outline: 0;
+      color: var(--text);
+      height: 40px;
+      width: 100%;
+      font-size: 13px;
+    }
+    .search-box input::placeholder { color: var(--muted); }
+    .icon-button {
+      width: 41px;
+      height: 41px;
+      border: 1px solid var(--line);
+      border-radius: 12px;
+      background: var(--surface);
+      color: var(--text);
+      display: grid;
+      place-items: center;
+      flex-shrink: 0;
+    }
+    .icon-button svg { width: 19px; }
+
+    /* Hero Section */
+    .hero {
+      padding: 68px 0 60px;
+      position: relative;
+      overflow: hidden;
+    }
+    .hero-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 36px;
+    }
+    .hero-copy { max-width: 620px; }
+    .eyebrow {
+      color: var(--blue);
+      font-size: 12px;
+      font-weight: 800;
+      letter-spacing: .14em;
+      text-transform: uppercase;
+      margin: 0 0 14px;
+    }
+    .hero h1 {
+      font-size: clamp(34px, 4.8vw, 56px);
+      letter-spacing: -.05em;
+      line-height: 1.13;
+      margin: 0 0 18px;
+      font-weight: 800;
+    }
+    .hero p.lead {
+      font-size: 15.5px;
+      color: var(--muted);
+      max-width: 520px;
+      margin: 0 0 26px;
+    }
+    .hero-btns {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+    .primary {
+      border: 0;
+      border-radius: 12px;
+      padding: 13px 20px;
+      background: var(--blue);
+      color: #fff;
+      font-size: 13px;
+      font-weight: 800;
+      display: inline-flex;
+      align-items: center;
+      gap: 9px;
+      box-shadow: 0 8px 20px rgba(83, 127, 218, .23);
+    }
+    .secondary-btn {
+      border: 1px solid var(--line);
+      border-radius: 12px;
+      padding: 13px 20px;
+      background: var(--surface);
+      color: var(--text);
+      font-size: 13px;
+      font-weight: 800;
+      display: inline-flex;
+      align-items: center;
+      gap: 9px;
+    }
+    .primary svg, .secondary-btn svg { width: 17px; }
+    .hero-art {
+      width: 310px;
+      height: 255px;
+      flex: none;
+      position: relative;
+      display: grid;
+      place-items: center;
+    }
+    .art-orbit {
+      width: 225px;
+      height: 225px;
+      border-radius: 50%;
+      background: var(--blue2);
+      position: absolute;
+    }
+    .art-card {
+      position: relative;
+      width: 156px;
+      height: 185px;
+      border-radius: 19px;
+      background: var(--surface);
+      box-shadow: 0 20px 45px rgba(53, 87, 150, .16);
+      transform: rotate(-9deg);
+      padding: 24px;
+    }
+    .art-card:before {
+      content: "";
+      display: block;
+      width: 48px;
+      height: 48px;
+      background: var(--blue2);
+      border-radius: 14px;
+      margin-bottom: 20px;
+    }
+    .art-card span {
+      display: block;
+      height: 9px;
+      border-radius: 8px;
+      background: var(--line);
+      margin: 11px 0;
+    }
+    .art-card span:nth-child(2) { width: 82%; }
+    .art-card span:nth-child(3) { width: 63%; }
+    .float-icon {
+      position: absolute;
+      right: 22px;
+      top: 20px;
+      background: #fff5d9;
+      color: #d39a34;
+      padding: 14px;
+      border-radius: 17px;
+      box-shadow: var(--shadow);
+      transform: rotate(12deg);
+    }
+    .float-icon svg { width: 28px; height: 28px; }
+    .float-star {
+      position: absolute;
+      left: 18px;
+      bottom: 26px;
+      color: var(--blue);
+    }
+
+    /* Section Heading & Chapter Cards */
+    .section-heading {
+      display: flex;
+      align-items: end;
+      justify-content: space-between;
+      gap: 16px;
+      margin-bottom: 25px;
+    }
+    .section-heading h2 {
+      font-size: 26px;
+      letter-spacing: -.035em;
+      margin: 0 0 5px;
+    }
+    .section-heading p {
+      color: var(--muted);
+      font-size: 13.5px;
+      margin: 0;
+    }
+    .count {
+      font-size: 12px;
+      font-weight: 700;
+      color: var(--blue);
+      background: var(--blue2);
+      padding: 8px 13px;
+      border-radius: 30px;
+      white-space: nowrap;
+    }
+    .subjects { padding-bottom: 85px; }
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 20px;
+    }
+    .subject-card {
+      width: 100%;
+      text-align: left;
+      background: var(--surface);
+      border: 1px solid var(--line);
+      border-radius: 19px;
+      padding: 25px;
+      box-shadow: var(--shadow);
+      color: var(--text);
+      display: flex;
+      flex-direction: column;
+      transition: transform .2s, border-color .2s, box-shadow .2s;
+    }
+    .subject-card:hover {
+      transform: translateY(-4px);
+      border-color: var(--blue);
+      box-shadow: 0 16px 36px rgba(48, 79, 129, .13);
+    }
+    .card-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: start;
+    }
+    .subject-icon {
+      width: 48px;
+      height: 48px;
+      border-radius: 14px;
+      background: var(--blue2);
+      color: var(--blue);
+      display: grid;
+      place-items: center;
+    }
+    .subject-icon svg { width: 24px; height: 24px; }
+    .card-arrow { color: var(--muted); }
+    .card-arrow svg { width: 18px; }
+    .subject-card h3 {
+      font-size: 18px;
+      margin: 18px 0 6px;
+      letter-spacing: -.02em;
+    }
+    .subject-card p {
+      font-size: 13px;
+      color: var(--muted);
+      margin: 0;
+      line-height: 1.5;
+    }
+    .card-chapters-preview {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      margin-top: 14px;
+    }
+    .chap-pill {
+      font-size: 11px;
+      font-weight: 600;
+      background: var(--surface2);
+      color: var(--text);
+      padding: 4px 10px;
+      border-radius: 8px;
+    }
+    .subject-card .mini-line {
+      height: 4px;
+      border-radius: 8px;
+      background: var(--surface2);
+      margin-top: auto;
+      padding-top: 18px;
+      background-clip: content-box;
+      overflow: hidden;
+    }
+    .mini-line span {
+      display: block;
+      height: 4px;
+      background: var(--blue);
+      border-radius: 8px;
+      width: 100%;
+    }
+
+    /* Reader Layout */
+    .reader-section { padding: 34px 0 80px; }
+    .back-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      color: var(--blue);
+      border: 0;
+      background: none;
+      padding: 0;
+      font-weight: 700;
+      font-size: 13px;
+      margin-bottom: 18px;
+    }
+    .back-link svg { width: 17px; }
+    .reader-top { margin-bottom: 26px; }
+    .reader-top h1 {
+      font-size: clamp(28px, 4vw, 38px);
+      letter-spacing: -.04em;
+      line-height: 1.2;
+      margin: 0 0 10px;
+      font-weight: 800;
+    }
+    .reader-top p.desc {
+      color: var(--muted);
+      font-size: 14px;
+      margin: 0;
+      max-width: 740px;
+    }
+    .reader-layout {
+      display: grid;
+      grid-template-columns: 280px minmax(0, 1fr);
+      gap: 28px;
+      align-items: start;
+    }
+
+    /* Sticky Sidebar TOC */
+    .toc-card {
+      background: var(--surface);
+      border: 1px solid var(--line);
+      border-radius: 18px;
+      padding: 20px;
+      box-shadow: var(--shadow);
+      position: sticky;
+      top: 102px;
+      max-height: calc(100vh - 125px);
+      overflow-y: auto;
+    }
+    .toc-title {
+      font-size: 12px;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: .08em;
+      color: var(--muted);
+      margin: 0 0 14px;
+    }
+    .toc-list {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      display: grid;
+      gap: 6px;
+    }
+    .toc-list a {
+      display: flex;
+      align-items: start;
+      gap: 9px;
+      padding: 9px 12px;
+      border-radius: 10px;
+      text-decoration: none;
+      color: var(--muted);
+      font-size: 13px;
+      font-weight: 600;
+      line-height: 1.4;
+      transition: background .2s, color .2s;
+    }
+    .toc-list a:hover {
+      background: var(--surface2);
+      color: var(--text);
+    }
+    .toc-list a.active {
+      background: var(--blue2);
+      color: var(--blue);
+      font-weight: 700;
+    }
+    .toc-num {
+      font-size: 11px;
+      font-weight: 800;
+      opacity: .85;
+      margin-top: 2px;
+    }
+
+    /* Konten Sub-bab */
+    .content-area {
+      display: grid;
+      gap: 24px;
+    }
+    .sub-section {
+      background: var(--surface);
+      border: 1px solid var(--line);
+      border-radius: 20px;
+      padding: 30px;
+      box-shadow: var(--shadow);
+      scroll-margin-top: 102px;
+    }
+    .sub-badge {
+      display: inline-block;
+      background: var(--blue2);
+      color: var(--blue);
+      font-size: 11px;
+      font-weight: 800;
+      padding: 4px 11px;
+      border-radius: 20px;
+      margin-bottom: 10px;
+    }
+    .sub-section h2 {
+      font-size: 22px;
+      letter-spacing: -.03em;
+      margin: 0 0 14px;
+    }
+    .sub-section h3 {
+      font-size: 16px;
+      margin: 18px 0 8px;
+      color: var(--blue);
+    }
+    .sub-section p, .sub-section li {
+      font-size: 14px;
+      margin: 0 0 10px;
+    }
+    .sub-section ul, .sub-section ol {
+      padding-left: 20px;
+      margin: 0 0 14px;
+    }
+
+    /* Kotak Konsep & Contoh */
+    .formula-box {
+      background: var(--surface2);
+      border-left: 4px solid var(--blue);
+      border-radius: 12px;
+      padding: 18px 20px;
+      margin: 18px 0;
+    }
+    .formula-box strong.box-label {
+      display: block;
+      font-size: 12px;
+      text-transform: uppercase;
+      letter-spacing: .06em;
+      color: var(--blue);
+      margin-bottom: 10px;
+    }
+    .formula-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 12px 20px;
+      font-size: 13.5px;
+    }
+    .formula-pill {
+      background: var(--surface);
+      border: 1px solid var(--line);
+      border-radius: 10px;
+      padding: 12px 14px;
+      font-size: 13.5px;
+      font-weight: 700;
+      color: var(--text);
+    }
+    .formula-pill small {
+      display: block;
+      font-weight: 500;
+      font-size: 12.5px;
+      color: var(--muted);
+      margin-top: 4px;
+      line-height: 1.5;
+    }
+    .example-box {
+      border: 1px dashed var(--line);
+      border-radius: 12px;
+      padding: 16px 20px;
+      margin-top: 16px;
+      font-size: 13.5px;
+      background: var(--bg);
+      line-height: 1.65;
+    }
+    .example-box strong { color: var(--blue); }
+
+    /* Tabel Materi (.chem-table) */
+    .table-wrap {
+      overflow-x: auto;
+      margin: 16px 0;
+      border: 1px solid var(--line);
+      border-radius: 12px;
+    }
+    .chem-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 13.5px;
+      text-align: left;
+    }
+    .chem-table th {
+      background: var(--surface2);
+      color: var(--blue);
+      font-weight: 700;
+      padding: 12px 14px;
+      border-bottom: 1px solid var(--line);
+    }
+    .chem-table td {
+      padding: 11px 14px;
+      border-bottom: 1px solid var(--line);
+      vertical-align: top;
+    }
+    .chem-table tr:last-child td { border-bottom: none; }
+
+    /* Flow Pills untuk Struktur Teks */
+    .flow-steps {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 8px;
+      margin: 14px 0;
+    }
+    .flow-step {
+      background: var(--surface);
+      border: 1px solid var(--line);
+      padding: 8px 14px;
+      border-radius: 10px;
+      font-size: 13px;
+      font-weight: 700;
+      color: var(--blue);
+    }
+    .flow-arrow {
+      color: var(--muted);
+      font-weight: 800;
+    }
+
+    /* Tab 2: Latihan & Pembahasan Soal */
+    .kisi-section { padding: 42px 0 85px; }
+    .quiz-toolbar {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      align-items: center;
+      gap: 14px;
+      margin-bottom: 24px;
+    }
+    .filter-pills {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+    .filter-pill {
+      border: 1px solid var(--line);
+      background: var(--surface);
+      color: var(--muted);
+      padding: 9px 16px;
+      border-radius: 12px;
+      font-size: 13px;
+      font-weight: 700;
+      transition: all .2s;
+    }
+    .filter-pill:hover {
+      border-color: var(--blue);
+      color: var(--text);
+    }
+    .filter-pill.active {
+      background: var(--blue);
+      border-color: var(--blue);
+      color: #fff;
+      box-shadow: 0 6px 16px rgba(83, 127, 218, .22);
+    }
+    .quiz-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+    .score-pill {
+      background: var(--blue2);
+      color: var(--blue);
+      font-size: 12.5px;
+      font-weight: 800;
+      padding: 8px 14px;
+      border-radius: 12px;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .kisi-group-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin: 28px 0 14px;
+      padding-bottom: 10px;
+      border-bottom: 1px solid var(--line);
+    }
+    .kisi-group-header h3 {
+      margin: 0;
+      font-size: 20px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .kisi-list {
+      display: grid;
+      gap: 18px;
+    }
+    .kisi-item {
+      background: var(--surface);
+      border: 1px solid var(--line);
+      border-radius: 18px;
+      padding: 22px 24px;
+      box-shadow: var(--shadow);
+      display: flex;
+      gap: 16px;
+      align-items: flex-start;
+    }
+    .kisi-num {
+      width: 40px;
+      height: 40px;
+      flex-shrink: 0;
+      border-radius: 12px;
+      background: var(--blue2);
+      color: var(--blue);
+      display: grid;
+      place-items: center;
+      font-size: 13px;
+      font-weight: 800;
+    }
+    .kisi-body { flex: 1; min-width: 0; }
+    .kisi-meta {
+      display: inline-block;
+      font-size: 11px;
+      font-weight: 800;
+      color: var(--blue);
+      margin-bottom: 6px;
+      text-transform: uppercase;
+      letter-spacing: .04em;
+    }
+    .stimulus-box {
+      background: var(--surface2);
+      border-left: 3.5px solid var(--blue);
+      border-radius: 10px;
+      padding: 13px 16px;
+      margin: 8px 0 14px;
+      font-size: 13.5px;
+      color: var(--text);
+      line-height: 1.6;
+    }
+    .stimulus-title {
+      display: block;
+      font-weight: 800;
+      font-size: 12px;
+      color: var(--blue);
+      margin-bottom: 4px;
+      text-transform: uppercase;
+      letter-spacing: .04em;
+    }
+    .kisi-q {
+      font-size: 15px;
+      font-weight: 800;
+      margin: 0 0 14px;
+      color: var(--text);
+      line-height: 1.5;
+    }
+    .options-list {
+      display: grid;
+      gap: 8px;
+      margin-bottom: 14px;
+    }
+    .opt-btn {
+      width: 100%;
+      text-align: left;
+      background: var(--bg);
+      border: 1.5px solid var(--line);
+      border-radius: 12px;
+      padding: 11px 15px;
+      font-size: 13.5px;
+      color: var(--text);
+      display: flex;
+      align-items: flex-start;
+      gap: 11px;
+      transition: all .18s;
+      line-height: 1.5;
+    }
+    .opt-btn:hover {
+      border-color: var(--blue);
+      background: var(--surface2);
+    }
+    .opt-letter {
+      width: 24px;
+      height: 24px;
+      border-radius: 7px;
+      background: var(--surface);
+      border: 1px solid var(--line);
+      color: var(--blue);
+      font-weight: 800;
+      font-size: 12px;
+      display: grid;
+      place-items: center;
+      flex-shrink: 0;
+      margin-top: 1px;
+    }
+    .opt-btn.correct {
+      background: var(--green-bg);
+      border-color: var(--green);
+      color: var(--text);
+      font-weight: 600;
+    }
+    .opt-btn.correct .opt-letter {
+      background: var(--green);
+      border-color: var(--green);
+      color: #fff;
+    }
+    .opt-btn.wrong {
+      background: var(--red-bg);
+      border-color: var(--red);
+      color: var(--text);
+    }
+    .opt-btn.wrong .opt-letter {
+      background: var(--red);
+      border-color: var(--red);
+      color: #fff;
+    }
+    .toggle-exp-btn {
+      border: 1px solid var(--line);
+      background: var(--surface2);
+      color: var(--blue);
+      font-size: 12.5px;
+      font-weight: 700;
+      padding: 7px 13px;
+      border-radius: 9px;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .toggle-exp-btn:hover {
+      background: var(--blue2);
+    }
+    .explanation-panel {
+      margin-top: 12px;
+      background: var(--bg);
+      border: 1px solid var(--line);
+      border-radius: 12px;
+      padding: 14px 16px;
+      font-size: 13.5px;
+      line-height: 1.6;
+    }
+    .explanation-panel .key-badge {
+      display: inline-block;
+      background: var(--green-bg);
+      color: var(--green);
+      font-weight: 800;
+      font-size: 12px;
+      padding: 3px 10px;
+      border-radius: 6px;
+      margin-bottom: 6px;
+    }
+
+    /* Bottom Navigation */
+    .bottom-nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 12px;
+      margin-top: 10px;
+    }
+    .btn-nav {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 12px 18px;
+      border-radius: 12px;
+      font-size: 13px;
+      font-weight: 700;
+      border: 1px solid var(--line);
+      background: var(--surface);
+      color: var(--text);
+    }
+    .btn-nav.primary {
+      background: var(--blue);
+      color: #fff;
+      border-color: var(--blue);
+    }
+    .btn-nav svg { width: 17px; }
+
+    .hidden { display: none !important; }
+    .empty-search {
+      padding: 35px;
+      text-align: center;
+      color: var(--muted);
+      background: var(--surface);
+      border: 1px solid var(--line);
+      border-radius: 16px;
+    }
+
+    .footer {
+      border-top: 1px solid var(--line);
+      padding: 26px 0;
+      color: var(--muted);
+      font-size: 12px;
+    }
+    .footer .wrap {
+      display: flex;
+      justify-content: space-between;
+      gap: 12px;
+    }
+
+    @media (max-width: 960px) {
+      .grid { grid-template-columns: 1fr; }
+    }
+    @media (max-width: 900px) {
+      .nav-inner { gap: 12px; }
+      .nav-actions { width: 100%; margin-left: 0; justify-content: space-between; }
+      .search-box { flex: 1; }
+      .hero-art { width: 240px; }
+      .reader-layout { grid-template-columns: 1fr; }
+      .toc-card { position: static; max-height: none; }
+      .formula-grid { grid-template-columns: 1fr; }
+    }
+    @media (max-width: 640px) {
+      .wrap { padding-left: 18px; padding-right: 18px; }
+      .brand { font-size: 16px; }
+      .tabs { margin-left: auto; }
+      .tab { padding: 8px 12px; font-size: 12px; }
+      .nav-actions { order: 3; }
+      .search-box { min-width: 0; }
+      .hero { padding: 48px 0; }
+      .hero-art { display: none; }
+      .sub-section { padding: 22px; }
+      .kisi-item { flex-direction: column; gap: 10px; padding: 18px; }
+      .bottom-nav { flex-direction: column; align-items: stretch; }
+      .btn-nav { justify-content: center; }
+      .footer .wrap { flex-direction: column; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- HEADER STICKY (SHIRA'S ARCHIVE) -->
+  <header class="site-header">
+    <div class="wrap nav-inner">
+      <button id="brand-home" class="brand" type="button" aria-label="Beranda Shira's Archive">
+        <span class="brand-mark"><i data-lucide="book-open"></i></span>
+        <span>Shira's Archive</span>
+      </button>
+
+      <nav class="tabs" aria-label="Navigasi utama">
+        <button id="tab-materi" class="tab active" type="button" aria-current="page">Materi</button>
+        <button id="tab-kisikisi" class="tab" type="button">Latihan &amp; Pembahasan (50 Soal)</button>
+      </nav>
+
+      <div class="nav-actions">
+        <label class="search-box" for="search">
+          <i data-lucide="search"></i>
+          <input id="search" type="search" placeholder="Cari materi atau nomor soal..." autocomplete="off">
+        </label>
+        <button id="theme-toggle" class="icon-button" type="button" aria-label="Aktifkan tema gelap" title="Tukar tema">
+          <i data-lucide="moon"></i>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <main id="main">
+    <!-- ========================================================= -->
+    <!-- VIEW 1: MATERI (HERO + 3 BAB BAHASA INDONESIA + READER)   -->
+    <!-- ========================================================= -->
+    <div id="materi-view">
+      <section id="hero-section" class="hero" aria-labelledby="hero-title">
+        <div class="wrap hero-inner">
+          <div class="hero-copy">
+            <p class="eyebrow">Ruang belajar kelas X • Fase E</p>
+            <h1 id="hero-title">Arsip Materi<br>Bahasa Indonesia<span style="color:var(--blue)">.</span></h1>
+            <p class="lead">Rangkuman lengkap 3 bab utama Semester Ganjil (Bab 1 Teks LHO, Bab 2 Teks Anekdot, dan Bab 3 Hikayat) disertai 50 latihan soal HOTS dan pembahasan rinci.</p>
+            <div class="hero-btns">
+              <button id="start-button" class="primary" type="button">Mulai Belajar <i data-lucide="arrow-right"></i></button>
+              <button id="hero-quiz-btn" class="secondary-btn" type="button"><i data-lucide="check-circle-2"></i> Latihan 50 Soal</button>
+            </div>
+          </div>
+          <div class="hero-art" aria-hidden="true">
+            <div class="art-orbit"></div>
+            <div class="art-card">
+              <span></span><span></span><span></span>
+            </div>
+            <div class="float-icon">
+              <i data-lucide="sparkles"></i>
+            </div>
+            <div class="float-star">
+              <i data-lucide="asterisk"></i>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- GRID 3 BAB BAHASA INDONESIA -->
+      <section id="subjects-section" class="subjects" aria-labelledby="subjects-title">
+        <div class="wrap">
+          <div class="section-heading">
+            <div>
+              <h2 id="subjects-title">Jelajahi materi per bab</h2>
+              <p>Urutan bab disesuaikan: Bab 1 Teks LHO, Bab 2 Teks Anekdot, lalu Bab 3 Hikayat.</p>
+            </div>
+            <span id="subject-count" class="count">3 bab lengkap</span>
+          </div>
+          <div id="subject-grid" class="grid"></div>
+        </div>
+      </section>
+
+      <!-- DETAIL READER BAB -->
+      <section id="detail-section" class="reader-section hidden" aria-labelledby="detail-title">
+        <div class="wrap">
+          <button id="back-button" class="back-link" type="button"><i data-lucide="arrow-left"></i> Semua bab materi</button>
+          <div class="reader-top">
+            <p id="detail-eyebrow" class="eyebrow">Bahasa Indonesia • Kelas X</p>
+            <h1 id="detail-title"></h1>
+            <p id="detail-subtitle" class="desc"></p>
+          </div>
+
+          <div class="reader-layout">
+            <!-- Sticky Sidebar Daftar Sub-bab -->
+            <aside class="toc-card" aria-label="Daftar sub-bab">
+              <p class="toc-title">Daftar Sub-Bab</p>
+              <ul id="toc-list" class="toc-list"></ul>
+            </aside>
+
+            <!-- Konten Materi -->
+            <div id="detail-content-area" class="content-area"></div>
+          </div>
+        </div>
+      </section>
+    </div>
+
+    <!-- ========================================================= -->
+    <!-- VIEW 2: LATIHAN & PEMBAHASAN 50 SOAL                      -->
+    <!-- ========================================================= -->
+    <section id="kisikisi-view" class="kisi-section hidden" aria-labelledby="kisikisi-title">
+      <div class="wrap">
+        <div class="section-heading">
+          <div>
+            <p class="eyebrow">Asesmen Sumatif Ganjil • 50 Indikator Soal (C4–C6)</p>
+            <h2 id="kisikisi-title">Latihan &amp; Pembahasan Soal</h2>
+            <p>Klik pilihan jawaban (A–E) untuk menguji pemahamanmu, atau buka pembahasan lengkap setiap nomor.</p>
+          </div>
+          <span id="kisi-count-badge" class="count">50 soal</span>
+        </div>
+
+        <div class="quiz-toolbar">
+          <div class="filter-pills" role="tablist" aria-label="Filter bab soal">
+            <button class="filter-pill active" data-filter="semua" type="button">Semua Soal (50)</button>
+            <button class="filter-pill" data-filter="bab1" type="button">Bab 1: Teks LHO (16)</button>
+            <button class="filter-pill" data-filter="bab2" type="button">Bab 2: Teks Anekdot (16)</button>
+            <button class="filter-pill" data-filter="bab3" type="button">Bab 3: Hikayat (18)</button>
+          </div>
+
+          <div class="quiz-actions">
+            <span id="score-tracker" class="score-pill"><i data-lucide="award" style="width:15px;"></i> Skor: 0 / 50</span>
+            <button id="toggle-all-exp" class="filter-pill" type="button">Buka Semua Pembahasan</button>
+            <button id="reset-quiz-btn" class="filter-pill" type="button">Reset Jawaban</button>
+          </div>
+        </div>
+
+        <div id="kisikisi-container"></div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="wrap">
+      <span>© Shira's Archive</span>
+      <span>Belajar sedikit demi sedikit, setiap hari.</span>
+    </div>
+  </footer>
+
+  <script>
+    // =========================================================================
+    // DATA MATERI LENGKAP 3 BAB BAHASA INDONESIA KELAS X
+    // URUTAN: BAB 1 (TEKS LHO) -> BAB 2 (TEKS ANEKDOT) -> BAB 3 (TEKS HIKAYAT)
+    // =========================================================================
+    const BAB_MATERI = [
+      {
+        id: "bab1",
+        name: "Bab 1 — Teks Laporan Hasil Observasi",
+        shortName: "Bab 1: Teks LHO",
+        icon: "clipboard-list",
+        eyebrow: "Bab 1 • Bahasa Indonesia Kelas X • Soal No. 1–16",
+        subtitle: "Pengertian, ciri faktual-objektif, 3 struktur utama, kaidah kebahasaan, validitas & bias simpulan, EYD V, kalimat efektif, infografis, presentasi, dan gagasan utama.",
+        chapters: [
+          {
+            id: "lho-1",
+            num: "01",
+            title: "Pengertian, Tujuan, Fungsi & Ciri-Ciri Teks LHO",
+            badge: "Sub-Bab 01",
+            html: `
+              <p><strong>Teks Laporan Hasil Observasi (LHO)</strong> adalah teks yang menyajikan informasi mengenai suatu objek atau fenomena (alam, lingkungan sekolah, sosial, atau eksperimen) berdasarkan hasil pengamatan secara <strong>sistematis, faktual, dan objektif</strong>.</p>
+              
+              <div class="formula-box">
+                <strong class="box-label">Tujuan &amp; 4 Fungsi Utama Teks LHO</strong>
+                <div class="formula-grid">
+                  <div class="formula-pill">1. Fungsi Informatif<small>Memberikan informasi faktual dan mengelompokkan objek berdasarkan ciri-cirinya.</small></div>
+                  <div class="formula-pill">2. Fungsi Dokumentatif<small>Mencatat dan mendokumentasikan kondisi objek pada waktu pengamatan tertentu.</small></div>
+                  <div class="formula-pill">3. Fungsi Edukatif<small>Menambah pengetahuan dan wawasan pembaca mengenai objek yang diamati.</small></div>
+                  <div class="formula-pill">4. Fungsi Analitis<small>Membantu pembaca memahami karakteristik serta hubungan antarkomponen objek.</small></div>
+                </div>
+              </div>
+
+              <h3>6 Ciri Teks LHO &amp; Perbedaan Fakta vs Opini</h3>
+              <div class="table-wrap">
+                <table class="chem-table">
+                  <thead>
+                    <tr>
+                      <th>Ciri Teks LHO</th>
+                      <th>Penjelasan</th>
+                      <th>Contoh Kalimat</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr><td><strong>Faktual</strong></td><td>Berdasarkan kenyataan atau data terukur di lapangan.</td><td>Terdapat 12 pohon peneduh di sisi timur taman sekolah.</td></tr>
+                    <tr><td><strong>Objektif</strong></td><td>Apa adanya, tidak dipengaruhi prasangka/perasaan pribadi.</td><td>Air Sungai Cempaka tampak berwarna kecokelatan di bagian hilir.</td></tr>
+                    <tr><td><strong>Sistematis</strong></td><td>Disusun teratur sesuai struktur (Umum &rarr; Bagian &rarr; Manfaat).</td><td>Pemaparan berurutan dari klasifikasi hingga fungsi ekologis.</td></tr>
+                    <tr><td><strong>Informatif</strong></td><td>Memberikan pengetahuan ilmiah yang bermanfaat.</td><td>Akar mangrove membantu menahan sedimen dan mengurangi gelombang.</td></tr>
+                    <tr><td><strong>Bahasa Baku</strong></td><td>Mengikuti kaidah EYD V dan memakai istilah ilmiah.</td><td>Kupu-kupu termasuk dalam ordo <em>Lepidoptera</em>.</td></tr>
+                    <tr><td><strong>Bersifat Umum</strong></td><td>Menjelaskan objek sebagai kategori/kelompok, bukan pengalaman pribadi.</td><td>Hutan mangrove merupakan ekosistem tumbuhan di wilayah pesisir.</td></tr>
+                  </tbody>
+                </table>
+              </div>
+
+              <div class="example-box">
+                <strong>Membedakan Fakta vs Opini:</strong><br>
+                • <strong>Fakta (Objektif):</strong> <em>"Kantin sekolah memiliki empat meja makan dan tiga tempat sampah."</em> (Dapat dibuktikan kebenarannya).<br>
+                • <strong>Opini (Subjektif):</strong> <em>"Kantin sekolah merupakan kantin paling nyaman dan terbaik di kota ini."</em> (Penilaian pribadi).
+              </div>
+            `
+          },
+          {
+            id: "lho-2",
+            num: "02",
+            title: "Struktur Teks LHO & Kaidah Kebahasaan",
+            badge: "Sub-Bab 02",
+            html: `
+              <p>Secara sistematis, struktur teks LHO terdiri atas <strong>3 bagian utama</strong> yang saling berhubungan secara logis:</p>
+              <div class="flow-steps">
+                <span class="flow-step">1. Pernyataan Umum (Definisi &amp; Klasifikasi)</span>
+                <span class="flow-arrow">&rarr;</span>
+                <span class="flow-step">2. Deskripsi Bagian (Rincian Ciri &amp; Kondisi)</span>
+                <span class="flow-arrow">&rarr;</span>
+                <span class="flow-step">3. Deskripsi Manfaat / Simpulan Proporsional</span>
+              </div>
+
+              <ul>
+                <li><strong>Pernyataan Umum:</strong> Membuka teks dengan pengertian, definisi, atau klasifikasi umum objek (menjawab: <em>Apa objek yang diamati?</em>).</li>
+                <li><strong>Deskripsi Bagian:</strong> Memerinci bagian tubuh, ciri fisik, jenis, atau kondisi lapangan secara detail (menjawab: <em>Bagaimana ciri dan bagian objek tersebut?</em>).</li>
+                <li><strong>Deskripsi Manfaat:</strong> Menjelaskan fungsi atau kegunaan objek bagi lingkungan dan kehidupan manusia (menjawab: <em>Apa fungsi atau manfaat objek tersebut?</em>).</li>
+              </ul>
+
+              <h3>6 Kaidah Kebahasaan Teks LHO</h3>
+              <div class="table-wrap">
+                <table class="chem-table">
+                  <thead>
+                    <tr>
+                      <th>Kaidah Kebahasaan</th>
+                      <th>Penjelasan &amp; Contoh</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr><td><strong>1. Nomina (Kata Benda)</strong></td><td>Menyebutkan benda, tempat, atau konsep: <em>ekosistem, sungai, sedimen, polutan</em>.</td></tr>
+                    <tr><td><strong>2. Verba (Kata Kerja)</strong></td><td>• <strong>Verba Material</strong> (tindakan/proses): <em>tumbuh, mengalir, menyerap, memangsa</em>.<br>• <strong>Verba Relasional</strong> (definisi/hubungan): <em>merupakan, adalah, termasuk, terdiri atas</em>.<br>• <strong>Verba Keadaan</strong> (karakteristik): <em>memiliki, mengandung, berfungsi</em>.</td></tr>
+                    <tr><td><strong>3. Kalimat Definisi</strong></td><td>Menjelaskan pengertian umum objek, ditandai kopula <em>adalah, merupakan, yaitu</em>. Contoh: <em>"Hutan mangrove <strong>merupakan</strong> ekosistem tumbuhan yang tumbuh di wilayah pesisir."</em></td></tr>
+                    <tr><td><strong>4. Kalimat Deskripsi</strong></td><td>Menggambarkan ciri, sifat, ukuran, atau bagian objek secara terperinci. Contoh: <em>"Akar mangrove menjadi tempat berlindung bagi berbagai organisme kecil."</em></td></tr>
+                    <tr><td><strong>5. Istilah Ilmiah</strong></td><td><em>Ekosistem</em> (kesatuan makhluk hidup &amp; lingkungan), <em>Habitat</em> (tempat hidup), <em>Biotik</em> (makhluk hidup), <em>Abiotik</em> (tak hidup), <em>Sedimen</em> (endapan), <em>Polutan</em> (zat pencemar), <em>Kecambah</em> (tumbuhan muda yang baru tumbuh dari biji).</td></tr>
+                    <tr><td><strong>6. Konjungsi</strong></td><td>• <strong>Penambahan:</strong> <em>dan, serta, selain itu</em>.<br>• <strong>Pertentangan:</strong> <em>tetapi, namun, sedangkan</em>.<br>• <strong>Sebab-akibat:</strong> <em>karena, sehingga, oleh karena itu, akibatnya</em>.</td></tr>
+                  </tbody>
+                </table>
+              </div>
+            `
+          },
+          {
+            id: "lho-3",
+            num: "03",
+            title: "Objektivitas, Validitas Data & Evaluasi Bias Simpulan",
+            badge: "Sub-Bab 03",
+            html: `
+              <p>Dalam menyusun atau mengevaluasi laporan hasil observasi, simpulan wajib berdasar pada bukti data yang memadai dan bebas dari <strong>generalisasi berlebihan (bias)</strong>.</p>
+              
+              <div class="formula-box">
+                <strong class="box-label">5 Pertanyaan Evaluasi Validitas Simpulan</strong>
+                <div class="formula-grid">
+                  <div class="formula-pill">1. Kesesuaian Data<small>Apakah simpulan benar-benar didukung oleh bukti hasil pengamatan dan wawancara?</small></div>
+                  <div class="formula-pill">2. Cakupan Pengamatan<small>Apakah waktu dan lokasi observasi sudah cukup mewakili keseluruhan objek?</small></div>
+                  <div class="formula-pill">3. Informasi Bertentangan<small>Apakah ada data lain (misal dari narasumber berbeda) yang diabaikan penulis?</small></div>
+                  <div class="formula-pill">4. Hindari Generalisasi Luas<small>Jangan menyimpulkan "semua" jika data hanya membuktikan "sebagian" atau "satu jenis".</small></div>
+                </div>
+              </div>
+
+              <div class="example-box">
+                <strong>Contoh Kasus Evaluasi Bias (Sering Muncul di Soal):</strong><br>
+                • <em>Kasus Sungai:</em> Data menunjukkan sampah berasal dari warga <strong>dan</strong> saluran drainase, tetapi simpulan menyatakan <em>"seluruh pencemaran disebabkan rendahnya kepedulian warga"</em> &rarr; <strong>Tidak valid</strong> karena data belum membuktikan bahwa seluruh pencemaran berasal dari warga.<br>
+                • <em>Kasus Kecambah:</em> Siswa mengamati tinggi kecambah 5 hari (mencapai 6 cm), lalu menyimpulkan <em>"semua jenis tanaman pasti tumbuh dengan pola yang sama"</em> &rarr; <strong>Kurang tepat</strong> karena data hanya mengamati kecambah, bukan semua jenis tanaman.
+              </div>
+            `
+          },
+          {
+            id: "lho-4",
+            num: "04",
+            title: "EYD V, Kalimat Efektif, Kohesi & Koherensi",
+            badge: "Sub-Bab 04",
+            html: `
+              <h3>1. Kaidah EYD V (Huruf Kapital, Tanda Baca, &amp; Kata Depan)</h3>
+              <ul>
+                <li><strong>Huruf Kapital:</strong> Dipakai di awal kalimat, nama geografi yang diikuti nama diri (<em>Pantai Selatan Jawa, Jawa Tengah, Kabupaten Sragen</em>), serta nama hari/bulan (<em>Senin, Agustus</em>). <strong>Catatan penting:</strong> Nama jenis tumbuhan/hewan dan istilah geografi umum tanpa nama diri <strong>tidak</strong> dikapitalisasi (contoh: <em>hutan mangrove, tanaman padi, daerah, wilayah</em>).</li>
+                <li><strong>Tanda Baca &amp; Konjungsi Antarkalimat:</strong> Ungkapan penghubung antarkalimat seperti <em>Selain itu, Oleh karena itu, Meskipun demikian</em> diawali huruf kapital setelah tanda titik dan diikuti tanda koma (<strong>,</strong>).</li>
+                <li><strong>Kata Depan vs Imbuhan:</strong> Kata depan <em>di, ke, dari</em> ditulis <strong>terpisah</strong> jika menunjukkan tempat (<em>di sungai, ke hutan</em>), sedangkan imbuhan <em>di-</em> ditulis <strong>serangkai</strong> (<em>diamati, dibudidayakan</em>).</li>
+              </ul>
+
+              <h3>2. Kalimat Efektif (Kehematan &amp; Kelogisan)</h3>
+              <div class="table-wrap">
+                <table class="chem-table">
+                  <thead>
+                    <tr>
+                      <th>Jenis Kesalahan</th>
+                      <th>Kalimat Tidak Efektif</th>
+                      <th>Perbaikan Efektif</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr><td><strong>Pleonasme / Redundansi</strong></td><td>Terdapat <em>sepasang</em> antena yang <em>berjumlah dua buah</em>.</td><td>Kepala kupu-kupu memiliki <strong>sepasang antena</strong>.</td></tr>
+                    <tr><td><strong>Pemborosan Jamak</strong></td><td><em>Semua para siswa-siswa</em> mengamati taman <em>secara bersama-sama</em>.</td><td><strong>Semua siswa</strong> mengamati taman.</td></tr>
+                    <tr><td><strong>Ketidakjelasan Subjek</strong></td><td><em>Dalam laporan</em> menunjukkan adanya pencemaran.</td><td><strong>Laporan ini</strong> menunjukkan adanya pencemaran.</td></tr>
+                  </tbody>
+                </table>
+              </div>
+
+              <h3>3. Kohesi dan Koherensi</h3>
+              <p><strong>Kohesi</strong> adalah kepaduan bentuk antarkalimat menggunakan kata rujukan (<em>tumbuhan ini, akar tersebut</em>), sedangkan <strong>Koherensi</strong> adalah hubungan makna yang logis antargagasan menggunakan konjungsi yang tepat (<em>selain itu</em> = penambahan; <em>oleh karena itu</em> = sebab-akibat).</p>
+            `
+          },
+          {
+            id: "lho-5",
+            num: "05",
+            title: "Metode Observasi, Infografis, Presentasi & Gagasan Utama",
+            badge: "Sub-Bab 05",
+            html: `
+              <ul>
+                <li><strong>Instrumen Observasi Objektif:</strong> Ceklis observasi harus mengukur indikator fisik yang dapat diamati dan dibandingkan (contoh untuk kebersihan kantin: <em>jumlah tempat sampah, kebersihan meja, kondisi lantai, tempat cuci tangan, pengelolaan sisa makanan</em> — bukan pendapat selera harga makanan).</li>
+                <li><strong>Rancangan Infografis LHO yang Efektif:</strong> Memuat judul jelas, foto/ilustrasi objek, data angka hasil pengamatan, temuan utama, serta simpulan singkat dengan tata letak bersih dan mudah dibaca (bukan paragraf panjang atau foto tanpa keterangan).</li>
+                <li><strong>Teknik Menjawab Sanggahan saat Presentasi Ilmiah:</strong> Dengarkan sampai selesai, ucapkan terima kasih, akui keterbatasan data secara jujur jika observasi hanya dilakukan satu hari, dan sarankan observasi lanjutan untuk memperkuat hasil.</li>
+                <li><strong>Gagasan Utama Tersurat vs Tersirat:</strong> <em>Tersurat</em> tertulis langsung dalam kalimat utama; <em>Tersirat</em> disimpulkan secara menyeluruh dari hubungan antarkalimat dalam paragraf tanpa melebar keluar dari konteks teks.</li>
+              </ul>
+            `
+          }
+        ]
+      },
+      {
+        id: "bab2",
+        name: "Bab 2 — Teks Anekdot",
+        shortName: "Bab 2: Teks Anekdot",
+        icon: "message-square-quote",
+        eyebrow: "Bab 2 • Bahasa Indonesia Kelas X • Soal No. 17–32",
+        subtitle: "Pengertian, ciri, perbedaan anekdot vs humor biasa, 5 struktur teks, kaidah kebahasaan, 3 majas sindiran (ironi, sinisme, sarkasme), komik, dan lawakan tunggal.",
+        chapters: [
+          {
+            id: "ank-1",
+            num: "01",
+            title: "Pengertian, Tujuan, Ciri & Perbedaan Anekdot vs Humor",
+            badge: "Sub-Bab 01",
+            html: `
+              <p><strong>Teks Anekdot</strong> adalah cerita singkat yang menarik, lucu, dan mengesankan yang di dalamnya mengandung <strong>kritik atau sindiran</strong> terhadap suatu peristiwa, kebiasaan, layanan publik, kebijakan, maupun fenomena sosial.</p>
+              
+              <div class="formula-box">
+                <strong class="box-label">6 Ciri Utama Teks Anekdot</strong>
+                <div class="formula-grid">
+                  <div class="formula-pill">1. Lucu &amp; Menghibur<small>Menghadirkan kelucuan sebagai pembungkus pesan agar menarik perhatian.</small></div>
+                  <div class="formula-pill">2. Mengandung Kritik / Sindiran<small>Menyindir perilaku individu, birokrasi, lembaga, atau fenomena sosial.</small></div>
+                  <div class="formula-pill">3. Memiliki Pesan / Refleksi<small>Mengajak pembaca berpikir kritis dan memperbaiki keadaan.</small></div>
+                  <div class="formula-pill">4. Singkat &amp; Kejutan (Plot Twist)<small>Alur ringkas dengan jawaban/peristiwa yang tidak terduga.</small></div>
+                </div>
+              </div>
+
+              <h3>Perbedaan Teks Anekdot vs Cerita Humor Biasa</h3>
+              <div class="table-wrap">
+                <table class="chem-table">
+                  <thead>
+                    <tr>
+                      <th>Aspek Perbedaan</th>
+                      <th>Teks Anekdot</th>
+                      <th>Cerita Humor Biasa</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr><td><strong>Tujuan Utama</strong></td><td>Menghibur <strong>sekaligus menyampaikan kritik sosial</strong>.</td><td>Semata-mata untuk <strong>menghibur</strong> pembaca/pendengar.</td></tr>
+                    <tr><td><strong>Isi &amp; Pesan</strong></td><td>Mengandung sindiran mendalam dan pesan moral/refleksi.</td><td>Berisi kelucuan ringan tanpa keharusan ada pesan sosial.</td></tr>
+                    <tr><td><strong>Struktur</strong></td><td>Memiliki bagian <strong>krisis</strong> yang memunculkan masalah sosial.</td><td>Tidak selalu memiliki krisis bernuansa kritik sosial.</td></tr>
+                    <tr><td><strong>Tokoh</strong></td><td>Dapat berupa tokoh umum, masyarakat, maupun tokoh terkenal (tidak wajib tokoh terkenal).</td><td>Tokoh acak dalam kehidupan sehari-hari.</td></tr>
+                  </tbody>
+                </table>
+              </div>
+            `
+          },
+          {
+            id: "ank-2",
+            num: "02",
+            title: "5 Struktur Teks Anekdot & Jenis-Jenis Kritik",
+            badge: "Sub-Bab 02",
+            html: `
+              <p>Struktur teks anekdot tersusun atas <strong>5 bagian berurutan</strong>:</p>
+              <div class="flow-steps">
+                <span class="flow-step">1. Abstraksi</span>
+                <span class="flow-arrow">&rarr;</span>
+                <span class="flow-step">2. Orientasi</span>
+                <span class="flow-arrow">&rarr;</span>
+                <span class="flow-step">3. Krisis</span>
+                <span class="flow-arrow">&rarr;</span>
+                <span class="flow-step">4. Reaksi</span>
+                <span class="flow-arrow">&rarr;</span>
+                <span class="flow-step">5. Koda</span>
+              </div>
+
+              <div class="table-wrap">
+                <table class="chem-table">
+                  <thead>
+                    <tr>
+                      <th>Struktur</th>
+                      <th>Fungsi dalam Cerita</th>
+                      <th>Contoh Penerapan (Kasus Pelayanan Digital)</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr><td><strong>1. Abstraksi</strong></td><td>Gambaran awal/pembuka situasi cerita secara umum.</td><td>Seorang warga datang ke kantor pelayanan untuk mengurus dokumen.</td></tr>
+                    <tr><td><strong>2. Orientasi</strong></td><td>Pengenalan tokoh, latar tempat/waktu, dan awal peristiwa.</td><td>Warga membaca tulisan besar: <em>"Pelayanan Cepat, Mudah, dan Transparan"</em> lalu bertanya kepada petugas.</td></tr>
+                    <tr><td><strong>3. Krisis</strong></td><td>Inti masalah, kejanggalan, atau peristiwa konyol yang menjadi titik kritik.</td><td>Warga diminta mengisi formulir digital, tetapi <strong>jaringan internet di kantor tersebut tidak tersedia</strong>.</td></tr>
+                    <tr><td><strong>4. Reaksi</strong></td><td>Tanggapan/respons tokoh terhadap krisis yang menimbulkan kelucuan.</td><td>Petugas menjawab santai: <em>"Sistem kami memang digital, tetapi kesabarannya masih manual."</em></td></tr>
+                    <tr><td><strong>5. Koda</strong></td><td>Penutup cerita berupa simpulan, perubahan sikap, atau akhir kejadian.</td><td>Warga tersenyum tipis mendengar jawaban petugas yang menyuruh mengisi formulir digital untuk mengurus jaringan internet.</td></tr>
+                  </tbody>
+                </table>
+              </div>
+
+              <h3>6 Ranah Kritik dalam Anekdot</h3>
+              <p>Kritik dalam anekdot dapat menyasar: (1) <strong>Pelayanan Publik</strong> (birokrasi berbelit), (2) <strong>Sosial</strong> (ketidakdisiplinan antre), (3) <strong>Pendidikan</strong> (belajar hanya demi nilai), (4) <strong>Politik &amp; Kepemimpinan</strong> (janji tanpa bukti), (5) <strong>Teknologi</strong> (kecanduan gawai / digitalisasi tanpa kesiapan sarana), dan (6) <strong>Lingkungan</strong> (kampanye kurangi plastik tapi masih memakai botol sekali pakai).</p>
+            `
+          },
+          {
+            id: "ank-3",
+            num: "03",
+            title: "Kaidah Kebahasaan & 3 Majas Sindiran (Ironi, Sinisme, Sarkasme)",
+            badge: "Sub-Bab 03",
+            html: `
+              <h3>7 Kaidah Kebahasaan Teks Anekdot</h3>
+              <ul>
+                <li><strong>Kalimat Peristiwa Masa Lalu:</strong> <em>Suatu pagi, pada suatu hari, kemarin</em>.</li>
+                <li><strong>Konjungsi Temporal (Urutan Waktu):</strong> <em>Setelah, kemudian, setelah itu, lalu, akhirnya</em> (perhatikan logika urutan waktu: datang &rarr; ambil nomor antrean &rarr; dipanggil petugas &rarr; menyerahkan dokumen &rarr; sadar salah berkas).</li>
+                <li><strong>Kata Kerja Material (Tindakan Fisik):</strong> Menunjukkan aktivitas fisik yang tampak, seperti <em>datang, dilayani, menyerobot, membuka, menyerahkan</em> (berbeda dengan kata kerja mental seperti <em>memahami, menghargai</em>).</li>
+                <li><strong>Kalimat Langsung:</strong> Ditandai tanda petik dua (<code>"..."</code>) dengan tanda baca (<code>?</code>, <code>!</code>, <code>,</code>, <code>.</code>) berada di dalam tanda petik. Contoh benar: <em>Guru bertanya kepada siswa, "Mengapa tempat sampah tidak digunakan?"</em></li>
+                <li><strong>Kalimat Retoris:</strong> Pertanyaan yang tidak membutuhkan jawaban karena maksudnya sudah jelas untuk menyindir. Contoh: <em>"Apakah taman ini memang dirancang agar pengunjung dapat menikmati suasana gelap dan duduk tanpa bangku?"</em></li>
+                <li><strong>Kalimat Seru:</strong> Ungkapan emosi/kekaguman ironis, seperti <em>"Hebat sekali!"</em></li>
+                <li><strong>Tokoh Alegoris:</strong> Tokoh rekaan yang namanya melambangkan sifat tertentu (contoh: <em>Si Rajin</em> = peduli kebersihan, <em>Si Hemat</em> = bijaksana menghemat sumber daya).</li>
+              </ul>
+
+              <h3>Perbandingan 3 Majas Sindiran</h3>
+              <div class="table-wrap">
+                <table class="chem-table">
+                  <thead>
+                    <tr>
+                      <th>Jenis Majas</th>
+                      <th>Tingkat &amp; Cara Penyampaian</th>
+                      <th>Contoh Kalimat</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr><td><strong>1. Ironi</strong></td><td>Sindiran <strong>halus</strong> dengan menyatakan hal yang <strong>berlawanan</strong> dengan kenyataan sebenarnya.</td><td>• Poster bertulis <em>"Pelayanan Cepat, Mudah"</em> padahal internet mati.<br>• <em>"Rajin sekali kamu, tugas minggu lalu baru dikerjakan hari ini."</em></td></tr>
+                    <tr><td><strong>2. Sinisme</strong></td><td>Sindiran <strong>lebih langsung</strong>, lugas, dan menunjukkan keraguan atau ketidakpercayaan.</td><td>• <em>"Sistem kami memang digital, tetapi kesabarannya masih manual."</em><br>• <em>"Percuma membuat aturan jika tidak ada yang menjalankannya."</em></td></tr>
+                    <tr><td><strong>3. Sarkasme</strong></td><td>Sindiran <strong>sangat kasar, tajam, dan menyakitkan</strong> (hindari dalam kritik santun).</td><td>• <em>"Keputusan itu benar-benar menunjukkan betapa buruknya cara berpikirmu."</em></td></tr>
+                  </tbody>
+                </table>
+              </div>
+            `
+          },
+          {
+            id: "ank-4",
+            num: "04",
+            title: "Komik Potongan, Lawakan Tunggal (Stand-Up) & Kritik Santun",
+            badge: "Sub-Bab 04",
+            html: `
+              <h3>1. Alih Wahana Komik Potongan (Comic Strip)</h3>
+              <p>Komik potongan menyajikan anekdot dalam beberapa panel gambar dan balon dialog. Alur visualnya mengikuti struktur anekdot: <strong>Panel 1</strong> (Orientasi/konteks masalah, misal poster larangan plastik) &rarr; <strong>Panel 2</strong> (Krisis/kontradiksi, panitia membagikan botol sekali pakai) &rarr; <strong>Panel 3</strong> (Reaksi/dialog ironis yang memicu tawa dan kritik).</p>
+
+              <h3>2. Lawakan Tunggal (Stand-Up Comedy) sebagai Anekdot Lisan</h3>
+              <div class="formula-box">
+                <strong class="box-label">5 Unsur Lawakan Tunggal &amp; Teknik Vokal Komika</strong>
+                <div class="formula-grid">
+                  <div class="formula-pill">1. Set-Up<small>Bagian awal yang membangun situasi, premis, atau harapan penonton.</small></div>
+                  <div class="formula-pill">2. Punchline<small>Bagian penutup/kejutan yang membalikkan harapan dan memicu tawa (contoh: <em>"Cukup membutuhkan keberanian."</em>).</small></div>
+                  <div class="formula-pill">3. Bit, Tag &amp; Callback<small><strong>Bit:</strong> satu rangkaian topik; <strong>Tag:</strong> tambahan kelucuan setelah punchline; <strong>Callback:</strong> mengulang materi awal di bagian akhir.</small></div>
+                  <div class="formula-pill">4. Teknik Vokal &amp; Jeda (Pause)<small>Jeda harus diatur <strong>proporsional</strong> untuk membangun antisipasi dan menegaskan punchline—tidak terlalu lama agar alur pikiran penonton tidak terputus.</small></div>
+                </div>
+              </div>
+
+              <div class="example-box">
+                <strong>Prinsip Menyampaikan Kritik dengan Santun &amp; Objektif:</strong><br>
+                Kritik sosial yang baik didasarkan pada <strong>temuan fakta konkret</strong> (bukan asumsi menyeluruh tanpa bukti), menyasar <strong>perilaku, sistem, atau kebijakan</strong> (bukan menyerang fisik/martabat pribadi), serta disampaikan secara konstruktif.
+              </div>
+            `
+          }
+        ]
+      },
+      {
+        id: "bab3",
+        name: "Bab 3 — Teks Hikayat",
+        shortName: "Bab 3: Hikayat",
+        icon: "scroll-text",
+        eyebrow: "Bab 3 • Bahasa Indonesia Kelas X • Soal No. 33–50",
+        subtitle: "Pengertian, 8 karakteristik sastra Melayu klasik, unsur intrinsik & ekstrinsik, 5 nilai kehidupan, kaidah bahasa arkais & majas, alih wahana ke cerpen modern, dan read aloud.",
+        chapters: [
+          {
+            id: "hik-1",
+            num: "01",
+            title: "Pengertian, Fungsi & 8 Karakteristik Hikayat",
+            badge: "Sub-Bab 01",
+            html: `
+              <p><strong>Hikayat</strong> adalah karya sastra lama berbentuk prosa yang berkembang dalam tradisi Melayu klasik, menceritakan kehidupan raja-raja, bangsawan, atau tokoh luar biasa yang sarat dengan kesaktian, keajaiban, dan petualangan.</p>
+
+              <div class="formula-box">
+                <strong class="box-label">8 Karakteristik Khusus Hikayat</strong>
+                <div class="formula-grid">
+                  <div class="formula-pill">1. Anonim<small>Nama pengarangnya pada umumnya tidak diketahui karena diwariskan secara lisan turun-temurun.</small></div>
+                  <div class="formula-pill">2. Bahasa Melayu Klasik (Arkais)<small>Menggunakan kosakata lama seperti <em>alkisah, syahdan, hatta, titah, patik, baginda, hulubalang</em>.</small></div>
+                  <div class="formula-pill">3. Istanasentris<small>Pusat cerita berputar di lingkungan istana/kerajaan, raja, permaisuri, pangeran, dan ukuran kehormatan kesatria.</small></div>
+                  <div class="formula-pill">4. Kemustahilan &amp; Pralogis<small>Mengandung hal tidak masuk akal di dunia nyata (burung emas dapat berbicara, bayi sakti, benda pusaka ajaib).</small></div>
+                  <div class="formula-pill">5. Kesaktian Tokoh<small>Tokoh utama memiliki kekuatan supranatural atau kemampuan luar biasa.</small></div>
+                  <div class="formula-pill">6. Sarana Edukasi &amp; Nilai<small>Mengajarkan nilai agama, moral, sosial, budaya, dan pendidikan melalui teladan tokoh.</small></div>
+                </div>
+              </div>
+            `
+          },
+          {
+            id: "hik-2",
+            num: "02",
+            title: "Unsur Intrinsik, Unsur Ekstrinsik & 5 Nilai Kehidupan",
+            badge: "Sub-Bab 02",
+            html: `
+              <h3>Unsur Intrinsik Hikayat</h3>
+              <ul>
+                <li><strong>Tema:</strong> Gagasan pokok cerita (kesetiaan, keberanian, kebijaksanaan, pengorbanan).</li>
+                <li><strong>Tokoh &amp; Penokohan:</strong> Tokoh hikayat umumnya bersifat <strong>statis / datar</strong> (wataknya tetap dari awal hingga akhir cerita, misal pangeran selalu berani dan setia), berbeda dengan cerpen modern yang tokohnya sering <strong>dinamis</strong> (mengalami perkembangan watak).</li>
+                <li><strong>Alur (Plot):</strong> Hikayat umumnya menggunakan <strong>alur maju (kronologis)</strong> yang lurus. Jika dialihwahanakan menjadi <strong>alur mundur (flashback)</strong>, cerita dibuka dari peristiwa akhir (misal pangeran sudah kembali ke istana membawa pusaka) lalu mengingat kembali rintangan masa lalunya.</li>
+                <li><strong>Latar &amp; Sudut Pandang:</strong> Latar tempat dominan di istana dan hutan belantara; umumnya memakai <strong>sudut pandang orang ketiga</strong> (narator menyebut <em>ia, baginda, sang pangeran</em>).</li>
+                <li><strong>Amanat:</strong> Pesan moral yang ingin disampaikan pengarang.</li>
+              </ul>
+
+              <h3>5 Nilai Kehidupan (Unsur Ekstrinsik) &amp; Relevansinya</h3>
+              <div class="table-wrap">
+                <table class="chem-table">
+                  <thead>
+                    <tr>
+                      <th>Nilai Kehidupan</th>
+                      <th>Makna &amp; Contoh dalam Hikayat</th>
+                      <th>Relevansi dengan Masa Kini</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr><td><strong>1. Nilai Religius / Agama</strong></td><td>Keimanan, doa kepada Tuhan, serta mengajak kepada kebaikan secara bijaksana (contoh: Burung Bayan menasihati istri saudagar dengan kisah penuh hikmah).</td><td>Berdakwah atau menasihati sesama dengan cara santun dan penuh hikmah.</td></tr>
+                    <tr><td><strong>2. Nilai Moral</strong></td><td>Perilaku baik-buruk, kejujuran, kesetiaan, dan tanggung jawab (contoh: Indera Bangsawan melaksanakan tugas raja dengan penuh tanggung jawab).</td><td>Kesetiaan kepada pemimpin/negara harus disertai tanggung jawab moral dan kepedulian pada kepentingan bersama (bukan patuh buta).</td></tr>
+                    <tr><td><strong>3. Nilai Sosial</strong></td><td>Kepedulian terhadap sesama (contoh: Pangeran membawa air penyembuh untuk menolong rakyat yang sakit).</td><td>Semangat empati, gotong royong, dan mendahulukan kepentingan umum di atas kepentingan pribadi.</td></tr>
+                    <tr><td><strong>4. Nilai Budaya</strong></td><td>Adat istiadat kerajaan, penghormatan kepada raja, dan musyawarah pembesar istana.</td><td>Menghargai tata krama, musyawarah mufakat, dan warisan budaya bangsa.</td></tr>
+                    <tr><td><strong>5. Nilai Pendidikan</strong></td><td>Proses belajar dari nasihat, pengalaman pengembaraan, dan kebijaksanaan.</td><td>Pentingnya pendidikan karakter dan pembelajaran sepanjang hayat.</td></tr>
+                  </tbody>
+                </table>
+              </div>
+            `
+          },
+          {
+            id: "hik-3",
+            num: "03",
+            title: "Kaidah Kebahasaan Hikayat & Kamus Kata Arkais",
+            badge: "Sub-Bab 03",
+            html: `
+              <h3>1. Kamus Kata Arkais &amp; Konjungsi Melayu Klasik</h3>
+              <div class="table-wrap">
+                <table class="chem-table">
+                  <thead>
+                    <tr>
+                      <th>Kata Arkais</th>
+                      <th>Padanan Bahasa Indonesia Modern</th>
+                      <th>Kata Arkais</th>
+                      <th>Padanan Bahasa Indonesia Modern</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr><td><strong>Alkisah</strong></td><td>Pada suatu ketika / konon</td><td><strong>Titah / Menitahkan</strong></td><td>Perintah / memerintahkan</td></tr>
+                    <tr><td><strong>Syahdan</strong></td><td>Selanjutnya / kemudian</td><td><strong>Baginda</strong></td><td>Raja / penguasa</td></tr>
+                    <tr><td><strong>Hatta</strong></td><td>Lalu / setelah itu</td><td><strong>Patik / Hamba</strong></td><td>Saya / aku (kepada raja)</td></tr>
+                    <tr><td><strong>Sebermula</strong></td><td>Pada mulanya</td><td><strong>Hulubalang</strong></td><td>Para prajurit / panglima</td></tr>
+                    <tr><td><strong>Tatkala</strong></td><td>Ketika / pada saat</td><td><strong>Beroleh</strong></td><td>Mendapatkan / memperoleh</td></tr>
+                  </tbody>
+                </table>
+              </div>
+
+              <h3>2. Gaya Bahasa (Majas) dalam Hikayat vs Cerpen</h3>
+              <div class="formula-box">
+                <strong class="box-label">4 Majas Utama yang Sering Diujikan</strong>
+                <div class="formula-grid">
+                  <div class="formula-pill">1. Simile (Perumpamaan)<small>Membandingkan dua hal memakai kata pembanding <strong>laksana, bagai, seperti, bak</strong>. Contoh: <em>"Wajah sang putri bersinar <strong>laksana</strong> bulan purnama."</em></small></div>
+                  <div class="formula-pill">2. Metafora<small>Membandingkan secara langsung <strong>tanpa</strong> kata pembanding. Contoh: <em>"Kemarahan Raka <strong>adalah api</strong> yang membakar kesabarannya."</em></small></div>
+                  <div class="formula-pill">3. Personifikasi<small>Menggambarkan benda mati seolah bernyawa/berperilaku seperti manusia. Contoh: <em>"Angin malam berbisik di antara pepohonan."</em></small></div>
+                  <div class="formula-pill">4. Hiperbola<small>Pernyataan yang melebih-lebihkan kenyataan. Contoh: <em>"Suaranya menggelegar membelah langit."</em></small></div>
+                </div>
+              </div>
+            `
+          },
+          {
+            id: "hik-4",
+            num: "04",
+            title: "Perbandingan Hikayat vs Cerpen, Alih Wahana & Read Aloud",
+            badge: "Sub-Bab 04",
+            html: `
+              <h3>Perbandingan Hikayat dan Cerita Pendek Modern</h3>
+              <div class="table-wrap">
+                <table class="chem-table">
+                  <thead>
+                    <tr>
+                      <th>Aspek</th>
+                      <th>Hikayat (Sastra Lama)</th>
+                      <th>Cerpen Modern</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr><td><strong>Bahasa &amp; Pengarang</strong></td><td>Melayu klasik (arkais), pengarang umumnya anonim.</td><td>Bahasa Indonesia modern, nama pengarang jelas.</td></tr>
+                    <tr><td><strong>Latar &amp; Peristiwa</strong></td><td>Istanasentris, banyak kemustahilan/kesaktian.</td><td>Kehidupan sehari-hari, logis/realistis.</td></tr>
+                    <tr><td><strong>Jenis Konflik</strong></td><td>Dominan konflik eksternal/fisik (pertarungan melawan raksasa/musuh dengan benda pusaka).</td><td>Dominan konflik batin/psikologis (pilihan hidup, dilema keluarga, diskusi terbuka).</td></tr>
+                    <tr><td><strong>Penokohan</strong></td><td>Statis (watak tetap dari awal sampai akhir).</td><td>Dinamis (watak dapat berkembang setelah konflik).</td></tr>
+                  </tbody>
+                </table>
+              </div>
+
+              <h3>Langkah Alih Wahana Hikayat Menjadi Cerpen Modern</h3>
+              <ol>
+                <li>Memahami tema, tokoh, alur, dan amanat utama hikayat.</li>
+                <li>Mengubah kosakata arkais menjadi bahasa Indonesia populer yang alami (misal: <em>"Maka baginda menitahkan hulubalang..."</em> &rarr; <em>"Raja memerintahkan para prajurit..."</em>).</li>
+                <li>Menyesuaikan latar dengan kehidupan modern tanpa menghilangkan nilai moral utamanya (misal: putri kerajaan yang bijaksana &rarr; ketua OSIS di sekolah modern yang menyelesaikan masalah lewat musyawarah).</li>
+              </ol>
+
+              <h3>Teknik Membaca Nyaring (Read Aloud) &amp; Umpan Balik</h3>
+              <ul>
+                <li><strong>Suasana Sedih (Kehilangan):</strong> Gunakan <strong>tempo lebih lambat</strong>, volume terkendali, serta intonasi lembut penuh penghayatan.</li>
+                <li><strong>Adegan Pertempuran / Aksi:</strong> Gunakan <strong>tempo lebih cepat</strong> pada bagian aksi, penekanan pada kata penting, serta jeda yang tepat agar urutan peristiwa tetap jelas dipahami pendengar.</li>
+                <li><strong>Komponen Lembar Umpan Balik Read Aloud:</strong> Menilai aspek teknis dan penghayatan pembacaan secara objektif, yakni <strong>kejelasan pelafalan (artikulasi), intonasi, tempo, ekspresi, penghayatan, dan kesesuaian suara dengan suasana cerita</strong> (bukan menilai fisik atau popularitas pembaca).</li>
+              </ul>
+            `
+          }
+        ]
+      }
+    ];
+
+    // =========================================================================
+    // DATA LENGKAP 50 SOAL PILIHAN GANDA + STIMULUS + KUNCI + PEMBAHASAN
+    // =========================================================================
+    const SOAL_LIST = [
+      // ==================== BAB 1: TEKS LHO (NO. 1 - 16) ====================
+      {
+        no: 1, bab: "bab1", babLabel: "Bab 1 • Teks LHO",
+        stimulusTitle: "Stimulus: Kondisi Sungai di Kawasan Permukiman (Untuk Soal No. 1–2)",
+        stimulus: "Berdasarkan observasi yang dilakukan di Sungai Cempaka pada Senin, 12 Agustus 2026, ditemukan beberapa kondisi lingkungan. Air sungai tampak berwarna kecokelatan di bagian hilir. Pada beberapa titik, terlihat sampah plastik tersangkut di antara tumbuhan air. Di bagian hulu, air terlihat lebih jernih dan tidak ditemukan tumpukan sampah dalam jumlah besar.<br><br>Hasil wawancara dengan tiga warga menunjukkan bahwa sampah rumah tangga masih sering ditemukan di sekitar sungai. Namun, seorang petugas kebersihan menyampaikan bahwa sebagian sampah berasal dari saluran drainase yang bermuara ke sungai. Berdasarkan pengamatan tersebut, laporan menyimpulkan bahwa seluruh pencemaran Sungai Cempaka disebabkan oleh rendahnya kepedulian warga.",
+        q: "Berdasarkan isi laporan tersebut, penilaian paling tepat terhadap simpulan paragraf terakhir adalah ....",
+        options: [
+          "Simpulan sudah valid karena seluruh narasumber menyatakan bahwa warga membuang sampah ke sungai.",
+          "Simpulan kurang valid karena data observasi dan wawancara belum cukup membuktikan bahwa seluruh pencemaran disebabkan oleh warga.",
+          "Simpulan sudah tepat karena warna air kecokelatan merupakan bukti bahwa warga tidak peduli terhadap lingkungan.",
+          "Simpulan tidak perlu didukung data karena teks LHO lebih mengutamakan pendapat pengamat.",
+          "Simpulan harus menyatakan bahwa pencemaran hanya terjadi di bagian hilir sungai."
+        ],
+        ans: 1,
+        exp: "Dalam teks LHO, simpulan harus objektif dan sesuai fakta. Pada teks disebutkan bahwa petugas kebersihan menyampaikan sebagian sampah juga berasal dari saluran drainase. Menyimpulkan bahwa <em>seluruh</em> pencemaran disebabkan oleh warga merupakan generalisasi berlebihan (bias) yang tidak didukung bukti lengkap."
+      },
+      {
+        no: 2, bab: "bab1", babLabel: "Bab 1 • Teks LHO",
+        stimulusTitle: "Stimulus: Kondisi Sungai di Kawasan Permukiman",
+        stimulus: "(Merujuk teks Sungai Cempaka di atas: paragraf 1 memaparkan kondisi hulu-hilir sungai, paragraf 2 memaparkan hasil wawancara warga dan petugas kebersihan serta simpulan yang masih bias).",
+        q: "Hubungan logis antara bagian pernyataan umum, deskripsi bagian, dan simpulan yang paling tepat untuk memperbaiki teks tersebut adalah ....",
+        options: [
+          "Pernyataan umum menjelaskan penyebab pencemaran, deskripsi bagian berisi pendapat warga, dan simpulan menyalahkan petugas kebersihan.",
+          "Pernyataan umum mengenalkan objek, deskripsi bagian menyajikan kondisi hulu dan hilir serta hasil wawancara, kemudian simpulan merangkum temuan secara proporsional.",
+          "Pernyataan umum berisi simpulan, deskripsi bagian mengulang simpulan, dan bagian akhir menyampaikan pendapat pribadi penulis.",
+          "Pernyataan umum berisi ajakan menjaga sungai, deskripsi bagian berisi larangan, dan simpulan berupa slogan lingkungan.",
+          "Pernyataan umum menjelaskan lokasi, deskripsi bagian berisi dugaan penyebab, dan simpulan menetapkan pihak yang bersalah tanpa bukti tambahan."
+        ],
+        ans: 1,
+        exp: "Struktur LHO yang sistematis dimulai dengan <strong>Pernyataan Umum</strong> (pengenalan/gambaran umum objek Sungai Cempaka), dilanjutkan <strong>Deskripsi Bagian</strong> (rincian kondisi hulu, hilir, dan data pendukung wawancara), dan diakhiri <strong>Simpulan</strong> yang merangkum seluruh temuan secara proporsional tanpa menyalahkan satu pihak secara sepihak."
+      },
+      {
+        no: 3, bab: "bab1", babLabel: "Bab 1 • Teks LHO",
+        stimulusTitle: "Stimulus: Hutan Mangrove (Untuk Soal No. 3–4)",
+        stimulus: "Hutan mangrove merupakan ekosistem tumbuhan yang tumbuh di wilayah pesisir tropis dan subtropis yang dipengaruhi pasang surut air laut. Ekosistem ini memiliki akar yang mampu bertahan pada lingkungan berlumpur dan berkadar garam tertentu. Akar mangrove menjadi tempat berlindung bagi berbagai organisme kecil.<br><br>Pada kawasan pesisir, mangrove membantu mengurangi energi gelombang dan menahan sebagian sedimen. Selain itu, kawasan ini menjadi habitat bagi ikan, kepiting, dan burung air. Keberadaan mangrove juga berperan dalam menyimpan karbon.",
+        q: "Pasangan kalimat definisi dan deskripsi yang tepat berdasarkan teks tersebut adalah ....",
+        options: [
+          "Definisi: “Akar mangrove menjadi tempat berlindung bagi berbagai organisme kecil.” Deskripsi: “Hutan mangrove merupakan ekosistem tumbuhan di wilayah pesisir.”",
+          "Definisi: “Mangrove membantu mengurangi energi gelombang.” Deskripsi: “Ekosistem ini memiliki akar yang mampu bertahan pada lingkungan berlumpur.”",
+          "Definisi: “Hutan mangrove merupakan ekosistem tumbuhan yang tumbuh di wilayah pesisir tropis dan subtropis.” Deskripsi: “Akar mangrove menjadi tempat berlindung bagi berbagai organisme kecil.”",
+          "Definisi: “Keberadaan mangrove berperan dalam menyimpan karbon.” Deskripsi: “Mangrove adalah tumbuhan yang hidup di daratan kering.”",
+          "Definisi: “Kawasan ini menjadi habitat ikan dan kepiting.” Deskripsi: “Hutan mangrove merupakan ekosistem yang tidak dipengaruhi pasang surut.”"
+        ],
+        ans: 2,
+        exp: "<strong>Kalimat definisi</strong> menjelaskan pengertian umum objek menggunakan kata kopula <em>merupakan</em> (\"Hutan mangrove merupakan ekosistem tumbuhan yang tumbuh di wilayah pesisir tropis dan subtropis\"). Sedangkan <strong>kalimat deskripsi</strong> menggambarkan ciri/kondisi bagian objek secara rinci (\"Akar mangrove menjadi tempat berlindung bagi berbagai organisme kecil\")."
+      },
+      {
+        no: 4, bab: "bab1", babLabel: "Bab 1 • Teks LHO",
+        q: "Perhatikan kalimat berikut!<br><em>“hutan mangrove di pantai selatan jawa memiliki fungsi ekologis yang penting, selain itu kawasan ini menjadi habitat berbagai jenis burung.”</em><br>Perbaikan ejaan dan tanda baca yang tepat sesuai EYD V adalah ....",
+        options: [
+          "Hutan mangrove di Pantai Selatan Jawa memiliki fungsi ekologis yang penting. Selain itu, kawasan ini menjadi habitat berbagai jenis burung.",
+          "Hutan Mangrove di pantai selatan Jawa memiliki fungsi ekologis yang penting, selain itu kawasan ini menjadi habitat berbagai jenis burung.",
+          "Hutan mangrove di Pantai selatan jawa memiliki fungsi ekologis yang penting selain itu, kawasan ini menjadi habitat berbagai jenis burung.",
+          "hutan Mangrove di Pantai Selatan jawa memiliki fungsi ekologis yang penting. Selain itu kawasan ini menjadi habitat berbagai jenis burung.",
+          "Hutan mangrove di pantai Selatan Jawa memiliki fungsi ekologis yang penting; selain itu kawasan ini menjadi habitat berbagai jenis burung."
+        ],
+        ans: 0,
+        exp: "Sesuai EYD V: (1) Awal kalimat memakai huruf kapital (<em>Hutan</em>), sedangkan nama jenis tumbuhan (<em>mangrove</em>) ditulis huruf kecil; (2) Nama geografi lengkap ditulis kapital di setiap unsur (<em>Pantai Selatan Jawa</em>); (3) Ungkapan penghubung antarkalimat <em>Selain itu</em> diletakkan setelah tanda titik (<code>.</code>) dan wajib diikuti tanda koma (<code>,</code>)."
+      },
+      {
+        no: 5, bab: "bab1", babLabel: "Bab 1 • Teks LHO",
+        stimulusTitle: "Stimulus: Data Observasi Taman Sekolah (Untuk Soal No. 5–6)",
+        stimulus: "Sekelompok siswa melakukan observasi terhadap taman sekolah. Mereka mencatat data berikut:<br>• Terdapat 12 pohon peneduh di sisi timur taman.<br>• Tiga tempat sampah tersedia di sekitar taman.<br>• Sebagian tanaman hias memiliki daun menguning.<br>• Dua bangku taman mengalami kerusakan.<br>• Terdapat papan imbauan untuk menjaga kebersihan.",
+        q: "Kerangka laporan hasil observasi yang paling logis berdasarkan data tersebut adalah ....",
+        options: [
+          "Ajakan merawat taman – pendapat siswa – kritik terhadap petugas – harapan.",
+          "Sejarah taman – cerita pengalaman siswa – konflik – penyelesaian.",
+          "Pernyataan umum tentang taman sekolah – deskripsi fasilitas dan vegetasi – deskripsi kondisi kebersihan dan sarana – simpulan berdasarkan temuan.",
+          "Simpulan bahwa taman sekolah tidak terawat – alasan menyalahkan petugas – ajakan mengganti seluruh fasilitas.",
+          "Daftar tanaman – cerita kerusakan bangku – pendapat pengunjung – slogan kebersihan."
+        ],
+        ans: 2,
+        exp: "Kerangka LHO harus mengikuti urutan logis dan objektif: mulai dari <strong>Pernyataan Umum</strong> (pengenalan taman sekolah), <strong>Deskripsi Bagian</strong> yang dikelompokkan berdasarkan kategori data (vegetasi/fasilitas serta kondisi kebersihan/kerusakan sarana), lalu ditutup dengan <strong>Simpulan</strong> berdasarkan temuan."
+      },
+      {
+        no: 6, bab: "bab1", babLabel: "Bab 1 • Teks LHO",
+        q: "Berdasarkan data observasi pada soal nomor 5, kelompok siswa akan membuat infografis presentasi. Rancangan yang paling efektif adalah ....",
+        options: [
+          "Menggunakan banyak animasi, warna mencolok, dan kalimat panjang agar seluruh informasi terlihat menarik.",
+          "Menampilkan foto taman tanpa keterangan karena gambar sudah cukup menjelaskan seluruh hasil observasi.",
+          "Menampilkan judul, foto objek, data jumlah fasilitas, temuan kondisi tanaman dan bangku, serta simpulan singkat dengan tata letak yang mudah dibaca.",
+          "Menampilkan pendapat pribadi anggota kelompok sebagai informasi utama dan menghilangkan data observasi.",
+          "Menggunakan satu paragraf panjang dengan ukuran huruf kecil agar seluruh informasi masuk dalam satu halaman."
+        ],
+        ans: 2,
+        exp: "Prinsip infografis LHO yang efektif adalah memadukan teks ringkas, angka/data faktual, foto/ilustrasi pendukung, temuan utama, dan simpulan singkat dalam tata letak visual yang bersih dan mudah dibaca."
+      },
+      {
+        no: 7, bab: "bab1", babLabel: "Bab 1 • Teks LHO",
+        stimulusTitle: "Stimulus: Eksperimen Pertumbuhan Kecambah (Untuk Soal No. 7–8)",
+        stimulus: "Dalam sebuah eksperimen sederhana, siswa mengamati pertumbuhan kecambah selama lima hari. Hasil pengamatan dicatat: Hari 1 (1 cm), Hari 2 (2 cm), Hari 3 (3 cm), Hari 4 (5 cm), Hari 5 (6 cm).<br>Seorang siswa menyimpulkan bahwa <em>“semua jenis tanaman pasti tumbuh dengan pola yang sama dan mencapai tinggi 6 cm pada hari kelima.”</em>",
+        q: "Evaluasi paling tepat terhadap simpulan tersebut adalah ....",
+        options: [
+          "Tepat karena seluruh tanaman memiliki proses pertumbuhan yang sama.",
+          "Tepat karena data pengamatan selama lima hari sudah mewakili semua jenis tanaman.",
+          "Kurang tepat karena data hanya menunjukkan pertumbuhan kecambah yang diamati, bukan seluruh jenis tanaman.",
+          "Kurang tepat karena tinggi kecambah seharusnya selalu bertambah satu sentimeter setiap hari.",
+          "Tepat karena hasil eksperimen dapat langsung digeneralisasikan tanpa pengamatan tambahan."
+        ],
+        ans: 2,
+        exp: "Simpulan tersebut mengandung kesalahan generalisasi terlalu luas. Data eksperimen hanya mengamati satu jenis objek (kecambah) dalam kondisi tertentu, sehingga tidak dapat digeneralisasikan berlaku pasti untuk <em>semua jenis tanaman</em>."
+      },
+      {
+        no: 8, bab: "bab1", babLabel: "Bab 1 • Teks LHO",
+        q: "Dalam laporan eksperimen pada soal nomor 7, istilah “kecambah” digunakan untuk menyebut tumbuhan muda yang berkembang dari biji. Makna istilah tersebut dalam konteks laporan adalah ....",
+        options: [
+          "Biji yang belum mengalami proses perkecambahan.",
+          "Tumbuhan muda yang baru tumbuh setelah biji berkecambah.",
+          "Bagian akar tumbuhan yang telah mengalami pembusukan.",
+          "Tumbuhan dewasa yang sudah menghasilkan buah.",
+          "Biji yang telah dikeringkan untuk proses penyimpanan."
+        ],
+        ans: 1,
+        exp: "Secara ilmiah dalam biologi dan konteks laporan pengamatan, <strong>kecambah</strong> bermakna tumbuhan muda (embrio tanaman) yang baru tumbuh/berkembang dari biji setelah mengalami proses perkecambahan."
+      },
+      {
+        no: 9, bab: "bab1", babLabel: "Bab 1 • Teks LHO",
+        stimulusTitle: "Stimulus: Kupu-Kupu (Untuk Soal No. 9–10)",
+        stimulus: "Kupu-kupu merupakan serangga yang termasuk dalam ordo Lepidoptera. Hewan ini memiliki dua pasang sayap yang umumnya tertutup sisik halus. Tubuh kupu-kupu terdiri atas kepala, dada, dan perut.<br><br>Pada bagian kepala terdapat sepasang antena, mata majemuk, dan alat pengisap nektar. Bagian dada menjadi tempat melekatnya tiga pasang kaki dan dua pasang sayap. Sementara itu, bagian perut berisi organ-organ yang berperan dalam proses pencernaan dan reproduksi.<br><br>Kupu-kupu mengalami metamorfosis sempurna yang terdiri atas tahap telur, larva, pupa, dan imago.",
+        q: "Penilaian paling tepat terhadap kelogisan perincian deskripsi bagian pada teks tersebut adalah ....",
+        options: [
+          "Tidak logis karena bagian tubuh kupu-kupu seharusnya dijelaskan berdasarkan warna sayap terlebih dahulu.",
+          "Logis karena perincian disusun berdasarkan bagian tubuh, fungsi organ, kemudian dilanjutkan dengan proses perkembangan.",
+          "Tidak logis karena metamorfosis merupakan bagian dari struktur kepala kupu-kupu.",
+          "Logis karena seluruh informasi disusun berdasarkan ukuran tubuh dari terbesar hingga terkecil.",
+          "Tidak logis karena teks tidak menyertakan pendapat pengamat tentang keindahan kupu-kupu."
+        ],
+        ans: 1,
+        exp: "Teks disusun secara sangat sistematis dan logis: dimulai dari klasifikasi umum, lalu memerinci anatomi tubuh secara berurutan dari depan ke belakang (kepala &rarr; dada &rarr; perut) beserta fungsi organ tiap bagian, dan ditutup dengan siklus perkembangannya (metamorfosis)."
+      },
+      {
+        no: 10, bab: "bab1", babLabel: "Bab 1 • Teks LHO",
+        q: "Seorang siswa menulis kalimat berikut dalam laporan:<br><em>“Pada bagian kepala kupu-kupu terdapat sepasang antena yang berjumlah dua buah dan berfungsi untuk mendeteksi rangsangan.”</em><br>Perbaikan kalimat agar lebih efektif adalah ....",
+        options: [
+          "Pada bagian kepala kupu-kupu terdapat sepasang antena yang berjumlah dua buah dan memiliki fungsi untuk mendeteksi rangsangan.",
+          "Pada bagian kepala kupu-kupu terdapat antena yang sepasang dan berjumlah dua buah untuk mendeteksi rangsangan.",
+          "Kepala kupu-kupu memiliki sepasang antena yang berfungsi mendeteksi rangsangan.",
+          "Pada bagian kepala kupu-kupu terdapat dua buah antena yang sepasang dan berfungsi untuk mendeteksi rangsangan.",
+          "Antena yang terdapat pada bagian kepala kupu-kupu berjumlah sepasang dua buah dan berfungsi untuk mendeteksi rangsangan."
+        ],
+        ans: 2,
+        exp: "Frasa <em>sepasang</em> sudah bermakna <em>dua buah</em>, sehingga menuliskan keduanya sekaligus merupakan pemborosan kata (pleonasme). Kalimat paling hemat, lugas, dan efektif adalah: <em>\"Kepala kupu-kupu memiliki sepasang antena yang berfungsi mendeteksi rangsangan.\"</em>"
+      },
+      {
+        no: 11, bab: "bab1", babLabel: "Bab 1 • Teks LHO",
+        stimulusTitle: "Stimulus: Tanaman Lidah Mertua (Untuk Soal No. 11–12)",
+        stimulus: "Lidah mertua merupakan tanaman hias yang dikenal memiliki daun tegak, tebal, dan memanjang. Daunnya berwarna hijau dengan pola garis atau bercak yang berbeda-beda. Tanaman ini dapat tumbuh pada kondisi cahaya yang bervariasi, meskipun pertumbuhannya tetap dipengaruhi oleh ketersediaan cahaya dan air.<br><br>Lidah mertua sering dimanfaatkan sebagai tanaman penghias ruangan dan taman. Tanaman ini juga dikenal memiliki kemampuan melakukan fotosintesis melalui jalur metabolisme tertentu yang membantu adaptasinya terhadap kondisi lingkungan kering. Meskipun demikian, keberadaan tanaman ini tidak dapat menggantikan ventilasi yang baik atau sistem pengendalian kualitas udara.",
+        q: "Simpulan yang paling akurat berdasarkan deskripsi manfaat tanaman lidah mertua adalah ....",
+        options: [
+          "Lidah mertua dapat menghilangkan seluruh polutan udara di dalam ruangan.",
+          "Lidah mertua hanya bermanfaat sebagai tanaman hias dan tidak memiliki fungsi biologis.",
+          "Lidah mertua memiliki manfaat sebagai tanaman hias serta karakteristik adaptasi tertentu, tetapi tidak dapat menggantikan sistem ventilasi ruangan.",
+          "Lidah mertua dapat tumbuh tanpa air dan cahaya dalam jangka waktu tidak terbatas.",
+          "Lidah mertua merupakan satu-satunya tanaman yang mampu melakukan fotosintesis."
+        ],
+        ans: 2,
+        exp: "Paragraf kedua secara eksplisit menjelaskan dua hal seimbang: lidah mertua bermanfaat sebagai penghias ruangan/taman dengan kemampuan fotosintesis adaptif di lingkungan kering, <em>namun tetap tidak dapat menggantikan ventilasi yang baik</em>."
+      },
+      {
+        no: 12, bab: "bab1", babLabel: "Bab 1 • Teks LHO",
+        q: "Perhatikan kalimat berikut!<br><em>“Daun lidah mertua berbentuk tegak dan tebal. Selain itu, tanaman ini dapat tumbuh pada kondisi cahaya yang bervariasi. Oleh karena itu, tanaman ini sering digunakan sebagai tanaman hias.”</em><br>Fungsi konjungsi “selain itu” dan “oleh karena itu” secara berurutan adalah ....",
+        options: [
+          "Menyatakan pertentangan dan pilihan.",
+          "Menyatakan penambahan informasi dan hubungan sebab-akibat.",
+          "Menyatakan syarat dan tujuan.",
+          "Menyatakan urutan waktu dan pertentangan.",
+          "Menyatakan penegasan dan perbandingan."
+        ],
+        ans: 1,
+        exp: "Konjungsi antarkalimat <strong>selain itu</strong> berfungsi menambahkan informasi baru yang mendukung kalimat sebelumnya (penambahan), sedangkan <strong>oleh karena itu</strong> berfungsi menyimpulkan dampak/akibat dari pernyataan sebelumnya (sebab-akibat)."
+      },
+      {
+        no: 13, bab: "bab1", babLabel: "Bab 1 • Teks LHO",
+        q: "OSIS akan melakukan observasi mengenai kebersihan kantin sekolah. Agar data yang dikumpulkan objektif dan dapat dibandingkan, instrumen ceklis yang paling tepat adalah ....",
+        options: [
+          "Nama penjual, makanan favorit siswa, dan pendapat siswa tentang harga makanan.",
+          "Jumlah tempat sampah, kondisi kebersihan meja, kondisi lantai, ketersediaan tempat cuci tangan, dan pengelolaan sisa makanan.",
+          "Nama siswa yang paling sering membeli makanan dan jenis makanan yang paling disukai.",
+          "Pendapat petugas kantin mengenai siswa yang dianggap kurang disiplin.",
+          "Daftar makanan yang paling mahal, paling murah, dan paling populer."
+        ],
+        ans: 1,
+        exp: "Instrumen observasi ilmiah harus memuat indikator fisik yang dapat diamati langsung, diukur, dan selaras dengan tujuan observasi (kebersihan kantin), yakni tempat sampah, kebersihan meja dan lantai, tempat cuci tangan, serta pengelolaan sisa makanan."
+      },
+      {
+        no: 14, bab: "bab1", babLabel: "Bab 1 • Teks LHO",
+        q: "Saat mempresentasikan hasil observasi kantin, seorang siswa mendapat sanggahan: <em>“Data kelompok kalian hanya diambil pada satu hari. Bagaimana kalian bisa menyimpulkan bahwa kantin selalu kotor?”</em><br>Tanggapan paling tepat berdasarkan prinsip komunikasi ilmiah adalah ....",
+        options: [
+          "“Kelompok kami sudah bekerja keras sehingga hasilnya tidak perlu dipertanyakan.”",
+          "“Kami yakin data ini benar karena semua anggota kelompok menyetujuinya.”",
+          "“Terima kasih atas masukannya. Data kami memang terbatas pada satu hari sehingga simpulan perlu dibatasi. Observasi lanjutan pada hari berbeda dapat memperkuat hasil laporan.”",
+          "“Kelompok lain sebaiknya melakukan observasi sendiri daripada mengkritik hasil kami.”",
+          "“Kantin memang kotor setiap hari, meskipun kami tidak mengamati semuanya.”"
+        ],
+        ans: 2,
+        exp: "Dalam komunikasi ilmiah, presenter wajib bersikap terbuka, santun (mengucapkan terima kasih), mengakui keterbatasan cakupan data secara objektif, dan menawarkan tindak lanjut berupa observasi tambahan agar simpulan lebih akurat."
+      },
+      {
+        no: 15, bab: "bab1", babLabel: "Bab 1 • Teks LHO",
+        stimulusTitle: "Stimulus: Ekosistem Sawah (Untuk Soal No. 15–16)",
+        stimulus: "Ekosistem sawah merupakan lingkungan buatan yang memiliki hubungan timbal balik antara komponen biotik dan abiotik. Komponen biotik meliputi padi, serangga, katak, ular, burung, dan mikroorganisme. Komponen abiotik meliputi air, tanah, udara, cahaya matahari, dan suhu.<br><br>Dalam ekosistem tersebut, padi berperan sebagai produsen. Belalang dan tikus dapat memanfaatkan padi sebagai sumber makanan. Katak memangsa serangga, sedangkan ular dapat memangsa katak atau tikus. Hubungan makan dan dimakan tersebut membentuk jaring-jaring makanan yang menjaga keseimbangan ekosistem.",
+        q: "Gagasan utama implisit yang paling tepat dari paragraf kedua adalah ....",
+        options: [
+          "Padi merupakan satu-satunya organisme yang berperan dalam ekosistem sawah.",
+          "Seluruh hewan di sawah memiliki jenis makanan yang sama.",
+          "Hubungan antarmakhluk hidup dalam ekosistem sawah membentuk jaring-jaring makanan yang berperan menjaga keseimbangan lingkungan.",
+          "Ular merupakan organisme paling penting karena memangsa katak dan tikus.",
+          "Ekosistem sawah hanya dipengaruhi oleh komponen biotik."
+        ],
+        ans: 2,
+        exp: "Paragraf kedua merinci interaksi makan-dimakan antara padi, belalang, tikus, katak, dan ular yang secara keseluruhan menyimpulkan bahwa hubungan antarmakhluk hidup membentuk jaring-jaring makanan untuk menjaga keseimbangan ekosistem."
+      },
+      {
+        no: 16, bab: "bab1", babLabel: "Bab 1 • Teks LHO",
+        q: "Jika kalimat berikut akan dimasukkan ke dalam laporan, perbaikan huruf kapital yang tepat adalah ....<br><em>“tanaman padi banyak dibudidayakan di daerah jawa tengah, terutama di wilayah sragen.”</em>",
+        options: [
+          "Tanaman padi banyak dibudidayakan di daerah Jawa Tengah, terutama di wilayah Sragen.",
+          "Tanaman Padi banyak dibudidayakan di daerah jawa Tengah, terutama di wilayah sragen.",
+          "Tanaman padi banyak dibudidayakan di Daerah Jawa Tengah, terutama di wilayah Sragen.",
+          "Tanaman padi banyak dibudidayakan di daerah Jawa tengah, terutama di wilayah sragen.",
+          "Tanaman padi banyak dibudidayakan di daerah Jawa Tengah, terutama di wilayah sragen."
+        ],
+        ans: 0,
+        exp: "Sesuai EYD V: (1) Awal kalimat dikapitalisasi (<em>Tanaman</em>), sedangkan nama jenis tumbuhan (<em>padi</em>) huruf kecil; (2) Kata <em>daerah</em> dan <em>wilayah</em> ditulis huruf kecil karena bukan bagian dari nama diri resmi; (3) Nama geografi <em>Jawa Tengah</em> dan <em>Sragen</em> ditulis dengan huruf kapital."
+      },
+
+      // ==================== BAB 2: TEKS ANEKDOT (NO. 17 - 32) ====================
+      {
+        no: 17, bab: "bab2", babLabel: "Bab 2 • Teks Anekdot",
+        stimulusTitle: "Stimulus: Pelayanan Serba Digital (Untuk Soal No. 17–18 dan 20)",
+        stimulus: "Seorang warga datang ke kantor pelayanan untuk mengurus dokumen kependudukan. Di depan loket, ia membaca tulisan besar: “Pelayanan Cepat, Mudah, dan Transparan”.<br>“Pak, saya ingin mengurus dokumen. Apakah bisa selesai hari ini?” tanyanya.<br>Petugas menjawab, “Tentu bisa, Pak. Silakan mengisi formulir digital terlebih dahulu.”<br>Warga itu membuka telepon genggamnya, tetapi jaringan internet di kantor tersebut tidak tersedia.<br>“Bagaimana saya mengisi formulir digital jika jaringan internetnya tidak ada?” tanyanya.<br>Petugas menjawab santai, “Bapak harus bersabar. Sistem kami memang digital, tetapi kesabarannya masih manual.”<br>Warga itu tersenyum tipis. Ia kemudian bertanya, “Kalau begitu, apakah ada layanan untuk mengurus jaringan internet?”<br>Petugas menjawab, “Belum ada, Pak. Untuk layanan itu, Bapak harus mengisi formulir digital terlebih dahulu.”",
+        q: "Kritik sosial tersirat yang paling kuat dalam anekdot tersebut adalah ....",
+        options: [
+          "Warga kurang memahami perkembangan teknologi digital.",
+          "Petugas pelayanan tidak boleh menggunakan telepon genggam saat bekerja.",
+          "Penerapan sistem digital dalam pelayanan publik harus didukung kesiapan sarana dan prasarana agar tidak menyulitkan masyarakat.",
+          "Masyarakat seharusnya mengurus dokumen secara langsung tanpa menggunakan teknologi.",
+          "Seluruh layanan publik harus kembali menggunakan sistem manual."
+        ],
+        ans: 2,
+        exp: "Anekdot tersebut menyindir ketimpangan antara slogan layanan digital yang serba cepat dengan kenyataan di lapangan (tidak ada jaringan internet, bahkan pengaduan jaringan pun diminta lewat formulir digital). Pesannya: digitalisasi pelayanan publik wajib disertai kesiapan infrastruktur."
+      },
+      {
+        no: 18, bab: "bab2", babLabel: "Bab 2 • Teks Anekdot",
+        q: "Bagian krisis dalam teks tersebut ditunjukkan oleh ....",
+        options: [
+          "Warga datang ke kantor pelayanan untuk mengurus dokumen.",
+          "Warga membaca tulisan “Pelayanan Cepat, Mudah, dan Transparan”.",
+          "Warga tidak dapat mengisi formulir digital karena jaringan internet tidak tersedia.",
+          "Petugas menyambut warga dan menjelaskan prosedur pelayanan.",
+          "Warga tersenyum setelah mendengar jawaban petugas."
+        ],
+        ans: 2,
+        exp: "<strong>Krisis</strong> adalah bagian yang memunculkan inti masalah atau kejanggalan yang memicu kritik/humor, yaitu saat warga diminta mengisi formulir digital tetapi ternyata jaringan internet di kantor pelayanan tidak tersedia."
+      },
+      {
+        no: 19, bab: "bab2", babLabel: "Bab 2 • Teks Anekdot",
+        stimulusTitle: "Stimulus: Perbandingan Dua Teks",
+        stimulus: "<strong>Teks A:</strong> Seorang siswa datang terlambat ke sekolah. Ketika ditanya guru, ia menjawab bahwa jam dinding di rumahnya berjalan lebih lambat daripada jam sekolah. Guru kemudian menyarankan agar ia menyamakan jamnya.<br><br><strong>Teks B:</strong> Seorang siswa bertanya kepada petugas perpustakaan, “Mengapa buku tentang kedisiplinan selalu terlambat dikembalikan?” Petugas menjawab, “Mungkin pembacanya sedang mempraktikkan isi buku itu dengan cara yang salah.”",
+        q: "Perbedaan esensi kedua teks tersebut adalah ....",
+        options: [
+          "Teks A mengandung kritik sosial, sedangkan Teks B hanya menceritakan kejadian lucu.",
+          "Teks A berisi humor sederhana, sedangkan Teks B mengandung sindiran terhadap perilaku tidak disiplin.",
+          "Teks A dan Teks B sama-sama tidak memiliki unsur humor.",
+          "Teks A merupakan laporan hasil observasi, sedangkan Teks B merupakan teks prosedur.",
+          "Teks A dan Teks B sama-sama bertujuan memberikan informasi ilmiah."
+        ],
+        ans: 1,
+        exp: "Teks A hanya berupa kelucuan ringan sehari-hari (<em>humor biasa</em>) tanpa muatan kritik sosial yang mendalam, sedangkan Teks B termasuk <em>anekdot</em> karena menyindir ironi perilaku pembaca yang meminjam buku tentang kedisiplinan tetapi justru melanggar disiplin."
+      },
+      {
+        no: 20, bab: "bab2", babLabel: "Bab 2 • Teks Anekdot",
+        stimulusTitle: "Stimulus: Pernyataan dari Teks 'Pelayanan Serba Digital'",
+        stimulus: "1. “Pelayanan Cepat, Mudah, dan Transparan,” tetapi jaringan internet tidak tersedia.<br>2. “Sistem kami memang digital, tetapi kesabarannya masih manual.”<br>3. “Bapak harus mengisi formulir digital terlebih dahulu” untuk mengurus jaringan internet.",
+        q: "Urutan jenis majas sindiran yang paling tepat adalah ....",
+        options: [
+          "Ironi – ironi – sarkasme.",
+          "Sinisme – sarkasme – ironi.",
+          "Ironi – sinisme – ironi.",
+          "Sarkasme – ironi – sinisme.",
+          "Sinisme – ironi – sarkasme."
+        ],
+        ans: 2,
+        exp: "Pernyataan (1) adalah <strong>Ironi</strong> (fakta bertolak belakang dengan slogan manis); pernyataan (2) adalah <strong>Sinisme</strong> (sindiran lebih langsung/lugas dari petugas yang mengakui kesabaran masih manual); pernyataan (3) kembali berupa <strong>Ironi</strong> (situasi kontradiktif meminta formulir digital untuk mengurus internet yang mati). Tidak ada sarkasme (makian kasar)."
+      },
+      {
+        no: 21, bab: "bab2", babLabel: "Bab 2 • Teks Anekdot",
+        stimulusTitle: "Stimulus: Fenomena Kampanye Sampah Plastik (Untuk Soal No. 21–22)",
+        stimulus: "Sebuah sekolah memasang poster “Kurangi Sampah Plastik”, tetapi dalam setiap kegiatan sekolah masih membagikan minuman dengan kemasan sekali pakai. Siswa kemudian diminta membuat kerangka plot anekdot yang mengkritik ketidaksesuaian tersebut.",
+        q: "Kerangka plot krisis yang paling tepat adalah ....",
+        options: [
+          "Siswa membaca poster, kemudian pulang ke rumah dan menceritakan kegiatan sekolah kepada orang tua.",
+          "Siswa mengamati poster, membeli minuman, lalu menikmati minuman bersama teman-temannya.",
+          "Siswa bertanya kepada panitia mengapa sekolah mengampanyekan pengurangan plastik, tetapi kegiatan sekolah justru menghasilkan banyak sampah kemasan; panitia menjawab bahwa poster tersebut hanya untuk dibaca.",
+          "Siswa membuat poster baru dengan warna yang lebih menarik dan memasangnya di kelas.",
+          "Siswa mengikuti kegiatan sekolah, kemudian memperoleh hadiah karena datang tepat waktu."
+        ],
+        ans: 2,
+        exp: "Bagian krisis harus mempertemukan kontradiksi antara slogan poster dan praktik nyata panitia dalam sebuah dialog/peristiwa unik yang memunculkan sindiran tajam."
+      },
+      {
+        no: 22, bab: "bab2", babLabel: "Bab 2 • Teks Anekdot",
+        q: "Berdasarkan fenomena pada soal nomor 21, rancangan komik potongan yang paling sesuai adalah ....",
+        options: [
+          "Panel pertama menampilkan poster larangan plastik, panel kedua menampilkan panitia membagikan botol sekali pakai, dan panel ketiga menampilkan siswa bertanya dengan ekspresi heran serta panitia menjawab secara ironis.",
+          "Panel pertama menampilkan siswa bermain bola, panel kedua menampilkan guru mengajar, dan panel ketiga menampilkan siswa pulang.",
+          "Panel pertama menampilkan poster, panel kedua menampilkan pemandangan taman, dan panel ketiga menampilkan gambar matahari terbenam tanpa dialog.",
+          "Panel pertama menampilkan panitia tersenyum, panel kedua menampilkan siswa tertawa, dan panel ketiga menampilkan gambar kelas tanpa hubungan dengan isu sampah.",
+          "Panel pertama menampilkan siswa membaca buku, panel kedua menampilkan siswa menulis, dan panel ketiga menampilkan siswa mengumpulkan tugas."
+        ],
+        ans: 0,
+        exp: "Rancangan 3 panel komik potongan tersebut mewakili alur struktur anekdot secara visual: Panel 1 (Orientasi: poster aturan), Panel 2 (Krisis: ketidaksesuaian tindakan panitia), Panel 3 (Reaksi: dialog ironis siswa dan panitia)."
+      },
+      {
+        no: 23, bab: "bab2", babLabel: "Bab 2 • Teks Anekdot",
+        stimulusTitle: "Stimulus: Tokoh Alegoris Si Rajin dan Si Hemat",
+        stimulus: "Di sebuah sekolah, terdapat dua tokoh alegoris bernama Si Rajin dan Si Hemat. Si Rajin selalu membersihkan kelas meskipun tidak diminta. Si Hemat selalu mematikan lampu ketika ruangan tidak digunakan. Suatu hari, keduanya menemukan keran air yang terus mengalir. Si Rajin segera menutupnya, sedangkan Si Hemat berkata, “Airnya jangan dibuang. Nanti bisa kita gunakan untuk menyiram tanaman.”",
+        q: "Watak kedua tokoh yang paling tepat berdasarkan teks tersebut adalah ....",
+        options: [
+          "Si Rajin ceroboh, sedangkan Si Hemat malas.",
+          "Si Rajin peduli terhadap kebersihan, sedangkan Si Hemat bijaksana dalam menggunakan sumber daya.",
+          "Si Rajin egois, sedangkan Si Hemat tidak peduli lingkungan.",
+          "Si Rajin boros, sedangkan Si Hemat tidak bertanggung jawab.",
+          "Si Rajin pemarah, sedangkan Si Hemat suka menyalahkan orang lain."
+        ],
+        ans: 1,
+        exp: "Sesuai nama tokoh alegorisnya: <strong>Si Rajin</strong> digambarkan selalu menjaga kebersihan kelas tanpa diminta (peduli kebersihan), sementara <strong>Si Hemat</strong> mematikan lampu dan memanfaatkan air keran untuk menyiram tanaman (bijaksana menggunakan sumber daya)."
+      },
+      {
+        no: 24, bab: "bab2", babLabel: "Bab 2 • Teks Anekdot",
+        q: "Perhatikan kalimat berikut!<br><em>Guru bertanya kepada siswa mengapa tempat sampah tidak digunakan. Siswa menjawab, “Tempat sampahnya terlalu jauh, Bu.”</em><br>Penulisan kalimat langsung yang tepat adalah ....",
+        options: [
+          "Guru bertanya kepada siswa, “Mengapa tempat sampah tidak digunakan?” Siswa menjawab, “Tempat sampahnya terlalu jauh, Bu.”",
+          "Guru bertanya kepada siswa “Mengapa tempat sampah tidak digunakan”. Siswa menjawab “Tempat sampahnya terlalu jauh Bu”.",
+          "Guru bertanya kepada siswa: “mengapa tempat sampah tidak digunakan?” Siswa menjawab “tempat sampahnya terlalu jauh, Bu.”",
+          "Guru bertanya kepada siswa, “mengapa tempat sampah tidak digunakan”. Siswa menjawab, “Tempat sampahnya terlalu jauh Bu”.",
+          "Guru bertanya kepada siswa “Mengapa tempat sampah tidak digunakan?” Siswa menjawab: “Tempat sampahnya terlalu jauh, Bu”."
+        ],
+        ans: 0,
+        exp: "Kaidah penulisan kalimat langsung (EYD V): (1) Keterangan pengiring dipisahkan tanda koma (<code>,</code>) sebelum petikan; (2) Huruf pertama dalam petikan memakai huruf kapital (<em>Mengapa</em>); (3) Tanda baca penutup kalimat (<code>?</code> dan <code>.</code>) diletakkan <strong>di dalam</strong> tanda petik penutup; (4) Kata sapaan <em>Bu</em> diawali huruf kapital dan didahului tanda koma."
+      },
+      {
+        no: 25, bab: "bab2", babLabel: "Bab 2 • Teks Anekdot",
+        stimulusTitle: "Stimulus: Monolog Hukum Antrean (Untuk Soal No. 25–26)",
+        stimulus: "“Di negeri kita, antre itu penting. Bahkan, ada orang yang sangat menghargai antrean. Ia datang paling akhir, tetapi ingin dilayani paling awal. Ketika ditegur, ia berkata, ‘Saya bukan menyerobot antrean. Saya hanya sedang menguji apakah petugas benar-benar memahami urutan prioritas.’<br>Hebat sekali! Kalau semua orang berpikir seperti itu, mungkin antrean tidak lagi membutuhkan nomor. Cukup membutuhkan keberanian.”",
+        q: "Bagian yang paling kuat menjadi punchline dalam monolog tersebut adalah ....",
+        options: [
+          "“Di negeri kita, antre itu penting.”",
+          "“Ia datang paling akhir, tetapi ingin dilayani paling awal.”",
+          "“Saya bukan menyerobot antrean.”",
+          "“Saya hanya sedang menguji apakah petugas benar-benar memahami urutan prioritas.”",
+          "“Cukup membutuhkan keberanian.”"
+        ],
+        ans: 4,
+        exp: "<strong>Punchline</strong> adalah kalimat pamungkas yang membalikkan logika set-up secara mengejutkan dan jenaka. Kalimat penutup <em>\"Cukup membutuhkan keberanian\"</em> merangkum seluruh sindiran terhadap penyerobot antrean dengan sangat tajam."
+      },
+      {
+        no: 26, bab: "bab2", babLabel: "Bab 2 • Teks Anekdot",
+        q: "Kata kerja material yang menunjukkan tindakan dalam teks tersebut adalah ....",
+        options: [
+          "Penting dan hebat.",
+          "Menghargai dan memahami.",
+          "Datang, dilayani, dan menyerobot.",
+          "Keberanian dan prioritas.",
+          "Negeri dan antrean."
+        ],
+        ans: 2,
+        exp: "<strong>Kata kerja material</strong> menyatakan aktivitas fisik yang dapat dilihat secara nyata (<em>datang, dilayani, menyerobot</em>). Opsi A adalah adjektiva, opsi B adalah kata kerja mental/kognitif, sedangkan opsi D dan E adalah nomina."
+      },
+      {
+        no: 27, bab: "bab2", babLabel: "Bab 2 • Teks Anekdot",
+        stimulusTitle: "Stimulus: Ilustrasi Pengurusan Surat Keterangan",
+        stimulus: "Seorang warga harus membawa lima berkas berbeda untuk mengurus satu surat keterangan. Setelah seluruh berkas dikumpulkan, petugas menyampaikan bahwa masih ada satu berkas tambahan yang belum tercantum dalam pengumuman.",
+        q: "Kalimat orientasi yang paling tepat untuk mengawali teks anekdot berdasarkan ilustrasi tersebut adalah ....",
+        options: [
+          "Akhirnya, warga tersebut pulang dengan membawa semua berkas.",
+          "Suatu pagi, seorang warga datang ke kantor pelayanan untuk mengurus surat keterangan dengan membawa berkas sesuai daftar persyaratan yang diumumkan.",
+          "Petugas kemudian tertawa melihat warga yang kebingungan.",
+          "Warga tersebut menyadari bahwa pelayanan publik membutuhkan perbaikan.",
+          "“Mengapa persyaratannya selalu berubah?” tanya warga dengan nada kesal."
+        ],
+        ans: 1,
+        exp: "<strong>Orientasi</strong> memperkenalkan latar waktu (<em>Suatu pagi</em>), latar tempat (<em>kantor pelayanan</em>), tokoh (<em>seorang warga</em>), dan situasi awal sebelum masalah tambahan berkas muncul."
+      },
+      {
+        no: 28, bab: "bab2", babLabel: "Bab 2 • Teks Anekdot",
+        q: "Seorang komika menyampaikan bagian lucu monolognya dengan jeda yang terlalu panjang sehingga penonton kehilangan hubungan antara kalimat awal dan akhir. Evaluasi paling tepat terhadap teknik vokal tersebut adalah ....",
+        options: [
+          "Jeda harus dihilangkan seluruhnya agar monolog berlangsung cepat.",
+          "Jeda perlu diatur sesuai kebutuhan untuk membangun antisipasi dan menegaskan punchline tanpa memutus alur pemahaman penonton.",
+          "Komika harus berbicara sekeras mungkin agar penonton tetap memperhatikan.",
+          "Seluruh kalimat harus disampaikan dengan tempo yang sama.",
+          "Jeda panjang selalu membuat humor lebih lucu."
+        ],
+        ans: 1,
+        exp: "Dalam penyampaian anekdot lisan (<em>stand-up comedy</em>), pengaturan <strong>jeda (pause)</strong> sangat krusial: cukup untuk memberi ruang antisipasi sebelum punchline, tetapi tidak terlalu lama hingga memutuskan benang merah antara set-up dan punchline."
+      },
+      {
+        no: 29, bab: "bab2", babLabel: "Bab 2 • Teks Anekdot",
+        stimulusTitle: "Stimulus: Tabel Karakteristik Anekdot vs Humor Acak",
+        stimulus: "1. Mengandung kritik terhadap fenomena sosial &rarr; Anekdot<br>2. Hanya bertujuan menghibur tanpa pesan tertentu &rarr; Humor acak<br>3. Memiliki bagian krisis yang memunculkan masalah &rarr; Anekdot<br>4. Selalu menggunakan tokoh terkenal &rarr; Humor acak",
+        q: "Perbaikan klasifikasi yang tepat adalah ....",
+        options: [
+          "Pernyataan 1 dan 3 tepat, sedangkan 2 tepat dan 4 kurang tepat karena humor acak tidak harus menggunakan tokoh terkenal.",
+          "Pernyataan 1 dan 2 salah, sedangkan 3 dan 4 benar.",
+          "Pernyataan 1 benar, sedangkan 2, 3, dan 4 salah.",
+          "Seluruh pernyataan benar karena anekdot dan humor acak memiliki karakteristik yang sama.",
+          "Pernyataan 1 dan 4 benar, sedangkan 2 dan 3 salah."
+        ],
+        ans: 0,
+        exp: "Pernyataan 1, 2, dan 3 sudah benar sesuai ciri anekdot dan humor. Namun pernyataan 4 salah karena baik humor acak maupun anekdot tidak wajib menggunakan tokoh terkenal (bisa tokoh rakyat biasa/rekaan)."
+      },
+      {
+        no: 30, bab: "bab2", babLabel: "Bab 2 • Teks Anekdot",
+        q: "Perhatikan teks anekdot yang urutan konjungsinya belum tepat berikut!<br><em>“Setelah tiba di kantor pelayanan, warga mengambil nomor antrean. Sebelum itu, petugas memanggil nomor antrean berikutnya. Kemudian, warga menyerahkan dokumen kepada petugas. Akhirnya, warga baru menyadari bahwa ia salah membawa berkas.”</em><br>Perbaikan urutan konjungsi temporal yang paling tepat adalah ....",
+        options: [
+          "Setelah tiba di kantor pelayanan, warga mengambil nomor antrean. Kemudian, petugas memanggil nomor antrean berikutnya. Setelah itu, warga menyerahkan dokumen kepada petugas. Akhirnya, warga menyadari bahwa ia salah membawa berkas.",
+          "Sebelum tiba di kantor pelayanan, warga mengambil nomor antrean. Akhirnya, petugas memanggil nomor antrean berikutnya. Sebelum itu, warga menyerahkan dokumen.",
+          "Kemudian, warga tiba di kantor pelayanan. Akhirnya, warga mengambil nomor antrean. Sebelum itu, petugas memanggil nomor berikutnya.",
+          "Setelah itu, warga menyerahkan dokumen. Sebelum tiba, petugas memanggil nomor antrean. Kemudian, warga mengambil nomor antrean.",
+          "Akhirnya, warga tiba di kantor pelayanan. Setelah itu, warga menyadari bahwa ia salah membawa berkas sebelum mengambil nomor antrean."
+        ],
+        ans: 0,
+        exp: "Konjungsi <em>Sebelum itu</em> pada kalimat kedua tidak logis karena petugas memanggil nomor antrean terjadi <strong>sesudah</strong> warga mengambil nomor antrean. Penggantian menjadi <em>Kemudian</em> dan <em>Setelah itu</em> menciptakan urutan kronologis yang padu."
+      },
+      {
+        no: 31, bab: "bab2", babLabel: "Bab 2 • Teks Anekdot",
+        stimulusTitle: "Stimulus: Taman Kota yang Terlupakan (Untuk Soal No. 31–32)",
+        stimulus: "Pemerintah kota mengumumkan bahwa taman kota telah direnovasi dengan anggaran besar. Dalam kunjungannya, seorang jurnalis menemukan beberapa bangku rusak dan lampu taman yang tidak berfungsi. Ia kemudian bertanya kepada petugas, “Apakah taman ini memang dirancang agar pengunjung dapat menikmati suasana gelap dan duduk tanpa bangku?”<br>Petugas menjawab, “Kami sedang mengembangkan konsep taman yang berbeda dari taman pada umumnya.”<br>Jurnalis itu menulis laporan bahwa fasilitas taman belum sepenuhnya sesuai dengan pengumuman renovasi.",
+        q: "Penilaian paling tepat terhadap objektivitas kritik sosial dalam teks tersebut adalah ....",
+        options: [
+          "Kritik sepenuhnya objektif karena seluruh fasilitas taman pasti rusak.",
+          "Kritik cukup objektif karena didasarkan pada temuan konkret, tetapi penilaian menyeluruh tetap memerlukan data tambahan mengenai kondisi taman.",
+          "Kritik tidak objektif karena jurnalis tidak boleh menyampaikan pertanyaan kepada petugas.",
+          "Kritik tidak objektif karena taman kota tidak boleh dinilai oleh masyarakat.",
+          "Kritik sepenuhnya subjektif karena tidak ada informasi tentang anggaran renovasi."
+        ],
+        ans: 1,
+        exp: "Kritik jurnalis berangkat dari fakta konkret yang ditemukan langsung di lapangan (beberapa bangku rusak dan lampu mati), sehingga cukup objektif, namun tetap perlu data menyeluruh atas seluruh area taman sebelum menyimpulkan kondisi total renovasi."
+      },
+      {
+        no: 32, bab: "bab2", babLabel: "Bab 2 • Teks Anekdot",
+        q: "Kalimat tanya yang disampaikan jurnalis berfungsi sebagai kalimat retoris karena ....",
+        options: [
+          "Mengharapkan petugas memberikan jawaban teknis secara rinci.",
+          "Menanyakan lokasi taman kepada petugas.",
+          "Menyampaikan sindiran terhadap kondisi fasilitas yang tidak sesuai dengan fungsi taman.",
+          "Meminta petugas menjelaskan sejarah pembangunan taman.",
+          "Menguji kemampuan petugas dalam menyusun kalimat tanya."
+        ],
+        ans: 2,
+        exp: "Pertanyaan <em>\"Apakah taman ini memang dirancang agar pengunjung dapat menikmati suasana gelap dan duduk tanpa bangku?\"</em> tidak benar-benar mencari jawaban harfiah, melainkan bertujuan menyindir ketidaksesuaian fungsi taman."
+      },
+
+      // ==================== BAB 3: HIKAYAT (NO. 33 - 50) ====================
+      {
+        no: 33, bab: "bab3", babLabel: "Bab 3 • Hikayat",
+        stimulusTitle: "Stimulus: Hikayat Pangeran dan Burung Emas (Untuk Soal No. 33–34)",
+        stimulus: "Alkisah, di sebuah kerajaan yang makmur, hiduplah seorang pangeran yang terkenal berhati mulia. Pada suatu hari, ia mendengar kabar bahwa seekor burung emas dapat berbicara layaknya manusia dan mengetahui segala rahasia alam. Pangeran pun pergi mencarinya ke hutan terlarang.<br><br>Setelah menempuh perjalanan panjang, pangeran bertemu dengan burung tersebut. Burung itu berkata, “Wahai Pangeran, hanya orang yang berhati tulus dapat mendengar nyanyian mata air.” Pangeran kemudian mengikuti petunjuk burung dan menemukan mata air yang konon dapat menyembuhkan segala penyakit. Ia tidak mengambil air itu untuk dirinya sendiri, melainkan membawanya ke kerajaan untuk membantu rakyat yang sakit.",
+        q: "Unsur kemustahilan dalam kutipan hikayat tersebut ditunjukkan oleh ....",
+        options: [
+          "Pangeran melakukan perjalanan menuju hutan.",
+          "Pangeran mendengar kabar tentang burung emas.",
+          "Burung emas dapat berbicara seperti manusia dan mengetahui segala rahasia alam.",
+          "Pangeran membawa air untuk rakyatnya.",
+          "Kerajaan memiliki rakyat yang sakit."
+        ],
+        ans: 2,
+        exp: "<strong>Kemustahilan</strong> adalah peristiwa yang tidak masuk akal dalam logika dunia nyata (pralogis), seperti seekor burung emas yang mampu berbicara fasih layaknya manusia dan mengetahui segala rahasia alam."
+      },
+      {
+        no: 34, bab: "bab3", babLabel: "Bab 3 • Hikayat",
+        q: "Bukti nilai sosial dalam kutipan hikayat tersebut adalah ....",
+        options: [
+          "Pangeran ingin mendapatkan kekuasaan dari kerajaan.",
+          "Pangeran menggunakan air ajaib untuk kepentingan pribadi.",
+          "Pangeran membawa air dari mata air untuk membantu rakyat yang sakit.",
+          "Burung emas tinggal di hutan terlarang.",
+          "Pangeran mengikuti petunjuk burung emas."
+        ],
+        ans: 2,
+        exp: "<strong>Nilai sosial</strong> berkaitan dengan kepedulian, empati, dan pengabdian kepada sesama manusia. Tindakan pangeran yang tidak mementingkan diri sendiri melainkan membawa air penyembuh demi menolong rakyatnya yang sakit adalah wujud nyata nilai sosial."
+      },
+      {
+        no: 35, bab: "bab3", babLabel: "Bab 3 • Hikayat",
+        stimulusTitle: "Stimulus: Perbandingan Kutipan Hikayat vs Cerpen",
+        stimulus: "<strong>Kutipan Hikayat:</strong> Maka sang raja menitahkan hulubalang mencari seorang tabib sakti untuk menyembuhkan putranya. Setelah tabib datang, baginda memerintahkan agar seluruh rakyat berdoa demi kesembuhan sang pangeran.<br><br><strong>Kutipan Cerpen:</strong> Nadia menatap hasil pemeriksaan adiknya. Ia kemudian menghubungi dokter dan berdiskusi dengan keluarga mengenai langkah pengobatan yang harus dilakukan.",
+        q: "Perbedaan sudut pandang yang paling tepat adalah ....",
+        options: [
+          "Hikayat menggunakan sudut pandang orang pertama, sedangkan cerpen menggunakan sudut pandang orang ketiga.",
+          "Hikayat menampilkan kehidupan istana melalui narator, sedangkan cerpen menampilkan tokoh dalam kehidupan sehari-hari melalui narator.",
+          "Hikayat menggunakan sudut pandang tokoh utama, sedangkan cerpen menggunakan sudut pandang pengamat.",
+          "Hikayat dan cerpen sama-sama menggunakan sudut pandang orang pertama.",
+          "Hikayat tidak memiliki sudut pandang, sedangkan cerpen menggunakan sudut pandang orang kedua."
+        ],
+        ans: 1,
+        exp: "Keduanya sama-sama diceritakan melalui sudut pandang orang ketiga (narator di luar cerita), tetapi fokus penceritaannya berbeda: hikayat menampilkan kehidupan istana/kerajaan (raja, hulubalang, tabib sakti), sedangkan cerpen menampilkan tokoh dalam kehidupan modern sehari-hari (Nadia, dokter, keluarga)."
+      },
+      {
+        no: 36, bab: "bab3", babLabel: "Bab 3 • Hikayat",
+        q: "Dalam hikayat, seorang tokoh selalu mematuhi perintah raja meskipun perintah tersebut merugikan rakyat. Jika nilai kesetiaan kepada pemimpin diterapkan pada masa kini, penilaian yang paling tepat adalah ....",
+        options: [
+          "Kesetiaan harus diwujudkan dengan mematuhi seluruh perintah pemimpin tanpa pertimbangan.",
+          "Kesetiaan kepada pemimpin tidak lagi memiliki nilai dalam kehidupan modern.",
+          "Kesetiaan dapat diterapkan selama tetap disertai tanggung jawab, pertimbangan moral, dan kepedulian terhadap kepentingan bersama.",
+          "Kesetiaan hanya berlaku bagi orang yang tinggal di lingkungan kerajaan.",
+          "Kesetiaan berarti mengutamakan kepentingan pemimpin dibandingkan kepentingan masyarakat."
+        ],
+        ans: 2,
+        exp: "Dalam mengkaji relevansi nilai hikayat di era modern, kita perlu menyaring tradisi feodal kepatuhan buta dan menyesuaikannya dengan nilai etika demokrasi: kesetiaan wajib dibarengi tanggung jawab moral dan berpihak pada kemaslahatan masyarakat luas."
+      },
+      {
+        no: 37, bab: "bab3", babLabel: "Bab 3 • Hikayat",
+        stimulusTitle: "Stimulus: Sinopsis Hikayat Putri Kerajaan",
+        stimulus: "Seorang putri kerajaan dikenal cerdas dan berani. Ia berhasil menyelesaikan persoalan kerajaan dengan kebijaksanaan. Namun, ia selalu menunggu keputusan raja sebelum melakukan tindakan.",
+        q: "Jika sinopsis tersebut dialihwahanakan menjadi cerpen berlatar kehidupan modern, rancangan latar yang paling sesuai adalah ....",
+        options: [
+          "Istana megah dengan balairung kerajaan dan para hulubalang.",
+          "Sebuah sekolah modern tempat seorang ketua OSIS menghadapi persoalan organisasi dan mengambil keputusan melalui musyawarah.",
+          "Hutan ajaib tempat putri bertemu makhluk gaib.",
+          "Kerajaan di atas awan dengan istana yang terbuat dari emas.",
+          "Medan peperangan tempat para prajurit memperebutkan takhta."
+        ],
+        ans: 1,
+        exp: "Alih wahana ke cerpen modern menuntut penyesuaian latar feodal/ajaib menjadi latar realistis masa kini yang dekat dengan pembaca remaja, seperti lingkungan sekolah dan organisasi OSIS, tanpa menghilangkan nilai kebijaksanaan tokohnya."
+      },
+      {
+        no: 38, bab: "bab3", babLabel: "Bab 3 • Hikayat",
+        q: "Seorang siswa membaca bagian hikayat yang menggambarkan tokoh kehilangan orang yang dicintainya. Agar ekspresi sedih tersampaikan secara tepat, teknik pembacaan yang sebaiknya digunakan adalah ....",
+        options: [
+          "Tempo sangat cepat, volume keras, dan intonasi datar.",
+          "Tempo lebih lambat, volume terkendali, serta intonasi lembut sesuai suasana.",
+          "Tempo cepat, volume semakin tinggi, dan tekanan pada setiap kata.",
+          "Tempo dan volume tidak perlu disesuaikan dengan isi cerita.",
+          "Membaca dengan suara sangat keras agar kesedihan terdengar jelas."
+        ],
+        ans: 1,
+        exp: "Suasana duka dan kehilangan dalam membaca nyaring (<em>read aloud</em>) memerlukan <strong>tempo yang lebih lambat</strong>, volume terkendali (tidak berteriak), dan intonasi lembut agar nuansa emosional menyentuh pendengar."
+      },
+      {
+        no: 39, bab: "bab3", babLabel: "Bab 3 • Hikayat",
+        stimulusTitle: "Stimulus: Hikayat Bayan Budiman (Untuk Soal No. 39–40)",
+        stimulus: "Maka tersebutlah kisah seorang saudagar yang memiliki seekor burung bayan. Burung itu amat bijaksana dan pandai berkata-kata. Tatkala istri saudagar hendak melakukan perbuatan yang tidak baik, burung bayan menasihatinya dengan kisah-kisah yang penuh hikmah. Burung itu tidak memarahi tuannya, melainkan menyampaikan nasihat dengan cara yang halus agar sang istri menyadari kesalahannya.",
+        q: "Watak alegoris burung bayan dalam kutipan tersebut adalah ....",
+        options: [
+          "Lambang kebijaksanaan dan kemampuan memberikan nasihat.",
+          "Lambang keserakahan dan keinginan menguasai orang lain.",
+          "Lambang kemarahan dan tindakan tanpa pertimbangan.",
+          "Lambang ketakutan terhadap lingkungan sekitar.",
+          "Lambang ketidakpedulian terhadap kesalahan orang lain."
+        ],
+        ans: 0,
+        exp: "Dalam <em>Hikayat Bayan Budiman</em>, burung bayan merupakan tokoh alegoris yang melambangkan kearifan, kecerdasan, dan kemampuan memberikan nasihat secara halus dan bijaksana."
+      },
+      {
+        no: 40, bab: "bab3", babLabel: "Bab 3 • Hikayat",
+        q: "Sikap burung bayan yang menyampaikan nasihat melalui kisah-kisah bijaksana menunjukkan konsep nilai agama berupa ....",
+        options: [
+          "Keinginan memperoleh kekayaan sebanyak-banyaknya.",
+          "Kesombongan terhadap makhluk lain.",
+          "Upaya mengajak kepada kebaikan dengan cara yang bijaksana.",
+          "Kepasrahan tanpa usaha dalam menghadapi masalah.",
+          "Penolakan terhadap nasihat orang lain."
+        ],
+        ans: 2,
+        exp: "Salah satu ajaran utama nilai religius/agama adalah <em>amar ma'ruf nahi munkar</em>—mengajak sesama kepada kebaikan dan mencegah perbuatan buruk dengan cara yang santun, halus, dan penuh hikmah (kebijaksanaan)."
+      },
+      {
+        no: 41, bab: "bab3", babLabel: "Bab 3 • Hikayat",
+        q: "Perhatikan kalimat hikayat berikut!<br><em>“Syahdan, baginda pun berangkat menuju negeri seberang. Hatta, setelah beberapa lamanya, sampailah baginda di sebuah negeri yang makmur.”</em><br>Padanan konjungsi arkais yang paling tepat dalam cerpen modern adalah ....",
+        options: [
+          "Syahdan = walaupun; hatta = karena.",
+          "Syahdan = kemudian; hatta = setelah itu.",
+          "Syahdan = tetapi; hatta = meskipun.",
+          "Syahdan = apabila; hatta = supaya.",
+          "Syahdan = sedangkan; hatta = sehingga."
+        ],
+        ans: 1,
+        exp: "Dalam kamus kata Melayu klasik (arkais), <strong>syahdan</strong> bermakna <em>selanjutnya / kemudian</em>, sedangkan <strong>hatta</strong> bermakna <em>lalu / setelah itu</em>."
+      },
+      {
+        no: 42, bab: "bab3", babLabel: "Bab 3 • Hikayat",
+        stimulusTitle: "Stimulus: Ringkasan Konflik Hikayat vs Cerpen Modern",
+        stimulus: "<strong>Cerita A (Hikayat):</strong> Seorang pangeran berperang melawan raksasa yang menculik putri kerajaan. Konflik diselesaikan melalui pertarungan fisik dengan bantuan benda ajaib.<br><br><strong>Cerita B (Cerpen Modern):</strong> Seorang siswa menghadapi konflik batin ketika harus memilih antara mengikuti keinginan orang tua atau mengejar cita-citanya sendiri. Konflik diselesaikan setelah ia berdiskusi secara terbuka dengan keluarganya.",
+        q: "Penilaian paling tepat terhadap perbedaan konflik kedua cerita adalah ....",
+        options: [
+          "Cerita A lebih menonjolkan konflik batin, sedangkan Cerita B menonjolkan konflik fisik.",
+          "Cerita A menonjolkan konflik eksternal berupa pertarungan, sedangkan Cerita B menonjolkan konflik batin yang berkaitan dengan pilihan hidup.",
+          "Kedua cerita sama-sama hanya menampilkan konflik fisik.",
+          "Kedua cerita tidak memiliki penyelesaian konflik.",
+          "Cerita A dan Cerita B memiliki konflik yang sepenuhnya sama."
+        ],
+        ans: 1,
+        exp: "Hikayat klasik umumnya menonjolkan <strong>konflik eksternal/fisik</strong> (pertarungan melawan monster/musuh menggunakan kesaktian), sedangkan cerpen modern lebih realistis dengan mengangkat <strong>konflik batin/psikologis</strong> seputar pilihan hidup dan komunikasi keluarga."
+      },
+      {
+        no: 43, bab: "bab3", babLabel: "Bab 3 • Hikayat",
+        stimulusTitle: "Stimulus: Alur Kronologis Hikayat",
+        stimulus: "(1) Pangeran menerima tugas dari raja &rarr; (2) Pangeran berangkat menuju hutan &rarr; (3) Pangeran menghadapi rintangan &rarr; (4) Pangeran berhasil menemukan benda pusaka &rarr; (5) Pangeran kembali ke istana.",
+        q: "Jika alur tersebut diubah menjadi alur mundur (flashback) dalam cerpen, pembukaan yang paling tepat adalah ....",
+        options: [
+          "Pangeran menerima tugas dari raja sebelum berangkat ke hutan.",
+          "Pangeran berangkat menuju hutan dan menghadapi rintangan.",
+          "Pangeran kembali ke istana sambil membawa benda pusaka, kemudian teringat kembali perjalanan dan rintangan yang telah dilaluinya.",
+          "Pangeran menemukan benda pusaka sebelum menerima tugas dari raja tanpa penjelasan waktu.",
+          "Pangeran menghadapi rintangan, kemudian cerita langsung berakhir tanpa menjelaskan peristiwa sebelumnya."
+        ],
+        ans: 2,
+        exp: "<strong>Alur mundur (flashback)</strong> memulai cerita dari peristiwa akhir/masa kini (pangeran telah tiba kembali di istana membawa pusaka), lalu menengok kembali rangkaian peristiwa masa lalu yang telah dilaluinya."
+      },
+      {
+        no: 44, bab: "bab3", babLabel: "Bab 3 • Hikayat",
+        q: "Dalam cerpen hasil alih wahana hikayat, terdapat adegan pertempuran antartokoh. Agar pembacaan read aloud terasa hidup dan tetap mudah dipahami, teknik vokal yang paling tepat adalah ....",
+        options: [
+          "Membaca seluruh adegan dengan tempo lambat dan volume rendah.",
+          "Menggunakan tempo lebih cepat pada bagian aksi, tekanan pada kata penting, serta jeda yang tepat agar urutan peristiwa tetap jelas.",
+          "Membaca dengan volume keras secara terus-menerus tanpa memperhatikan tanda baca.",
+          "Menggunakan intonasi datar agar pembaca tidak terlalu emosional.",
+          "Menghilangkan jeda agar seluruh kalimat dapat dibaca secepat mungkin."
+        ],
+        ans: 1,
+        exp: "Adegan aksi/pertempuran memerlukan dinamika vokal berupa <strong>tempo lebih cepat</strong> untuk membangun ketegangan, penekanan pada kata kerja aksi penting, serta tetap menjaga jeda tanda baca agar alur pertempuran mudah diikuti pendengar."
+      },
+      {
+        no: 45, bab: "bab3", babLabel: "Bab 3 • Hikayat",
+        stimulusTitle: "Stimulus: Hikayat Indera Bangsawan (Untuk Soal No. 45–46)",
+        stimulus: "Alkisah, Indera Bangsawan merupakan putra seorang raja yang mendapat tugas mengembara untuk membuktikan keberanian dan kesetiaannya. Dalam perjalanan, ia bertemu dengan beberapa kerajaan dan membantu para penguasa yang sedang menghadapi kesulitan. Setiap kali mendapat perintah, ia berusaha melaksanakannya dengan penuh tanggung jawab. Ia percaya bahwa kehormatan seorang kesatria terletak pada kesetiaan, keberanian, dan kesediaan membela kerajaan.",
+        q: "Latar budaya istanasentris dalam kutipan tersebut tampak melalui ....",
+        options: [
+          "Kehidupan masyarakat yang berpusat pada kegiatan perdagangan.",
+          "Kedudukan raja dan kerajaan sebagai pusat kehidupan serta ukuran kehormatan tokoh.",
+          "Kehidupan petani yang mengutamakan hasil panen.",
+          "Hubungan antartokoh yang didasarkan pada kesetaraan sosial sepenuhnya.",
+          "Kehidupan masyarakat modern yang mengutamakan teknologi."
+        ],
+        ans: 1,
+        exp: "<strong>Istanasentris</strong> berarti cerita berpusat pada lingkungan istana dan kerajaan: tokoh utamanya adalah putra raja, misinya berkaitan dengan penguasa kerajaan lain, dan ukuran kehormatannya adalah kesetiaan membela kerajaan."
+      },
+      {
+        no: 46, bab: "bab3", babLabel: "Bab 3 • Hikayat",
+        q: "Nilai moral yang paling menonjol dalam kutipan tersebut adalah ....",
+        options: [
+          "Kesetiaan dan tanggung jawab dalam menjalankan tugas.",
+          "Keinginan memperoleh kekayaan melalui perjalanan.",
+          "Keberanian untuk menghindari semua perintah.",
+          "Keinginan menguasai kerajaan lain.",
+          "Sikap mengutamakan kepentingan pribadi."
+        ],
+        ans: 0,
+        exp: "Kutipan tersebut secara jelas menonjolkan integritas moral Indera Bangsawan yang selalu melaksanakan setiap perintah dan amanah dengan penuh tanggung jawab, keberanian, serta kesetiaan."
+      },
+      {
+        no: 47, bab: "bab3", babLabel: "Bab 3 • Hikayat",
+        q: "Perhatikan dua kalimat berikut!<br><strong>Kalimat Hikayat:</strong> “Wajah sang putri bersinar laksana bulan purnama.”<br><strong>Kalimat Cerpen:</strong> “Kemarahan Raka adalah api yang membakar seluruh kesabarannya.”<br>Analisis penggunaan majas yang tepat adalah ....",
+        options: [
+          "Kalimat hikayat menggunakan metafora, sedangkan kalimat cerpen menggunakan simile.",
+          "Kalimat hikayat menggunakan simile karena memakai kata pembanding “laksana”, sedangkan kalimat cerpen menggunakan metafora karena membandingkan kemarahan dengan api secara langsung.",
+          "Kedua kalimat menggunakan personifikasi karena menggambarkan benda mati.",
+          "Kedua kalimat menggunakan hiperbola karena menyatakan sesuatu secara berlebihan.",
+          "Kalimat hikayat menggunakan ironi, sedangkan kalimat cerpen menggunakan sarkasme."
+        ],
+        ans: 1,
+        exp: "<strong>Simile</strong> membandingkan dua hal secara eksplisit memakai kata penghubung <em>laksana, bagai, seperti, bak</em>. Sedangkan <strong>metafora</strong> membandingkan dua hal secara langsung (menyamakan kemarahan sebagai api) tanpa kata pembanding."
+      },
+      {
+        no: 48, bab: "bab3", babLabel: "Bab 3 • Hikayat",
+        stimulusTitle: "Stimulus: Karakterisasi Tokoh Hikayat vs Cerpen",
+        stimulus: "<strong>Tokoh Hikayat:</strong> Seorang pangeran selalu digambarkan berani, bijaksana, dan setia dari awal hingga akhir cerita.<br><strong>Tokoh Cerpen:</strong> Seorang remaja awalnya egois, tetapi berubah menjadi lebih peduli setelah mengalami konflik dengan sahabatnya.",
+        q: "Penilaian yang paling tepat adalah ....",
+        options: [
+          "Tokoh hikayat lebih dinamis karena selalu memiliki sifat baik.",
+          "Tokoh cerpen lebih datar karena mengalami perubahan watak.",
+          "Tokoh hikayat cenderung statis, sedangkan tokoh cerpen menunjukkan perkembangan watak.",
+          "Kedua tokoh sama-sama dinamis karena memiliki sifat tertentu.",
+          "Tokoh hikayat tidak memiliki karakter, sedangkan tokoh cerpen hanya memiliki satu sifat."
+        ],
+        ans: 2,
+        exp: "Dalam kajian penokohan sastra, tokoh hikayat klasik umumnya bersifat <strong>statis / datar (flat character)</strong> karena sifat kepahlawanannya tetap dari awal sampai akhir, sementara tokoh cerpen modern umumnya <strong>dinamis (round character)</strong> karena mengalami perubahan/perkembangan watak akibat konflik."
+      },
+      {
+        no: 49, bab: "bab3", babLabel: "Bab 3 • Hikayat",
+        q: "Perhatikan kalimat hikayat berikut!<br><em>“Maka baginda menitahkan hulubalang supaya segera berangkat ke negeri seberang.”</em><br>Padanan bahasa populer yang paling tepat adalah ....",
+        options: [
+          "Raja memerintahkan para prajurit agar segera berangkat ke negeri seberang.",
+          "Raja membiarkan para prajurit untuk tidak berangkat ke negeri seberang.",
+          "Raja meminta masyarakat agar tinggal di negeri seberang.",
+          "Raja mengharapkan para pedagang datang dari negeri seberang.",
+          "Raja melarang para prajurit meninggalkan istana."
+        ],
+        ans: 0,
+        exp: "Padanan kosakata arkais ke bahasa Indonesia populer: <em>baginda</em> = raja, <em>menitahkan</em> = memerintahkan, <em>hulubalang</em> = para prajurit/panglima, dan <em>supaya</em> = agar."
+      },
+      {
+        no: 50, bab: "bab3", babLabel: "Bab 3 • Hikayat",
+        q: "Setelah membaca cerpen hasil alih wahana hikayat, seorang siswa diminta menyusun lembar umpan balik untuk penampilan read aloud temannya. Komponen umpan balik yang paling tepat adalah ....",
+        options: [
+          "Penilaian berdasarkan penampilan fisik pembaca dan popularitasnya di kelas.",
+          "Komentar tentang panjang cerita tanpa menilai cara pembacaan.",
+          "Penilaian terhadap kejelasan pelafalan, intonasi, tempo, ekspresi, penghayatan, dan kesesuaian suara dengan suasana cerita.",
+          "Penilaian berdasarkan jumlah halaman dan banyaknya tokoh dalam cerita.",
+          "Komentar yang hanya menyatakan suka atau tidak suka tanpa alasan."
+        ],
+        ans: 2,
+        exp: "Lembar umpan balik <em>read aloud</em> yang objektif dan edukatif berfokus pada keterampilan vokal dan penghayatan pembaca, yaitu pelafalan (artikulasi), intonasi, tempo, ekspresi, penghayatan, serta kesesuaian nada suara dengan suasana cerita."
+      }
+    ];
+
+    // =========================================================================
+    // LOGIKA APLIKASI, NAVIGASI, KUIS INTERAKTIF, PENCARIAN & DARK MODE
+    // =========================================================================
+    const $ = id => document.getElementById(id);
+    const icons = () => lucide.createIcons();
+    const LETTERS = ["A", "B", "C", "D", "E"];
+
+    let currentTab = "materi";
+    let activeBab = null;
+    let currentFilter = "semua";
+    let userAnswers = {}; // { [no]: optionIndex }
+    let openExplanations = {}; // { [no]: boolean }
+    let allExpOpen = false;
+
+    // 1. RENDER KARTU 3 BAB MATERI
+    function renderBabCards() {
+      const q = $("search").value.trim().toLocaleLowerCase("id");
+      const matches = BAB_MATERI.filter(b => {
+        if (!q) return true;
+        const inName = b.name.toLocaleLowerCase("id").includes(q) || b.subtitle.toLocaleLowerCase("id").includes(q);
+        const inChapters = b.chapters.some(c =>
+          c.title.toLocaleLowerCase("id").includes(q) ||
+          c.html.replace(/<[^>]*>?/gm, " ").toLocaleLowerCase("id").includes(q)
+        );
+        return inName || inChapters;
+      });
+
+      $("subject-count").textContent = matches.length + " bab lengkap";
+      const grid = $("subject-grid");
+      grid.replaceChildren();
+
+      if (!matches.length) {
+        const p = document.createElement("p");
+        p.className = "empty-search";
+        p.style.gridColumn = "1 / -1";
+        p.textContent = "Tidak ada materi yang cocok dengan kata kunci \"" + $("search").value + "\".";
+        grid.append(p);
+        return;
+      }
+
+      matches.forEach(b => {
+        const btn = document.createElement("button");
+        btn.type = "button";
+        btn.className = "subject-card";
+
+        const pillsHTML = b.chapters.map(c => `<span class="chap-pill">${c.num}. ${c.title}</span>`).join("");
+
+        btn.innerHTML = `
+          <div class="card-top">
+            <span class="subject-icon"><i data-lucide="${b.icon}"></i></span>
+            <span class="card-arrow"><i data-lucide="arrow-up-right"></i></span>
+          </div>
+          <h3>${b.name}</h3>
+          <p>${b.subtitle}</p>
+          <div class="card-chapters-preview">${pillsHTML}</div>
+          <div class="mini-line"><span></span></div>
+        `;
+        btn.addEventListener("click", () => openBabReader(b));
+        grid.append(btn);
+      });
+      icons();
+    }
+
+    // 2. BUKA HALAMAN READER BAB
+    function openBabReader(bab) {
+      activeBab = bab;
+      $("hero-section").classList.add("hidden");
+      $("subjects-section").classList.add("hidden");
+      $("detail-section").classList.remove("hidden");
+
+      $("detail-eyebrow").textContent = bab.eyebrow;
+      $("detail-title").textContent = bab.name;
+      $("detail-subtitle").textContent = bab.subtitle;
+
+      const tocList = $("toc-list");
+      tocList.innerHTML = bab.chapters.map((chap, idx) => `
+        <li>
+          <a href="#${chap.id}" class="${idx === 0 ? "active" : ""}">
+            <span class="toc-num">${chap.num}</span>
+            <span>${chap.title}</span>
+          </a>
+        </li>
+      `).join("");
+
+      const contentArea = $("detail-content-area");
+      const chaptersHTML = bab.chapters.map(chap => `
+        <article id="${chap.id}" class="sub-section">
+          <span class="sub-badge">${chap.badge}</span>
+          <h2>${chap.title}</h2>
+          ${chap.html}
+        </article>
+      `).join("");
+
+      const bottomNavHTML = `
+        <div class="bottom-nav">
+          <button type="button" class="btn-nav" onclick="closeBabReader()">
+            <i data-lucide="layout-grid"></i> Semua Bab Materi
+          </button>
+          <button type="button" class="btn-nav primary" onclick="jumpToBabSoal('${bab.id}')">
+            Latihan Soal ${bab.shortName} <i data-lucide="arrow-right"></i>
+          </button>
+        </div>
+      `;
+
+      contentArea.innerHTML = chaptersHTML + bottomNavHTML;
+      icons();
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    }
+
+    function closeBabReader() {
+      activeBab = null;
+      $("detail-section").classList.add("hidden");
+      $("hero-section").classList.remove("hidden");
+      $("subjects-section").classList.remove("hidden");
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    }
+
+    function jumpToBabSoal(babId) {
+      switchTab("kisikisi");
+      setSoalFilter(babId);
+    }
+
+    // Highlight otomatis TOC saat scroll
+    window.addEventListener("scroll", () => {
+      if (!activeBab || $("detail-section").classList.contains("hidden")) return;
+      const sections = document.querySelectorAll("#detail-content-area .sub-section");
+      const navLinks = document.querySelectorAll("#toc-list a");
+      let current = "";
+      sections.forEach(sec => {
+        if (window.scrollY >= sec.offsetTop - 150) {
+          current = sec.getAttribute("id");
+        }
+      });
+      if (!current && sections.length) current = sections[0].getAttribute("id");
+      navLinks.forEach(link => {
+        link.classList.toggle("active", link.getAttribute("href") === "#" + current);
+      });
+    });
+
+    // 3. RENDER 50 SOAL + STIMULUS + PEMBAHASAN INTERAKTIF
+    function updateScoreBadge() {
+      let correctCount = 0;
+      SOAL_LIST.forEach(s => {
+        if (userAnswers[s.no] === s.ans) correctCount++;
+      });
+      $("score-tracker").innerHTML = `<i data-lucide="award" style="width:15px;"></i> Skor: ${correctCount} / 50`;
+    }
+
+    function renderSoalList() {
+      const q = $("search").value.trim().toLocaleLowerCase("id");
+      const filtered = SOAL_LIST.filter(item => {
+        const matchBab = currentFilter === "semua" || item.bab === currentFilter;
+        if (!matchBab) return false;
+        if (!q) return true;
+        const plainStimulus = (item.stimulus || "").replace(/<[^>]*>?/gm, " ").toLocaleLowerCase("id");
+        const plainExp = item.exp.replace(/<[^>]*>?/gm, " ").toLocaleLowerCase("id");
+        const inOpts = item.options.some(o => o.toLocaleLowerCase("id").includes(q));
+        return (
+          String(item.no) === q ||
+          ("nomor " + item.no).includes(q) ||
+          ("no " + item.no).includes(q) ||
+          item.q.toLocaleLowerCase("id").includes(q) ||
+          plainStimulus.includes(q) ||
+          plainExp.includes(q) ||
+          inOpts
+        );
+      });
+
+      $("kisi-count-badge").textContent = filtered.length + " soal";
+      updateScoreBadge();
+
+      const container = $("kisikisi-container");
+      container.replaceChildren();
+
+      if (!filtered.length) {
+        const p = document.createElement("p");
+        p.className = "empty-search";
+        p.textContent = "Tidak ada soal yang cocok dengan pencarianmu.";
+        container.append(p);
+        return;
+      }
+
+      const groups = [
+        { id: "bab1", title: "Bab 1 — Teks Laporan Hasil Observasi (Nomor 1–16)", icon: "clipboard-list" },
+        { id: "bab2", title: "Bab 2 — Teks Anekdot (Nomor 17–32)", icon: "message-square-quote" },
+        { id: "bab3", title: "Bab 3 — Teks Hikayat (Nomor 33–50)", icon: "scroll-text" }
+      ];
+
+      groups.forEach(g => {
+        const groupItems = filtered.filter(item => item.bab === g.id);
+        if (!groupItems.length) return;
+
+        const header = document.createElement("div");
+        header.className = "kisi-group-header";
+        header.innerHTML = `
+          <h3><span class="subject-icon" style="width:36px;height:36px;"><i data-lucide="${g.icon}"></i></span> ${g.title}</h3>
+          <span class="count">${groupItems.length} soal</span>
+        `;
+        container.append(header);
+
+        const list = document.createElement("div");
+        list.className = "kisi-list";
+
+        groupItems.forEach(item => {
+          const card = document.createElement("div");
+          card.className = "kisi-item";
+          card.id = "soal-" + item.no;
+
+          const chosen = userAnswers[item.no];
+          const hasAnswered = chosen !== undefined;
+          const isExpVisible = !!openExplanations[item.no] || hasAnswered;
+
+          const stimulusHTML = item.stimulus ? `
+            <div class="stimulus-box">
+              <span class="stimulus-title">${item.stimulusTitle || "Stimulus Bacaan"}</span>
+              <div>${item.stimulus}</div>
+            </div>
+          ` : "";
+
+          const optionsHTML = item.options.map((optText, idx) => {
+            let stateClass = "";
+            if (hasAnswered) {
+              if (idx === item.ans) stateClass = "correct";
+              else if (idx === chosen) stateClass = "wrong";
+            } else if (isExpVisible && idx === item.ans) {
+              stateClass = "correct";
+            }
+            return `
+              <button type="button" class="opt-btn ${stateClass}" onclick="selectOption(${item.no}, ${idx})">
+                <span class="opt-letter">${LETTERS[idx]}</span>
+                <span>${optText}</span>
+              </button>
+            `;
+          }).join("");
+
+          card.innerHTML = `
+            <div class="kisi-num">${String(item.no).padStart(2, "0")}</div>
+            <div class="kisi-body">
+              <span class="kisi-meta">${item.babLabel} • Soal No. ${item.no}</span>
+              ${stimulusHTML}
+              <h4 class="kisi-q">${item.q}</h4>
+              <div class="options-list">${optionsHTML}</div>
+              <button type="button" class="toggle-exp-btn" onclick="toggleExp(${item.no})">
+                <i data-lucide="${isExpVisible ? "eye-off" : "lightbulb"}" style="width:14px;"></i>
+                ${isExpVisible ? "Sembunyikan Pembahasan" : "Lihat Kunci & Pembahasan"}
+              </button>
+              <div class="explanation-panel ${isExpVisible ? "" : "hidden"}">
+                <span class="key-badge">Kunci Jawaban: ${LETTERS[item.ans]}</span>
+                <div><strong>Pembahasan:</strong> ${item.exp}</div>
+              </div>
+            </div>
+          `;
+          list.append(card);
+        });
+
+        container.append(list);
+      });
+
+      icons();
+    }
+
+    window.selectOption = function(soalNo, optIdx) {
+      userAnswers[soalNo] = optIdx;
+      openExplanations[soalNo] = true;
+      renderSoalList();
+    };
+
+    window.toggleExp = function(soalNo) {
+      if (openExplanations[soalNo]) {
+        delete openExplanations[soalNo];
+        if (userAnswers[soalNo] !== undefined) delete userAnswers[soalNo];
+      } else {
+        openExplanations[soalNo] = true;
+      }
+      renderSoalList();
+    };
+
+    function setSoalFilter(filterKey) {
+      currentFilter = filterKey;
+      document.querySelectorAll(".filter-pill[data-filter]").forEach(pill => {
+        pill.classList.toggle("active", pill.dataset.filter === filterKey);
+      });
+      renderSoalList();
+    }
+
+    // 4. TAB SWITCHER, SEARCH & THEME TOGGLE
+    function switchTab(tabName) {
+      currentTab = tabName;
+      if (tabName === "materi") {
+        $("materi-view").classList.remove("hidden");
+        $("kisikisi-view").classList.add("hidden");
+        $("tab-materi").classList.add("active");
+        $("tab-kisikisi").classList.remove("active");
+        $("tab-materi").setAttribute("aria-current", "page");
+        $("tab-kisikisi").removeAttribute("aria-current");
+      } else {
+        $("materi-view").classList.add("hidden");
+        $("kisikisi-view").classList.remove("hidden");
+        $("tab-kisikisi").classList.add("active");
+        $("tab-materi").classList.remove("active");
+        $("tab-kisikisi").setAttribute("aria-current", "page");
+        $("tab-materi").removeAttribute("aria-current");
+        renderSoalList();
+      }
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    }
+
+    $("tab-materi").onclick = () => switchTab("materi");
+    $("tab-kisikisi").onclick = () => switchTab("kisikisi");
+    $("hero-quiz-btn").onclick = () => switchTab("kisikisi");
+    $("brand-home").onclick = () => {
+      switchTab("materi");
+      if (activeBab) closeBabReader();
+    };
+    $("start-button").onclick = () => $("subjects-section").scrollIntoView({ behavior: "smooth" });
+    $("back-button").onclick = closeBabReader;
+
+    document.querySelectorAll(".filter-pill[data-filter]").forEach(pill => {
+      pill.addEventListener("click", () => setSoalFilter(pill.dataset.filter));
+    });
+
+    $("toggle-all-exp").onclick = () => {
+      allExpOpen = !allExpOpen;
+      SOAL_LIST.forEach(s => {
+        if (allExpOpen) openExplanations[s.no] = true;
+        else delete openExplanations[s.no];
+      });
+      $("toggle-all-exp").textContent = allExpOpen ? "Tutup Semua Pembahasan" : "Buka Semua Pembahasan";
+      renderSoalList();
+    };
+
+    $("reset-quiz-btn").onclick = () => {
+      userAnswers = {};
+      openExplanations = {};
+      allExpOpen = false;
+      $("toggle-all-exp").textContent = "Buka Semua Pembahasan";
+      renderSoalList();
+    };
+
+    $("search").addEventListener("input", () => {
+      if (currentTab === "materi") {
+        if (activeBab) closeBabReader();
+        renderBabCards();
+      } else {
+        renderSoalList();
+      }
+    });
+
+    // Dark Mode Persistence (shira-theme)
+    const applyTheme = dark => {
+      document.body.classList.toggle("dark", dark);
+      $("theme-toggle").setAttribute("aria-label", dark ? "Aktifkan tema terang" : "Aktifkan tema gelap");
+      $("theme-toggle").innerHTML = '<i data-lucide="' + (dark ? "sun" : "moon") + '"></i>';
+      icons();
+    };
+    if (localStorage.getItem("shira-theme") === "dark") applyTheme(true);
+    $("theme-toggle").onclick = () => {
+      const dark = !document.body.classList.contains("dark");
+      localStorage.setItem("shira-theme", dark ? "dark" : "light");
+      applyTheme(dark);
+    };
+
+    // Init
+    renderBabCards();
+    renderSoalList();
+    icons();
+  </script>
+</body>
+</html>
