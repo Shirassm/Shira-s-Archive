@@ -1,0 +1,727 @@
+<!doctype html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Pembahasan 100 Soal ASAS KKA — Shira's Archive</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/lucide@0.577.0/dist/umd/lucide.min.js"></script>
+  <style>
+    :root {
+      --bg: #f5f8fd;
+      --surface: #fff;
+      --surface2: #edf4fd;
+      --text: #25334a;
+      --muted: #718099;
+      --line: #e3eaf4;
+      --blue: #537fda;
+      --blue2: #e8f0ff;
+      --green: #22966a;
+      --green-bg: rgba(55, 167, 125, 0.13);
+      --red: #d95353;
+      --red-bg: rgba(224, 116, 116, 0.13);
+      --shadow: 0 12px 36px rgba(48, 79, 129, .07);
+    }
+    body.dark {
+      --bg: #101827;
+      --surface: #192437;
+      --surface2: #202e45;
+      --text: #eef4ff;
+      --muted: #a7b5cb;
+      --line: #344159;
+      --blue: #8bb3ff;
+      --blue2: #263d65;
+      --green: #4ade80;
+      --green-bg: rgba(74, 222, 128, 0.14);
+      --red: #f87171;
+      --red-bg: rgba(248, 113, 113, 0.14);
+      --shadow: 0 12px 36px rgba(0, 0, 0, .17);
+    }
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      background: var(--bg);
+      color: var(--text);
+      font-family: "Plus Jakarta Sans", sans-serif;
+      line-height: 1.65;
+      transition: background .25s, color .25s;
+    }
+    button, input { font-family: "Plus Jakarta Sans", sans-serif; }
+    button { cursor: pointer; }
+    .wrap { max-width: 1190px; margin: auto; padding: 0 28px; }
+
+    /* Header */
+    .site-header {
+      background: var(--surface);
+      border-bottom: 1px solid var(--line);
+      position: sticky;
+      top: 0;
+      z-index: 10;
+    }
+    .nav-inner {
+      min-height: 78px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+    }
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 11px;
+      font-weight: 800;
+      font-size: 18px;
+      text-decoration: none;
+      color: var(--text);
+    }
+    .brand-mark {
+      width: 38px;
+      height: 38px;
+      display: grid;
+      place-items: center;
+      border-radius: 12px;
+      background: var(--blue);
+      color: white;
+    }
+    .brand-mark svg { width: 21px; }
+    .icon-button {
+      width: 41px;
+      height: 41px;
+      border: 1px solid var(--line);
+      border-radius: 12px;
+      background: var(--surface);
+      color: var(--text);
+      display: grid;
+      place-items: center;
+    }
+    .icon-button svg { width: 19px; }
+
+    /* Top Area */
+    .reader-top { padding: 34px 0 20px; }
+    .back-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      color: var(--blue);
+      text-decoration: none;
+      font-weight: 700;
+      font-size: 13px;
+      margin-bottom: 16px;
+    }
+    .back-link svg { width: 17px; }
+    .eyebrow {
+      color: var(--blue);
+      font-size: 12px;
+      font-weight: 800;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+      margin: 0 0 8px;
+    }
+    .reader-top h1 {
+      font-size: clamp(26px, 4vw, 38px);
+      letter-spacing: -.04em;
+      line-height: 1.2;
+      margin: 0 0 10px;
+      font-weight: 800;
+    }
+    .reader-top p.desc {
+      color: var(--muted);
+      font-size: 14px;
+      margin: 0;
+      max-width: 720px;
+    }
+
+    /* Toolbar Filter & Search */
+    .toolbar {
+      background: var(--surface);
+      border: 1px solid var(--line);
+      border-radius: 18px;
+      padding: 18px 20px;
+      box-shadow: var(--shadow);
+      margin-bottom: 24px;
+      display: grid;
+      gap: 14px;
+    }
+    .toolbar-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .filter-pills {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 7px;
+    }
+    .pill {
+      border: 1px solid var(--line);
+      background: var(--surface2);
+      color: var(--muted);
+      padding: 7px 13px;
+      border-radius: 10px;
+      font-size: 12.5px;
+      font-weight: 700;
+      transition: all .2s;
+    }
+    .pill:hover { color: var(--text); border-color: var(--blue); }
+    .pill.active {
+      background: var(--blue);
+      color: #fff;
+      border-color: var(--blue);
+    }
+    .search-wrap {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      background: var(--bg);
+      border: 1px solid var(--line);
+      border-radius: 11px;
+      padding: 0 12px;
+      min-width: 250px;
+      flex: 1;
+      max-width: 340px;
+    }
+    .search-wrap svg { width: 16px; color: var(--muted); }
+    .search-wrap input {
+      border: 0;
+      background: transparent;
+      outline: 0;
+      color: var(--text);
+      height: 38px;
+      width: 100%;
+      font-size: 13px;
+    }
+    .action-group {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      align-items: center;
+    }
+    .btn-mode {
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      border: 1px solid var(--blue);
+      background: var(--blue2);
+      color: var(--blue);
+      padding: 8px 14px;
+      border-radius: 10px;
+      font-size: 12.5px;
+      font-weight: 700;
+    }
+    .btn-mode.active {
+      background: var(--blue);
+      color: #fff;
+    }
+    .btn-mode svg { width: 15px; }
+    .score-badge {
+      font-size: 12.5px;
+      font-weight: 800;
+      color: var(--blue);
+      background: var(--surface2);
+      padding: 8px 13px;
+      border-radius: 10px;
+      border: 1px solid var(--line);
+    }
+
+    /* Daftar Kartu Soal */
+    .quiz-list {
+      display: grid;
+      gap: 18px;
+      padding-bottom: 50px;
+    }
+    .q-card {
+      background: var(--surface);
+      border: 1px solid var(--line);
+      border-radius: 18px;
+      padding: 24px;
+      box-shadow: var(--shadow);
+    }
+    .q-head {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 12px;
+      flex-wrap: wrap;
+    }
+    .q-num {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 12px;
+      font-weight: 800;
+      color: var(--blue);
+      background: var(--blue2);
+      padding: 4px 11px;
+      border-radius: 20px;
+    }
+    .q-cat {
+      font-size: 11.5px;
+      font-weight: 700;
+      color: var(--muted);
+    }
+    .q-text {
+      font-size: 14.5px;
+      font-weight: 600;
+      margin: 0 0 14px;
+      color: var(--text);
+      white-space: pre-line;
+    }
+    .q-code {
+      background: #162033;
+      color: #e2e8f0;
+      font-family: "JetBrains Mono", monospace;
+      font-size: 12.5px;
+      line-height: 1.55;
+      padding: 12px 15px;
+      border-radius: 10px;
+      margin: 0 0 14px;
+      overflow-x: auto;
+      white-space: pre;
+    }
+    .opt-grid {
+      display: grid;
+      gap: 8px;
+    }
+    .opt-btn {
+      width: 100%;
+      text-align: left;
+      display: flex;
+      align-items: start;
+      gap: 10px;
+      padding: 11px 14px;
+      border: 1px solid var(--line);
+      border-radius: 11px;
+      background: var(--surface2);
+      color: var(--text);
+      font-size: 13.5px;
+      line-height: 1.45;
+      transition: all .18s;
+    }
+    .opt-btn:hover { border-color: var(--blue); }
+    .opt-letter {
+      font-weight: 800;
+      color: var(--blue);
+      min-width: 20px;
+    }
+    .opt-btn.correct {
+      border-color: var(--green);
+      background: var(--green-bg);
+    }
+    .opt-btn.correct .opt-letter { color: var(--green); }
+    .opt-btn.wrong {
+      border-color: var(--red);
+      background: var(--red-bg);
+    }
+    .opt-btn.wrong .opt-letter { color: var(--red); }
+
+    .explain-box {
+      margin-top: 14px;
+      padding: 13px 16px;
+      border-radius: 11px;
+      background: var(--surface2);
+      border-left: 4px solid var(--green);
+      font-size: 13px;
+      display: none;
+    }
+    .explain-box.show { display: block; }
+    .explain-box strong { color: var(--green); }
+
+    /* Navigasi Bawah */
+    .bottom-nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 12px;
+      padding-bottom: 70px;
+    }
+    .btn-nav {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 12px 18px;
+      border-radius: 12px;
+      text-decoration: none;
+      font-size: 13px;
+      font-weight: 700;
+      border: 1px solid var(--line);
+      background: var(--surface);
+      color: var(--text);
+    }
+    .btn-nav.primary {
+      background: var(--blue);
+      color: #fff;
+      border-color: var(--blue);
+    }
+    .btn-nav svg { width: 17px; }
+
+    .footer {
+      border-top: 1px solid var(--line);
+      padding: 26px 0;
+      color: var(--muted);
+      font-size: 12px;
+    }
+    .footer .wrap {
+      display: flex;
+      justify-content: space-between;
+      gap: 12px;
+    }
+
+    @media (max-width: 640px) {
+      .wrap { padding: 0 18px; }
+      .q-card { padding: 18px; }
+      .search-wrap { max-width: 100%; width: 100%; }
+      .bottom-nav { flex-direction: column; align-items: stretch; }
+      .btn-nav { justify-content: center; }
+      .footer .wrap { flex-direction: column; }
+    }
+  </style>
+</head>
+<body>
+
+  <header class="site-header">
+    <div class="wrap nav-inner">
+      <a href="../index.html" class="brand" aria-label="Kembali ke Beranda Shira's Archive">
+        <span class="brand-mark"><i data-lucide="book-open"></i></span>
+        <span>Shira's Archive</span>
+      </a>
+      <button id="theme-toggle" class="icon-button" type="button" aria-label="Aktifkan tema gelap" title="Tukar tema">
+        <i data-lucide="moon"></i>
+      </button>
+    </div>
+  </header>
+
+  <main class="wrap">
+    <div class="reader-top">
+      <a href="koding-bab4.html" class="back-link"><i data-lucide="arrow-left"></i> Kembali ke Bab 4: Grafik Turtle, List, Fungsi &amp; SDLC</a>
+      <p class="eyebrow">Koding • Kelas 10 • Bank Soal &amp; Pembahasan</p>
+      <h1>Pembahasan 100 Soal Latihan ASAS KKA</h1>
+      <p class="desc">Kumpulan lengkap 100 soal ASAS KKA / Informatika Kelas X. Klik salah satu pilihan untuk menguji jawabanmu, atau aktifkan mode baca semua kunci jawaban untuk review cepat sebelum ujian.</p>
+    </div>
+
+    <!-- Toolbar Filter, Cari, dan Mode Kunci -->
+    <div class="toolbar">
+      <div class="toolbar-row">
+        <div class="filter-pills" id="filter-pills">
+          <button class="pill active" type="button" data-cat="all">Semua (100)</button>
+          <button class="pill" type="button" data-cat="1">Bab 1: Algoritma, CT &amp; AI (22)</button>
+          <button class="pill" type="button" data-cat="2">Bab 2: Dasar Python &amp; Operator (36)</button>
+          <button class="pill" type="button" data-cat="3">Bab 3: Percabangan &amp; Loop (24)</button>
+          <button class="pill" type="button" data-cat="4">Bab 4: Turtle, List, Fungsi &amp; SDLC (18)</button>
+        </div>
+        <div class="search-wrap">
+          <i data-lucide="search"></i>
+          <input id="q-search" type="search" placeholder="Cari kata kunci soal (misal: range, turtle, %)...">
+        </div>
+      </div>
+      <div class="toolbar-row">
+        <div class="action-group">
+          <button id="toggle-all-keys" class="btn-mode" type="button"><i data-lucide="eye"></i> <span>Tampilkan Semua Kunci &amp; Pembahasan</span></button>
+          <button id="reset-quiz" class="pill" type="button">Reset Jawaban</button>
+        </div>
+        <div id="score-info" class="score-badge">Terjawab: 0 / 100 • Benar: 0</div>
+      </div>
+    </div>
+
+    <!-- Daftar 100 Soal -->
+    <div id="quiz-container" class="quiz-list"></div>
+
+    <!-- Navigasi Bawah -->
+    <div class="bottom-nav">
+      <a href="koding-bab4.html" class="btn-nav"><i data-lucide="arrow-left"></i> Bab 4: Grafik Turtle, List, Fungsi &amp; SDLC</a>
+      <a href="../index.html" class="btn-nav primary"><i data-lucide="layout-grid"></i> Selesai • Kembali ke Daftar Mata Pelajaran</a>
+    </div>
+  </main>
+
+  <footer class="footer">
+    <div class="wrap">
+      <span>© Shira's Archive</span>
+      <span>Belajar sedikit demi sedikit, setiap hari.</span>
+    </div>
+  </footer>
+
+  <script>
+    lucide.createIcons();
+
+    // Sinkronisasi Dark Mode
+    const themeBtn = document.getElementById("theme-toggle");
+    if (localStorage.getItem("shira-theme") === "dark") {
+      document.body.classList.add("dark");
+      themeBtn.innerHTML = '<i data-lucide="sun"></i>';
+      lucide.createIcons();
+    }
+    themeBtn.onclick = () => {
+      const dark = document.body.classList.toggle("dark");
+      localStorage.setItem("shira-theme", dark ? "dark" : "light");
+      themeBtn.innerHTML = '<i data-lucide="' + (dark ? "sun" : "moon") + '"></i>';
+      lucide.createIcons();
+    };
+
+    // Data 100 Soal ASAS KKA (dengan opsi diacak otomatis agar latihan lebih menantang!)
+    const rawQuestions = [
+      {n:1,c:1,t:"Sebuah organisasi siswa ingin memecahkan masalah \"banyak siswa terlambat masuk kelas setelah jam istirahat\" menggunakan metode berpikir komputasional. Urutan 4 pilar yang paling tepat diterapkan adalah ...",a:"Dekomposisi → Pattern Recognition → Abstraksi → Algoritma",o:["Pattern Recognition → Dekomposisi → Abstraksi → Algoritma","Abstraksi → Pattern Recognition → Dekomposisi → Algoritma","Dekomposisi → Abstraksi → Pattern Recognition → Algoritma","Algoritma → Dekomposisi → Abstraksi → Pattern Recognition"],e:"Urutan baku 4 pilar Computational Thinking (CT) adalah memecah masalah (Dekomposisi), mencari pola (Pattern Recognition), menyaring inti penting (Abstraksi), lalu menyusun langkah solusi (Algoritma)."},
+      {n:2,c:1,t:"Seorang dokter mendiagnosis penyakit pasien dengan cara mencatat gejala utama, mengabaikan warna pakaian pasien, lalu membandingkan pola gejala tersebut dengan kasus medis sebelumnya. Pilar CT yang digunakan secara berurutan adalah ...",a:"Abstraksi dan Pattern Recognition",o:["Dekomposisi dan Algoritma","Algoritma dan Abstraksi","Pattern Recognition dan Dekomposisi","Dekomposisi dan Abstraksi"],e:"Mengabaikan hal tidak relevan (warna pakaian) adalah Abstraksi, sedangkan membandingkan pola gejala dengan kasus sebelumnya adalah Pattern Recognition."},
+      {n:3,c:1,t:"Pernyataan berikut yang menggambarkan hubungan yang paling tepat antara pemrograman (coding) dan Kecerdasan Buatan (AI) adalah ...",a:"Coding merupakan fondasi utama untuk membangun dan melatih model AI",o:["AI dapat diciptakan sepenuhnya tanpa memerlukan baris kode sama sekali","Coding dan AI merupakan dua bidang teknologi yang tidak berhubungan","AI adalah satu-satunya bahasa pemrograman tingkat tinggi saat ini","Coding hanya dipakai untuk pembuatan aplikasi web sederhana"],e:"Model AI dibangun, dilatih, dan dijalankan menggunakan kode pemrograman (seperti Python)."},
+      {n:4,c:1,t:"Peran utama instruksi algoritma dan coding dalam pengembangan sistem AI modern adalah ...",a:"Mengatur logika pengolahan data dan struktur model kecerdasan buatan",o:["Menghapus kebutuhan data latih (training data)","Menggantikan peran perangkat keras komputer secara fisik","Memastikan komputer dapat bekerja tanpa daya listrik","Mengubah semua data teks menjadi berkas audio otomatis"],e:"Algoritma dan coding mengatur bagaimana model AI memproses data latih hingga mampu membuat prediksi."},
+      {n:5,c:1,t:"Di bawah ini yang merupakan contoh wujud penerapan Kecerdasan Buatan (AI) dalam aplikasi sehari-hari adalah ...",a:"Fitur penyesuaian otomatis daftar lagu (playlist) Spotify berdasarkan kebiasaan pendengar",o:["Jam dinding digital yang menunjukkan waktu dan tanggal","Kalkulator toko yang menghitung total belanjaan secara akurat","Lampu lalu lintas yang berganti warna setiap 60 detik secara tetap","Sakelar lampu otomatis berbasis sensor gerak mekanis"],e:"Rekomendasi playlist mempelajari kebiasaan pengguna (Machine Learning), sedangkan jam, kalkulator, dan lampu timer bekerja statis."},
+      {n:6,c:1,t:"Fitur pengenal wajah (Face ID) pada smartphone memanfaatkan cabang AI yang dikenal dengan istilah ...",a:"Computer Vision",o:["Text Processing","Natural Speech Engine","Static Graphic Rendering","Database Query System"],e:"Computer Vision adalah cabang AI yang melatih komputer mengenali dan memproses objek visual seperti wajah."},
+      {n:7,c:1,t:"Pengembang membagi sistem ujian online sekolah menjadi sub-sistem Login, Bank Soal, Pengerjaan Siswa, dan Pengolahan Nilai. Tahap berpikir komputasional yang diterapkan adalah ...",a:"Dekomposisi",o:["Abstraksi","Pattern Recognition","Algoritma","Debugging"],e:"Memecah sistem besar menjadi bagian-bagian kecil (sub-sistem) disebut Dekomposisi."},
+      {n:8,c:1,t:"Tim analis memisahkan aplikasi e-commerce menjadi modul manajemen produk, keranjang belanja, gerbang pembayaran, dan pengiriman barang. Tindakan ini mencerminkan ...",a:"Dekomposisi masalah",o:["Kompilasi kode","Abstraksi data","Evaluasi heuristik","Eksekusi algoritma"],e:"Pemecahan masalah kompleks menjadi modul-modul fungsional adalah penerapan Dekomposisi."},
+      {n:9,c:1,t:"Pada rancangan sistem pendaftaran ekstrakurikuler, analis hanya mencatat Nama, NIS, dan Pilihan Ekstra, serta mengabaikan ukuran sepatu dan makanan favorit. Tahap yang dilakukan adalah ...",a:"Abstraksi",o:["Dekomposisi","Pattern Recognition","Refactoring","Pengujian program"],e:"Abstraksi berfokus pada informasi penting yang relevan dengan sistem dan membuang detail yang tidak perlu."},
+      {n:10,c:1,t:"Peta rute transportasi umum hanya menampilkan garis rute dan nama stasiun utama tanpa memuat detail pohon atau bentuk rumah warga. Hal ini merupakan contoh penerapan ...",a:"Abstraksi",o:["Generalisasi Kode","Modularisasi","Algoritmisasi","Rekursi"],e:"Menyederhanakan tampilan dengan hanya menyisakan rute dan stasiun inti merupakan contoh Abstraksi."},
+      {n:11,c:1,t:"Salah satu syarat utama dari sebuah algoritma yang baik dan efektif adalah ...",a:"Memiliki input awal yang jelas, langkah-langkah yang terstruktur, serta titik akhir (berhenti) yang pasti",o:["Dapat dijalankan langsung tanpa melalui tahap penerjemahan","Langkahnya boleh acak bebas tanpa urutan tertentu","Ditulis dengan kode biner (0 dan 1)","Memiliki jumlah instruksi tak berhingga tanpa titik henti"],e:"Algoritma wajib memiliki input jelas, langkah terurut (definiteness), output, dan titik berhenti (finiteness)."},
+      {n:12,c:1,t:"Prinsip Finiteness (keterbatasan) dalam pembuatan algoritma berarti ...",a:"Algoritma harus berakhir setelah menyelesaikan sejumlah langkah terbatas",o:["Algoritma harus bisa memproses data ukuran berapa saja","Algoritma hanya boleh menggunakan satu variabel","Algoritma tidak boleh mengandung perintah percabangan","Algoritma harus dapat diselesaikan dalam waktu kurang dari 1 detik"],e:"Finiteness menjamin algoritma tidak terjebak dalam pengulangan tanpa akhir."},
+      {n:13,c:1,t:"Fungsi utama dari penggunaan pseudocode dalam merancang program adalah ...",a:"Menjelaskan alur logika program dalam bahasa yang mudah dipahami sebelum ditransformasi ke kode pemrograman",o:["Eksekusi perintah secara langsung ke dalam CPU komputer","Menampilkan tampilan visual antarmuka kepada pengguna akhir","Mengubah otomatis bahasa Python menjadi kode Assembly","Memperbaiki kesalahan syntax error secara otomatis"],e:"Pseudocode menjembatani logika manusia sebelum ditulis menjadi sintaks bahasa pemrograman resmi."},
+      {n:14,c:1,t:"Perbedaan mendasar antara pseudocode dan bahasa pemrograman resmi (seperti Python) adalah ...",a:"Pseudocode tidak memiliki aturan sintaks yang kaku dan tidak bisa langsung dijalankan oleh komputer",o:["Pseudocode menggunakan simbol grafis seperti belah ketupat","Python tidak memiliki tipe data sedangkan pseudocode punya","Pseudocode hanya dapat dibaca oleh komputer sedangkan Python oleh manusia","Pseudocode selalu menghasilkan file eksekusi (.exe)"],e:"Komputer hanya bisa mengeksekusi bahasa pemrograman resmi, bukan pseudocode."},
+      {n:15,c:1,t:"Dalam diagram alir (flowchart), simbol belah ketupat (Decision) digunakan untuk menyatakan ...",a:"Percabangan atau pengambilan keputusan berdasarkan kondisi tertentu (Ya/Tidak)",o:["Operasi proses perhitungan aritmatika","Titik awal atau akhir dari sebuah program","Proses masukan (input) atau keluaran (output) data","Alur arah jalannya instruksi program"],e:"Belah ketupat (Decision) mengevaluasi kondisi logika yang bercabang menjadi Ya (True) atau Tidak (False)."},
+      {n:16,c:1,t:"Simbol flowchart berbentuk jajar genjang digunakan untuk menggambarkan proses ...",a:"Input data dari pengguna atau Output hasil ke layar",o:["Pengambilan keputusan percabangan","Permulaan (start) dan pengakhiran (stop)","Penetapan variabel awal (inisialisasi)","Pengulangan (looping) secara otomatis"],e:"Jajar genjang merepresentasikan operasi masukan (Input) maupun keluaran (Output)."},
+      {n:17,c:1,t:"Sebuah algoritma dirancang untuk menghitung keliling segitiga sama sisi dengan panjang sisi s. Skema IPO (Input-Process-Output) yang benar adalah ...",a:"Input: s; Process: K = 3 * s; Output: K",o:["Input: K; Process: s = K / 3; Output: s","Input: K dan s; Process: K = 3 * s; Output: tampilkan s","Input: s; Process: menampilkan K; Output: s * s","Input: 3 * s; Process: K; Output: s"],e:"Masukkan panjang sisi (s) → hitung K = 3 * s → tampilkan hasil keliling (K)."},
+      {n:18,c:1,t:"Skema Input-Process-Output yang tepat untuk menghitung total bayar setelah mendapat diskon 10% dari total belanja adalah ...",a:"Input: total_belanja; Process: bayar = total_belanja - (0.1 * total_belanja); Output: bayar",o:["Input: bayar; Process: total_belanja * 0.1; Output: total_belanja","Input: diskon; Process: bayar = diskon - total_belanja; Output: diskon","Input: total_belanja dan bayar; Process: diskon = 10%; Output: total_belanja","Input: 0.1; Process: hitung total_belanja; Output: bayar"],e:"Data awal adalah total_belanja, diproses dengan mengurangi potongan 10%, lalu menghasilkan output bayar."},
+      {n:19,c:1,t:"Perhatikan pseudocode berikut!\nTujuan dari algoritma pseudocode di atas adalah ...",code:"Mulai\n  Masukkan x, y\n  Jika x < y maka\n    Tampilkan x\n  Jika tidak\n    Tampilkan y\nSelesai",a:"Menentukan nilai terkecil dari dua buah bilangan",o:["Menentukan nilai terbesar dari dua buah bilangan","Menghitung jumlah nilai x dan y","Mengecek apakah nilai x sama dengan y","Mengalikan dua buah nilai"],e:"Jika x < y maka x yang tampil; sebaliknya jika y lebih kecil/sama maka y yang tampil."},
+      {n:20,c:1,t:"Perhatikan pseudocode berikut!\nFungsi utama dari alur algoritma di atas adalah ...",code:"Mulai\n  Masukkan bil\n  Jika bil % 2 == 0 maka\n    Cetak \"Genap\"\n  Jika tidak\n    Cetak \"Ganjil\"\nSelesai",a:"Menguji apakah suatu bilangan tergolong genap atau ganjil",o:["Membagi dua suatu bilangan bulat","Mengubah bilangan ganjil menjadi genap","Menjumlahkan deret bilangan genap","Mencetak angka 2 berulang kali"],e:"Bilangan yang habis dibagi 2 (sisa bagi bil % 2 == 0) adalah bilangan Genap, selain itu Ganjil."},
+      {n:21,c:1,t:"Urutan instruksi logis yang tepat untuk menghitung keliling lingkaran adalah ...",a:"Mulai → Masukkan jari-jari (r) → Hitung keliling = 2 * 3.14 * r → Cetak keliling → Selesai",o:["Mulai → Hitung keliling = 2 * 3.14 * r → Masukkan r → Cetak keliling → Selesai","Masukkan r → Mulai → Cetak keliling → Hitung keliling → Selesai","Mulai → Masukkan r → Cetak keliling → Hitung keliling → Selesai","Mulai → Cetak keliling → Hitung keliling → Masukkan r → Selesai"],e:"Input jari-jari (r) wajib dilakukan sebelum menghitung rumus dan mencetak hasilnya."},
+      {n:22,c:1,t:"Urutan algoritma yang benar untuk menentukan nilai rata-rata dari 3 ujian (n1, n2, n3) adalah ...",a:"Input n1, n2, n3 → Hitung total = n1 + n2 + n3 → Hitung rata = total / 3 → Tampilkan rata",o:["Hitung rata = total / 3 → Input n1, n2, n3 → Tampilkan rata","Input n1, n2, n3 → Hitung rata = total / 3 → Hitung total = n1 + n2 + n3 → Tampilkan rata","Tampilkan rata → Input n1, n2, n3 → Hitung rata = (n1 + n2 + n3) / 3","Hitung total = n1 + n2 + n3 → Tampilkan total → Input n1, n2, n3"],e:"Urutan logis: terima semua input nilai → jumlahkan total → bagi 3 untuk rata-rata → tampilkan hasil."},
+
+      {n:23,c:2,t:"Perbedaan mendasar antara Interpreter dan Compiler dalam menerjemahkan bahasa pemrograman adalah ...",a:"Interpreter menerjemahkan kode baris demi baris secara langsung, sedangkan Compiler menerjemahkan seluruh kode sekaligus sebelum dieksekusi",o:["Compiler menerjemahkan baris demi baris, sedangkan Interpreter sekaligus","Interpreter hanya dipakai untuk bahasa tingkat rendah","Compiler tidak pernah menghasilkan pesan kesalahan (error)","Interpreter mengubah instruksi menjadi file .exe secara permanen"],e:"Interpreter mengeksekusi baris per baris (seperti Python), sedangkan Compiler mengompilasi seluruh kode sekaligus (seperti C++)."},
+      {n:24,c:2,t:"Python dikategorikan sebagai interpreted language karena ...",a:"Eksekusi kode program dilakukan secara langsung baris per baris oleh interpreter Python",o:["Kode Python harus dikompilasi menjadi file eksekusi .exe sebelum bisa dijalankan","Python hanya dapat dijalankan di dalam browser web","Kode Python ditulis menggunakan angka biner murni","Python tidak memerlukan lingkungan runtime saat dijalankan"],e:"Kode sumber Python dibaca dan dijalankan langsung oleh Python Interpreter secara bertahap per baris."},
+      {n:25,c:2,t:"Pengertian dari Integrated Development Environment (IDE) dalam dunia pemrograman adalah ...",a:"Perangkat lunak terpadu yang menyediakan fasilitas editor teks, eksekusi, serta pelacakan error dalam satu paket",o:["Komponen fisik prosesor komputer khusus kode program","Jenis bahasa pemrograman baru khusus kecerdasan buatan","Sistem operasi khusus untuk komputer programmer","Format dokumen untuk menyimpan naskah soal"],e:"IDE seperti VS Code atau PyCharm menggabungkan editor kode, terminal eksekusi, dan debugger."},
+      {n:26,c:2,t:"Fitur syntax highlighting pada sebuah IDE pemrograman berguna untuk ...",a:"Memberikan warna berbeda pada kata kunci, variabel, dan teks agar kode mudah dibaca",o:["Menghapus otomatis variabel yang tidak terpakai","Mempercepat koneksi internet saat mengunduh paket kode","Mengubah otomatis kode Python ke bahasa C++","Menyiapkan database secara otomatis"],e:"Pewarnaan sintaks membantu programmer membedakan keyword, string, angka, dan mendeteksi salah ketik lebih cepat."},
+      {n:27,c:2,t:"Perhatikan potongan kode Python berikut!\nKode di atas mengalami pesan kesalahan (error) disebabkan oleh ...",code:"PRINT(\"Selamat Datang di SMAN 1 Sragen\")",a:"Perintah 'PRINT' menggunakan huruf kapital, sedangkan Python bersifat case-sensitive ('print')",o:["Tanda petik ganda tidak diizinkan untuk mengapit teks","Teks yang dimasukkan terlalu panjang","Kurang tanda titik koma di akhir baris","Fungsi 'print' tidak mendukung karakter spasi"],e:"Fungsi bawaan Python wajib ditulis huruf kecil: print()."},
+      {n:28,c:2,t:"Konsep case-sensitivity dalam bahasa Python mengimplikasikan bahwa ...",a:"Huruf besar dan huruf kecil dianggap sebagai dua identitas yang berbeda",o:["Semua perintah harus ditulis menggunakan huruf kapital","Nama variabel tidak boleh menggunakan huruf kecil","Teks string otomatis diubah menjadi kapital oleh sistem","Komputer tidak membedakan spasi dengan tabulasi"],e:"Variabel 'skor', 'Skor', dan 'SKOR' dianggap sebagai tiga variabel berbeda di Python."},
+      {n:29,c:2,t:"Perhatikan kode berikut!\nPesan 'SyntaxError' muncul pada eksekusi kode di atas karena ...",code:"print(Selamat Belajar)",a:"Teks Selamat Belajar tidak diapit tanda petik sehingga dianggap sebagai variabel tak terdefinisi",o:["Fungsi 'print()' tidak boleh menerima dua kata sekaligus","Kurung buka dan penutup tidak dibutuhkan dalam Python","Huruf p pada 'print' harus ditulis dengan kapital","Teks tersebut harus diawali dengan angka"],e:"Data teks (string) wajib diapit tanda petik ganda \"...\" atau tunggal '...'."},
+      {n:30,c:2,t:"Apa yang terjadi jika seorang programmer menuliskan kode print(\"Halo Pembelajar') (tanda petik pembuka ganda tetapi penutup tunggal)?",a:"Terjadi 'SyntaxError' karena jenis tanda petik pembuka dan penutup tidak cocok",o:["Program tetap berjalan dan menampilkan teks Halo Pembelajar","Tanda petik otomatis diperbaiki oleh Python","Program akan mencetak string kosong","Komputer akan melakukan restart secara otomatis"],e:"Tanda petik pembuka dan penutup string harus sejenis (\"...\" atau '...')."},
+      {n:31,c:2,t:"Keuntungan utama menggunakan variabel dalam penulisan program komputer adalah ...",a:"Nilai data dapat disimpan dan diubah di satu lokasi, lalu dipanggil kembali di berbagai tempat secara fleksibel",o:["Mencegah program membutuhkan alokasi memori RAM","Menghilangkan kebutuhan akan tipe data dalam Python","Memastikan kode program bebas dari semua bentuk error logika","Mengunci nilai agar tidak bisa diubah selamanya"],e:"Variabel memudahkan penyimpanan, pembaruan, dan pemanggilan ulang data di memori."},
+      {n:32,c:2,t:"Pernyataan 'x = 25' dalam bahasa Python berarti ...",a:"Menyimpan nilai integer 25 ke dalam memori dengan nama variabel 'x'",o:["Membandingkan apakah nilai 'x' sama dengan 25","Mengubah angka 25 menjadi variabel string 'x'","Menghapus nilai 25 dari variabel 'x'","Memeriksa apakah 'x' lebih besar dari 25"],e:"Tanda '=' tunggal adalah operator assignment (pengisian nilai ke variabel)."},
+      {n:33,c:2,t:"Penamaan variabel dalam Python berikut yang VALID dan memenuhi aturan penamaan adalah ...",a:"total_nilai_siswa",o:["2nd_place","nilai-siswa","nama siswa","while"],e:"Variabel hanya boleh berisi huruf, angka, dan underscore (_), tidak boleh diawali angka, spasi, tanda minus, atau keyword Python."},
+      {n:34,c:2,t:"Penamaan variabel Python berikut yang akan menyebabkan kesalahan 'SyntaxError' adalah ...",a:"100_skor (diawali dengan angka)",o:["skor_100","_skor","SkorSiswa","skorUtama"],e:"Nama variabel dalam Python dilarang diawali dengan karakter angka."},
+      {n:35,c:2,t:"Perhatikan penetapan variabel berikut!\nTipe data dari keempat variabel di atas secara berurutan adalah ...",code:"jumlah = 45\nrata_rata = 88.75\nnama_matpel = \"Informatika\"\nlulus = True",a:"int, float, str, bool",o:["float, int, str, bool","int, int, str, float","str, float, int, bool","int, float, bool, str"],e:"45 = int, 88.75 = float, \"Informatika\" = str, dan True = bool."},
+      {n:36,c:2,t:"Hasil dari instruksi type(12 / 4) pada Python akan menghasilkan tipe data ...",a:"'float' (karena pembagian biasa selalu menghasilkan bilangan desimal)",o:["'int'","'str'","'bool'","'list'"],e:"Operator '/' di Python selalu menghasilkan bilangan desimal (3.0) bertipe float."},
+      {n:37,c:2,t:"Perhatikan potongan program berikut!\nSaat dijalankan, program mengalami kegagalan karena ...",code:"point = 100\nprint(Point)",a:"Variabel 'Point' dianggap belum pernah didefinisikan ('NameError') karena beda kapitalisasi dengan 'point'",o:["Angka 100 tidak boleh dimasukkan ke variabel","Perintah 'print()' tidak dapat menampilkan bilangan bulat","Variabel harus dideklarasikan tipe datanya terlebih dahulu","Tanda sama dengan '=' salah digunakan"],e:"Karena case-sensitive, 'Point' berbeda dengan 'point' sehingga memunculkan NameError."},
+      {n:38,c:2,t:"Pesan kesalahan 'NameError: name 'total' is not defined' terjadi karena ...",a:"Memanggil variabel 'total' yang belum pernah dibuat atau salah penulisan huruf (typo)",o:["Variabel 'total' diisi dengan nilai string","Fungsi 'print' tidak diberi tanda kurung","Terjadi pembagian dengan angka nol","File program belum disimpan"],e:"NameError muncul saat Python menemukan nama variabel/fungsi yang belum didefinisikan."},
+      {n:39,c:2,t:"Perhatikan kode Python berikut!\nKeluaran (output) yang dihasilkan di layar adalah ...",code:"siswa = \"Reni\"\nabsen = 24\nprint(\"Nama:\", siswa, \"| No:\", absen)",a:"Nama: Reni | No: 24",o:["Nama: siswa | No: absen","Nama: Reni No: 24","siswa: Reni | absen: 24","Error"],e:"Tanda koma pada print() otomatis memisahkan tiap argumen dengan satu spasi."},
+      {n:40,c:2,t:"Perhatikan kode berikut!\nHasil keluaran dari program di atas adalah ...",code:"a = \"15\"\nb = \"25\"\nprint(a + b)",a:"1525 (penggabungan string)",o:["40","375","Error","\"a + b\""],e:"Karena \"15\" dan \"25\" bertipe string, tanda '+' menggabungkan kedua teks menjadi \"1525\"."},
+      {n:41,c:2,t:"Perintah input() pada bahasa pemrograman Python memiliki fungsi utama untuk ...",a:"Menerima masukan data teks dari pengguna melalui papan ketik (keyboard)",o:["Menampilkan teks keluaran ke jendela konsol","Mengubah nilai variabel menjadi konstanta tetap","Menghentikan jalannya program secara permanen","Menghitung luas bangun datar secara otomatis"],e:"input() menjeda program sejenak untuk membaca ketikan pengguna dari keyboard."},
+      {n:42,c:2,t:"Secara standar (default), nilai kembalian yang dihasilkan dari fungsi input() ber-tipe data ...",a:"'str' (String / Teks)",o:["'int' (Integer)","'float' (Desimal)","'bool' (Boolean)","'list' (Kumpulan Data)"],e:"Apapun yang diketik pengguna pada input() selalu diterima Python sebagai tipe str."},
+      {n:43,c:2,t:"Perhatikan dua fungsi dasar Python: input() dan print(). Pernyataan yang tepat mengenai keduanya adalah ...",a:"input() mengalirkan data dari pengguna ke komputer, sedangkan print() mengalirkan data dari komputer ke pengguna",o:["Keduanya sama-sama digunakan untuk menerima data dari keyboard","input() hanya dapat menerima angka, print() hanya menerima teks","print() bekerja saat program dimulai, input() saat program selesai","Keduanya hanya berfungsi pada mode grafik Turtle"],e:"input() adalah fungsi masukan (user → program), sedangkan print() adalah fungsi keluaran (program → layar)."},
+      {n:44,c:2,t:"Agar input berupa angka dapat dipergunakan dalam operasi perkalian matematika, perintah konversi yang tepat adalah ...",a:"sisi = int(input(\"Masukkan sisi: \"))",o:["sisi = str(input(\"Masukkan sisi: \"))","sisi = print(input(\"Masukkan sisi: \"))","sisi = input(int(\"Masukkan sisi: \"))","sisi = float_str(input())"],e:"Fungsi int() membungkus input() di bagian luar untuk mengubah teks angka menjadi bilangan bulat."},
+      {n:45,c:2,t:"Perhatikan potongan kode berikut!\nFungsi variabel 'kota' pada kode di atas adalah ...",code:"kota = input(\"Kota Asal: \")\nprint(\"Selamat datang di\", kota)",a:"Menyimpan data string yang diketik oleh pengguna agar dapat dipanggil oleh perintah print()",o:["Menampilkan petunjuk tulisan \"Kota Asal: \" di layar","Mengubah masukan teks menjadi data numerik","Menghapus input pengguna dari memori RAM","Mengulang proses masukan data secara terus-menerus"],e:"Variabel 'kota' menampung hasil ketikan pengguna agar bisa dicetak pada baris berikutnya."},
+      {n:46,c:2,t:"Jika pengguna memasukkan angka 5 saat program berikut dijalankan, maka output yang tampil adalah ...",code:"n = input()\nprint(n * 3)",a:"555 (string '5' diulang 3 kali)",o:["15","125","Error","n3"],e:"Karena n bertipe string ('5'), mengalikan string dengan 3 akan mengulang teks sebanyak 3 kali menjadi '555'."},
+      {n:47,c:2,t:"Sebuah toko memiliki 23 kue dan ingin memasukkannya ke dalam dus yang masing-masing memuat 5 kue. Ekspresi Python untuk menghitung jumlah dus terisi penuh dan sisa kue yang tidak masuk dus adalah ...",a:"23 // 5 dan 23 % 5",o:["23 % 5 dan 23 // 5","23 / 5 dan 23 % 5","23 ** 5 dan 23 // 5","23 // 5 dan 23 / 5"],e:"Floor division (//) menghasilkan hasil bagi bulat (4 dus), sedangkan modulus (%) menghasilkan sisa bagi (3 kue)."},
+      {n:48,c:2,t:"Hasil dari eksekusi print(29 % 6, 29 // 6) secara berurutan adalah ...",a:"5 dan 4 (sisa bagi 5, hasil bagi bulat 4)",o:["4 dan 5","4.83 dan 4","5 dan 4.83","0 dan 4"],e:"29 dibagi 6 adalah 4 (6 × 4 = 24) dengan sisa 5 (29 − 24 = 5)."},
+      {n:49,c:2,t:"Pernyataan yang benar mengenai perbedaan operator '=' dan operator '==' pada Python adalah ...",a:"'=' digunakan untuk assign (menyimpan) nilai ke variabel, sedangkan '==' untuk membandingkan kesamaan dua nilai",o:["'=' untuk membandingkan dua nilai, '==' untuk mengisi variabel","Keduanya memiliki fungsi yang sama persis dan dapat saling menggantikan","'=' hanya digunakan untuk angka, '==' hanya untuk teks","'==' digunakan untuk membuat fungsi baru"],e:"'=' adalah assignment, sedangkan '==' adalah operator perbandingan kesamaan."},
+      {n:50,c:2,t:"Operator perbandingan yang digunakan untuk menyatakan \"tidak sama dengan\" dalam Python adalah ...",a:"!=",o:["==","=/=","NOT=","!=="],e:"Tanda '!=' berarti tidak sama dengan (not equal)."},
+      {n:51,c:2,t:"Perhatikan kode program berikut!\nHasil keluaran dari perintah di atas adalah ...",code:"x = 25\ny = 10\nprint(x > y and not (x == y))",a:"True",o:["False","25","10","Error"],e:"(25 > 10) adalah True, dan not (25 == 10) adalah not False = True. True and True menghasilkan True."},
+      {n:52,c:2,t:"Perhatikan ekspresi logika berikut:\nHasil dari perintah tersebut adalah ...",code:"p = True\nq = False\nprint(not p or q)",a:"False",o:["True","None","Error","True False"],e:"Prioritas 'not' lebih tinggi dari 'or': (not True) or False → False or False = False."},
+      {n:53,c:2,t:"Hasil keluaran dari perintah print(3 ** 2 + 14 % 5) adalah ...",a:"13 (karena 3^2 = 9 dan 14 % 5 = 4, lalu 9 + 4 = 13)",o:["11","15","18","23"],e:"3**2 = 9 dan 14 % 5 = 4 (sisa bagi 14 oleh 5). Maka 9 + 4 = 13."},
+      {n:54,c:2,t:"Hasil dari kalkulasi aritmatika Python print(12 + 4 * 2 ** 3) adalah ...",a:"44 (prioritas: pangkat 2^3 = 8, perkalian 4 * 8 = 32, penjumlahan 12 + 32 = 44)",o:["128","512","96","160"],e:"Urutan prioritas: 2**3 = 8 → 4 * 8 = 32 → 12 + 32 = 44."},
+      {n:55,c:2,t:"Perhatikan potongan kode berikut!\nHasil keluaran beserta alasan yang benar adalah ...",code:"skor = 70\nprint(skor >= 75 or skor == 70)",a:"True, karena kondisi 'skor == 70' bernilai True dan operator 'or' hanya memerlukan minimal satu kondisi True",o:["False, karena kondisi 'skor >= 75' bernilai False","False, karena pada operator 'or' kedua kondisi wajib True","70, karena variabel berisi angka 70","Error, operator logika tidak bisa digabung dengan relasional"],e:"False or True menghasilkan True karena operator 'or' cukup butuh satu syarat benar."},
+      {n:56,c:2,t:"Hasil dari eksekusi print(not(10 > 5 and 3 < 2)) adalah ...",a:"True (karena 'True and False' = 'False', lalu di-'not' menjadi 'True')",o:["False","Error","None","10"],e:"Di dalam kurung: True and False = False. Lalu not False = True."},
+      {n:57,c:2,t:"Perhatikan kode berikut!\nOutput dari baris program di atas adalah ...",code:"ipk = 3.25\nprint(ipk >= 3.50)",a:"False",o:["True","3.25","3.50","Error"],e:"Karena 3.25 tidak lebih besar atau sama dengan 3.50, hasilnya False."},
+      {n:58,c:2,t:"Tipe data yang dihasilkan secara otomatis dari operasi perbandingan seperti 8 != 10 adalah ...",a:"'bool'",o:["'int'","'float'","'str'","'dict'"],e:"Setiap ekspresi perbandingan menghasilkan nilai boolean (True atau False)."},
+
+      {n:59,c:3,t:"Pada struktur percabangan tunggal 'if', apa yang akan terjadi jika uji kondisi bernilai 'False'?",a:"Blok kode di dalam if akan dilewati dan program melanjutkan ke baris di bawahnya",o:["Program langsung berhenti dan menampilkan SyntaxError","Blok kode 'if' tetap dipaksa berjalan satu kali","Komputer meminta ulang input dari pengguna","Variabel uji otomatis diubah menjadi 'True'"],e:"Jika syarat 'if' bernilai False, seluruh baris berindentasi di bawahnya dilewati."},
+      {n:60,c:3,t:"Fungsi utama dari blok 'else' pada struktur percabangan Python adalah ...",a:"Menampung instruksi alternatif yang dieksekusi apabila seluruh kondisi 'if' dan 'elif' sebelumnya bernilai 'False'",o:["Mengulang kembali pengecekan dari awal","Memeriksa kondisi kedua secara wajib","Menghentikan program secara mendadak","Mengubah variabel menjadi bernilai 0"],e:"Blok 'else' menjadi pilihan terakhir jika semua syarat di atasnya tidak terpenuhi."},
+      {n:61,c:3,t:"Perhatikan program percabangan berikut!\nOutput dari program tersebut adalah ...",code:"nilai = 78\nif nilai >= 88:\n    print(\"Grade A\")\nelif nilai >= 75:\n    print(\"Grade B\")\nelse:\n    print(\"Grade C\")",a:"Grade B",o:["Grade A","Grade C","Grade A dan Grade B","Tidak ada output"],e:"78 tidak >= 88, namun memenuhi syarat berikutnya yaitu 78 >= 75 (Grade B)."},
+      {n:62,c:3,t:"Perhatikan program berikut!\nKeluaran yang muncul di layar adalah ...",code:"suhu = 32\nif suhu > 35:\n    print(\"Panas\")\nelif suhu >= 30:\n    print(\"Hangat\")\nelse:\n    print(\"Sejuk\")",a:"Hangat",o:["Panas","Sejuk","Panas dan Hangat","Error"],e:"Suhu 32 tidak > 35, tetapi memenuhi suhu >= 30 sehingga mencetak \"Hangat\"."},
+      {n:63,c:3,t:"Perhatikan kode berikut!\nLetak kesalahan (SyntaxError) dari baris kode di atas adalah ...",code:"if belanja >= 100000\n    print(\"Dapat Souvenir\")",a:"Tanda titik dua (:) tidak dituliskan di akhir baris pernyataan 'if'",o:["Penggunaan tanda petik ganda pada teks","Kata 'if' harus ditulis dengan huruf kapital","Operator '>=' tidak boleh dipakai dalam percabangan","Fungsi 'print' tidak boleh di-indentasi"],e:"Setiap header blok (if, elif, else, for, while, def) wajib diakhiri tanda titik dua (:)."},
+      {n:64,c:3,t:"Istilah indentasi dalam bahasa pemrograman Python mengacu pada ...",a:"Spasi atau tab di awal baris untuk menandai kelompok/blok kode tertentu",o:["Penulisan nama variabel dengan huruf kapital","Pemberian komentar dengan tanda pagar '#'","Penggunaan tanda kurung siku pada list","Penggabungan dua string dengan tanda '+'"],e:"Indentasi menggantikan fungsi kurung kurawal { } untuk menentukan cakupan blok kode."},
+      {n:65,c:3,t:"Perhatikan kode berikut! (Cermati urutan kondisinya)\nOutput dari program tersebut adalah ...",code:"skor = 92\nif skor >= 70:\n    print(\"LULUS\")\nelif skor >= 90:\n    print(\"CUMLAUDE\")\nelse:\n    print(\"GAGAL\")",a:"LULUS (karena kondisi pertama 'skor >= 70' sudah terpenuhi lebih dahulu)",o:["CUMLAUDE","LULUS dan CUMLAUDE","GAGAL","Tidak menampilkan apa-apa"],e:"Python langsung masuk ke cabang pertama yang True (92 >= 70) dan melewati elif di bawahnya."},
+      {n:66,c:3,t:"Mengapa urutan penyusunan kondisi dari nilai tertinggi ke terendah sangat penting dalam struktur 'if-elif-else'?",a:"Karena Python akan menghentikan pengecekan begitu menemukan kondisi pertama yang bernilai 'True'",o:["Agar kode dapat dikompilasi lebih cepat oleh komputer","Agar variabel otomatis bertipe float","Supaya tidak perlu menutup baris dengan tanda titik dua","Agar perulangan tidak mengalami infinite loop"],e:"Syarat yang lebih spesifik/tinggi harus diletakkan paling atas agar tidak tertutup syarat yang lebih longgar."},
+      {n:67,c:3,t:"Perhatikan kode berikut!\nOutput dari program tersebut adalah ...",code:"val = -5\nif val > 0:\n    print(\"Positif\")\nelif val == 0:\n    print(\"Nol\")\nelse:\n    print(\"Negatif\")",a:"Negatif",o:["Positif","Nol","Positif dan Negatif","Error"],e:"Karena -5 tidak > 0 dan tidak == 0, eksekusi masuk ke blok else (\"Negatif\")."},
+      {n:68,c:3,t:"Struktur syarat untuk memeriksa apakah 'umur' minimal 17 tahun untuk membuat SIM yang benar adalah ...",a:"if umur >= 17:",o:["if umur = 17;","if umur == 17","if (umur > 17)","while umur >= 17:"],e:"Minimal 17 berarti lebih besar atau sama dengan 17 (>= 17) dan diakhiri titik dua (:)."},
+      {n:69,c:3,t:"Sebuah program perlu mengelompokkan ukuran baju menjadi S, M, L, atau XL berdasarkan tinggi dan berat badan. Struktur percabangan paling pas adalah ...",a:"if-elif-else",o:["if tunggal tanpa else","Perulangan for","Perulangan while","Fungsi input()"],e:"Untuk memilih satu dari banyak kategori bertingkat (lebih dari 2 pilihan), gunakan if-elif-else."},
+      {n:70,c:3,t:"Kapan kita harus memilih menggunakan struktur 'if-elif-else' dibanding beberapa 'if' terpisah?",a:"Ketika kondisi-kondisi yang diuji bersifat mutually exclusive (hanya satu kondisi yang boleh berjalan)",o:["Ketika ingin mengulang baris kode sebanyak 10 kali","Ketika memasukkan data bertipe string","Saat menggunakan pustaka Python Turtle","Jika program tidak memiliki variabel"],e:"Pada if-elif-else, maksimal hanya satu cabang yang dieksekusi meskipun beberapa syarat terpenuhi."},
+      {n:71,c:3,t:"Jenis perulangan yang paling tepat digunakan ketika jumlah pencetakan/iterasi sudah pasti diketahui sejak awal adalah ...",a:"Perulangan 'for' dengan fungsi 'range()'",o:["Perulangan 'while' tanpa pembatas","Percabangan 'if-elif-else'","Pernyataan 'input()'","Perintah 'print()' berulang manual"],e:"Perulangan 'for' dirancang untuk iterasi dengan batas jumlah pengulangan yang sudah pasti."},
+      {n:72,c:3,t:"Perbedaan mendasar antara perulangan 'for' dan perulangan 'while' dalam Python adalah ...",a:"'for' umumnya digunakan untuk iterasi dengan jumlah pasti, sedangkan 'while' berulang berdasarkan syarat kondisi True/False",o:["'while' tidak dapat digunakan untuk angka","'for' memerlukan kondisi Boolean 'True/False'","'while' selalu berjalan tepat 5 kali","'for' hanya ada pada Python versi lama"],e:"'for' mengiterasi urutan/range tertentu, sementara 'while' mengulang selama kondisi logika bernilai True."},
+      {n:73,c:3,t:"Perhatikan kode perulangan berikut!\nOutput yang dicetak oleh program di atas adalah ...",code:"for k in range(4):\n    print(k)",a:"Angka 0, 1, 2, 3 masing-masing pada baris baru",o:["Angka 1, 2, 3, 4 masing-masing pada baris baru","Angka 0, 1, 2, 3, 4","Angka 4 sebanyak empat kali","Angka 1 sampai 5"],e:"range(4) menghasilkan 4 angka dimulai dari 0 hingga 3 (batas akhir 4 tidak ikut)."},
+      {n:74,c:3,t:"Untuk menghasilkan urutan angka ganjil 1, 3, 5, 7, 9, perintah 'range()' yang tepat adalah ...",a:"range(1, 10, 2)",o:["range(1, 9)","range(0, 10, 2)","range(1, 5, 2)","range(10, 2)"],e:"Mulai dari 1, berhenti sebelum 10, dengan selisih langkah +2 menghasilkan 1, 3, 5, 7, 9."},
+      {n:75,c:3,t:"Perhatikan kode perulangan berikut!\nDeret angka yang ditampilkan oleh program tersebut adalah ...",code:"for x in range(3, 13, 3):\n    print(x)",a:"3, 6, 9, 12",o:["3, 6, 9","3, 4, 5, 6, 7, 8, 9, 10, 11, 12","6, 9, 12","3, 6, 9, 12, 15"],e:"Dimulai dari 3, loncat +3: 3, 6, 9, 12 (berhenti sebelum 13)."},
+      {n:76,c:3,t:"Perhatikan kode berikut!\nOutput deret angka yang tercetak adalah ...",code:"for i in range(10, 0, -2):\n    print(i, end=\" \")",a:"10 8 6 4 2",o:["10 8 6 4 2 0","8 6 4 2 0","10 9 8 7 6 5 4 3 2 1","-2 -4 -6 -8 -10"],e:"Hitung mundur dari 10 dengan langkah -2 dan berhenti sebelum batas akhir 0."},
+      {n:77,c:3,t:"Perhatikan kode perulangan 'while' berikut!\nDampak yang terjadi saat kode di atas dijalankan adalah ...",code:"c = 1\nwhile c <= 5:\n    print(c)",a:"Perulangan mencetak angka 1 secara terus-menerus tanpa henti (infinite loop) karena nilai 'c' tidak pernah ditambah",o:["Mencetak angka 1 sampai 5 lalu berhenti","Program langsung error di baris pertama","Tidak menampilkan angka apapun","Mencetak angka 1 kemudian otomatis berhenti"],e:"Nilai c tetap 1 selamanya sehingga syarat c <= 5 selalu True (infinite loop)."},
+      {n:78,c:3,t:"Cara yang tepat untuk menghentikan kondisi infinite loop pada struktur 'while' di soal nomor 77 adalah ...",a:"Menambahkan perintah c = c + 1 di dalam blok 'while'",o:["Mengubah c = 1 menjadi c = 5","Mengganti kata 'while' dengan 'if'","Menghapus baris print(c)","Menambahkan tanda koma pada variabel 'c'"],e:"Menambah c = c + 1 membuat nilai c naik hingga 6 sehingga syarat c <= 5 menjadi False dan berhenti."},
+      {n:79,c:3,t:"Perhatikan potongan kode berikut!\nBerapa total jumlah baris teks yang akan tercetak di layar konsol?",code:"for i in range(4):\n    print(\"Proses\")\nprint(\"Selesai\")",a:"5 baris (4 kali \"Proses\" + 1 kali \"Selesai\")",o:["4 baris","8 baris","1 baris","2 baris"],e:"\"Proses\" berada di dalam indentasi loop (4 kali), sedangkan \"Selesai\" di luar loop (1 kali)."},
+      {n:80,c:3,t:"Berapa kali kata \"Hello\" dicetak pada kode loop bersarang (nested loop) berikut?",code:"for i in range(2):\n    for j in range(3):\n        print(\"Hello\")",a:"6 kali (2 × 3)",o:["5 kali","2 kali","3 kali","9 kali"],e:"Loop luar berjalan 2 kali dan loop dalam 3 kali: total 2 × 3 = 6 kali."},
+      {n:81,c:3,t:"Agar perulangan 'for' menampilkan deret bilangan bulat dari 1 sampai 15 secara berurutan, fungsi 'range()' yang benar adalah ...",a:"range(1, 16)",o:["range(1, 15)","range(15)","range(0, 15)","range(1, 16, 2)"],e:"Karena batas akhir (stop) tidak ikut dicetak, untuk mencetak sampai 15 maka stop harus 16."},
+      {n:82,c:3,t:"Apa hasil dari perintah list(range(5, 5)) pada Python?",a:"[] (list kosong, karena batas awal sama dengan batas akhir)",o:["[5]","[0, 1, 2, 3, 4, 5]","[5, 5]","Error"],e:"Jika start == stop, tidak ada rentang angka yang dihasilkan sehingga menjadi list kosong []."},
+
+      {n:83,c:4,t:"Dalam modul grafik Python Turtle, instruksi p = turtle.Turtle() berfungsi untuk ...",a:"Membuat objek pena baru bernama 'p' yang akan digunakan untuk menggambar",o:["Mengimport pustaka Turtle ke dalam program","Mengubah warna latar belakang kanvas menjadi hijau","Menggerakkan kursor maju sejauh 100 piksel","Menutup jendela gambar secara otomatis"],e:"turtle.Turtle() menginstansiasi objek kursor/pena gambar baru pada kanvas."},
+      {n:84,c:4,t:"Perintah Python Turtle untuk mengubah warna garis pena menjadi biru adalah ...",a:"p.pencolor(\"blue\")",o:["p.bgcolor(\"blue\")","p.fillcolor(\"blue\")","p.color_set(\"blue\")","p.change_color(blue)"],e:"pencolor() mengatur warna garis lintasan pena, sedangkan fillcolor() untuk warna isi bidang."},
+      {n:85,c:4,t:"Perhatikan baris kode Python Turtle berikut!\nBentuk geometris yang dihasilkan dari eksekusi kode di atas adalah ...",code:"import turtle\nt = turtle.Turtle()\nt.forward(80)\nt.right(90)\nt.forward(80)\nturtle.done()",a:"Dua garis tegak lurus yang membentuk sudut 90 derajat (L terbalik)",o:["Sebuah lingkaran sempurna","Sebuah segitiga sama sisi","Persegi panjang utuh","Satu garis lurus sepanjang 160 piksel"],e:"Pena maju 80 piksel, belok kanan 90 derajat, lalu maju 80 piksel lagi membentuk siku-siku."},
+      {n:86,c:4,t:"Perintah Turtle yang digunakan untuk mengangkat pena agar gerakan kursor berikutnya tidak meninggalkan jejak garis adalah ...",a:"t.penup()",o:["t.pendown()","t.hideturtle()","t.clear()","t.stop()"],e:"penup() mengangkat pena dari kanvas sehingga perpindahan posisi tidak menggambar garis."},
+      {n:87,c:4,t:"Fungsi utama dari kombinasi perintah begin_fill() dan end_fill() pada Python Turtle adalah ...",a:"Menandai batas awal dan akhir dari area bidang tertutup yang akan diisi warna",o:["Mengatur ketebalan garis lukis pena","Membuat loop menggambar otomatis","Membuka dan menutup jendela grafik","Mengatur kecepatan gerak pena"],e:"Semua garis bentuk yang digambar di antara begin_fill() dan end_fill() akan diisi warna fillcolor."},
+      {n:88,c:4,t:"Untuk memberikan warna isian (fill) berwarna kuning pada bidang yang digambar Turtle, perintah yang dipanggil sebelum begin_fill() adalah ...",a:"t.fillcolor(\"yellow\")",o:["t.pencolor(\"yellow\")","t.background(\"yellow\")","t.set_yellow()","t.paint(\"yellow\")"],e:"fillcolor(\"yellow\") menetapkan warna isi sebelum area mulai ditandai dengan begin_fill()."},
+      {n:89,c:4,t:"Saat membuat segitiga sama sisi dengan perulangan for i in range(3):, setelah perintah forward(100), besar sudut rotasi left(...) yang tepat adalah ...",a:"left(120) (karena sudut luar segitiga sama sisi adalah 360° / 3 = 120°)",o:["left(60)","left(90)","left(180)","left(45)"],e:"Kursor Turtle berputar berdasarkan sudut luar poligon: 360° / 3 sisi = 120°."},
+      {n:90,c:4,t:"Besar sudut putar luar left(...) yang harus digunakan untuk menggambar sebuah persegi (4 sisi) dengan Turtle adalah ...",a:"left(90) (berasal dari 360° / 4)",o:["left(45)","left(60)","left(120)","left(180)"],e:"Sudut luar persegi = 360° / 4 sisi = 90°."},
+      {n:91,c:4,t:"Menggunakan rumus sudut luar 360° / N, besar sudut rotasi left(...) yang diperlukan Turtle untuk menggambar segi delapan beraturan (oktagon) adalah ...",a:"left(45)",o:["left(30)","left(60)","left(90)","left(72)"],e:"Sudut luar oktagon (N = 8) = 360° / 8 = 45°."},
+      {n:92,c:4,t:"Jika Turtle hendak menggambar segi lima beraturan (pentagon) menggunakan loop for i in range(5):, sudut putar left(...) yang benar adalah ...",a:"left(72) (karena 360° / 5 = 72°)",o:["left(54)","left(60)","left(90)","left(108)"],e:"Sudut luar pentagon (N = 5) = 360° / 5 = 72°."},
+      {n:93,c:4,t:"Perhatikan manipulasi struktur data list berikut!\nHasil keluaran jumlah elemen list (len) di atas adalah ...",code:"item = [\"Buku\", \"Pensil\", \"Penggaris\"]\nitem.remove(\"Pensil\")\nitem.append(\"Tipe-X\")\nitem.append(\"Spidol\")\nprint(len(item))",a:"4",o:["3","5","2","Error"],e:"Awal 3 elemen − 1 (\"Pensil\") + 2 (\"Tipe-X\", \"Spidol\") = 4 elemen."},
+      {n:94,c:4,t:"Perhatikan kode list berikut!\nHasil dari eksekusi kode di atas adalah ...",code:"data = [10, 20, 30, 40, 50]\nprint(data[1] + data[3])",a:"60 (elemen indeks 1 adalah 20, indeks 3 adalah 40)",o:["40","50","70","30"],e:"Indeks list dimulai dari 0: data[0]=10, data[1]=20, data[2]=30, data[3]=40. Maka 20 + 40 = 60."},
+      {n:95,c:4,t:"Perhatikan pemanggilan fungsi Python berikut!\nKeluaran dari program di atas adalah ...",code:"def kali(a, b):\n    print(a * b)\n\nkali(4, 6)",a:"24",o:["a * b","46","4*6","Error"],e:"Argumen a=4 dan b=6 dikalikan (4 * 6) dan dicetak menghasilkan 24."},
+      {n:96,c:4,t:"Kata kunci (keyword) resmi yang digunakan untuk mendefinisikan sebuah fungsi baru dalam Python adalah ...",a:"def",o:["function","func","define","create"],e:"Di Python, fungsi dibuat menggunakan kata kunci 'def' diikuti nama fungsi dan tanda kurung ()."},
+      {n:97,c:4,t:"Perhatikan kode fungsi dengan return value berikut!\nOutput yang dihasilkan adalah ...",code:"def cek_diskon(total):\n    if total >= 50000:\n        return total - 5000\n    return total\n\nprint(cek_diskon(50000), cek_diskon(40000))",a:"45000 40000",o:["50000 40000","45000 35000","50000 35000","Error"],e:"50000 memenuhi syarat >= 50000 (dikurangi 5000 → 45000), sedangkan 40000 tidak mendapat potongan."},
+      {n:98,c:4,t:"Perbedaan mendasar antara fungsi yang mengembalikan nilai ('return') dengan fungsi yang hanya mencetak ('print') adalah ...",a:"Nilai dari fungsi 'return' dapat ditampung ke dalam variabel dan diolah kembali dalam kalkulasi berikutnya",o:["Fungsi 'print' otomatis menghentikan eksekusi program","'return' hanya bisa mengembalikan teks string","Fungsi 'print' tidak bisa menerima parameter","'return' hanya boleh dipakai di luar fungsi"],e:"return mengembalikan hasil ke pemanggil fungsi agar bisa disimpan di variabel atau dihitung ulang."},
+      {n:99,c:4,t:"Urutan tahap siklus hidup pengembangan perangkat lunak (SDLC) yang ideal dan baku pada pembuatan proyek perangkat lunak adalah ...",a:"Analisis masalah → Desain algoritma → Pemodelan flowchart → Konstruksi kode → Quality assurance (Pengujian) → Deployment",o:["Konstruksi kode → Analisis masalah → Quality assurance → Deployment → Desain algoritma","Deployment → Analisis masalah → Desain algoritma → Quality assurance → Konstruksi kode","Quality assurance → Desain algoritma → Konstruksi kode → Analisis masalah → Deployment","Analisis masalah → Deployment → Konstruksi kode → Desain algoritma → Quality assurance"],e:"Urutan SDLC: Analisis kebutuhan → Desain algoritma → Flowchart → Coding → Pengujian (QA) → Deployment."},
+      {n:100,c:4,t:"Tahap SDLC di mana tim penguji (tester) melakukan verifikasi penemuan bug, kesalahan logika, dan celah keamanan sebelum aplikasi dirilis ke publik dinamakan ...",a:"Quality Assurance & Testing",o:["Software Deployment","Requirement Analysis","Algorithm Design","Code Construction"],e:"Quality Assurance (QA) & Testing memastikan aplikasi bebas bug dan layak rilis ke pengguna."}
+    ];
+
+    // Acak urutan opsi A-E secara deterministik per nomor soal supaya tidak semua jawaban ada di A
+    const questions = rawQuestions.map(q => {
+      const allOpts = [q.a, ...q.o];
+      const seed = (q.n * 7 + 3) % 5;
+      const rotated = allOpts.slice(seed).concat(allOpts.slice(0, seed));
+      return {
+        ...q,
+        options: rotated,
+        correctIdx: rotated.indexOf(q.a)
+      };
+    });
+
+    const catNames = {
+      1: "Bab 1 • Algoritma, CT & AI",
+      2: "Bab 2 • Dasar Python & Operator",
+      3: "Bab 3 • Percabangan & Perulangan",
+      4: "Bab 4 • Turtle, List, Fungsi & SDLC"
+    };
+
+    let activeCat = "all";
+    let showAllKeys = false;
+    const userAnswers = {}; // { qNumber: selectedIndex }
+
+    const container = document.getElementById("quiz-container");
+    const searchInput = document.getElementById("q-search");
+    const scoreBadge = document.getElementById("score-info");
+
+    function updateScore() {
+      const answeredKeys = Object.keys(userAnswers);
+      let correctCount = 0;
+      answeredKeys.forEach(num => {
+        const q = questions.find(item => item.n === Number(num));
+        if (q && userAnswers[num] === q.correctIdx) correctCount++;
+      });
+      scoreBadge.textContent = `Terjawab: ${answeredKeys.length} / 100 • Benar: ${correctCount}`;
+    }
+
+    function renderQuestions() {
+      const keyword = searchInput.value.trim().toLowerCase();
+      const filtered = questions.filter(q => {
+        const matchCat = activeCat === "all" || String(q.c) === activeCat;
+        const matchText = !keyword ||
+          q.t.toLowerCase().includes(keyword) ||
+          (q.code && q.code.toLowerCase().includes(keyword)) ||
+          q.options.some(opt => opt.toLowerCase().includes(keyword)) ||
+          String(q.n) === keyword;
+        return matchCat && matchText;
+      });
+
+      container.replaceChildren();
+      if (!filtered.length) {
+        const empty = document.createElement("div");
+        empty.className = "q-card";
+        empty.style.textAlign = "center";
+        empty.style.color = "var(--muted)";
+        empty.textContent = "Tidak ada soal yang cocok dengan pencarianmu.";
+        container.append(empty);
+        return;
+      }
+
+      const letters = ["A", "B", "C", "D", "E"];
+      filtered.forEach(q => {
+        const card = document.createElement("article");
+        card.className = "q-card";
+
+        const head = document.createElement("div");
+        head.className = "q-head";
+        head.innerHTML = `<span class="q-num">Soal #${String(q.n).padStart(2, "0")}</span><span class="q-cat">${catNames[q.c]}</span>`;
+        card.append(head);
+
+        const text = document.createElement("p");
+        text.className = "q-text";
+        text.textContent = q.t;
+        card.append(text);
+
+        if (q.code) {
+          const pre = document.createElement("pre");
+          pre.className = "q-code";
+          pre.textContent = q.code;
+          card.append(pre);
+        }
+
+        const optGrid = document.createElement("div");
+        optGrid.className = "opt-grid";
+
+        const userChoice = userAnswers[q.n];
+        const isRevealed = showAllKeys || userChoice !== undefined;
+
+        q.options.forEach((optText, idx) => {
+          const btn = document.createElement("button");
+          btn.type = "button";
+          btn.className = "opt-btn";
+          if (isRevealed) {
+            if (idx === q.correctIdx) btn.classList.add("correct");
+            else if (userChoice === idx) btn.classList.add("wrong");
+          }
+          btn.innerHTML = `<span class="opt-letter">${letters[idx]}.</span><span></span>`;
+          btn.querySelector("span:last-child").textContent = optText;
+          btn.onclick = () => {
+            userAnswers[q.n] = idx;
+            updateScore();
+            renderQuestions();
+          };
+          optGrid.append(btn);
+        });
+        card.append(optGrid);
+
+        const exp = document.createElement("div");
+        exp.className = "explain-box" + (isRevealed ? " show" : "");
+        exp.innerHTML = `<strong>Kunci: ${letters[q.correctIdx]}</strong> — ${q.e}`;
+        card.append(exp);
+
+        container.append(card);
+      });
+    }
+
+    // Event Filter Pills
+    document.querySelectorAll("#filter-pills .pill").forEach(btn => {
+      btn.onclick = () => {
+        document.querySelectorAll("#filter-pills .pill").forEach(b => b.classList.remove("active"));
+        btn.classList.add("active");
+        activeCat = btn.dataset.cat;
+        renderQuestions();
+      };
+    });
+
+    // Event Search
+    searchInput.addEventListener("input", renderQuestions);
+
+    // Event Toggle Semua Kunci
+    const toggleKeysBtn = document.getElementById("toggle-all-keys");
+    toggleKeysBtn.onclick = () => {
+      showAllKeys = !showAllKeys;
+      toggleKeysBtn.classList.toggle("active", showAllKeys);
+      toggleKeysBtn.innerHTML = showAllKeys
+        ? '<i data-lucide="eye-off"></i> <span>Sembunyikan Kunci (Mode Latihan)</span>'
+        : '<i data-lucide="eye"></i> <span>Tampilkan Semua Kunci &amp; Pembahasan</span>';
+      lucide.createIcons();
+      renderQuestions();
+    };
+
+    // Event Reset Jawaban
+    document.getElementById("reset-quiz").onclick = () => {
+      for (const k in userAnswers) delete userAnswers[k];
+      showAllKeys = false;
+      toggleKeysBtn.classList.remove("active");
+      toggleKeysBtn.innerHTML = '<i data-lucide="eye"></i> <span>Tampilkan Semua Kunci &amp; Pembahasan</span>';
+      lucide.createIcons();
+      updateScore();
+      renderQuestions();
+    };
+
+    renderQuestions();
+  </script>
+</body>
+</html>

@@ -1,0 +1,788 @@
+<!doctype html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Bab 2: Atletik (Lari Sprint &amp; Start) — Shira's Archive</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/lucide@0.577.0/dist/umd/lucide.min.js"></script>
+  <style>
+    :root {
+      --bg: #f5f8fd;
+      --surface: #fff;
+      --surface2: #edf4fd;
+      --text: #25334a;
+      --muted: #718099;
+      --line: #e3eaf4;
+      --blue: #537fda;
+      --blue2: #e8f0ff;
+      --shadow: 0 12px 36px rgba(48, 79, 129, .07);
+    }
+    body.dark {
+      --bg: #101827;
+      --surface: #192437;
+      --surface2: #202e45;
+      --text: #eef4ff;
+      --muted: #a7b5cb;
+      --line: #344159;
+      --blue: #8bb3ff;
+      --blue2: #263d65;
+      --shadow: 0 12px 36px rgba(0, 0, 0, .17);
+    }
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      background: var(--bg);
+      color: var(--text);
+      font-family: "Plus Jakarta Sans", sans-serif;
+      line-height: 1.7;
+      transition: background .25s, color .25s;
+    }
+    button { font-family: "Plus Jakarta Sans", sans-serif; cursor: pointer; }
+    .wrap { max-width: 1190px; margin: auto; padding: 0 28px; }
+
+    /* Header */
+    .site-header {
+      background: var(--surface);
+      border-bottom: 1px solid var(--line);
+      position: sticky;
+      top: 0;
+      z-index: 10;
+    }
+    .nav-inner {
+      min-height: 78px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+    }
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 11px;
+      font-weight: 800;
+      font-size: 18px;
+      text-decoration: none;
+      color: var(--text);
+    }
+    .brand-mark {
+      width: 38px;
+      height: 38px;
+      display: grid;
+      place-items: center;
+      border-radius: 12px;
+      background: var(--blue);
+      color: white;
+    }
+    .brand-mark svg { width: 21px; }
+    .icon-button {
+      width: 41px;
+      height: 41px;
+      border: 1px solid var(--line);
+      border-radius: 12px;
+      background: var(--surface);
+      color: var(--text);
+      display: grid;
+      place-items: center;
+    }
+    .icon-button svg { width: 19px; }
+
+    /* Breadcrumb & Judul Bab */
+    .reader-top { padding: 34px 0 24px; }
+    .back-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      color: var(--blue);
+      text-decoration: none;
+      font-weight: 700;
+      font-size: 13px;
+      margin-bottom: 18px;
+    }
+    .back-link svg { width: 17px; }
+    .eyebrow {
+      color: var(--blue);
+      font-size: 12px;
+      font-weight: 800;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+      margin: 0 0 8px;
+    }
+    .reader-top h1 {
+      font-size: clamp(28px, 4vw, 40px);
+      letter-spacing: -.04em;
+      line-height: 1.2;
+      margin: 0 0 10px;
+      font-weight: 800;
+    }
+    .reader-top p.desc {
+      color: var(--muted);
+      font-size: 14px;
+      margin: 0;
+      max-width: 680px;
+    }
+
+    /* Layout Dua Kolom: Sidebar Sub-bab + Area Baca */
+    .reader-layout {
+      display: grid;
+      grid-template-columns: 280px minmax(0, 1fr);
+      gap: 28px;
+      padding-bottom: 80px;
+      align-items: start;
+    }
+
+    /* Sidebar Daftar Sub-bab */
+    .toc-card {
+      background: var(--surface);
+      border: 1px solid var(--line);
+      border-radius: 18px;
+      padding: 20px;
+      box-shadow: var(--shadow);
+      position: sticky;
+      top: 102px;
+    }
+    .toc-title {
+      font-size: 12px;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: .08em;
+      color: var(--muted);
+      margin: 0 0 14px;
+    }
+    .toc-list {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      display: grid;
+      gap: 6px;
+    }
+    .toc-list a {
+      display: flex;
+      align-items: start;
+      gap: 9px;
+      padding: 9px 12px;
+      border-radius: 10px;
+      text-decoration: none;
+      color: var(--muted);
+      font-size: 13px;
+      font-weight: 600;
+      line-height: 1.4;
+      transition: background .2s, color .2s;
+    }
+    .toc-list a:hover {
+      background: var(--surface2);
+      color: var(--text);
+    }
+    .toc-list a.active {
+      background: var(--blue2);
+      color: var(--blue);
+      font-weight: 700;
+    }
+    .toc-num {
+      font-size: 11px;
+      font-weight: 800;
+      opacity: .8;
+      margin-top: 2px;
+    }
+
+    /* Area Konten Catatan */
+    .content-area {
+      display: grid;
+      gap: 24px;
+    }
+    .sub-section {
+      background: var(--surface);
+      border: 1px solid var(--line);
+      border-radius: 20px;
+      padding: 30px;
+      box-shadow: var(--shadow);
+      scroll-margin-top: 102px;
+    }
+    .sub-badge {
+      display: inline-block;
+      background: var(--blue2);
+      color: var(--blue);
+      font-size: 11px;
+      font-weight: 800;
+      padding: 4px 10px;
+      border-radius: 20px;
+      margin-bottom: 10px;
+    }
+    .sub-section h2 {
+      font-size: 22px;
+      letter-spacing: -.03em;
+      margin: 0 0 14px;
+    }
+    .sub-section p {
+      font-size: 14px;
+      margin: 0 0 14px;
+    }
+
+    /* Kotak Konsep & Contoh Soal */
+    .formula-box {
+      background: var(--surface2);
+      border-left: 4px solid var(--blue);
+      border-radius: 12px;
+      padding: 18px 20px;
+      margin: 18px 0;
+    }
+    .formula-box strong.box-label {
+      display: block;
+      font-size: 12px;
+      text-transform: uppercase;
+      letter-spacing: .06em;
+      color: var(--blue);
+      margin-bottom: 10px;
+    }
+    .formula-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 10px 20px;
+      font-size: 14px;
+      font-weight: 600;
+    }
+    .example-box {
+      border: 1px dashed var(--line);
+      border-radius: 12px;
+      padding: 16px 20px;
+      margin-top: 16px;
+      font-size: 13.5px;
+    }
+    .example-box strong { color: var(--blue); }
+
+    /* Tabel Materi */
+    .table-wrap {
+      overflow-x: auto;
+      margin: 16px 0;
+      border: 1px solid var(--line);
+      border-radius: 12px;
+    }
+    .data-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 13.5px;
+      text-align: left;
+    }
+    .data-table th {
+      background: var(--surface2);
+      color: var(--blue);
+      font-weight: 700;
+      padding: 12px 14px;
+      border-bottom: 1px solid var(--line);
+      white-space: nowrap;
+    }
+    .data-table td {
+      padding: 11px 14px;
+      border-bottom: 1px solid var(--line);
+      vertical-align: top;
+    }
+    .data-table tr:last-child td { border-bottom: none; }
+
+    /* Ilustrasi Lebar */
+    .diagram-card {
+      background: var(--surface2);
+      border: 1px solid var(--line);
+      border-radius: 16px;
+      padding: 18px;
+      margin: 18px 0;
+      text-align: center;
+    }
+    .diagram-card svg {
+      max-width: 100%;
+      height: auto;
+      display: block;
+      margin: 0 auto;
+    }
+    .diagram-caption {
+      font-size: 12px;
+      color: var(--muted);
+      margin-top: 10px;
+      font-weight: 600;
+    }
+
+    /* Kartu Visual */
+    .visual-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 14px;
+      margin: 16px 0;
+    }
+    .visual-card {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      background: var(--surface2);
+      border: 1px solid var(--line);
+      border-radius: 14px;
+      padding: 14px;
+    }
+    .visual-thumb {
+      width: 68px;
+      height: 68px;
+      flex-shrink: 0;
+      background: var(--surface);
+      border: 1px solid var(--line);
+      border-radius: 12px;
+      display: grid;
+      place-items: center;
+      padding: 6px;
+    }
+    .visual-thumb svg {
+      width: 52px;
+      height: 52px;
+    }
+    .visual-info h3 {
+      font-size: 14px;
+      font-weight: 700;
+      margin: 0 0 4px;
+      color: var(--text);
+    }
+    .visual-info p {
+      font-size: 12.5px;
+      margin: 0;
+      color: var(--muted);
+      line-height: 1.5;
+    }
+    .visual-info .tag-ex {
+      display: inline-block;
+      margin-top: 5px;
+      font-size: 11.5px;
+      font-weight: 600;
+      color: var(--blue);
+    }
+
+    /* Kartu Grid 2 Kolom */
+    .principle-list {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 12px;
+      margin: 16px 0;
+    }
+    .principle-item {
+      background: var(--surface2);
+      border-radius: 12px;
+      padding: 13px 15px;
+      font-size: 13px;
+      line-height: 1.55;
+    }
+    .principle-item strong {
+      display: block;
+      color: var(--blue);
+      margin-bottom: 3px;
+      font-size: 13.5px;
+    }
+
+    /* Navigasi Bawah Antar Bab */
+    .bottom-nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 12px;
+      margin-top: 10px;
+    }
+    .btn-nav {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 12px 18px;
+      border-radius: 12px;
+      text-decoration: none;
+      font-size: 13px;
+      font-weight: 700;
+      border: 1px solid var(--line);
+      background: var(--surface);
+      color: var(--text);
+    }
+    .btn-nav.primary {
+      background: var(--blue);
+      color: #fff;
+      border-color: var(--blue);
+    }
+    .btn-nav svg { width: 17px; }
+
+    .footer {
+      border-top: 1px solid var(--line);
+      padding: 26px 0;
+      color: var(--muted);
+      font-size: 12px;
+    }
+    .footer .wrap {
+      display: flex;
+      justify-content: space-between;
+      gap: 12px;
+    }
+
+    @media (max-width: 860px) {
+      .reader-layout { grid-template-columns: 1fr; }
+      .toc-card { position: static; }
+      .formula-grid, .visual-grid, .principle-list { grid-template-columns: 1fr; }
+    }
+    @media (max-width: 620px) {
+      .wrap { padding: 0 18px; }
+      .sub-section { padding: 22px; }
+      .bottom-nav { flex-direction: column; align-items: stretch; }
+      .btn-nav { justify-content: center; }
+      .footer .wrap { flex-direction: column; }
+    }
+  </style>
+</head>
+<body>
+
+  <header class="site-header">
+    <div class="wrap nav-inner">
+      <a href="../index.html" class="brand" aria-label="Kembali ke Beranda Shira's Archive">
+        <span class="brand-mark"><i data-lucide="book-open"></i></span>
+        <span>Shira's Archive</span>
+      </a>
+      <button id="theme-toggle" class="icon-button" type="button" aria-label="Aktifkan tema gelap" title="Tukar tema">
+        <i data-lucide="moon"></i>
+      </button>
+    </div>
+  </header>
+
+  <main class="wrap">
+    <div class="reader-top">
+      <a href="../index.html" class="back-link"><i data-lucide="arrow-left"></i> Kembali ke Daftar Mata Pelajaran</a>
+      <p class="eyebrow">PJOK • Kelas 10 • Bab 02</p>
+      <h1>Atletik: Lari Sprint &amp; Teknik Start</h1>
+      <p class="desc">Rangkuman lengkap cabang atletik nomor lari jarak pendek (sprint), induk organisasi atletik, jenis-jenis start jongkok, urutan aba-aba start, teknik berlari, hingga teknik memasuki garis finish.</p>
+    </div>
+
+    <div class="reader-layout">
+      <!-- Navigasi Lompat Sub-bab (Sticky Sidebar) -->
+      <aside class="toc-card" aria-label="Daftar sub-bab">
+        <p class="toc-title">Daftar Sub-bab</p>
+        <ul class="toc-list">
+          <li><a href="#sub-1" class="active"><span class="toc-num">01</span><span>Pengertian &amp; Nomor Lari Sprint</span></a></li>
+          <li><a href="#sub-2"><span class="toc-num">02</span><span>Jenis Start Jongkok (Crouch Start)</span></a></li>
+          <li><a href="#sub-3"><span class="toc-num">03</span><span>Urutan Aba-Aba Start Sprint</span></a></li>
+          <li><a href="#sub-4"><span class="toc-num">04</span><span>Teknik Lari &amp; Memasuki Finish</span></a></li>
+          <li><a href="#sub-5"><span class="toc-num">05</span><span>Lintasan &amp; Peraturan Diskualifikasi</span></a></li>
+        </ul>
+      </aside>
+
+      <!-- Area Baca Utama -->
+      <div class="content-area">
+
+        <!-- Sub-bab 1 -->
+        <article id="sub-1" class="sub-section">
+          <span class="sub-badge">Sub-bab 01</span>
+          <h2>Pengertian &amp; Nomor Lari Sprint</h2>
+          <p><strong>Atletik</strong> dijuluki sebagai <em>Mother of Sports</em> (ibu dari semua cabang olahraga) karena gerakannya mencakup aktivitas dasar manusia: jalan, lari, lompat, dan lempar.</p>
+          <p><strong>Lari Sprint (Lari Jarak Pendek)</strong> adalah perlombaan lari di mana pelari (<em>sprinter</em>) menempuh seluruh jarak perlombaan dengan <strong>kecepatan maksimal dari garis start hingga melewati garis finish</strong>.</p>
+
+          <div class="formula-box">
+            <strong class="box-label">Nomor Lomba Sprint &amp; Induk Organisasi Resmi</strong>
+            <div class="formula-grid">
+              <div>• <strong>Nomor Lomba Outdoor:</strong> 100 meter, 200 meter, dan 400 meter (serta estafet 4×100 m &amp; 4×400 m).</div>
+              <div>• <strong>Nomor Lomba Indoor:</strong> 50 meter dan 60 meter.</div>
+              <div>• <strong>Induk Organisasi Dunia:</strong> <strong>World Athletics</strong> (dahulu bernama <em>IAAF</em>).</div>
+              <div>• <strong>Induk Organisasi Indonesia:</strong> <strong>PASI</strong> (<em>Persatuan Atletik Seluruh Indonesia</em>, berdiri 3 September 1950).</div>
+            </div>
+          </div>
+
+          <div class="example-box">
+            <strong>Contoh Soal 1:</strong> Cabang atletik dibagi menjadi nomor jalan, lari, lompat, dan lempar. Nomor lari mana sajakah yang termasuk kategori lari jarak pendek (<em>sprint</em>) pada lintasan luar ruangan (<em>outdoor</em>)?<br>
+            <strong>Pembahasan:</strong> Nomor lari jarak pendek resmi adalah <strong>100 meter, 200 meter, dan 400 meter</strong>. Adapun jarak 800 m dan 1.500 m sudah masuk kategori lari jarak menengah.
+          </div>
+        </article>
+
+        <!-- Sub-bab 2 -->
+        <article id="sub-2" class="sub-section">
+          <span class="sub-badge">Sub-bab 02</span>
+          <h2>Jenis Start Jongkok (Crouch Start)</h2>
+          <p>Semua perlombaan lari jarak pendek (100 m, 200 m, dan 400 m) wajib menggunakan <strong>start jongkok (<em>crouch start</em>)</strong> dengan bantuan balok start (<em>starting block</em>). Pemilihan jenis start disesuaikan dengan postur tinggi badan dan panjang tungkai pelari.</p>
+
+          <!-- Ilustrasi SVG Perbandingan 3 Jenis Start Jongkok -->
+          <div class="diagram-card">
+            <svg viewBox="0 0 660 190" width="600" aria-label="Diagram Perbandingan Jarak Kaki pada 3 Jenis Start Jongkok">
+              <!-- Panel 1: Bunch Start -->
+              <rect x="10" y="12" width="200" height="166" rx="12" fill="var(--surface)" stroke="var(--line)" stroke-width="1.5"/>
+              <line x1="30" y1="130" x2="190" y2="130" stroke="#537fda" stroke-width="2.5"/>
+              <line x1="155" y1="115" x2="155" y2="138" stroke="#dc2626" stroke-width="2.5"/>
+              <!-- Kaki depan & belakang dekat -->
+              <rect x="98" y="114" width="16" height="16" rx="3" fill="#537fda"/>
+              <rect x="68" y="114" width="16" height="16" rx="3" fill="#8bb3ff"/>
+              <path d="M68 104h46" stroke="#537fda" stroke-width="2" stroke-dasharray="3 2"/>
+              <text x="91" y="96" fill="#537fda" font-size="10" font-weight="700" text-anchor="middle">14–25 cm</text>
+              <text x="110" y="36" fill="var(--text)" font-size="12" font-weight="800" text-anchor="middle">1. Start Pendek</text>
+              <text x="110" y="52" fill="var(--muted)" font-size="10.5" font-weight="600" text-anchor="middle">(Bunch / Bullet Start)</text>
+              <text x="110" y="158" fill="var(--muted)" font-size="10" text-anchor="middle">Jarak antar kaki sangat dekat</text>
+
+              <!-- Panel 2: Medium Start -->
+              <rect x="230" y="12" width="200" height="166" rx="12" fill="var(--surface)" stroke="var(--line)" stroke-width="1.5"/>
+              <line x1="250" y1="130" x2="410" y2="130" stroke="#537fda" stroke-width="2.5"/>
+              <line x1="375" y1="115" x2="375" y2="138" stroke="#dc2626" stroke-width="2.5"/>
+              <!-- Kaki sedang -->
+              <rect x="322" y="114" width="16" height="16" rx="3" fill="#537fda"/>
+              <rect x="274" y="114" width="16" height="16" rx="3" fill="#8bb3ff"/>
+              <path d="M274 104h64" stroke="#537fda" stroke-width="2" stroke-dasharray="3 2"/>
+              <text x="306" y="96" fill="#537fda" font-size="10" font-weight="700" text-anchor="middle">35–40 cm</text>
+              <text x="330" y="36" fill="var(--text)" font-size="12" font-weight="800" text-anchor="middle">2. Start Menengah</text>
+              <text x="330" y="52" fill="var(--muted)" font-size="10.5" font-weight="600" text-anchor="middle">(Medium Start)</text>
+              <text x="330" y="158" fill="var(--muted)" font-size="10" text-anchor="middle">Lutut belakang sejajar ujung kaki depan</text>
+
+              <!-- Panel 3: Long Start -->
+              <rect x="450" y="12" width="200" height="166" rx="12" fill="var(--surface)" stroke="var(--line)" stroke-width="1.5"/>
+              <line x1="470" y1="130" x2="630" y2="130" stroke="#537fda" stroke-width="2.5"/>
+              <line x1="595" y1="115" x2="595" y2="138" stroke="#dc2626" stroke-width="2.5"/>
+              <!-- Kaki jauh -->
+              <rect x="546" y="114" width="16" height="16" rx="3" fill="#537fda"/>
+              <rect x="480" y="114" width="16" height="16" rx="3" fill="#8bb3ff"/>
+              <path d="M480 104h82" stroke="#537fda" stroke-width="2" stroke-dasharray="3 2"/>
+              <text x="521" y="96" fill="#537fda" font-size="10" font-weight="700" text-anchor="middle">40–50 cm</text>
+              <text x="550" y="36" fill="var(--text)" font-size="12" font-weight="800" text-anchor="middle">3. Start Panjang</text>
+              <text x="550" y="52" fill="var(--muted)" font-size="10.5" font-weight="600" text-anchor="middle">(Long Start)</text>
+              <text x="550" y="158" fill="var(--muted)" font-size="10" text-anchor="middle">Lutut belakang sejajar tumit kaki depan</text>
+            </svg>
+            <p class="diagram-caption">Perbandingan Posisi Balok Start pada Tiga Jenis Start Jongkok (Garis Merah = Garis Start)</p>
+          </div>
+
+          <div class="table-wrap">
+            <table class="data-table">
+              <thead>
+                <tr>
+                  <th>Jenis Start Jongkok</th>
+                  <th>Posisi Kaki saat Jongkok</th>
+                  <th>Karakteristik &amp; Kecocokan Pelari</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td><strong>Start Pendek</strong><br>(<em>Bunch / Bullet Start</em>)</td>
+                  <td>Ujung jari kaki belakang sejajar dengan tumit kaki depan (jarak balok ± 14–25 cm).</td>
+                  <td>Menghasilkan tolakan awal paling eksplosif, tetapi sulit menjaga keseimbangan. Cocok untuk pelari bertubuh pendek.</td>
+                </tr>
+                <tr>
+                  <td><strong>Start Menengah</strong><br>(<em>Medium Start</em>)</td>
+                  <td>Lutut kaki belakang diletakkan sejajar dengan ujung jari kaki depan (jarak balok ± 35–40 cm).</td>
+                  <td>Paling banyak digunakan oleh sprinter dunia karena seimbang antara kekuatan tolakan dan kestabilan tubuh.</td>
+                </tr>
+                <tr>
+                  <td><strong>Start Panjang</strong><br>(<em>Long Start</em>)</td>
+                  <td>Lutut kaki belakang diletakkan sejajar dengan tumit kaki depan (jarak balok ± 40–50 cm).</td>
+                  <td>Memberikan langkah pertama yang panjang. Sangat cocok bagi pelari bertubuh tinggi dan bertungkai panjang.</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+          <div class="example-box">
+            <strong>Contoh Soal 2:</strong> Seorang pelari sprint memiliki postur tubuh tinggi dan tungkai yang panjang. Ketika mengambil posisi jongkok, lutut kaki belakangnya sejajar dengan tumit kaki depan. Jenis start jongkok apakah yang sedang dipraktikkannya?<br>
+            <strong>Pembahasan:</strong> <strong>Start Panjang (<em>Long Start</em>)</strong>, karena ciri khas <em>long start</em> adalah posisi lutut kaki belakang yang sejajar dengan bagian tumit kaki depan saat berjongkok.
+          </div>
+        </article>
+
+        <!-- Sub-bab 3 -->
+        <article id="sub-3" class="sub-section">
+          <span class="sub-badge">Sub-bab 03</span>
+          <h2>Urutan Aba-Aba Start Sprint</h2>
+          <p>Dalam perlombaan lari jarak pendek, juri pemberangkat (<em>starter</em>) memberikan tiga rangkaian aba-aba secara berurutan yang wajib dipatuhi setiap pelari.</p>
+
+          <div class="visual-grid">
+            <!-- 1. Aba-aba Bersedia -->
+            <div class="visual-card">
+              <div class="visual-thumb" aria-hidden="true">
+                <svg viewBox="0 0 64 64" fill="none" stroke="#537fda" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round">
+                  <line x1="8" y1="52" x2="56" y2="52"/>
+                  <circle cx="42" cy="24" r="5" fill="#537fda" fill-opacity="0.2"/>
+                  <path d="M39 29l-10 9-12 14M29 38l9 6-4 8M39 29l8 12v11"/>
+                </svg>
+              </div>
+              <div class="visual-info">
+                <h3>1. Aba-aba "BERSEDIA" (On Your Marks)</h3>
+                <p>Pelari maju menempatkan kaki pada balok start, lutut kaki belakang menempel tanah. Kedua tangan membentuk <strong>huruf V terbalik</strong> tepat di belakang garis start, pandangan ke bawah.</p>
+                <span class="tag-ex">Tangan tidak boleh menyentuh garis start</span>
+              </div>
+            </div>
+
+            <!-- 2. Aba-aba Siap -->
+            <div class="visual-card">
+              <div class="visual-thumb" aria-hidden="true">
+                <svg viewBox="0 0 64 64" fill="none" stroke="#537fda" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round">
+                  <line x1="8" y1="52" x2="56" y2="52"/>
+                  <circle cx="45" cy="27" r="5" fill="#537fda" fill-opacity="0.2"/>
+                  <path d="M41 30l-16-6-13 28M25 24l10 14-5 14M41 30l7 11v11"/>
+                </svg>
+              </div>
+              <div class="visual-info">
+                <h3>2. Aba-aba "SIAP" (Set)</h3>
+                <p>Angkat pinggul ke atas hingga sedikit lebih tinggi dari bahu. Sudut lutut kaki depan membentuk <strong>± 90°</strong> dan kaki belakang <strong>± 120°</strong>. Berat badan condong ke depan bertumpu pada kedua tangan.</p>
+                <span class="tag-ex">Tubuh diam tak bergerak menunggu bunyi pistol</span>
+              </div>
+            </div>
+
+            <!-- 3. Aba-aba Ya / Pistol -->
+            <div class="visual-card">
+              <div class="visual-thumb" aria-hidden="true">
+                <svg viewBox="0 0 64 64" fill="none" stroke="#dc2626" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round">
+                  <line x1="8" y1="52" x2="56" y2="52" stroke="#537fda"/>
+                  <circle cx="43" cy="18" r="5" fill="#dc2626" fill-opacity="0.2"/>
+                  <path d="M40 23l-10 11-14 14M30 34l12 4 8 14M40 23l10 5M34 28l-11-3"/>
+                </svg>
+              </div>
+              <div class="visual-info">
+                <h3>3. Aba-aba "YA" / Bunyi Pistol (Go)</h3>
+                <p>Tolakkan kaki belakang dan depan sekuat-kuatnya pada balok start. Ayunkan kedua lengan secara bergantian dengan cepat, dan lari dengan badan tetap condong ke depan selama 10–15 meter pertama.</p>
+                <span class="tag-ex">Fase akselerasi menuju kecepatan puncak</span>
+              </div>
+            </div>
+
+            <!-- 4. Posisi Jari Tangan -->
+            <div class="visual-card">
+              <div class="visual-thumb" aria-hidden="true">
+                <svg viewBox="0 0 64 64" fill="none" stroke="#537fda" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round">
+                  <line x1="12" y1="22" x2="52" y2="22" stroke="#dc2626" stroke-width="3"/>
+                  <path d="M22 44l6-14 6 14M36 44l6-14 6 14"/>
+                </svg>
+              </div>
+              <div class="visual-info">
+                <h3>4. Teknik Tumpuan Jari Tangan</h3>
+                <p>Ibu jari menghadap ke dalam (saling berhadapan) dan keempat jari lainnya rapat mengarah ke luar sehingga membentuk huruf <strong>V terbalik</strong> di belakang garis start.</p>
+                <span class="tag-ex">Lengan lurus sejajar lebar bahu</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="example-box">
+            <strong>Contoh Soal 3:</strong> Pada saat aba-aba "Siap" diteriakkan oleh starter, berapakah sudut tekukan lutut kaki depan dan kaki belakang yang ideal agar tolakan maksimal?<br>
+            <strong>Pembahasan:</strong> Lutut kaki depan membentuk sudut sekitar <strong>90°</strong>, sedangkan lutut kaki belakang membentuk sudut sekitar <strong>120°</strong> dengan posisi pinggul diangkat sedikit lebih tinggi daripada bahu.
+          </div>
+        </article>
+
+        <!-- Sub-bab 4 -->
+        <article id="sub-4" class="sub-section">
+          <span class="sub-badge">Sub-bab 04</span>
+          <h2>Teknik Lari &amp; Memasuki Garis Finish</h2>
+          <p>Efisiensi gerakan saat berlari dan teknik menyentuh garis finish sangat menentukan catatan waktu, terutama saat selisih antar pelari hanya sepersekian detik.</p>
+
+          <div class="principle-list">
+            <div class="principle-item">
+              <strong>1. Tumpuan Telapak Kaki</strong>
+              Mendarat dan menolak menggunakan <strong>ujung telapak kaki bagian depan (<em>ball of the foot</em>)</strong>, bukan tumit, agar waktu kontak dengan lintasan sangat singkat dan pantulan maksimal.
+            </div>
+            <div class="principle-item">
+              <strong>2. Ayunan Lengan &amp; Posisi Tubuh</strong>
+              Siku ditekuk membentuk sudut sekitar <strong>90°</strong>, diayunkan kuat ke depan (setinggi dagu) dan ke belakang secara rileks. Badan sedikit condong ke depan dan pandangan lurus ke lintasan.
+            </div>
+            <div class="principle-item">
+              <strong>3. Cara 1 Finish: Lari Terus Tanpa Mengubah Sikap</strong>
+              Pelari tetap berlari dengan kecepatan penuh melewati garis finish tanpa mengurangi kecepatan sebelum benar-benar melampaui garis.
+            </div>
+            <div class="principle-item">
+              <strong>4. Cara 2 &amp; 3 Finish: Condongkan Dada / Putar Bahu</strong>
+              Menjelang 1–2 langkah sebelum garis finish, pelari mencondongkan dada ke depan (<em>torso lean</em>) atau memutar salah satu bahu ke depan agar bagian torso lebih dulu menyentuh bidang vertikal garis finish.
+            </div>
+          </div>
+
+          <div class="formula-box">
+            <strong class="box-label">Aturan Penentuan Pemenang di Garis Finish</strong>
+            <p style="margin:0; font-size:13.5px;">
+              Menurut aturan resmi World Athletics, pelari dinyatakan menyentuh garis finish apabila bagian <strong>torso (dada atau perut)</strong> telah mencapai bidang vertikal sisi dalam garis finish — <strong>bukan kepala, leher, lengan, maupun kaki</strong>. Pelari juga dilarang melompat untuk meraih pita/garis finish.
+            </p>
+          </div>
+
+          <div class="example-box">
+            <strong>Contoh Soal 4:</strong> Dua orang pelari sprint 100 m mencapai garis finish hampir bersamaan. Pelari A menjulurkan tangannya melewati garis lebih dulu, sedangkan dada Pelari B menyentuh bidang garis finish sepersekian detik lebih awal dari dada Pelari A. Siapakah pemenangnya?<br>
+            <strong>Pembahasan:</strong> Pemenangnya adalah <strong>Pelari B</strong>, karena penentuan posisi finish diukur berdasarkan bagian <strong>torso (dada/perut)</strong> yang lebih dulu mencapai bidang vertikal garis finish, bukan juluran tangan maupun kepala.
+          </div>
+        </article>
+
+        <!-- Sub-bab 5 -->
+        <article id="sub-5" class="sub-section">
+          <span class="sub-badge">Sub-bab 05</span>
+          <h2>Lintasan Atletik &amp; Peraturan Diskualifikasi</h2>
+          <p>Lintasan lari atletik standar internasional berbentuk oval dengan keliling bagian dalam sepanjang <strong>400 meter</strong> dan terdiri atas 8 jalur (<em>lane</em>) dengan lebar tiap jalur 1,22 meter.</p>
+
+          <div class="table-wrap">
+            <table class="data-table">
+              <thead>
+                <tr>
+                  <th>Jenis Pelanggaran</th>
+                  <th>Penjelasan Aturan</th>
+                  <th>Sanksi Resmi</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td><strong>Mencuri Start (<em>False Start</em>)</strong></td>
+                  <td>Pelari bergerak atau meninggalkan balok start sebelum bunyi pistol starter terdengar (waktu reaksi &lt; 0,100 detik).</td>
+                  <td>Langsung <strong>diskualifikasi</strong> pada percobaan pertama (aturan resmi World Athletics).</td>
+                </tr>
+                <tr>
+                  <td><strong>Keluar Jalur Lintasan</strong></td>
+                  <td>Pelari menginjak garis putih di sebelah kiri jalur atau masuk ke jalur pelari lain (terutama di tikungan pada nomor 200 m &amp; 400 m).</td>
+                  <td><strong>Diskualifikasi</strong> apabila mengganggu lawan atau memperpendek jarak tempuh.</td>
+                </tr>
+                <tr>
+                  <td><strong>Menghalangi Lawan</strong></td>
+                  <td>Dengan sengaja mendorong, menyikut, atau menghalangi lintasan pelari lain saat berlomba.</td>
+                  <td><strong>Diskualifikasi</strong> dari perlombaan.</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+          <div class="example-box">
+            <strong>Contoh Soal 5:</strong> Mengapa pada perlombaan lari sprint 200 meter dan 400 meter, posisi garis start setiap pelari dibuat berundak (tidak sejajar)?<br>
+            <strong>Pembahasan:</strong> Karena nomor 200 m dan 400 m melewati lintasan <strong>tikungan</strong>. Jalur lintasan bagian luar memiliki keliling lingkaran lebih panjang daripada jalur dalam, sehingga garis start dibuat berundak (<em>staggered start</em>) agar seluruh pelari menempuh jarak lari yang sama persis.
+          </div>
+        </article>
+
+        <!-- Navigasi Bawah -->
+        <div class="bottom-nav">
+          <a href="pjok-bab1.html" class="btn-nav"><i data-lucide="arrow-left"></i> Bab Sebelumnya: Permainan Bola Besar (Sepak Bola)</a>
+          <a href="pjok-bab3.html" class="btn-nav primary">Bab Selanjutnya: Kebugaran Jasmani <i data-lucide="arrow-right"></i></a>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <footer class="footer">
+    <div class="wrap">
+      <span>© Shira's Archive</span>
+      <span>Belajar sedikit demi sedikit, setiap hari.</span>
+    </div>
+  </footer>
+
+  <script>
+    lucide.createIcons();
+
+    // Sinkronisasi Dark Mode dengan halaman beranda
+    const themeBtn = document.getElementById("theme-toggle");
+    if (localStorage.getItem("shira-theme") === "dark") {
+      document.body.classList.add("dark");
+      themeBtn.innerHTML = '<i data-lucide="sun"></i>';
+      lucide.createIcons();
+    }
+
+    themeBtn.onclick = () => {
+      const dark = document.body.classList.toggle("dark");
+      localStorage.setItem("shira-theme", dark ? "dark" : "light");
+      themeBtn.innerHTML = '<i data-lucide="' + (dark ? "sun" : "moon") + '"></i>';
+      lucide.createIcons();
+    };
+
+    // Highlight otomatis daftar sub-bab saat halaman di-scroll
+    const sections = document.querySelectorAll(".sub-section");
+    const navLinks = document.querySelectorAll(".toc-list a");
+
+    window.addEventListener("scroll", () => {
+      let current = "";
+      sections.forEach(sec => {
+        const top = sec.offsetTop - 150;
+        if (window.scrollY >= top) current = sec.getAttribute("id");
+      });
+      navLinks.forEach(link => {
+        link.classList.remove("active");
+        if (link.getAttribute("href") === "#" + current) {
+          link.classList.add("active");
+        }
+      });
+    });
+  </script>
+</body>
+</html>

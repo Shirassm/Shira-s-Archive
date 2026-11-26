@@ -1,0 +1,848 @@
+<!doctype html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Bab 1: Algoritma, Pseudocode &amp; Flowchart — Shira's Archive</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/lucide@0.577.0/dist/umd/lucide.min.js"></script>
+  <style>
+    :root {
+      --bg: #f5f8fd;
+      --surface: #fff;
+      --surface2: #edf4fd;
+      --text: #25334a;
+      --muted: #718099;
+      --line: #e3eaf4;
+      --blue: #537fda;
+      --blue2: #e8f0ff;
+      --code-bg: #162033;
+      --code-text: #e2e8f0;
+      --shadow: 0 12px 36px rgba(48, 79, 129, .07);
+    }
+    body.dark {
+      --bg: #101827;
+      --surface: #192437;
+      --surface2: #202e45;
+      --text: #eef4ff;
+      --muted: #a7b5cb;
+      --line: #344159;
+      --blue: #8bb3ff;
+      --blue2: #263d65;
+      --code-bg: #0b111e;
+      --code-text: #eef4ff;
+      --shadow: 0 12px 36px rgba(0, 0, 0, .17);
+    }
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      background: var(--bg);
+      color: var(--text);
+      font-family: "Plus Jakarta Sans", sans-serif;
+      line-height: 1.7;
+      transition: background .25s, color .25s;
+    }
+    button, input { font-family: "Plus Jakarta Sans", sans-serif; }
+    button { cursor: pointer; }
+    .wrap { max-width: 1190px; margin: auto; padding: 0 28px; }
+
+    /* Header */
+    .site-header {
+      background: var(--surface);
+      border-bottom: 1px solid var(--line);
+      position: sticky;
+      top: 0;
+      z-index: 10;
+    }
+    .nav-inner {
+      min-height: 78px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+    }
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 11px;
+      font-weight: 800;
+      font-size: 18px;
+      text-decoration: none;
+      color: var(--text);
+    }
+    .brand-mark {
+      width: 38px;
+      height: 38px;
+      display: grid;
+      place-items: center;
+      border-radius: 12px;
+      background: var(--blue);
+      color: white;
+    }
+    .brand-mark svg { width: 21px; }
+    .icon-button {
+      width: 41px;
+      height: 41px;
+      border: 1px solid var(--line);
+      border-radius: 12px;
+      background: var(--surface);
+      color: var(--text);
+      display: grid;
+      place-items: center;
+    }
+    .icon-button svg { width: 19px; }
+
+    /* Breadcrumb & Judul Bab */
+    .reader-top { padding: 34px 0 24px; }
+    .back-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      color: var(--blue);
+      text-decoration: none;
+      font-weight: 700;
+      font-size: 13px;
+      margin-bottom: 18px;
+    }
+    .back-link svg { width: 17px; }
+    .eyebrow {
+      color: var(--blue);
+      font-size: 12px;
+      font-weight: 800;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+      margin: 0 0 8px;
+    }
+    .reader-top h1 {
+      font-size: clamp(28px, 4vw, 40px);
+      letter-spacing: -.04em;
+      line-height: 1.2;
+      margin: 0 0 10px;
+      font-weight: 800;
+    }
+    .reader-top p.desc {
+      color: var(--muted);
+      font-size: 14px;
+      margin: 0;
+      max-width: 680px;
+    }
+
+    /* Layout Dua Kolom: Sidebar Sub-bab + Area Baca */
+    .reader-layout {
+      display: grid;
+      grid-template-columns: 280px minmax(0, 1fr);
+      gap: 28px;
+      padding-bottom: 80px;
+      align-items: start;
+    }
+
+    /* Sidebar Daftar Sub-bab */
+    .toc-card {
+      background: var(--surface);
+      border: 1px solid var(--line);
+      border-radius: 18px;
+      padding: 20px;
+      box-shadow: var(--shadow);
+      position: sticky;
+      top: 102px;
+    }
+    .toc-title {
+      font-size: 12px;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: .08em;
+      color: var(--muted);
+      margin: 0 0 14px;
+    }
+    .toc-list {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      display: grid;
+      gap: 6px;
+    }
+    .toc-list a {
+      display: flex;
+      align-items: start;
+      gap: 9px;
+      padding: 9px 12px;
+      border-radius: 10px;
+      text-decoration: none;
+      color: var(--muted);
+      font-size: 13px;
+      font-weight: 600;
+      line-height: 1.4;
+      transition: background .2s, color .2s;
+    }
+    .toc-list a:hover {
+      background: var(--surface2);
+      color: var(--text);
+    }
+    .toc-list a.active {
+      background: var(--blue2);
+      color: var(--blue);
+      font-weight: 700;
+    }
+    .toc-num {
+      font-size: 11px;
+      font-weight: 800;
+      opacity: .8;
+      margin-top: 2px;
+    }
+
+    /* Area Konten Catatan */
+    .content-area {
+      display: grid;
+      gap: 24px;
+    }
+    .sub-section {
+      background: var(--surface);
+      border: 1px solid var(--line);
+      border-radius: 20px;
+      padding: 30px;
+      box-shadow: var(--shadow);
+      scroll-margin-top: 102px;
+    }
+    .sub-badge {
+      display: inline-block;
+      background: var(--blue2);
+      color: var(--blue);
+      font-size: 11px;
+      font-weight: 800;
+      padding: 4px 10px;
+      border-radius: 20px;
+      margin-bottom: 10px;
+    }
+    .sub-section h2 {
+      font-size: 22px;
+      letter-spacing: -.03em;
+      margin: 0 0 14px;
+    }
+    .sub-section p {
+      font-size: 14px;
+      margin: 0 0 14px;
+    }
+
+    /* Kotak Konsep & Contoh Soal */
+    .formula-box {
+      background: var(--surface2);
+      border-left: 4px solid var(--blue);
+      border-radius: 12px;
+      padding: 18px 20px;
+      margin: 18px 0;
+    }
+    .formula-box strong.box-label {
+      display: block;
+      font-size: 12px;
+      text-transform: uppercase;
+      letter-spacing: .06em;
+      color: var(--blue);
+      margin-bottom: 10px;
+    }
+    .formula-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 10px 20px;
+      font-size: 14px;
+      font-weight: 600;
+    }
+    .example-box {
+      border: 1px dashed var(--line);
+      border-radius: 12px;
+      padding: 16px 20px;
+      margin-top: 16px;
+      font-size: 13.5px;
+    }
+    .example-box strong { color: var(--blue); }
+
+    /* Blok Kode & Simulator Interaktif */
+    .code-playground {
+      background: var(--surface2);
+      border: 1px solid var(--line);
+      border-radius: 14px;
+      padding: 18px;
+      margin: 18px 0;
+    }
+    .playground-head {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 10px;
+      flex-wrap: wrap;
+    }
+    .playground-title {
+      font-size: 12px;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: .06em;
+      color: var(--blue);
+    }
+    .code-block {
+      background: var(--code-bg);
+      color: var(--code-text);
+      font-family: "JetBrains Mono", monospace;
+      font-size: 13px;
+      line-height: 1.6;
+      padding: 16px;
+      border-radius: 11px;
+      overflow-x: auto;
+      margin: 0 0 14px;
+      white-space: pre;
+    }
+    .sim-controls {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      align-items: center;
+    }
+    .sim-input {
+      background: var(--surface);
+      border: 1px solid var(--line);
+      color: var(--text);
+      border-radius: 10px;
+      padding: 9px 13px;
+      font-size: 13px;
+      width: 150px;
+    }
+    .btn-run {
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      background: var(--blue);
+      color: #fff;
+      border: 0;
+      border-radius: 10px;
+      padding: 9px 16px;
+      font-size: 13px;
+      font-weight: 700;
+      transition: opacity .2s;
+    }
+    .btn-run:hover { opacity: .9; }
+    .btn-run svg { width: 15px; height: 15px; }
+    .sim-output {
+      margin-top: 12px;
+      background: var(--surface);
+      border: 1px solid var(--line);
+      border-left: 4px solid #37a77d;
+      border-radius: 10px;
+      padding: 11px 14px;
+      font-family: "JetBrains Mono", monospace;
+      font-size: 12.5px;
+      color: var(--text);
+      display: none;
+    }
+    .sim-output.show { display: block; }
+
+    /* Tabel Materi */
+    .table-wrap {
+      overflow-x: auto;
+      margin: 16px 0;
+      border: 1px solid var(--line);
+      border-radius: 12px;
+    }
+    .data-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 13.5px;
+      text-align: left;
+    }
+    .data-table th {
+      background: var(--surface2);
+      color: var(--blue);
+      font-weight: 700;
+      padding: 12px 14px;
+      border-bottom: 1px solid var(--line);
+      white-space: nowrap;
+    }
+    .data-table td {
+      padding: 11px 14px;
+      border-bottom: 1px solid var(--line);
+      vertical-align: top;
+    }
+    .data-table tr:last-child td { border-bottom: none; }
+
+    /* Kartu Visual */
+    .visual-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 14px;
+      margin: 16px 0;
+    }
+    .visual-card {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      background: var(--surface2);
+      border: 1px solid var(--line);
+      border-radius: 14px;
+      padding: 14px;
+    }
+    .visual-thumb {
+      width: 68px;
+      height: 68px;
+      flex-shrink: 0;
+      background: var(--surface);
+      border: 1px solid var(--line);
+      border-radius: 12px;
+      display: grid;
+      place-items: center;
+      padding: 6px;
+    }
+    .visual-thumb svg {
+      width: 54px;
+      height: 54px;
+    }
+    .visual-info h3 {
+      font-size: 14px;
+      font-weight: 700;
+      margin: 0 0 4px;
+      color: var(--text);
+    }
+    .visual-info p {
+      font-size: 12.5px;
+      margin: 0;
+      color: var(--muted);
+      line-height: 1.5;
+    }
+    .visual-info .tag-ex {
+      display: inline-block;
+      margin-top: 5px;
+      font-size: 11.5px;
+      font-weight: 600;
+      color: var(--blue);
+    }
+
+    /* Kartu Grid 2 Kolom */
+    .principle-list {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 12px;
+      margin: 16px 0;
+    }
+    .principle-item {
+      background: var(--surface2);
+      border-radius: 12px;
+      padding: 13px 15px;
+      font-size: 13px;
+      line-height: 1.55;
+    }
+    .principle-item strong {
+      display: block;
+      color: var(--blue);
+      margin-bottom: 3px;
+      font-size: 13.5px;
+    }
+
+    /* Navigasi Bawah Antar Bab */
+    .bottom-nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 12px;
+      margin-top: 10px;
+    }
+    .btn-nav {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 12px 18px;
+      border-radius: 12px;
+      text-decoration: none;
+      font-size: 13px;
+      font-weight: 700;
+      border: 1px solid var(--line);
+      background: var(--surface);
+      color: var(--text);
+    }
+    .btn-nav.primary {
+      background: var(--blue);
+      color: #fff;
+      border-color: var(--blue);
+    }
+    .btn-nav svg { width: 17px; }
+
+    .footer {
+      border-top: 1px solid var(--line);
+      padding: 26px 0;
+      color: var(--muted);
+      font-size: 12px;
+    }
+    .footer .wrap {
+      display: flex;
+      justify-content: space-between;
+      gap: 12px;
+    }
+
+    @media (max-width: 860px) {
+      .reader-layout { grid-template-columns: 1fr; }
+      .toc-card { position: static; }
+      .formula-grid, .visual-grid, .principle-list { grid-template-columns: 1fr; }
+    }
+    @media (max-width: 620px) {
+      .wrap { padding: 0 18px; }
+      .sub-section { padding: 22px; }
+      .bottom-nav { flex-direction: column; align-items: stretch; }
+      .btn-nav { justify-content: center; }
+      .footer .wrap { flex-direction: column; }
+    }
+  </style>
+</head>
+<body>
+
+  <header class="site-header">
+    <div class="wrap nav-inner">
+      <a href="../index.html" class="brand" aria-label="Kembali ke Beranda Shira's Archive">
+        <span class="brand-mark"><i data-lucide="book-open"></i></span>
+        <span>Shira's Archive</span>
+      </a>
+      <button id="theme-toggle" class="icon-button" type="button" aria-label="Aktifkan tema gelap" title="Tukar tema">
+        <i data-lucide="moon"></i>
+      </button>
+    </div>
+  </header>
+
+  <main class="wrap">
+    <div class="reader-top">
+      <a href="../index.html" class="back-link"><i data-lucide="arrow-left"></i> Kembali ke Daftar Mata Pelajaran</a>
+      <p class="eyebrow">Koding • Kelas 10 • Bab 01</p>
+      <h1>Algoritma, Pseudocode &amp; Flowchart</h1>
+      <p class="desc">Fondasi perancangan program sebelum menulis kode Python: hubungan coding dengan Kecerdasan Artifisial (AI), syarat algoritma, skema Input-Process-Output (IPO), penulisan pseudocode, dan simbol diagram alir (flowchart).</p>
+    </div>
+
+    <div class="reader-layout">
+      <!-- Navigasi Lompat Sub-bab (Sticky Sidebar) -->
+      <aside class="toc-card" aria-label="Daftar sub-bab">
+        <p class="toc-title">Daftar Sub-bab</p>
+        <ul class="toc-list">
+          <li><a href="#sub-1" class="active"><span class="toc-num">01</span><span>Hubungan Coding &amp; AI</span></a></li>
+          <li><a href="#sub-2"><span class="toc-num">02</span><span>Pengertian &amp; Syarat Algoritma</span></a></li>
+          <li><a href="#sub-3"><span class="toc-num">03</span><span>Skema Input-Process-Output</span></a></li>
+          <li><a href="#sub-4"><span class="toc-num">04</span><span>Penulisan Pseudocode</span></a></li>
+          <li><a href="#sub-5"><span class="toc-num">05</span><span>Diagram Alir (Flowchart)</span></a></li>
+        </ul>
+      </aside>
+
+      <!-- Area Baca Utama -->
+      <div class="content-area">
+
+        <!-- Sub-bab 1 -->
+        <article id="sub-1" class="sub-section">
+          <span class="sub-badge">Sub-bab 01</span>
+          <h2>Hubungan Pemrograman (Coding) dan Kecerdasan Artifisial (AI)</h2>
+          <p><strong>Pemrograman (<em>coding</em>)</strong> adalah proses menulis serangkaian instruksi logis yang dapat dipahami komputer. Dalam pengembangan teknologi modern, <em>coding</em> merupakan <strong>fondasi utama untuk membangun, melatih, dan mengatur logika pengolahan data pada model Kecerdasan Buatan (AI)</strong>.</p>
+          <p>Perbedaan utama sistem AI dengan program biasa adalah kemampuan AI untuk belajar dari pola data, mengenali objek/suara, atau mengambil keputusan adaptif—bukan sekadar aturan statis yang kaku.</p>
+
+          <div class="table-wrap">
+            <table class="data-table">
+              <thead>
+                <tr>
+                  <th>Contoh Aplikasi / Perangkat</th>
+                  <th>Status AI</th>
+                  <th>Penjelasan &amp; Cabang Teknologi</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td><strong>Face ID / Pengenal Wajah HP</strong></td>
+                  <td><strong>Termasuk AI</strong></td>
+                  <td>Memanfaatkan cabang AI bernama <strong>Computer Vision</strong> untuk memindai dan mencocokkan struktur biometrik wajah.</td>
+                </tr>
+                <tr>
+                  <td><strong>Rekomendasi Playlist Spotify / TikTok</strong></td>
+                  <td><strong>Termasuk AI</strong></td>
+                  <td>Memanfaatkan <em>Machine Learning</em> untuk mempelajari kebiasaan pendengar/penonton secara otomatis.</td>
+                </tr>
+                <tr>
+                  <td><strong>Kalkulator &amp; Lampu Lalu Lintas Timer</strong></td>
+                  <td><strong>Bukan AI</strong></td>
+                  <td>Hanya menjalankan rumus aritmatika tetap atau penghitung waktu (timer 60 detik) tanpa proses belajar dari data.</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+          <div class="code-playground">
+            <div class="playground-head">
+              <span class="playground-title">Simulasi Logika Rekomendasi Sederhana</span>
+            </div>
+            <pre class="code-block"># Contoh logika sederhana bagaimana program mengenali minat pengguna
+genre_favorit = input("Ketik genre lagu (pop / rock / jazz): ")
+if genre_favorit == "pop":
+    print("AI Rekomendasi: Top Hits Indonesia & Global Pop")
+else:
+    print("AI Rekomendasi: Mix Harian Khusus untukmu")</pre>
+            <div class="sim-controls">
+              <input id="sim-ai-input" class="sim-input" type="text" placeholder="Ketik: pop / rock" value="pop">
+              <button class="btn-run" type="button" onclick="runSimAI()"><i data-lucide="play"></i> Jalankan Kode</button>
+            </div>
+            <div id="sim-ai-out" class="sim-output"></div>
+          </div>
+
+          <div class="example-box">
+            <strong>Contoh Soal 1:</strong> Fitur pengenal wajah (<em>Face ID</em>) pada smartphone memanfaatkan cabang Kecerdasan Buatan yang dikenal dengan istilah apa?<br>
+            <strong>Pembahasan:</strong> <strong>Computer Vision</strong>, yaitu bidang AI yang melatih komputer agar mampu melihat, mengidentifikasi, dan memproses citra gambar maupun video layaknya penglihatan manusia.
+          </div>
+        </article>
+
+        <!-- Sub-bab 2 -->
+        <article id="sub-2" class="sub-section">
+          <span class="sub-badge">Sub-bab 02</span>
+          <h2>Pengertian &amp; Syarat Algoritma yang Baik</h2>
+          <p><strong>Algoritma</strong> adalah urutan langkah-langkah logis yang disusun secara sistematis untuk menyelesaikan suatu masalah tertentu.</p>
+
+          <div class="principle-list">
+            <div class="principle-item">
+              <strong>1. Finiteness (Keterbatasan)</strong>
+              Algoritma <strong>harus berhenti/berakhir</strong> setelah menempuh sejumlah langkah yang terbatas. Algoritma tidak boleh berjalan terus-menerus tanpa titik henti.
+            </div>
+            <div class="principle-item">
+              <strong>2. Definiteness (Kepastian)</strong>
+              Setiap langkah dalam algoritma harus didefinisikan secara jelas, pasti, dan tidak menimbulkan makna ganda (ambigu).
+            </div>
+            <div class="principle-item">
+              <strong>3. Input (Masukan)</strong>
+              Memiliki nol atau lebih data masukan awal yang jelas sebelum proses perhitungan dimulai.
+            </div>
+            <div class="principle-item">
+              <strong>4. Output (Keluaran) &amp; Effectiveness</strong>
+              Menghasilkan minimal satu keluaran (solusi) yang benar, dan setiap langkahnya dapat dikerjakan secara efektif dalam waktu wajar.
+            </div>
+          </div>
+
+          <div class="example-box">
+            <strong>Contoh Soal 2:</strong> Apa yang dimaksud dengan prinsip <em>Finiteness</em> dalam penyusunan sebuah algoritma pemrograman?<br>
+            <strong>Pembahasan:</strong> <em>Finiteness</em> berarti algoritma <strong>harus berakhir setelah menyelesaikan sejumlah langkah yang terbatas</strong> (memiliki titik berhenti yang jelas dan tidak terjebak pengulangan tanpa akhir).
+          </div>
+        </article>
+
+        <!-- Sub-bab 3 -->
+        <article id="sub-3" class="sub-section">
+          <span class="sub-badge">Sub-bab 03</span>
+          <h2>Skema Input – Process – Output (IPO)</h2>
+          <p>Hampir seluruh program komputer bekerja mengikuti pola <strong>IPO (Input → Process → Output)</strong>. Kesalahan urutan (misalnya mencetak hasil sebelum memasukkan data) akan membuat logika algoritma gagal.</p>
+
+          <div class="formula-box">
+            <strong class="box-label">Contoh Penerapan Skema IPO pada Studi Kasus</strong>
+            <div class="formula-grid">
+              <div>• <strong>Kasus 1: Keliling Segitiga Sama Sisi (sisi = s)</strong><br>Input: <code>s</code> → Process: <code>K = 3 * s</code> → Output: <code>K</code></div>
+              <div>• <strong>Kasus 2: Diskon Belanja 10%</strong><br>Input: <code>total_belanja</code> → Process: <code>bayar = total_belanja - (0.1 * total_belanja)</code> → Output: <code>bayar</code></div>
+              <div>• <strong>Kasus 3: Keliling Lingkaran (jari-jari = r)</strong><br>Mulai → Input <code>r</code> → Hitung <code>K = 2 * 3.14 * r</code> → Cetak <code>K</code> → Selesai</div>
+              <div>• <strong>Kasus 4: Rata-rata 3 Nilai Ujian (n1, n2, n3)</strong><br>Input <code>n1, n2, n3</code> → Hitung <code>total = n1+n2+n3</code> → Hitung <code>rata = total/3</code> → Tampilkan <code>rata</code></div>
+            </div>
+          </div>
+
+          <div class="code-playground">
+            <div class="playground-head">
+              <span class="playground-title">Simulator IPO: Hitung Total Bayar Diskon 10%</span>
+            </div>
+            <pre class="code-block"># Skema IPO dalam Python:
+total_belanja = int(input("Masukkan total belanja (Rp): "))  # INPUT
+bayar = total_belanja - (0.1 * total_belanja)                # PROCESS
+print("Total yang harus dibayar: Rp", bayar)                 # OUTPUT</pre>
+            <div class="sim-controls">
+              <input id="sim-ipo-input" class="sim-input" type="number" placeholder="Total belanja" value="100000">
+              <button class="btn-run" type="button" onclick="runSimIPO()"><i data-lucide="play"></i> Hitung Output</button>
+            </div>
+            <div id="sim-ipo-out" class="sim-output"></div>
+          </div>
+
+          <div class="example-box">
+            <strong>Contoh Soal 3:</strong> Manakah urutan algoritma yang tepat untuk menghitung keliling lingkaran dengan jari-jari <em>r</em>?<br>
+            <strong>Pembahasan:</strong> <strong>Mulai → Masukkan jari-jari (r) → Hitung keliling = 2 * 3.14 * r → Cetak keliling → Selesai</strong>. Data masukan (<em>r</em>) wajib diterima terlebih dahulu sebelum rumus perhitungan dijalankan.
+          </div>
+        </article>
+
+        <!-- Sub-bab 4 -->
+        <article id="sub-4" class="sub-section">
+          <span class="sub-badge">Sub-bab 04</span>
+          <h2>Penulisan Pseudocode</h2>
+          <p><strong>Pseudocode</strong> (kode semu) adalah cara menuliskan alur logika algoritma menggunakan bahasa sehari-hari yang menyerupai struktur bahasa pemrograman.</p>
+          <p><strong>Perbedaan utama Pseudocode vs Python:</strong> Pseudocode <strong>tidak memiliki aturan sintaks yang kaku</strong> dan <strong>tidak bisa langsung dijalankan oleh komputer</strong>; fungsinya murni membantu manusia merancang logika sebelum diterjemahkan ke bahasa pemrograman resmi seperti Python.</p>
+
+          <div class="code-playground">
+            <div class="playground-head">
+              <span class="playground-title">Simulator Pseudocode: Cek Bilangan Genap atau Ganjil</span>
+            </div>
+            <pre class="code-block">/* VERSI PSEUDOCODE */
+Mulai
+  Masukkan bil
+  Jika bil % 2 == 0 maka
+    Cetak "Genap"
+  Jika tidak
+    Cetak "Ganjil"
+Selesai</pre>
+            <div class="sim-controls">
+              <input id="sim-pseudo-input" class="sim-input" type="number" placeholder="Masukkan angka" value="17">
+              <button class="btn-run" type="button" onclick="runSimPseudo()"><i data-lucide="play"></i> Uji Pseudocode</button>
+            </div>
+            <div id="sim-pseudo-out" class="sim-output"></div>
+          </div>
+
+          <div class="example-box">
+            <strong>Contoh Soal 4:</strong> Perhatikan pseudocode berikut: <code>Mulai → Masukkan x, y → Jika x &lt; y maka Tampilkan x, Jika tidak Tampilkan y → Selesai</code>. Apakah tujuan utama algoritma tersebut?<br>
+            <strong>Pembahasan:</strong> <strong>Menentukan nilai terkecil dari dua buah bilangan</strong>, karena jika <em>x</em> lebih kecil dari <em>y</em> yang dicetak adalah <em>x</em>, sebaliknya jika <em>y</em> lebih kecil (atau sama) yang dicetak adalah <em>y</em>.
+          </div>
+        </article>
+
+        <!-- Sub-bab 5 -->
+        <article id="sub-5" class="sub-section">
+          <span class="sub-badge">Sub-bab 05</span>
+          <h2>Diagram Alir (Flowchart)</h2>
+          <p><strong>Flowchart (diagram alir)</strong> adalah representasi visual dari langkah-langkah algoritma menggunakan simbol-simbol grafis standar yang dihubungkan dengan garis panah alur.</p>
+
+          <div class="visual-grid">
+            <!-- 1. Terminator -->
+            <div class="visual-card">
+              <div class="visual-thumb" aria-hidden="true">
+                <svg viewBox="0 0 64 64" fill="none" stroke="#537fda" stroke-width="2.6">
+                  <rect x="10" y="20" width="44" height="24" rx="12" fill="#537fda" fill-opacity="0.15"/>
+                </svg>
+              </div>
+              <div class="visual-info">
+                <h3>1. Terminator (Kapsul / Oval)</h3>
+                <p>Menandai titik <strong>permulaan (Start)</strong> atau <strong>pengakhiran (Stop/Selesai)</strong> dari sebuah program.</p>
+                <span class="tag-ex">Selalu berada di awal &amp; akhir diagram</span>
+              </div>
+            </div>
+
+            <!-- 2. Input / Output -->
+            <div class="visual-card">
+              <div class="visual-thumb" aria-hidden="true">
+                <svg viewBox="0 0 64 64" fill="none" stroke="#537fda" stroke-width="2.6" stroke-linejoin="round">
+                  <polygon points="18,20 54,20 46,44 10,44" fill="#537fda" fill-opacity="0.15"/>
+                </svg>
+              </div>
+              <div class="visual-info">
+                <h3>2. Data / Input-Output (Jajar Genjang)</h3>
+                <p>Menggambarkan proses <strong>masukan (input)</strong> data dari pengguna maupun <strong>keluaran (output)</strong> hasil ke layar.</p>
+                <span class="tag-ex">Contoh: Baca sisi, Cetak luas</span>
+              </div>
+            </div>
+
+            <!-- 3. Process -->
+            <div class="visual-card">
+              <div class="visual-thumb" aria-hidden="true">
+                <svg viewBox="0 0 64 64" fill="none" stroke="#537fda" stroke-width="2.6">
+                  <rect x="12" y="20" width="40" height="24" rx="2" fill="#537fda" fill-opacity="0.15"/>
+                </svg>
+              </div>
+              <div class="visual-info">
+                <h3>3. Process (Persegi Panjang)</h3>
+                <p>Menyatakan operasi <strong>pengolahan data, perhitungan aritmatika, atau penetapan nilai variabel</strong> di dalam memori.</p>
+                <span class="tag-ex">Contoh: luas = p * l</span>
+              </div>
+            </div>
+
+            <!-- 4. Decision -->
+            <div class="visual-card">
+              <div class="visual-thumb" aria-hidden="true">
+                <svg viewBox="0 0 64 64" fill="none" stroke="#dc2626" stroke-width="2.6" stroke-linejoin="round">
+                  <polygon points="32,12 54,32 32,52 10,32" fill="#dc2626" fill-opacity="0.15"/>
+                </svg>
+              </div>
+              <div class="visual-info">
+                <h3>4. Decision (Belah Ketupat)</h3>
+                <p>Menyatakan <strong>percabangan atau pengambilan keputusan</strong> berdasarkan syarat kondisi tertentu (memiliki dua cabang: <strong>Ya / Tidak</strong>).</p>
+                <span class="tag-ex">Contoh: Apakah nilai &gt;= 75?</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="example-box">
+            <strong>Contoh Soal 5:</strong> Dalam diagram alir (<em>flowchart</em>), simbol berbentuk <strong>belah ketupat</strong> dan <strong>jajar genjang</strong> secara berurutan digunakan untuk menyatakan proses apa?<br>
+            <strong>Pembahasan:</strong> <strong>Belah ketupat (Decision)</strong> menyatakan percabangan pengambilan keputusan (Ya/Tidak), sedangkan <strong>jajar genjang</strong> menyatakan proses masukan (<em>input</em>) atau keluaran (<em>output</em>) data.
+          </div>
+        </article>
+
+        <!-- Navigasi Bawah -->
+        <div class="bottom-nav">
+          <a href="../index.html" class="btn-nav"><i data-lucide="layout-grid"></i> Daftar Mata Pelajaran</a>
+          <a href="koding-bab2.html" class="btn-nav primary">Bab Selanjutnya: Dasar Python, Variabel &amp; Operator <i data-lucide="arrow-right"></i></a>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <footer class="footer">
+    <div class="wrap">
+      <span>© Shira's Archive</span>
+      <span>Belajar sedikit demi sedikit, setiap hari.</span>
+    </div>
+  </footer>
+
+  <script>
+    lucide.createIcons();
+
+    // Sinkronisasi Dark Mode
+    const themeBtn = document.getElementById("theme-toggle");
+    if (localStorage.getItem("shira-theme") === "dark") {
+      document.body.classList.add("dark");
+      themeBtn.innerHTML = '<i data-lucide="sun"></i>';
+      lucide.createIcons();
+    }
+
+    themeBtn.onclick = () => {
+      const dark = document.body.classList.toggle("dark");
+      localStorage.setItem("shira-theme", dark ? "dark" : "light");
+      themeBtn.innerHTML = '<i data-lucide="' + (dark ? "sun" : "moon") + '"></i>';
+      lucide.createIcons();
+    };
+
+    // Simulator 1: AI Rekomendasi
+    function runSimAI() {
+      const val = document.getElementById("sim-ai-input").value.trim().toLowerCase();
+      const out = document.getElementById("sim-ai-out");
+      out.classList.add("show");
+      if (val === "pop") {
+        out.textContent = "> Output: AI Rekomendasi: Top Hits Indonesia & Global Pop";
+      } else {
+        out.textContent = "> Output: AI Rekomendasi: Mix Harian Khusus untukmu (" + (val || "kosong") + ")";
+      }
+    }
+
+    // Simulator 2: Skema IPO Diskon
+    function runSimIPO() {
+      const total = Number(document.getElementById("sim-ipo-input").value) || 0;
+      const bayar = total - (0.1 * total);
+      const out = document.getElementById("sim-ipo-out");
+      out.classList.add("show");
+      out.textContent = "> Output: Total yang harus dibayar: Rp " + bayar.toLocaleString("id-ID");
+    }
+
+    // Simulator 3: Pseudocode Genap/Ganjil
+    function runSimPseudo() {
+      const bil = parseInt(document.getElementById("sim-pseudo-input").value, 10);
+      const out = document.getElementById("sim-pseudo-out");
+      out.classList.add("show");
+      if (isNaN(bil)) {
+        out.textContent = "> Output: Masukkan angka bulat terlebih dahulu!";
+        return;
+      }
+      const hasil = (bil % 2 === 0) ? "Genap" : "Ganjil";
+      out.textContent = "> Output: " + hasil + " (" + bil + " % 2 == " + Math.abs(bil % 2) + ")";
+    }
+
+    // Highlight otomatis daftar sub-bab saat halaman di-scroll
+    const sections = document.querySelectorAll(".sub-section");
+    const navLinks = document.querySelectorAll(".toc-list a");
+
+    window.addEventListener("scroll", () => {
+      let current = "";
+      sections.forEach(sec => {
+        const top = sec.offsetTop - 150;
+        if (window.scrollY >= top) current = sec.getAttribute("id");
+      });
+      navLinks.forEach(link => {
+        link.classList.remove("active");
+        if (link.getAttribute("href") === "#" + current) {
+          link.classList.add("active");
+        }
+      });
+    });
+  </script>
+</body>
+</html>

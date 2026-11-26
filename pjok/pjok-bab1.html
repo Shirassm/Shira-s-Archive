@@ -1,0 +1,867 @@
+<!doctype html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Bab 1: Permainan Bola Besar (Sepak Bola) — Shira's Archive</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/lucide@0.577.0/dist/umd/lucide.min.js"></script>
+  <style>
+    :root {
+      --bg: #f5f8fd;
+      --surface: #fff;
+      --surface2: #edf4fd;
+      --text: #25334a;
+      --muted: #718099;
+      --line: #e3eaf4;
+      --blue: #537fda;
+      --blue2: #e8f0ff;
+      --shadow: 0 12px 36px rgba(48, 79, 129, .07);
+    }
+    body.dark {
+      --bg: #101827;
+      --surface: #192437;
+      --surface2: #202e45;
+      --text: #eef4ff;
+      --muted: #a7b5cb;
+      --line: #344159;
+      --blue: #8bb3ff;
+      --blue2: #263d65;
+      --shadow: 0 12px 36px rgba(0, 0, 0, .17);
+    }
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      background: var(--bg);
+      color: var(--text);
+      font-family: "Plus Jakarta Sans", sans-serif;
+      line-height: 1.7;
+      transition: background .25s, color .25s;
+    }
+    button { font-family: "Plus Jakarta Sans", sans-serif; cursor: pointer; }
+    .wrap { max-width: 1190px; margin: auto; padding: 0 28px; }
+
+    /* Header */
+    .site-header {
+      background: var(--surface);
+      border-bottom: 1px solid var(--line);
+      position: sticky;
+      top: 0;
+      z-index: 10;
+    }
+    .nav-inner {
+      min-height: 78px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+    }
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 11px;
+      font-weight: 800;
+      font-size: 18px;
+      text-decoration: none;
+      color: var(--text);
+    }
+    .brand-mark {
+      width: 38px;
+      height: 38px;
+      display: grid;
+      place-items: center;
+      border-radius: 12px;
+      background: var(--blue);
+      color: white;
+    }
+    .brand-mark svg { width: 21px; }
+    .icon-button {
+      width: 41px;
+      height: 41px;
+      border: 1px solid var(--line);
+      border-radius: 12px;
+      background: var(--surface);
+      color: var(--text);
+      display: grid;
+      place-items: center;
+    }
+    .icon-button svg { width: 19px; }
+
+    /* Breadcrumb & Judul Bab */
+    .reader-top { padding: 34px 0 24px; }
+    .back-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      color: var(--blue);
+      text-decoration: none;
+      font-weight: 700;
+      font-size: 13px;
+      margin-bottom: 18px;
+    }
+    .back-link svg { width: 17px; }
+    .eyebrow {
+      color: var(--blue);
+      font-size: 12px;
+      font-weight: 800;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+      margin: 0 0 8px;
+    }
+    .reader-top h1 {
+      font-size: clamp(28px, 4vw, 40px);
+      letter-spacing: -.04em;
+      line-height: 1.2;
+      margin: 0 0 10px;
+      font-weight: 800;
+    }
+    .reader-top p.desc {
+      color: var(--muted);
+      font-size: 14px;
+      margin: 0;
+      max-width: 680px;
+    }
+
+    /* Layout Dua Kolom: Sidebar Sub-bab + Area Baca */
+    .reader-layout {
+      display: grid;
+      grid-template-columns: 280px minmax(0, 1fr);
+      gap: 28px;
+      padding-bottom: 80px;
+      align-items: start;
+    }
+
+    /* Sidebar Daftar Sub-bab */
+    .toc-card {
+      background: var(--surface);
+      border: 1px solid var(--line);
+      border-radius: 18px;
+      padding: 20px;
+      box-shadow: var(--shadow);
+      position: sticky;
+      top: 102px;
+    }
+    .toc-title {
+      font-size: 12px;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: .08em;
+      color: var(--muted);
+      margin: 0 0 14px;
+    }
+    .toc-list {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      display: grid;
+      gap: 6px;
+    }
+    .toc-list a {
+      display: flex;
+      align-items: start;
+      gap: 9px;
+      padding: 9px 12px;
+      border-radius: 10px;
+      text-decoration: none;
+      color: var(--muted);
+      font-size: 13px;
+      font-weight: 600;
+      line-height: 1.4;
+      transition: background .2s, color .2s;
+    }
+    .toc-list a:hover {
+      background: var(--surface2);
+      color: var(--text);
+    }
+    .toc-list a.active {
+      background: var(--blue2);
+      color: var(--blue);
+      font-weight: 700;
+    }
+    .toc-num {
+      font-size: 11px;
+      font-weight: 800;
+      opacity: .8;
+      margin-top: 2px;
+    }
+
+    /* Area Konten Catatan */
+    .content-area {
+      display: grid;
+      gap: 24px;
+    }
+    .sub-section {
+      background: var(--surface);
+      border: 1px solid var(--line);
+      border-radius: 20px;
+      padding: 30px;
+      box-shadow: var(--shadow);
+      scroll-margin-top: 102px;
+    }
+    .sub-badge {
+      display: inline-block;
+      background: var(--blue2);
+      color: var(--blue);
+      font-size: 11px;
+      font-weight: 800;
+      padding: 4px 10px;
+      border-radius: 20px;
+      margin-bottom: 10px;
+    }
+    .sub-section h2 {
+      font-size: 22px;
+      letter-spacing: -.03em;
+      margin: 0 0 14px;
+    }
+    .sub-section p {
+      font-size: 14px;
+      margin: 0 0 14px;
+    }
+
+    /* Kotak Konsep & Contoh Soal */
+    .formula-box {
+      background: var(--surface2);
+      border-left: 4px solid var(--blue);
+      border-radius: 12px;
+      padding: 18px 20px;
+      margin: 18px 0;
+    }
+    .formula-box strong.box-label {
+      display: block;
+      font-size: 12px;
+      text-transform: uppercase;
+      letter-spacing: .06em;
+      color: var(--blue);
+      margin-bottom: 10px;
+    }
+    .formula-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 10px 20px;
+      font-size: 14px;
+      font-weight: 600;
+    }
+    .example-box {
+      border: 1px dashed var(--line);
+      border-radius: 12px;
+      padding: 16px 20px;
+      margin-top: 16px;
+      font-size: 13.5px;
+    }
+    .example-box strong { color: var(--blue); }
+
+    /* Tabel Materi */
+    .table-wrap {
+      overflow-x: auto;
+      margin: 16px 0;
+      border: 1px solid var(--line);
+      border-radius: 12px;
+    }
+    .data-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 13.5px;
+      text-align: left;
+    }
+    .data-table th {
+      background: var(--surface2);
+      color: var(--blue);
+      font-weight: 700;
+      padding: 12px 14px;
+      border-bottom: 1px solid var(--line);
+      white-space: nowrap;
+    }
+    .data-table td {
+      padding: 11px 14px;
+      border-bottom: 1px solid var(--line);
+      vertical-align: top;
+    }
+    .data-table tr:last-child td { border-bottom: none; }
+
+    /* Ilustrasi Lapangan Lebar */
+    .diagram-card {
+      background: var(--surface2);
+      border: 1px solid var(--line);
+      border-radius: 16px;
+      padding: 18px;
+      margin: 18px 0;
+      text-align: center;
+    }
+    .diagram-card svg {
+      max-width: 100%;
+      height: auto;
+      display: block;
+      margin: 0 auto;
+    }
+    .diagram-caption {
+      font-size: 12px;
+      color: var(--muted);
+      margin-top: 10px;
+      font-weight: 600;
+    }
+
+    /* Kartu Visual Teknik & Organisasi */
+    .visual-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 14px;
+      margin: 16px 0;
+    }
+    .visual-card {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      background: var(--surface2);
+      border: 1px solid var(--line);
+      border-radius: 14px;
+      padding: 14px;
+    }
+    .visual-thumb {
+      width: 68px;
+      height: 68px;
+      flex-shrink: 0;
+      background: var(--surface);
+      border: 1px solid var(--line);
+      border-radius: 12px;
+      display: grid;
+      place-items: center;
+      padding: 6px;
+    }
+    .visual-thumb svg {
+      width: 52px;
+      height: 52px;
+    }
+    .visual-info h3 {
+      font-size: 14px;
+      font-weight: 700;
+      margin: 0 0 4px;
+      color: var(--text);
+    }
+    .visual-info p {
+      font-size: 12.5px;
+      margin: 0;
+      color: var(--muted);
+      line-height: 1.5;
+    }
+    .visual-info .tag-ex {
+      display: inline-block;
+      margin-top: 5px;
+      font-size: 11.5px;
+      font-weight: 600;
+      color: var(--blue);
+    }
+
+    /* Kartu Formasi / Peraturan */
+    .principle-list {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 12px;
+      margin: 16px 0;
+    }
+    .principle-item {
+      background: var(--surface2);
+      border-radius: 12px;
+      padding: 13px 15px;
+      font-size: 13px;
+      line-height: 1.55;
+    }
+    .principle-item strong {
+      display: block;
+      color: var(--blue);
+      margin-bottom: 3px;
+      font-size: 13.5px;
+    }
+
+    /* Navigasi Bawah Antar Bab */
+    .bottom-nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 12px;
+      margin-top: 10px;
+    }
+    .btn-nav {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 12px 18px;
+      border-radius: 12px;
+      text-decoration: none;
+      font-size: 13px;
+      font-weight: 700;
+      border: 1px solid var(--line);
+      background: var(--surface);
+      color: var(--text);
+    }
+    .btn-nav.primary {
+      background: var(--blue);
+      color: #fff;
+      border-color: var(--blue);
+    }
+    .btn-nav svg { width: 17px; }
+
+    .footer {
+      border-top: 1px solid var(--line);
+      padding: 26px 0;
+      color: var(--muted);
+      font-size: 12px;
+    }
+    .footer .wrap {
+      display: flex;
+      justify-content: space-between;
+      gap: 12px;
+    }
+
+    @media (max-width: 860px) {
+      .reader-layout { grid-template-columns: 1fr; }
+      .toc-card { position: static; }
+      .formula-grid, .visual-grid, .principle-list { grid-template-columns: 1fr; }
+    }
+    @media (max-width: 620px) {
+      .wrap { padding: 0 18px; }
+      .sub-section { padding: 22px; }
+      .bottom-nav { flex-direction: column; align-items: stretch; }
+      .btn-nav { justify-content: center; }
+      .footer .wrap { flex-direction: column; }
+    }
+  </style>
+</head>
+<body>
+
+  <header class="site-header">
+    <div class="wrap nav-inner">
+      <a href="../index.html" class="brand" aria-label="Kembali ke Beranda Shira's Archive">
+        <span class="brand-mark"><i data-lucide="book-open"></i></span>
+        <span>Shira's Archive</span>
+      </a>
+      <button id="theme-toggle" class="icon-button" type="button" aria-label="Aktifkan tema gelap" title="Tukar tema">
+        <i data-lucide="moon"></i>
+      </button>
+    </div>
+  </header>
+
+  <main class="wrap">
+    <div class="reader-top">
+      <a href="../index.html" class="back-link"><i data-lucide="arrow-left"></i> Kembali ke Daftar Mata Pelajaran</a>
+      <p class="eyebrow">PJOK • Kelas 10 • Bab 01</p>
+      <h1>Permainan Bola Besar: Sepak Bola</h1>
+      <p class="desc">Rangkuman lengkap konsep dasar permainan sepak bola, standar ukuran lapangan internasional, induk organisasi dunia &amp; nasional, posisi pemain, teknik dasar, serta peraturan pertandingan.</p>
+    </div>
+
+    <div class="reader-layout">
+      <!-- Navigasi Lompat Sub-bab (Sticky Sidebar) -->
+      <aside class="toc-card" aria-label="Daftar sub-bab">
+        <p class="toc-title">Daftar Sub-bab</p>
+        <ul class="toc-list">
+          <li><a href="#sub-1" class="active"><span class="toc-num">01</span><span>Pengertian &amp; Sejarah Singkat</span></a></li>
+          <li><a href="#sub-2"><span class="toc-num">02</span><span>Ukuran Lapangan &amp; Perlengkapan</span></a></li>
+          <li><a href="#sub-3"><span class="toc-num">03</span><span>Induk Organisasi Sepak Bola</span></a></li>
+          <li><a href="#sub-4"><span class="toc-num">04</span><span>Posisi &amp; Tugas Pemain</span></a></li>
+          <li><a href="#sub-5"><span class="toc-num">05</span><span>Teknik Dasar &amp; Peraturan</span></a></li>
+        </ul>
+      </aside>
+
+      <!-- Area Baca Utama -->
+      <div class="content-area">
+
+        <!-- Sub-bab 1 -->
+        <article id="sub-1" class="sub-section">
+          <span class="sub-badge">Sub-bab 01</span>
+          <h2>Pengertian &amp; Konsep Dasar Sepak Bola</h2>
+          <p><strong>Sepak bola</strong> adalah cabang olahraga permainan bola besar yang dimainkan secara beregu oleh dua tim yang saling berhadapan. Masing-masing tim beranggotakan <strong>11 pemain inti</strong> di lapangan (1 penjaga gawang dan 10 pemain lapangan) serta pemain cadangan.</p>
+          <p>Tujuan utama permainan ini adalah memasukkan bola ke gawang lawan sebanyak-banyaknya menggunakan kaki, kepala, maupun anggota tubuh lain (kecuali tangan dan lengan), serta mempertahankan gawang sendiri agar tidak kemasukan bola.</p>
+
+          <div class="formula-box">
+            <strong class="box-label">Ringkasan Waktu &amp; Komposisi Pertandingan</strong>
+            <div class="formula-grid">
+              <div>• <strong>Durasi Normal:</strong> 2 × 45 menit (istirahat maksimal 15 menit).</div>
+              <div>• <strong>Jumlah Pemain:</strong> 11 orang/tim (minimal 7 pemain agar sah bertanding).</div>
+              <div>• <strong>Perpanjangan Waktu:</strong> 2 × 15 menit (jika seri di fase gugur).</div>
+              <div>• <strong>Perangkat Wasit:</strong> 1 Wasit utama, 2 Hakim garis, 1 Wasit cadangan.</div>
+            </div>
+          </div>
+
+          <div class="example-box">
+            <strong>Contoh Soal 1:</strong> Dalam sebuah pertandingan resmi sepak bola, salah satu tim mengalami cedera massal dan kartu merah sehingga pemain tersisa di lapangan hanya 6 orang. Bagaimana keputusan wasit terhadap kelanjutan laga tersebut?<br>
+            <strong>Pembahasan:</strong> Pertandingan <strong>dihentikan / tidak dapat dilanjutkan</strong> (tim lawan dinyatakan menang WO), karena syarat minimal jumlah pemain dalam satu tim agar pertandingan tetap sah menurut aturan FIFA adalah <strong>7 pemain</strong>.
+          </div>
+        </article>
+
+        <!-- Sub-bab 2 -->
+        <article id="sub-2" class="sub-section">
+          <span class="sub-badge">Sub-bab 02</span>
+          <h2>Ukuran Lapangan &amp; Perlengkapan Standar</h2>
+          <p>Lapangan sepak bola berbentuk persegi panjang dengan permukaan rumput alami maupun sintetis. Garis pembatas lapangan memiliki lebar maksimal 12 cm dan termasuk bagian dari area permainan.</p>
+
+          <!-- Ilustrasi SVG Lapangan Sepak Bola -->
+          <div class="diagram-card">
+            <svg viewBox="0 0 680 380" width="620" aria-label="Diagram Ukuran Lapangan Sepak Bola">
+              <!-- Rumput Lapangan -->
+              <rect x="20" y="20" width="640" height="340" rx="8" fill="#2e7d32"/>
+              <rect x="20" y="20" width="80" height="340" fill="#338a37"/>
+              <rect x="180" y="20" width="80" height="340" fill="#338a37"/>
+              <rect x="340" y="20" width="80" height="340" fill="#338a37"/>
+              <rect x="500" y="20" width="80" height="340" fill="#338a37"/>
+              <!-- Garis Tepi & Tengah -->
+              <rect x="40" y="38" width="600" height="304" fill="none" stroke="#ffffff" stroke-width="2.5"/>
+              <line x1="340" y1="38" x2="340" y2="342" stroke="#ffffff" stroke-width="2.5"/>
+              <!-- Lingkaran Tengah -->
+              <circle cx="340" cy="190" r="46" fill="none" stroke="#ffffff" stroke-width="2.5"/>
+              <circle cx="340" cy="190" r="3.5" fill="#ffffff"/>
+              <!-- Kotak Penalti Kiri -->
+              <rect x="40" y="96" width="88" height="188" fill="none" stroke="#ffffff" stroke-width="2.5"/>
+              <rect x="40" y="142" width="32" height="96" fill="none" stroke="#ffffff" stroke-width="2.5"/>
+              <circle cx="98" cy="190" r="3" fill="#ffffff"/>
+              <path d="M 128 156 A 46 46 0 0 1 128 224" fill="none" stroke="#ffffff" stroke-width="2.5"/>
+              <!-- Kotak Penalti Kanan -->
+              <rect x="552" y="96" width="88" height="188" fill="none" stroke="#ffffff" stroke-width="2.5"/>
+              <rect x="608" y="142" width="32" height="96" fill="none" stroke="#ffffff" stroke-width="2.5"/>
+              <circle cx="582" cy="190" r="3" fill="#ffffff"/>
+              <path d="M 552 156 A 46 46 0 0 0 552 224" fill="none" stroke="#ffffff" stroke-width="2.5"/>
+              <!-- Gawang Kiri & Kanan -->
+              <rect x="28" y="168" width="12" height="44" fill="none" stroke="#ffffff" stroke-width="2.5"/>
+              <rect x="640" y="168" width="12" height="44" fill="none" stroke="#ffffff" stroke-width="2.5"/>
+              <!-- Label Ukuran -->
+              <text x="340" y="32" fill="#ffffff" font-size="11" font-weight="700" text-anchor="middle">Panjang: 100 – 110 m</text>
+              <text x="652" y="190" fill="#ffffff" font-size="11" font-weight="700" text-anchor="middle" transform="rotate(90 652 190)">Lebar: 64 – 75 m</text>
+              <text x="340" y="250" fill="#ffffff" font-size="10" font-weight="700" text-anchor="middle">R = 9,15 m</text>
+              <text x="98" y="206" fill="#ffffff" font-size="9.5" font-weight="700" text-anchor="middle">11 m</text>
+            </svg>
+            <p class="diagram-caption">Skema Lapangan Sepak Bola Standar Internasional (FIFA)</p>
+          </div>
+
+          <div class="table-wrap">
+            <table class="data-table">
+              <thead>
+                <tr>
+                  <th>Bagian Lapangan / Perlengkapan</th>
+                  <th>Ukuran Standar Internasional</th>
+                  <th>Keterangan Tambahan</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td><strong>Panjang Lapangan</strong></td>
+                  <td>100 – 110 meter</td>
+                  <td>Untuk pertandingan umum (non-internasional): 90 – 120 m.</td>
+                </tr>
+                <tr>
+                  <td><strong>Lebar Lapangan</strong></td>
+                  <td>64 – 75 meter</td>
+                  <td>Untuk pertandingan umum: 45 – 90 m.</td>
+                </tr>
+                <tr>
+                  <td><strong>Lingkaran Tengah</strong></td>
+                  <td>Jari-jari 9,15 meter</td>
+                  <td>Diameter 18,3 meter; tempat dimulainya <em>kick-off</em>.</td>
+                </tr>
+                <tr>
+                  <td><strong>Kotak Penalti</strong></td>
+                  <td>40,3 m × 16,5 m</td>
+                  <td>Area kiper boleh menangkap bola dengan tangan.</td>
+                </tr>
+                <tr>
+                  <td><strong>Titik Penalti</strong></td>
+                  <td>11 meter dari garis gawang</td>
+                  <td>Jarak tendangan penalti tepat di tengah depan gawang.</td>
+                </tr>
+                <tr>
+                  <td><strong>Ukuran Gawang</strong></td>
+                  <td>Tinggi 2,44 m × Lebar 7,32 m</td>
+                  <td>Tiang dan mistar berwarna putih dengan ketebalan maks. 12 cm.</td>
+                </tr>
+                <tr>
+                  <td><strong>Bola Sepak</strong></td>
+                  <td>Keliling 68 – 70 cm</td>
+                  <td>Berat 410 – 450 gram; tekanan udara 0,6 – 1,1 atm.</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+          <div class="example-box">
+            <strong>Contoh Soal 2:</strong> Berapakah jarak titik tendangan penalti dari garis gawang serta ukuran tinggi dan lebar gawang sepak bola standar internasional?<br>
+            <strong>Pembahasan:</strong> Titik penalti berjarak <strong>11 meter</strong> dari garis gawang, sedangkan gawang memiliki tinggi <strong>2,44 meter</strong> dan lebar <strong>7,32 meter</strong>.
+          </div>
+        </article>
+
+        <!-- Sub-bab 3 -->
+        <article id="sub-3" class="sub-section">
+          <span class="sub-badge">Sub-bab 03</span>
+          <h2>Induk Organisasi Sepak Bola</h2>
+          <p>Untuk menyeragamkan peraturan pertandingan dan menyelenggarakan kompetisi resmi, cabang olahraga sepak bola dinaungi oleh organisasi resmi di tingkat dunia, regional, hingga nasional.</p>
+
+          <div class="visual-grid">
+            <!-- 1. FIFA -->
+            <div class="visual-card">
+              <div class="visual-thumb" aria-hidden="true">
+                <svg viewBox="0 0 64 64" fill="none" stroke="#537fda" stroke-width="2.4">
+                  <circle cx="32" cy="32" r="22"/>
+                  <ellipse cx="32" cy="32" rx="10" ry="22"/>
+                  <line x1="10" y1="32" x2="54" y2="32"/>
+                  <path d="M14 21h36M14 43h36"/>
+                </svg>
+              </div>
+              <div class="visual-info">
+                <h3>1. FIFA (Tingkat Dunia)</h3>
+                <p><em>Fédération Internationale de Football Association</em>. Didirikan 21 Mei 1904 di Paris, Prancis (markas pusat di Zurich, Swiss).</p>
+                <span class="tag-ex">Kompetisi Utama: FIFA World Cup</span>
+              </div>
+            </div>
+
+            <!-- 2. PSSI -->
+            <div class="visual-card">
+              <div class="visual-thumb" aria-hidden="true">
+                <svg viewBox="0 0 64 64" fill="none" stroke="#dc2626" stroke-width="2.4">
+                  <path d="M32 10l18 8v14c0 12-8 19-18 22-10-3-18-10-18-22V18l18-8z" fill="#dc2626" fill-opacity="0.1"/>
+                  <circle cx="32" cy="31" r="8" stroke="#dc2626"/>
+                  <path d="M27 31l3 3 7-7" stroke="#dc2626"/>
+                </svg>
+              </div>
+              <div class="visual-info">
+                <h3>2. PSSI (Tingkat Indonesia)</h3>
+                <p><em>Persatuan Sepak Bola Seluruh Indonesia</em>. Berdiri 19 April 1930 di Yogyakarta dengan ketua pertama <strong>Ir. Soeratin Sosrosoegondo</strong>.</p>
+                <span class="tag-ex">Kompetisi Utama: Liga 1 &amp; Piala Indonesia</span>
+              </div>
+            </div>
+
+            <!-- 3. AFC -->
+            <div class="visual-card">
+              <div class="visual-thumb" aria-hidden="true">
+                <svg viewBox="0 0 64 64" fill="none" stroke="#537fda" stroke-width="2.4">
+                  <circle cx="32" cy="32" r="20"/>
+                  <polygon points="32,16 36,27 48,27 38,34 42,46 32,39 22,46 26,34 16,27 28,27" fill="#537fda" fill-opacity="0.2"/>
+                </svg>
+              </div>
+              <div class="visual-info">
+                <h3>3. AFC (Tingkat Asia)</h3>
+                <p><em>Asian Football Confederation</em>. Konfederasi sepak bola yang menaungi negara-negara di benua Asia (termasuk Indonesia), bermarkas di Kuala Lumpur.</p>
+                <span class="tag-ex">Kompetisi Utama: AFC Asian Cup</span>
+              </div>
+            </div>
+
+            <!-- 4. UEFA & Konfederasi Lain -->
+            <div class="visual-card">
+              <div class="visual-thumb" aria-hidden="true">
+                <svg viewBox="0 0 64 64" fill="none" stroke="#537fda" stroke-width="2.4">
+                  <circle cx="32" cy="32" r="20"/>
+                  <circle cx="32" cy="19" r="2" fill="#537fda"/>
+                  <circle cx="43" cy="25" r="2" fill="#537fda"/>
+                  <circle cx="43" cy="39" r="2" fill="#537fda"/>
+                  <circle cx="32" cy="45" r="2" fill="#537fda"/>
+                  <circle cx="21" cy="39" r="2" fill="#537fda"/>
+                  <circle cx="21" cy="25" r="2" fill="#537fda"/>
+                </svg>
+              </div>
+              <div class="visual-info">
+                <h3>4. UEFA &amp; Konfederasi Benua</h3>
+                <p><strong>UEFA</strong> (Eropa), <strong>CONMEBOL</strong> (Amerika Selatan), <strong>CONCACAF</strong> (Amerika Utara/Tengah), <strong>CAF</strong> (Afrika), dan <strong>OFC</strong> (Oseania).</p>
+                <span class="tag-ex">Kompetisi Utama: Euro &amp; Copa América</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="example-box">
+            <strong>Contoh Soal 3:</strong> Kapan dan di mana induk organisasi sepak bola Indonesia (PSSI) didirikan, serta siapakah ketua umum pertamanya?<br>
+            <strong>Pembahasan:</strong> PSSI didirikan pada tanggal <strong>19 April 1930</strong> di <strong>Yogyakarta</strong> oleh <strong>Ir. Soeratin Sosrosoegondo</strong> sebagai wadah perjuangan kebangsaan melalui olahraga.
+          </div>
+        </article>
+
+        <!-- Sub-bab 4 -->
+        <article id="sub-4" class="sub-section">
+          <span class="sub-badge">Sub-bab 04</span>
+          <h2>Posisi &amp; Tugas Pemain dalam Sepak Bola</h2>
+          <p>Sebelas pemain dalam satu tim dibagi menjadi empat lini utama berdasarkan wilayah tugas dan perannya saat menyerang maupun bertahan.</p>
+
+          <!-- Ilustrasi SVG Formasi 4-3-3 -->
+          <div class="diagram-card">
+            <svg viewBox="0 0 620 260" width="560" aria-label="Ilustrasi Posisi Pemain Formasi 4-3-3">
+              <rect x="10" y="10" width="600" height="240" rx="12" fill="#2e7d32"/>
+              <rect x="24" y="22" width="572" height="216" fill="none" stroke="#ffffff" stroke-width="2"/>
+              <line x1="310" y1="22" x2="310" y2="238" stroke="#ffffff" stroke-width="2"/>
+              <circle cx="310" cy="130" r="34" fill="none" stroke="#ffffff" stroke-width="2"/>
+              <!-- GK -->
+              <circle cx="56" cy="130" r="14" fill="#f59e0b" stroke="#fff" stroke-width="2"/>
+              <text x="56" y="134" fill="#fff" font-size="10" font-weight="800" text-anchor="middle">GK</text>
+              <!-- Bek (4) -->
+              <circle cx="155" cy="46" r="14" fill="#3b82f6" stroke="#fff" stroke-width="2"/>
+              <text x="155" y="50" fill="#fff" font-size="9.5" font-weight="800" text-anchor="middle">LB</text>
+              <circle cx="145" cy="102" r="14" fill="#3b82f6" stroke="#fff" stroke-width="2"/>
+              <text x="145" y="106" fill="#fff" font-size="9.5" font-weight="800" text-anchor="middle">CB</text>
+              <circle cx="145" cy="158" r="14" fill="#3b82f6" stroke="#fff" stroke-width="2"/>
+              <text x="145" y="162" fill="#fff" font-size="9.5" font-weight="800" text-anchor="middle">CB</text>
+              <circle cx="155" cy="214" r="14" fill="#3b82f6" stroke="#fff" stroke-width="2"/>
+              <text x="155" y="218" fill="#fff" font-size="9.5" font-weight="800" text-anchor="middle">RB</text>
+              <!-- Gelandang (3) -->
+              <circle cx="295" cy="70" r="14" fill="#10b981" stroke="#fff" stroke-width="2"/>
+              <text x="295" y="74" fill="#fff" font-size="9.5" font-weight="800" text-anchor="middle">CM</text>
+              <circle cx="275" cy="130" r="14" fill="#10b981" stroke="#fff" stroke-width="2"/>
+              <text x="275" y="134" fill="#fff" font-size="9" font-weight="800" text-anchor="middle">DMF</text>
+              <circle cx="295" cy="190" r="14" fill="#10b981" stroke="#fff" stroke-width="2"/>
+              <text x="295" y="194" fill="#fff" font-size="9.5" font-weight="800" text-anchor="middle">CM</text>
+              <!-- Penyerang (3) -->
+              <circle cx="455" cy="56" r="14" fill="#ef4444" stroke="#fff" stroke-width="2"/>
+              <text x="455" y="60" fill="#fff" font-size="9" font-weight="800" text-anchor="middle">LWF</text>
+              <circle cx="485" cy="130" r="14" fill="#ef4444" stroke="#fff" stroke-width="2"/>
+              <text x="485" y="134" fill="#fff" font-size="9.5" font-weight="800" text-anchor="middle">ST</text>
+              <circle cx="455" cy="204" r="14" fill="#ef4444" stroke="#fff" stroke-width="2"/>
+              <text x="455" y="208" fill="#fff" font-size="9" font-weight="800" text-anchor="middle">RWF</text>
+            </svg>
+            <p class="diagram-caption">Contoh Susunan Pemain dalam Formasi Menyerang 4-3-3</p>
+          </div>
+
+          <div class="table-wrap">
+            <table class="data-table">
+              <thead>
+                <tr>
+                  <th>Lini Posisi</th>
+                  <th>Nama Spesifik / Istilah</th>
+                  <th>Tugas &amp; Peran Utama di Lapangan</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td><strong>Penjaga Gawang</strong></td>
+                  <td><strong>Kiper</strong> (<em>Goalkeeper / GK</em>)</td>
+                  <td>Menjaga gawang agar tidak kebobolan; satu-satunya pemain yang diperbolehkan menyentuh bola dengan tangan di dalam kotak penalti sendiri.</td>
+                </tr>
+                <tr>
+                  <td rowspan="2"><strong>Pemain Bertahan<br>(<em>Defender</em>)</strong></td>
+                  <td><strong>Bek Tengah</strong> (<em>Center Back / CB</em>)</td>
+                  <td>Menghalau serangan di area tengah pertahanan, menjaga striker lawan, dan menyapu bola udara.</td>
+                </tr>
+                <tr>
+                  <td><strong>Bek Sayap</strong> (<em>Full Back / LB &amp; RB</em>)</td>
+                  <td>Menjaga sisi kiri dan kanan pertahanan dari penetrasi winger lawan serta membantu serangan lewat umpan silang.</td>
+                </tr>
+                <tr>
+                  <td rowspan="3"><strong>Pemain Tengah<br>(<em>Midfielder</em>)</strong></td>
+                  <td><strong>Gelandang Bertahan</strong> (<em>DMF</em>)</td>
+                  <td>Berdiri di depan bek untuk memutus alur serangan lawan pertama kali dan merebut bola.</td>
+                </tr>
+                <tr>
+                  <td><strong>Gelandang Tengah</strong> (<em>CMF</em>)</td>
+                  <td>Menjaga keseimbangan transisi menyerang dan bertahan (<em>box-to-box</em>) serta mengatur tempo permainan.</td>
+                </tr>
+                <tr>
+                  <td><strong>Gelandang Serang</strong> (<em>AMF / Playmaker</em>)</td>
+                  <td>Kreator serangan yang bertugas mengirim umpan terobosan matang kepada penyerang.</td>
+                </tr>
+                <tr>
+                  <td rowspan="2"><strong>Pemain Depan<br>(<em>Forward</em>)</strong></td>
+                  <td><strong>Striker</strong> (<em>Center Forward / CF</em>)</td>
+                  <td>Ujung tombak tim yang bertugas utama mencetak gol di dalam maupun sekitar kotak penalti lawan.</td>
+                </tr>
+                <tr>
+                  <td><strong>Penyerang Sayap</strong> (<em>Winger / LWF &amp; RWF</em>)</td>
+                  <td>Menyisir sisi lapangan dengan kecepatan untuk membongkar pertahanan lawan dan melepas umpan silang (<em>crossing</em>).</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+          <div class="example-box">
+            <strong>Contoh Soal 4:</strong> Seorang pemain bertugas sebagai penghubung antara lini belakang dan lini depan sekaligus menjadi pengatur irama permainan tim. Posisi apakah yang dimaksud?<br>
+            <strong>Pembahasan:</strong> <strong>Gelandang (<em>Midfielder</em>)</strong>, khususnya gelandang tengah (<em>CMF</em>) atau gelandang serang (<em>playmaker</em>).
+          </div>
+        </article>
+
+        <!-- Sub-bab 5 -->
+        <article id="sub-5" class="sub-section">
+          <span class="sub-badge">Sub-bab 05</span>
+          <h2>Teknik Dasar &amp; Peraturan Penting</h2>
+          <p>Penguasaan teknik dasar tanpa bola maupun dengan bola merupakan fondasi utama bermain sepak bola secara efektif dan aman.</p>
+
+          <div class="principle-list">
+            <div class="principle-item">
+              <strong>1. Menendang &amp; Mengumpan (Kicking / Passing)</strong>
+              • <strong>Kaki bagian dalam:</strong> Umpan jarak pendek yang akurat.<br>
+              • <strong>Punggung kaki (kura-kura):</strong> Menembak keras ke gawang (<em>shooting</em>) &amp; umpan jauh.<br>
+              • <strong>Kaki bagian luar:</strong> Umpan melengkung atau mengecoh lawan.
+            </div>
+            <div class="principle-item">
+              <strong>2. Menghentikan / Mengontrol Bola (Controlling)</strong>
+              Menghentikan laju bola agar mudah dikuasai kembali menggunakan telapak kaki (bola datar), kaki bagian dalam, paha (bola setengah tinggi), atau dada (bola tinggi).
+            </div>
+            <div class="principle-item">
+              <strong>3. Menggiring Bola (Dribbling)</strong>
+              Membawa bola sambil berlari melewati lawan atau mencari ruang kosong menggunakan kaki bagian dalam, luar, maupun punggung kaki secara terputus-putus.
+            </div>
+            <div class="principle-item">
+              <strong>4. Menyundul Bola (Heading)</strong>
+              Memainkan bola di udara menggunakan bagian <strong>dahi (kening)</strong> dengan mata tetap terbuka dan otot leher dikuatkan agar arah bola akurat serta aman.
+            </div>
+            <div class="principle-item">
+              <strong>5. Lemparan ke Dalam (Throw-in)</strong>
+              Dilakukan saat bola keluar melewati garis samping lapangan. Bola dilempar dari belakang atas kepala dengan kedua tangan, dan kedua kaki wajib menempel di tanah.
+            </div>
+            <div class="principle-item">
+              <strong>6. Peraturan Offside &amp; Kartu Hukuman</strong>
+              • <strong>Offside:</strong> Penyerang berada di belakang pemain bertahan kedua terakhir lawan saat bola diumpan kepadanya.<br>
+              • <strong>Kartu Kuning:</strong> Peringatan keras. <strong>Kartu Merah:</strong> Dikeluarkan dari lapangan (2 kartu kuning = 1 kartu merah).
+            </div>
+          </div>
+
+          <div class="example-box">
+            <strong>Contoh Soal 5:</strong> Andi melakukan lemparan ke dalam (<em>throw-in</em>) dengan satu kaki terangkat dari tanah saat melepaskan bola. Apa keputusan wasit atas kejadian tersebut?<br>
+            <strong>Pembahasan:</strong> Lemparan dianggap <strong>tidak sah (pelanggaran <em>throw-in</em>)</strong> dan hak lemparan ke dalam berpindah kepada tim lawan, karena salah satu syarat sah <em>throw-in</em> adalah kedua telapak kaki harus tetap menyentuh tanah hingga bola terlepas dari tangan.
+          </div>
+        </article>
+
+        <!-- Navigasi Bawah -->
+        <div class="bottom-nav">
+          <a href="../index.html" class="btn-nav"><i data-lucide="layout-grid"></i> Daftar Mata Pelajaran</a>
+          <a href="pjok-bab2.html" class="btn-nav primary">Bab Selanjutnya: Lari Sprint &amp; Teknik Start <i data-lucide="arrow-right"></i></a>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <footer class="footer">
+    <div class="wrap">
+      <span>© Shira's Archive</span>
+      <span>Belajar sedikit demi sedikit, setiap hari.</span>
+    </div>
+  </footer>
+
+  <script>
+    lucide.createIcons();
+
+    // Sinkronisasi Dark Mode dengan halaman beranda
+    const themeBtn = document.getElementById("theme-toggle");
+    if (localStorage.getItem("shira-theme") === "dark") {
+      document.body.classList.add("dark");
+      themeBtn.innerHTML = '<i data-lucide="sun"></i>';
+      lucide.createIcons();
+    }
+
+    themeBtn.onclick = () => {
+      const dark = document.body.classList.toggle("dark");
+      localStorage.setItem("shira-theme", dark ? "dark" : "light");
+      themeBtn.innerHTML = '<i data-lucide="' + (dark ? "sun" : "moon") + '"></i>';
+      lucide.createIcons();
+    };
+
+    // Highlight otomatis daftar sub-bab saat halaman di-scroll
+    const sections = document.querySelectorAll(".sub-section");
+    const navLinks = document.querySelectorAll(".toc-list a");
+
+    window.addEventListener("scroll", () => {
+      let current = "";
+      sections.forEach(sec => {
+        const top = sec.offsetTop - 150;
+        if (window.scrollY >= top) current = sec.getAttribute("id");
+      });
+      navLinks.forEach(link => {
+        link.classList.remove("active");
+        if (link.getAttribute("href") === "#" + current) {
+          link.classList.add("active");
+        }
+      });
+    });
+  </script>
+</body>
+</html>

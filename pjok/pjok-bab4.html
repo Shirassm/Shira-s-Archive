@@ -1,0 +1,744 @@
+<!doctype html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Bab 4: Bahaya Penyalahgunaan NAPZA — Shira's Archive</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/lucide@0.577.0/dist/umd/lucide.min.js"></script>
+  <style>
+    :root {
+      --bg: #f5f8fd;
+      --surface: #fff;
+      --surface2: #edf4fd;
+      --text: #25334a;
+      --muted: #718099;
+      --line: #e3eaf4;
+      --blue: #537fda;
+      --blue2: #e8f0ff;
+      --shadow: 0 12px 36px rgba(48, 79, 129, .07);
+    }
+    body.dark {
+      --bg: #101827;
+      --surface: #192437;
+      --surface2: #202e45;
+      --text: #eef4ff;
+      --muted: #a7b5cb;
+      --line: #344159;
+      --blue: #8bb3ff;
+      --blue2: #263d65;
+      --shadow: 0 12px 36px rgba(0, 0, 0, .17);
+    }
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      background: var(--bg);
+      color: var(--text);
+      font-family: "Plus Jakarta Sans", sans-serif;
+      line-height: 1.7;
+      transition: background .25s, color .25s;
+    }
+    button { font-family: "Plus Jakarta Sans", sans-serif; cursor: pointer; }
+    .wrap { max-width: 1190px; margin: auto; padding: 0 28px; }
+
+    /* Header */
+    .site-header {
+      background: var(--surface);
+      border-bottom: 1px solid var(--line);
+      position: sticky;
+      top: 0;
+      z-index: 10;
+    }
+    .nav-inner {
+      min-height: 78px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+    }
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 11px;
+      font-weight: 800;
+      font-size: 18px;
+      text-decoration: none;
+      color: var(--text);
+    }
+    .brand-mark {
+      width: 38px;
+      height: 38px;
+      display: grid;
+      place-items: center;
+      border-radius: 12px;
+      background: var(--blue);
+      color: white;
+    }
+    .brand-mark svg { width: 21px; }
+    .icon-button {
+      width: 41px;
+      height: 41px;
+      border: 1px solid var(--line);
+      border-radius: 12px;
+      background: var(--surface);
+      color: var(--text);
+      display: grid;
+      place-items: center;
+    }
+    .icon-button svg { width: 19px; }
+
+    /* Breadcrumb & Judul Bab */
+    .reader-top { padding: 34px 0 24px; }
+    .back-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      color: var(--blue);
+      text-decoration: none;
+      font-weight: 700;
+      font-size: 13px;
+      margin-bottom: 18px;
+    }
+    .back-link svg { width: 17px; }
+    .eyebrow {
+      color: var(--blue);
+      font-size: 12px;
+      font-weight: 800;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+      margin: 0 0 8px;
+    }
+    .reader-top h1 {
+      font-size: clamp(28px, 4vw, 40px);
+      letter-spacing: -.04em;
+      line-height: 1.2;
+      margin: 0 0 10px;
+      font-weight: 800;
+    }
+    .reader-top p.desc {
+      color: var(--muted);
+      font-size: 14px;
+      margin: 0;
+      max-width: 680px;
+    }
+
+    /* Layout Dua Kolom: Sidebar Sub-bab + Area Baca */
+    .reader-layout {
+      display: grid;
+      grid-template-columns: 280px minmax(0, 1fr);
+      gap: 28px;
+      padding-bottom: 80px;
+      align-items: start;
+    }
+
+    /* Sidebar Daftar Sub-bab */
+    .toc-card {
+      background: var(--surface);
+      border: 1px solid var(--line);
+      border-radius: 18px;
+      padding: 20px;
+      box-shadow: var(--shadow);
+      position: sticky;
+      top: 102px;
+    }
+    .toc-title {
+      font-size: 12px;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: .08em;
+      color: var(--muted);
+      margin: 0 0 14px;
+    }
+    .toc-list {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      display: grid;
+      gap: 6px;
+    }
+    .toc-list a {
+      display: flex;
+      align-items: start;
+      gap: 9px;
+      padding: 9px 12px;
+      border-radius: 10px;
+      text-decoration: none;
+      color: var(--muted);
+      font-size: 13px;
+      font-weight: 600;
+      line-height: 1.4;
+      transition: background .2s, color .2s;
+    }
+    .toc-list a:hover {
+      background: var(--surface2);
+      color: var(--text);
+    }
+    .toc-list a.active {
+      background: var(--blue2);
+      color: var(--blue);
+      font-weight: 700;
+    }
+    .toc-num {
+      font-size: 11px;
+      font-weight: 800;
+      opacity: .8;
+      margin-top: 2px;
+    }
+
+    /* Area Konten Catatan */
+    .content-area {
+      display: grid;
+      gap: 24px;
+    }
+    .sub-section {
+      background: var(--surface);
+      border: 1px solid var(--line);
+      border-radius: 20px;
+      padding: 30px;
+      box-shadow: var(--shadow);
+      scroll-margin-top: 102px;
+    }
+    .sub-badge {
+      display: inline-block;
+      background: var(--blue2);
+      color: var(--blue);
+      font-size: 11px;
+      font-weight: 800;
+      padding: 4px 10px;
+      border-radius: 20px;
+      margin-bottom: 10px;
+    }
+    .sub-section h2 {
+      font-size: 22px;
+      letter-spacing: -.03em;
+      margin: 0 0 14px;
+    }
+    .sub-section p {
+      font-size: 14px;
+      margin: 0 0 14px;
+    }
+
+    /* Kotak Konsep & Contoh Soal */
+    .formula-box {
+      background: var(--surface2);
+      border-left: 4px solid var(--blue);
+      border-radius: 12px;
+      padding: 18px 20px;
+      margin: 18px 0;
+    }
+    .formula-box strong.box-label {
+      display: block;
+      font-size: 12px;
+      text-transform: uppercase;
+      letter-spacing: .06em;
+      color: var(--blue);
+      margin-bottom: 10px;
+    }
+    .formula-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 10px 20px;
+      font-size: 14px;
+      font-weight: 600;
+    }
+    .example-box {
+      border: 1px dashed var(--line);
+      border-radius: 12px;
+      padding: 16px 20px;
+      margin-top: 16px;
+      font-size: 13.5px;
+    }
+    .example-box strong { color: var(--blue); }
+
+    /* Tabel Materi */
+    .table-wrap {
+      overflow-x: auto;
+      margin: 16px 0;
+      border: 1px solid var(--line);
+      border-radius: 12px;
+    }
+    .data-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 13.5px;
+      text-align: left;
+    }
+    .data-table th {
+      background: var(--surface2);
+      color: var(--blue);
+      font-weight: 700;
+      padding: 12px 14px;
+      border-bottom: 1px solid var(--line);
+      white-space: nowrap;
+    }
+    .data-table td {
+      padding: 11px 14px;
+      border-bottom: 1px solid var(--line);
+      vertical-align: top;
+    }
+    .data-table tr:last-child td { border-bottom: none; }
+
+    /* Kartu Visual */
+    .visual-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 14px;
+      margin: 16px 0;
+    }
+    .visual-card {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      background: var(--surface2);
+      border: 1px solid var(--line);
+      border-radius: 14px;
+      padding: 14px;
+    }
+    .visual-thumb {
+      width: 68px;
+      height: 68px;
+      flex-shrink: 0;
+      background: var(--surface);
+      border: 1px solid var(--line);
+      border-radius: 12px;
+      display: grid;
+      place-items: center;
+      padding: 6px;
+    }
+    .visual-thumb svg {
+      width: 52px;
+      height: 52px;
+    }
+    .visual-info h3 {
+      font-size: 14px;
+      font-weight: 700;
+      margin: 0 0 4px;
+      color: var(--text);
+    }
+    .visual-info p {
+      font-size: 12.5px;
+      margin: 0;
+      color: var(--muted);
+      line-height: 1.5;
+    }
+    .visual-info .tag-ex {
+      display: inline-block;
+      margin-top: 5px;
+      font-size: 11.5px;
+      font-weight: 600;
+      color: var(--blue);
+    }
+
+    /* Kartu Grid 2 Kolom */
+    .principle-list {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 12px;
+      margin: 16px 0;
+    }
+    .principle-item {
+      background: var(--surface2);
+      border-radius: 12px;
+      padding: 13px 15px;
+      font-size: 13px;
+      line-height: 1.55;
+    }
+    .principle-item strong {
+      display: block;
+      color: var(--blue);
+      margin-bottom: 3px;
+      font-size: 13.5px;
+    }
+
+    /* Navigasi Bawah Antar Bab */
+    .bottom-nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 12px;
+      margin-top: 10px;
+    }
+    .btn-nav {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 12px 18px;
+      border-radius: 12px;
+      text-decoration: none;
+      font-size: 13px;
+      font-weight: 700;
+      border: 1px solid var(--line);
+      background: var(--surface);
+      color: var(--text);
+    }
+    .btn-nav.primary {
+      background: var(--blue);
+      color: #fff;
+      border-color: var(--blue);
+    }
+    .btn-nav svg { width: 17px; }
+
+    .footer {
+      border-top: 1px solid var(--line);
+      padding: 26px 0;
+      color: var(--muted);
+      font-size: 12px;
+    }
+    .footer .wrap {
+      display: flex;
+      justify-content: space-between;
+      gap: 12px;
+    }
+
+    @media (max-width: 860px) {
+      .reader-layout { grid-template-columns: 1fr; }
+      .toc-card { position: static; }
+      .formula-grid, .visual-grid, .principle-list { grid-template-columns: 1fr; }
+    }
+    @media (max-width: 620px) {
+      .wrap { padding: 0 18px; }
+      .sub-section { padding: 22px; }
+      .bottom-nav { flex-direction: column; align-items: stretch; }
+      .btn-nav { justify-content: center; }
+      .footer .wrap { flex-direction: column; }
+    }
+  </style>
+</head>
+<body>
+
+  <header class="site-header">
+    <div class="wrap nav-inner">
+      <a href="../index.html" class="brand" aria-label="Kembali ke Beranda Shira's Archive">
+        <span class="brand-mark"><i data-lucide="book-open"></i></span>
+        <span>Shira's Archive</span>
+      </a>
+      <button id="theme-toggle" class="icon-button" type="button" aria-label="Aktifkan tema gelap" title="Tukar tema">
+        <i data-lucide="moon"></i>
+      </button>
+    </div>
+  </header>
+
+  <main class="wrap">
+    <div class="reader-top">
+      <a href="../index.html" class="back-link"><i data-lucide="arrow-left"></i> Kembali ke Daftar Mata Pelajaran</a>
+      <p class="eyebrow">PJOK • Kelas 10 • Bab 04</p>
+      <h1>Bahaya Penyalahgunaan NAPZA</h1>
+      <p class="desc">Rangkuman lengkap pengertian NAPZA, penggolongan Narkotika, Psikotropika, dan Zat Adiktif Lainnya, klasifikasi efek kerja pada sistem saraf, dampak penyalahgunaan, dasar hukum, serta upaya pencegahan.</p>
+    </div>
+
+    <div class="reader-layout">
+      <!-- Navigasi Lompat Sub-bab (Sticky Sidebar) -->
+      <aside class="toc-card" aria-label="Daftar sub-bab">
+        <p class="toc-title">Daftar Sub-bab</p>
+        <ul class="toc-list">
+          <li><a href="#sub-1" class="active"><span class="toc-num">01</span><span>Pengertian &amp; Unsur NAPZA</span></a></li>
+          <li><a href="#sub-2"><span class="toc-num">02</span><span>Penggolongan NAPZA</span></a></li>
+          <li><a href="#sub-3"><span class="toc-num">03</span><span>Efek Kerja pada Sistem Saraf</span></a></li>
+          <li><a href="#sub-4"><span class="toc-num">04</span><span>Dampak Penyalahgunaan NAPZA</span></a></li>
+          <li><a href="#sub-5"><span class="toc-num">05</span><span>Dasar Hukum &amp; Upaya Pencegahan</span></a></li>
+        </ul>
+      </aside>
+
+      <!-- Area Baca Utama -->
+      <div class="content-area">
+
+        <!-- Sub-bab 1 -->
+        <article id="sub-1" class="sub-section">
+          <span class="sub-badge">Sub-bab 01</span>
+          <h2>Pengertian &amp; Unsur Penyusun NAPZA</h2>
+          <p><strong>NAPZA</strong> adalah singkatan dari <strong>Narkotika, Psikotropika, dan Zat Adiktif Lainnya</strong>. Semua istilah ini mengacu pada kelompok senyawa atau zat yang apabila masuk ke dalam tubuh manusia (baik diminum, dihirup, dihisap, ditelan, maupun disuntikkan) dapat memengaruhi kinerja otak dan susunan saraf pusat.</p>
+          <p>Penggunaan NAPZA secara medis diawasi secara sangat ketat oleh dokter untuk tujuan pengobatan (seperti obat bius operasi atau pereda nyeri berat). Apabila digunakan di luar pengawasan medis, zat ini menyebabkan <strong>toleransi</strong> (dosis harus terus ditambah) dan <strong>ketergantungan (adiksi)</strong> fisik maupun psikis.</p>
+
+          <div class="formula-box">
+            <strong class="box-label">Tiga Pilar Utama dalam Istilah NAPZA</strong>
+            <div class="formula-grid">
+              <div>• <strong>NA — Narkotika:</strong> Zat/obat yang berasal dari tanaman atau bukan tanaman yang menyebabkan penurunan/perubahan kesadaran, hilangnya rasa nyeri, dan ketergantungan.</div>
+              <div>• <strong>P — Psikotropika:</strong> Zat/obat bukan narkotika yang berkhasiat psikoaktif melalui pengaruh selektif pada susunan saraf pusat sehingga mengubah perilaku dan aktivitas mental.</div>
+              <div>• <strong>ZA — Zat Adiktif Lainnya:</strong> Bahan/zat bukan narkotika maupun psikotropika yang penggunaannya dapat menimbulkan ketergantungan (misalnya nikotin, alkohol, kafein).</div>
+              <div>• <strong>Istilah Hukum (Narkoba):</strong> Singkatan dari <em>Narkotika, Psikotropika, dan Bahan Adiktif Berbahaya Lainnya</em> yang digunakan oleh BNN dan Kepolisian.</div>
+            </div>
+          </div>
+
+          <div class="example-box">
+            <strong>Contoh Soal 1:</strong> Mengapa beberapa jenis obat golongan narkotika dan psikotropika tetap diproduksi secara legal di bawah pengawasan ketat pemerintah dan rumah sakit?<br>
+            <strong>Pembahasan:</strong> Karena dalam dosis terukur dan resep dokter, zat tertentu (seperti morfin atau diazepam) memiliki <strong>manfaat medis</strong> sebagai obat bius (anestesi) saat tindakan operasi maupun pereda rasa nyeri kronis pasien. Penyalahgunaan terjadi apabila zat tersebut dikonsumsi tanpa indikasi dan pengawasan medis.
+          </div>
+        </article>
+
+        <!-- Sub-bab 2 -->
+        <article id="sub-2" class="sub-section">
+          <span class="sub-badge">Sub-bab 02</span>
+          <h2>Penggolongan NAPZA Berdasarkan Undang-Undang</h2>
+          <p>Berdasarkan tingkat potensi ketergantungan dan kegunaannya dalam pelayanan kesehatan, Narkotika (UU No. 35 Tahun 2009) dan Psikotropika (UU No. 5 Tahun 1997) dibagi ke dalam beberapa golongan.</p>
+
+          <div class="table-wrap">
+            <table class="data-table">
+              <thead>
+                <tr>
+                  <th>Kategori &amp; Golongan</th>
+                  <th>Potensi Ketergantungan &amp; Kegunaan Medis</th>
+                  <th>Contoh Zat</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td><strong>Narkotika Golongan I</strong></td>
+                  <td>Potensi ketergantungan <strong>sangat tinggi</strong>. Dilarang untuk pengobatan medis; hanya digunakan untuk pengembangan ilmu pengetahuan.</td>
+                  <td>Ganja (kanabis), heroin (putaw), kokain, opium, sabu-sabu (metamfetamina), ekstasi (MDMA).</td>
+                </tr>
+                <tr>
+                  <td><strong>Narkotika Golongan II</strong></td>
+                  <td>Potensi ketergantungan <strong>tinggi</strong>. Digunakan sebagai pilihan terakhir dalam terapi pengobatan medis.</td>
+                  <td>Morfin, petidin, fentanil, metadon.</td>
+                </tr>
+                <tr>
+                  <td><strong>Narkotika Golongan III</strong></td>
+                  <td>Potensi ketergantungan <strong>ringan</strong>. Banyak digunakan dalam terapi medis dan resep dokter.</td>
+                  <td>Kodein (obat pereda batuk berat), buprenorfin.</td>
+                </tr>
+                <tr>
+                  <td><strong>Psikotropika Golongan I &amp; II</strong></td>
+                  <td>Potensi sindrom ketergantungan <strong>sangat kuat hingga kuat</strong>. Golongan I dilarang untuk terapi; Golongan II terbatas untuk medis.</td>
+                  <td>Gol. I: LSD, STP.<br>Gol. II: Amfetamin, metilfenidat (Ritalin).</td>
+                </tr>
+                <tr>
+                  <td><strong>Psikotropika Golongan III &amp; IV</strong></td>
+                  <td>Potensi sindrom ketergantungan <strong>sedang hingga ringan</strong>. Sering diresepkan dokter sebagai obat penenang atau obat tidur.</td>
+                  <td>Gol. III: Pentobarbital, flunitrazepam.<br>Gol. IV: Diazepam, alprazolam, nitrazepam.</td>
+                </tr>
+                <tr>
+                  <td><strong>Zat Adiktif Lainnya</strong></td>
+                  <td>Zat di luar narkotika &amp; psikotropika yang memicu ketagihan bila dikonsumsi berulang.</td>
+                  <td>Nikotin (rokok/vape), alkohol (etanol pada minuman keras), zat inhalansia (uap lem, tiner, bensin).</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+          <div class="example-box">
+            <strong>Contoh Soal 2:</strong> Menurut UU No. 35 Tahun 2009 tentang Narkotika, zat seperti ganja, heroin, dan kokain termasuk ke dalam Narkotika Golongan I. Apa ciri utama Narkotika Golongan I tersebut?<br>
+            <strong>Pembahasan:</strong> Memiliki <strong>potensi sangat tinggi menyebabkan ketergantungan</strong> dan <strong>tidak digunakan untuk terapi pengobatan medis</strong> (hanya boleh dipakai untuk tujuan penelitian dan pengembangan ilmu pengetahuan).
+          </div>
+        </article>
+
+        <!-- Sub-bab 3 -->
+        <article id="sub-3" class="sub-section">
+          <span class="sub-badge">Sub-bab 03</span>
+          <h2>Klasifikasi NAPZA Berdasarkan Efek Kerja pada Saraf</h2>
+          <p>Ditinjau dari cara kerjanya terhadap sistem saraf pusat manusia, NAPZA dikelompokkan menjadi tiga jenis efek utama:</p>
+
+          <div class="visual-grid">
+            <!-- 1. Stimulan -->
+            <div class="visual-card">
+              <div class="visual-thumb" aria-hidden="true">
+                <svg viewBox="0 0 64 64" fill="none" stroke="#dc2626" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round">
+                  <polygon points="34,10 18,35 31,35 28,54 46,28 33,28" fill="#dc2626" fill-opacity="0.18"/>
+                </svg>
+              </div>
+              <div class="visual-info">
+                <h3>1. Stimulan (Perangsang)</h3>
+                <p>Memacu kerja sistem saraf pusat sehingga jantung berdebar cepat, tekanan darah naik, tubuh terasa sangat berenergi, waspada berlebihan, dan sulit tidur.</p>
+                <span class="tag-ex">Contoh: Sabu-sabu, ekstasi, kokain, nikotin, kafein</span>
+              </div>
+            </div>
+
+            <!-- 2. Depresan -->
+            <div class="visual-card">
+              <div class="visual-thumb" aria-hidden="true">
+                <svg viewBox="0 0 64 64" fill="none" stroke="#537fda" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M40 16a18 18 0 1 0 10 30A15 15 0 0 1 40 16z" fill="#537fda" fill-opacity="0.18"/>
+                </svg>
+              </div>
+              <div class="visual-info">
+                <h3>2. Depresan (Penenang)</h3>
+                <p>Menekan atau memperlambat aktivitas sistem saraf pusat sehingga menurunkan kesadaran, memperlambat napas &amp; detak jantung, serta menimbulkan kantuk berat.</p>
+                <span class="tag-ex">Contoh: Morfin, heroin, alkohol, diazepam (obat penenang)</span>
+              </div>
+            </div>
+
+            <!-- 3. Halusinogen -->
+            <div class="visual-card">
+              <div class="visual-thumb" aria-hidden="true">
+                <svg viewBox="0 0 64 64" fill="none" stroke="#537fda" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M10 32c6-10 14-15 22-15s16 5 22 15c-6 10-14 15-22 15S16 42 10 32z"/>
+                  <circle cx="32" cy="32" r="6" fill="#537fda" fill-opacity="0.25"/>
+                </svg>
+              </div>
+              <div class="visual-info">
+                <h3>3. Halusinogen (Pengacau Persepsi)</h3>
+                <p>Mengubah daya persepsi pancaindra sehingga pengguna melihat, mendengar, atau merasakan sesuatu yang sebenarnya tidak nyata (halusinasi).</p>
+                <span class="tag-ex">Contoh: Ganja, LSD, jamur kotoran sapi (magic mushroom)</span>
+              </div>
+            </div>
+
+            <!-- 4. Gejala Putus Zat -->
+            <div class="visual-card">
+              <div class="visual-thumb" aria-hidden="true">
+                <svg viewBox="0 0 64 64" fill="none" stroke="#dc2626" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round">
+                  <polygon points="32,12 54,50 10,50" fill="#dc2626" fill-opacity="0.12"/>
+                  <line x1="32" y1="25" x2="32" y2="37"/>
+                  <circle cx="32" cy="43" r="1.8" fill="#dc2626"/>
+                </svg>
+              </div>
+              <div class="visual-info">
+                <h3>4. Sakau (Gejala Putus Zat / Withdrawal)</h3>
+                <p>Reaksi menyakitkan pada fisik dan psikis (nyeri sendi, kejang, menggigil, gelisah hebat) ketika pecandu menghentikan pemakaian obat secara mendadak.</p>
+                <span class="tag-ex">Memerlukan penanganan rehabilitasi medis</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="example-box">
+            <strong>Contoh Soal 3:</strong> Zat golongan stimulan dan depresan memiliki cara kerja yang berlawanan pada tubuh manusia. Jelaskan perbedaan utama keduanya beserta masing-masing dua contohnya!<br>
+            <strong>Pembahasan:</strong> <strong>Stimulan</strong> mempercepat kerja sistem saraf pusat dan detak jantung (contoh: sabu-sabu, kokain, nikotin), sedangkan <strong>Depresan</strong> memperlambat kerja sistem saraf pusat sehingga menimbulkan efek tenang hingga kantuk berat (contoh: alkohol, morfin, diazepam).
+          </div>
+        </article>
+
+        <!-- Sub-bab 4 -->
+        <article id="sub-4" class="sub-section">
+          <span class="sub-badge">Sub-bab 04</span>
+          <h2>Dampak Buruk Penyalahgunaan NAPZA</h2>
+          <p>Penyalahgunaan NAPZA tidak hanya merusak kesehatan organ tubuh penggunanya, tetapi juga menghancurkan kondisi kejiwaan serta masa depan sosialnya.</p>
+
+          <div class="principle-list">
+            <div class="principle-item">
+              <strong>1. Dampak Fisik (Kesehatan Tubuh)</strong>
+              • Kerusakan permanen sel-sel otak dan gangguan sistem saraf.<br>
+              • Kerusakan organ hati (sirosis), gagal ginjal, gangguan jantung, dan infeksi paru-paru.<br>
+              • Risiko tertular HIV/AIDS dan Hepatitis B/C akibat penggunaan jarum suntik bersama, hingga kematian akibat overdosis.
+            </div>
+            <div class="principle-item">
+              <strong>2. Dampak Psikis (Mental &amp; Emosi)</strong>
+              • Sulit berkonsentrasi, daya ingat menurun drastis, dan lamban dalam berpikir.<br>
+              • Emosi tidak stabil (mudah tersinggung, agresif, paranoid/curiga berlebihan).<br>
+              • Depresi berat, kecemasan akut, hingga munculnya dorongan menyakiti diri sendiri.
+            </div>
+            <div class="principle-item">
+              <strong>3. Dampak Sosial &amp; Pendidikan</strong>
+              • Prestasi akademik merosot tajam hingga putus sekolah.<br>
+              • Hubungan dengan keluarga dan teman menjadi retak karena hilangnya rasa percaya.<br>
+              • Dikucilkan dari pergaulan masyarakat sekitar.
+            </div>
+            <div class="principle-item">
+              <strong>4. Dampak Ekonomi &amp; Hukum</strong>
+              • Menguras keuangan pribadi dan keluarga untuk membeli zat terlarang.<br>
+              • Mendorong tindakan kriminal (mencuri, menipu) demi mendapatkan uang.<br>
+              • Terjerat hukuman pidana penjara serta denda berat sesuai undang-undang.
+            </div>
+          </div>
+
+          <div class="example-box">
+            <strong>Contoh Soal 4:</strong> Selain kerusakan organ dalam seperti otak dan hati, penyalahgunaan NAPZA melalui jarum suntik bergantian sangat berisiko menularkan penyakit menular berbahaya. Penyakit apakah yang dimaksud?<br>
+            <strong>Pembahasan:</strong> <strong>HIV/AIDS</strong> serta <strong>Hepatitis B dan Hepatitis C</strong>, karena virus tersebut menular langsung melalui darah yang menempel pada jarum suntik yang dipakai secara bersama-sama.
+          </div>
+        </article>
+
+        <!-- Sub-bab 5 -->
+        <article id="sub-5" class="sub-section">
+          <span class="sub-badge">Sub-bab 05</span>
+          <h2>Dasar Hukum &amp; Upaya Pencegahan di Kalangan Pelajar</h2>
+          <p>Pemerintah Indonesia mengatur sanksi tegas terhadap peredaran gelap dan penyalahgunaan narkotika melalui <strong>UU No. 35 Tahun 2009 tentang Narkotika</strong>, dengan lembaga pelaksana utama <strong>BNN (Badan Narkotika Nasional)</strong>.</p>
+
+          <div class="table-wrap">
+            <table class="data-table">
+              <thead>
+                <tr>
+                  <th>Tingkat Pencegahan</th>
+                  <th>Sasaran &amp; Fokus Tindakan</th>
+                  <th>Contoh Penerapan Nyata</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td><strong>Pencegahan Primer<br>(<em>Primary Prevention</em>)</strong></td>
+                  <td>Ditujukan kepada remaja/masyarakat sehat yang <strong>belum pernah menyentuh NAPZA</strong> agar tidak terjerumus.</td>
+                  <td>Penyuluhan bahaya NAPZA di sekolah, memperkuat iman &amp; karakter, memilih lingkungan teman yang sehat, aktif berolahraga dan ekstrakurikuler.</td>
+                </tr>
+                <tr>
+                  <td><strong>Pencegahan Sekunder<br>(<em>Secondary Prevention</em>)</strong></td>
+                  <td>Ditujukan kepada individu yang baru mulai mencoba-coba (<em>tahap awal/rentan</em>) agar segera berhenti.</td>
+                  <td>Deteksi dini melalui tes urine, layanan konseling guru BK / psikolog, serta pendampingan intensif oleh keluarga.</td>
+                </tr>
+                <tr>
+                  <td><strong>Pencegahan Tersier<br>(<em>Tertiary Prevention</em>)</strong></td>
+                  <td>Ditujukan kepada pengguna yang sudah mengalami ketergantungan (pecandu) agar pulih dan tidak kambuh (<em>relapse</em>).</td>
+                  <td>Program <strong>rehabilitasi medis dan rehabilitasi sosial</strong> di panti rehabilitasi BNN atau rumah sakit rujukan.</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+          <div class="formula-box">
+            <strong class="box-label">5 Langkah Benteng Diri Pelajar Anti-NAPZA</strong>
+            <p style="margin:0; font-size:13.5px;">
+              1. <strong>Mempertebal keimanan dan ketakwaan</strong> kepada Tuhan Yang Maha Esa.<br>
+              2. <strong>Menjalin komunikasi terbuka</strong> dengan orang tua dan guru apabila menghadapi tekanan atau masalah.<br>
+              3. <strong>Selektif memilih pergaulan</strong> dan berani berkata <strong>"TIDAK"</strong> secara tegas terhadap tawaran rokok, minuman keras, maupun obat terlarang.<br>
+              4. <strong>Mengisi waktu luang dengan kegiatan positif</strong> seperti olahraga, seni, organisasi siswa, atau hobi produktif.<br>
+              5. <strong>Memahami konsekuensi kesehatan dan hukum</strong> yang dapat menghancurkan cita-cita masa depan.
+            </p>
+          </div>
+
+          <div class="example-box">
+            <strong>Contoh Soal 5:</strong> Kegiatan sosialisasi anti-narkoba di sekolah serta pembinaan kegiatan olahraga bagi pelajar kelas X agar tidak terjerumus penyalahgunaan obat terlarang termasuk ke dalam tingkatan pencegahan apa?<br>
+            <strong>Pembahasan:</strong> <strong>Pencegahan Primer (<em>Primary Prevention</em>)</strong>, karena sasarannya adalah pelajar yang belum pernah menggunakan NAPZA agar memiliki ketahanan diri dan pengetahuan untuk menjauhinya sejak dini.
+          </div>
+        </article>
+
+        <!-- Navigasi Bawah -->
+        <div class="bottom-nav">
+          <a href="pjok-bab3.html" class="btn-nav"><i data-lucide="arrow-left"></i> Bab Sebelumnya: Kebugaran Jasmani</a>
+          <a href="../index.html" class="btn-nav primary"><i data-lucide="check-circle"></i> Selesai • Kembali ke Daftar Mata Pelajaran</a>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <footer class="footer">
+    <div class="wrap">
+      <span>© Shira's Archive</span>
+      <span>Belajar sedikit demi sedikit, setiap hari.</span>
+    </div>
+  </footer>
+
+  <script>
+    lucide.createIcons();
+
+    // Sinkronisasi Dark Mode dengan halaman beranda
+    const themeBtn = document.getElementById("theme-toggle");
+    if (localStorage.getItem("shira-theme") === "dark") {
+      document.body.classList.add("dark");
+      themeBtn.innerHTML = '<i data-lucide="sun"></i>';
+      lucide.createIcons();
+    }
+
+    themeBtn.onclick = () => {
+      const dark = document.body.classList.toggle("dark");
+      localStorage.setItem("shira-theme", dark ? "dark" : "light");
+      themeBtn.innerHTML = '<i data-lucide="' + (dark ? "sun" : "moon") + '"></i>';
+      lucide.createIcons();
+    };
+
+    // Highlight otomatis daftar sub-bab saat halaman di-scroll
+    const sections = document.querySelectorAll(".sub-section");
+    const navLinks = document.querySelectorAll(".toc-list a");
+
+    window.addEventListener("scroll", () => {
+      let current = "";
+      sections.forEach(sec => {
+        const top = sec.offsetTop - 150;
+        if (window.scrollY >= top) current = sec.getAttribute("id");
+      });
+      navLinks.forEach(link => {
+        link.classList.remove("active");
+        if (link.getAttribute("href") === "#" + current) {
+          link.classList.add("active");
+        }
+      });
+    });
+  </script>
+</body>
+</html>

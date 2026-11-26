@@ -1,0 +1,826 @@
+<!doctype html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Bab 3: Struktur Kontrol (Percabangan &amp; Perulangan) — Shira's Archive</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/lucide@0.577.0/dist/umd/lucide.min.js"></script>
+  <style>
+    :root {
+      --bg: #f5f8fd;
+      --surface: #fff;
+      --surface2: #edf4fd;
+      --text: #25334a;
+      --muted: #718099;
+      --line: #e3eaf4;
+      --blue: #537fda;
+      --blue2: #e8f0ff;
+      --code-bg: #162033;
+      --code-text: #e2e8f0;
+      --shadow: 0 12px 36px rgba(48, 79, 129, .07);
+    }
+    body.dark {
+      --bg: #101827;
+      --surface: #192437;
+      --surface2: #202e45;
+      --text: #eef4ff;
+      --muted: #a7b5cb;
+      --line: #344159;
+      --blue: #8bb3ff;
+      --blue2: #263d65;
+      --code-bg: #0b111e;
+      --code-text: #eef4ff;
+      --shadow: 0 12px 36px rgba(0, 0, 0, .17);
+    }
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      background: var(--bg);
+      color: var(--text);
+      font-family: "Plus Jakarta Sans", sans-serif;
+      line-height: 1.7;
+      transition: background .25s, color .25s;
+    }
+    button, input, select { font-family: "Plus Jakarta Sans", sans-serif; }
+    button { cursor: pointer; }
+    .wrap { max-width: 1190px; margin: auto; padding: 0 28px; }
+
+    /* Header */
+    .site-header {
+      background: var(--surface);
+      border-bottom: 1px solid var(--line);
+      position: sticky;
+      top: 0;
+      z-index: 10;
+    }
+    .nav-inner {
+      min-height: 78px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+    }
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 11px;
+      font-weight: 800;
+      font-size: 18px;
+      text-decoration: none;
+      color: var(--text);
+    }
+    .brand-mark {
+      width: 38px;
+      height: 38px;
+      display: grid;
+      place-items: center;
+      border-radius: 12px;
+      background: var(--blue);
+      color: white;
+    }
+    .brand-mark svg { width: 21px; }
+    .icon-button {
+      width: 41px;
+      height: 41px;
+      border: 1px solid var(--line);
+      border-radius: 12px;
+      background: var(--surface);
+      color: var(--text);
+      display: grid;
+      place-items: center;
+    }
+    .icon-button svg { width: 19px; }
+
+    /* Breadcrumb & Judul Bab */
+    .reader-top { padding: 34px 0 24px; }
+    .back-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      color: var(--blue);
+      text-decoration: none;
+      font-weight: 700;
+      font-size: 13px;
+      margin-bottom: 18px;
+    }
+    .back-link svg { width: 17px; }
+    .eyebrow {
+      color: var(--blue);
+      font-size: 12px;
+      font-weight: 800;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+      margin: 0 0 8px;
+    }
+    .reader-top h1 {
+      font-size: clamp(28px, 4vw, 40px);
+      letter-spacing: -.04em;
+      line-height: 1.2;
+      margin: 0 0 10px;
+      font-weight: 800;
+    }
+    .reader-top p.desc {
+      color: var(--muted);
+      font-size: 14px;
+      margin: 0;
+      max-width: 680px;
+    }
+
+    /* Layout Dua Kolom: Sidebar Sub-bab + Area Baca */
+    .reader-layout {
+      display: grid;
+      grid-template-columns: 280px minmax(0, 1fr);
+      gap: 28px;
+      padding-bottom: 80px;
+      align-items: start;
+    }
+
+    /* Sidebar Daftar Sub-bab */
+    .toc-card {
+      background: var(--surface);
+      border: 1px solid var(--line);
+      border-radius: 18px;
+      padding: 20px;
+      box-shadow: var(--shadow);
+      position: sticky;
+      top: 102px;
+    }
+    .toc-title {
+      font-size: 12px;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: .08em;
+      color: var(--muted);
+      margin: 0 0 14px;
+    }
+    .toc-list {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      display: grid;
+      gap: 6px;
+    }
+    .toc-list a {
+      display: flex;
+      align-items: start;
+      gap: 9px;
+      padding: 9px 12px;
+      border-radius: 10px;
+      text-decoration: none;
+      color: var(--muted);
+      font-size: 13px;
+      font-weight: 600;
+      line-height: 1.4;
+      transition: background .2s, color .2s;
+    }
+    .toc-list a:hover {
+      background: var(--surface2);
+      color: var(--text);
+    }
+    .toc-list a.active {
+      background: var(--blue2);
+      color: var(--blue);
+      font-weight: 700;
+    }
+    .toc-num {
+      font-size: 11px;
+      font-weight: 800;
+      opacity: .8;
+      margin-top: 2px;
+    }
+
+    /* Area Konten Catatan */
+    .content-area {
+      display: grid;
+      gap: 24px;
+    }
+    .sub-section {
+      background: var(--surface);
+      border: 1px solid var(--line);
+      border-radius: 20px;
+      padding: 30px;
+      box-shadow: var(--shadow);
+      scroll-margin-top: 102px;
+    }
+    .sub-badge {
+      display: inline-block;
+      background: var(--blue2);
+      color: var(--blue);
+      font-size: 11px;
+      font-weight: 800;
+      padding: 4px 10px;
+      border-radius: 20px;
+      margin-bottom: 10px;
+    }
+    .sub-section h2 {
+      font-size: 22px;
+      letter-spacing: -.03em;
+      margin: 0 0 14px;
+    }
+    .sub-section p {
+      font-size: 14px;
+      margin: 0 0 14px;
+    }
+
+    /* Kotak Konsep & Contoh Soal */
+    .formula-box {
+      background: var(--surface2);
+      border-left: 4px solid var(--blue);
+      border-radius: 12px;
+      padding: 18px 20px;
+      margin: 18px 0;
+    }
+    .formula-box strong.box-label {
+      display: block;
+      font-size: 12px;
+      text-transform: uppercase;
+      letter-spacing: .06em;
+      color: var(--blue);
+      margin-bottom: 10px;
+    }
+    .formula-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 10px 20px;
+      font-size: 14px;
+      font-weight: 600;
+    }
+    .example-box {
+      border: 1px dashed var(--line);
+      border-radius: 12px;
+      padding: 16px 20px;
+      margin-top: 16px;
+      font-size: 13.5px;
+    }
+    .example-box strong { color: var(--blue); }
+
+    /* Blok Kode & Simulator Interaktif */
+    .code-playground {
+      background: var(--surface2);
+      border: 1px solid var(--line);
+      border-radius: 14px;
+      padding: 18px;
+      margin: 18px 0;
+    }
+    .playground-head {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 10px;
+      flex-wrap: wrap;
+    }
+    .playground-title {
+      font-size: 12px;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: .06em;
+      color: var(--blue);
+    }
+    .code-block {
+      background: var(--code-bg);
+      color: var(--code-text);
+      font-family: "JetBrains Mono", monospace;
+      font-size: 13px;
+      line-height: 1.6;
+      padding: 16px;
+      border-radius: 11px;
+      overflow-x: auto;
+      margin: 0 0 14px;
+      white-space: pre;
+    }
+    .sim-controls {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      align-items: center;
+    }
+    .sim-input, .sim-select {
+      background: var(--surface);
+      border: 1px solid var(--line);
+      color: var(--text);
+      border-radius: 10px;
+      padding: 9px 13px;
+      font-size: 13px;
+      min-width: 115px;
+    }
+    .btn-run {
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      background: var(--blue);
+      color: #fff;
+      border: 0;
+      border-radius: 10px;
+      padding: 9px 16px;
+      font-size: 13px;
+      font-weight: 700;
+      transition: opacity .2s;
+    }
+    .btn-run:hover { opacity: .9; }
+    .btn-run svg { width: 15px; height: 15px; }
+    .sim-output {
+      margin-top: 12px;
+      background: var(--surface);
+      border: 1px solid var(--line);
+      border-left: 4px solid #37a77d;
+      border-radius: 10px;
+      padding: 11px 14px;
+      font-family: "JetBrains Mono", monospace;
+      font-size: 12.5px;
+      color: var(--text);
+      display: none;
+      line-height: 1.6;
+    }
+    .sim-output.show { display: block; }
+
+    /* Tabel Materi */
+    .table-wrap {
+      overflow-x: auto;
+      margin: 16px 0;
+      border: 1px solid var(--line);
+      border-radius: 12px;
+    }
+    .data-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 13.5px;
+      text-align: left;
+    }
+    .data-table th {
+      background: var(--surface2);
+      color: var(--blue);
+      font-weight: 700;
+      padding: 12px 14px;
+      border-bottom: 1px solid var(--line);
+      white-space: nowrap;
+    }
+    .data-table td {
+      padding: 11px 14px;
+      border-bottom: 1px solid var(--line);
+      vertical-align: top;
+    }
+    .data-table tr:last-child td { border-bottom: none; }
+
+    /* Kartu Grid 2 Kolom */
+    .principle-list {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 12px;
+      margin: 16px 0;
+    }
+    .principle-item {
+      background: var(--surface2);
+      border-radius: 12px;
+      padding: 13px 15px;
+      font-size: 13px;
+      line-height: 1.55;
+    }
+    .principle-item strong {
+      display: block;
+      color: var(--blue);
+      margin-bottom: 3px;
+      font-size: 13.5px;
+    }
+
+    /* Navigasi Bawah Antar Bab */
+    .bottom-nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 12px;
+      margin-top: 10px;
+    }
+    .btn-nav {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 12px 18px;
+      border-radius: 12px;
+      text-decoration: none;
+      font-size: 13px;
+      font-weight: 700;
+      border: 1px solid var(--line);
+      background: var(--surface);
+      color: var(--text);
+    }
+    .btn-nav.primary {
+      background: var(--blue);
+      color: #fff;
+      border-color: var(--blue);
+    }
+    .btn-nav svg { width: 17px; }
+
+    .footer {
+      border-top: 1px solid var(--line);
+      padding: 26px 0;
+      color: var(--muted);
+      font-size: 12px;
+    }
+    .footer .wrap {
+      display: flex;
+      justify-content: space-between;
+      gap: 12px;
+    }
+
+    @media (max-width: 860px) {
+      .reader-layout { grid-template-columns: 1fr; }
+      .toc-card { position: static; }
+      .formula-grid, .principle-list { grid-template-columns: 1fr; }
+    }
+    @media (max-width: 620px) {
+      .wrap { padding: 0 18px; }
+      .sub-section { padding: 22px; }
+      .bottom-nav { flex-direction: column; align-items: stretch; }
+      .btn-nav { justify-content: center; }
+      .footer .wrap { flex-direction: column; }
+    }
+  </style>
+</head>
+<body>
+
+  <header class="site-header">
+    <div class="wrap nav-inner">
+      <a href="../index.html" class="brand" aria-label="Kembali ke Beranda Shira's Archive">
+        <span class="brand-mark"><i data-lucide="book-open"></i></span>
+        <span>Shira's Archive</span>
+      </a>
+      <button id="theme-toggle" class="icon-button" type="button" aria-label="Aktifkan tema gelap" title="Tukar tema">
+        <i data-lucide="moon"></i>
+      </button>
+    </div>
+  </header>
+
+  <main class="wrap">
+    <div class="reader-top">
+      <a href="../index.html" class="back-link"><i data-lucide="arrow-left"></i> Kembali ke Daftar Mata Pelajaran</a>
+      <p class="eyebrow">Koding • Kelas 10 • Bab 03</p>
+      <h1>Struktur Kontrol: Percabangan &amp; Perulangan</h1>
+      <p class="desc">Aturan indentasi blok kode Python, percabangan if-elif-else, jebakan urutan kondisi, perulangan pasti for dengan range(), nested loop, serta perulangan bersyarat while dan cara mencegah infinite loop.</p>
+    </div>
+
+    <div class="reader-layout">
+      <!-- Navigasi Lompat Sub-bab (Sticky Sidebar) -->
+      <aside class="toc-card" aria-label="Daftar sub-bab">
+        <p class="toc-title">Daftar Sub-bab</p>
+        <ul class="toc-list">
+          <li><a href="#sub-1" class="active"><span class="toc-num">01</span><span>Indentasi &amp; Percabangan if-elif-else</span></a></li>
+          <li><a href="#sub-2"><span class="toc-num">02</span><span>Jebakan Urutan Kondisi</span></a></li>
+          <li><a href="#sub-3"><span class="toc-num">03</span><span>Perulangan for &amp; Fungsi range()</span></a></li>
+          <li><a href="#sub-4"><span class="toc-num">04</span><span>Nested Loop &amp; Indentasi Loop</span></a></li>
+          <li><a href="#sub-5"><span class="toc-num">05</span><span>Perulangan while &amp; Infinite Loop</span></a></li>
+        </ul>
+      </aside>
+
+      <!-- Area Baca Utama -->
+      <div class="content-area">
+
+        <!-- Sub-bab 1 -->
+        <article id="sub-1" class="sub-section">
+          <span class="sub-badge">Sub-bab 01</span>
+          <h2>Aturan Indentasi &amp; Percabangan <code>if - elif - else</code></h2>
+          <p>Berbeda dengan C++ yang memakai kurung kurawal <code>{ ... }</code>, Python menggunakan <strong>titik dua (<code>:</code>)</strong> di akhir pernyataan syarat dan <strong>indentasi</strong> (spasi atau tab menjorok ke dalam di awal baris) untuk menandai kelompok blok kode tertentu.</p>
+
+          <div class="principle-list">
+            <div class="principle-item">
+              <strong>1. <code>if</code> (Kondisi Pertama)</strong>
+              Memeriksa syarat utama. Jika bernilai <code>False</code> pada <code>if</code> tunggal, blok di dalamnya dilewati dan program lanjut ke baris berikutnya.
+            </div>
+            <div class="principle-item">
+              <strong>2. <code>elif</code> (Else If)</strong>
+              Memeriksa syarat alternatif berikutnya apabila kondisi sebelumnya bernilai <code>False</code>. Dipilih saat kondisi bersifat <em>mutually exclusive</em> (hanya satu yang boleh berjalan).
+            </div>
+            <div class="principle-item">
+              <strong>3. <code>else</code> (Alternatif Terakhir)</strong>
+              Menampung instruksi cadangan yang dijalankan apabila <strong>seluruh kondisi <code>if</code> dan <code>elif</code> di atasnya bernilai <code>False</code></strong>.
+            </div>
+            <div class="principle-item">
+              <strong>4. Wajib Titik Dua (<code>:</code>)</strong>
+              Lupa menuliskan tanda titik dua <code>:</code> setelah baris <code>if</code>, <code>elif</code>, atau <code>else</code> akan langsung memicu <code>SyntaxError</code>.
+            </div>
+          </div>
+
+          <div class="code-playground">
+            <div class="playground-head">
+              <span class="playground-title">Simulator Percabangan Nilai Grade (Soal No. 61)</span>
+            </div>
+            <pre class="code-block">nilai = int(input("Masukkan nilai: "))
+if nilai >= 88:
+    print("Grade A")
+elif nilai >= 75:
+    print("Grade B")
+else:
+    print("Grade C")</pre>
+            <div class="sim-controls">
+              <input id="sim-grade-in" class="sim-input" type="number" placeholder="Nilai (0-100)" value="78">
+              <button class="btn-run" type="button" onclick="runSimGrade()"><i data-lucide="play"></i> Cek Grade</button>
+            </div>
+            <div id="sim-grade-out" class="sim-output"></div>
+          </div>
+
+          <div class="example-box">
+            <strong>Contoh Soal 1:</strong> Perhatikan kode: <code>if belanja &gt;= 100000</code> (tanpa titik dua) lalu di bawahnya <code>print("Dapat Souvenir")</code>. Mengapa kode tersebut memunculkan <code>SyntaxError</code>?<br>
+            <strong>Pembahasan:</strong> Karena <strong>tanda titik dua (<code>:</code>) tidak dituliskan di akhir baris pernyataan <code>if</code></strong>.
+          </div>
+        </article>
+
+        <!-- Sub-bab 2 -->
+        <article id="sub-2" class="sub-section">
+          <span class="sub-badge">Sub-bab 02</span>
+          <h2>Jebakan Urutan Kondisi pada <code>if - elif - else</code></h2>
+          <p><strong>Aturan penting:</strong> Python membaca percabangan dari atas ke bawah dan akan <strong>langsung berhenti mengecek begitu menemukan kondisi pertama yang bernilai <code>True</code></strong>. Oleh karena itu, syarat rentang angka harus disusun dari <strong>nilai tertinggi ke terendah</strong>.</p>
+
+          <div class="code-playground">
+            <div class="playground-head">
+              <span class="playground-title">Simulator Jebakan Urutan Syarat (Soal No. 65)</span>
+            </div>
+            <pre class="code-block"># Bandingkan urutan SALAH (kecil ke besar) vs BENAR (besar ke kecil):
+skor = 92
+if skor >= 70:          # 92 >= 70 sudah True di baris pertama!
+    print("LULUS")      # Maka 'CUMLAUDE' di bawah tidak pernah tersentuh!
+elif skor >= 90:
+    print("CUMLAUDE")
+else:
+    print("GAGAL")</pre>
+            <div class="sim-controls">
+              <input id="sim-trap-skor" class="sim-input" type="number" value="92">
+              <select id="sim-trap-mode" class="sim-select">
+                <option value="wrong">Urutan Terbalik (>=70 dulu)</option>
+                <option value="right">Urutan Benar (>=90 dulu)</option>
+              </select>
+              <button class="btn-run" type="button" onclick="runSimTrap()"><i data-lucide="play"></i> Jalankan</button>
+            </div>
+            <div id="sim-trap-out" class="sim-output"></div>
+          </div>
+
+          <div class="example-box">
+            <strong>Contoh Soal 2:</strong> Jika <code>skor = 92</code> dijalankan pada struktur <code>if skor &gt;= 70: print("LULUS")</code> diikuti <code>elif skor &gt;= 90: print("CUMLAUDE")</code>, apakah output yang tercetak?<br>
+            <strong>Pembahasan:</strong> <strong><code>LULUS</code></strong>, karena kondisi pertama <code>skor &gt;= 70</code> sudah terpenuhi lebih dahulu sehingga blok <code>elif</code> di bawahnya dilewati.
+          </div>
+        </article>
+
+        <!-- Sub-bab 3 -->
+        <article id="sub-3" class="sub-section">
+          <span class="sub-badge">Sub-bab 03</span>
+          <h2>Perulangan <code>for</code> &amp; Fungsi <code>range()</code></h2>
+          <p>Perulangan <strong><code>for</code></strong> digunakan ketika <strong>jumlah pengulangan (iterasi) sudah pasti diketahui sejak awal</strong>. Fungsi <code>range(start, stop, step)</code> menghasilkan deret bilangan bulat dengan aturan baku: <strong>batas akhir (<code>stop</code>) tidak pernah ikut dicetak</strong>.</p>
+
+          <div class="table-wrap">
+            <table class="data-table">
+              <thead>
+                <tr>
+                  <th>Bentuk <code>range()</code></th>
+                  <th>Aturan Kerja</th>
+                  <th>Deret Angka yang Dihasilkan</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td><code>range(4)</code></td>
+                  <td>Mulai dari <code>0</code>, berhenti sebelum <code>4</code> (<code>stop - 1</code>).</td>
+                  <td><code>0, 1, 2, 3</code></td>
+                </tr>
+                <tr>
+                  <td><code>range(1, 16)</code></td>
+                  <td>Mulai dari <code>1</code>, berhenti sebelum <code>16</code>.</td>
+                  <td><code>1, 2, 3, ..., 15</code></td>
+                </tr>
+                <tr>
+                  <td><code>range(3, 13, 3)</code></td>
+                  <td>Mulai dari <code>3</code>, loncat <code>+3</code>, berhenti sebelum <code>13</code>.</td>
+                  <td><code>3, 6, 9, 12</code></td>
+                </tr>
+                <tr>
+                  <td><code>range(10, 0, -2)</code></td>
+                  <td>Hitung mundur dari <code>10</code>, kurangi <code>2</code>, berhenti sebelum <code>0</code>.</td>
+                  <td><code>10, 8, 6, 4, 2</code></td>
+                </tr>
+                <tr>
+                  <td><code>list(range(5, 5))</code></td>
+                  <td>Batas awal sama dengan batas akhir (tidak ada langkah).</td>
+                  <td><code>[]</code> (list kosong)</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+          <div class="code-playground">
+            <div class="playground-head">
+              <span class="playground-title">Simulator Interaktif range(start, stop, step)</span>
+            </div>
+            <pre class="code-block">for x in range(start, stop, step):
+    print(x, end=" ")</pre>
+            <div class="sim-controls">
+              <input id="sim-r-start" class="sim-input" type="number" placeholder="start" value="3">
+              <input id="sim-r-stop" class="sim-input" type="number" placeholder="stop" value="13">
+              <input id="sim-r-step" class="sim-input" type="number" placeholder="step" value="3">
+              <button class="btn-run" type="button" onclick="runSimRange()"><i data-lucide="play"></i> Cetak Deret</button>
+            </div>
+            <div id="sim-range-out" class="sim-output"></div>
+          </div>
+
+          <div class="example-box">
+            <strong>Contoh Soal 3:</strong> Untuk menghasilkan urutan angka ganjil <code>1, 3, 5, 7, 9</code> menggunakan fungsi <code>range()</code>, penulisan parameter manakah yang tepat?<br>
+            <strong>Pembahasan:</strong> <strong><code>range(1, 10, 2)</code></strong>, karena dimulai dari angka <code>1</code>, bertambah <code>2</code> setiap langkah, dan berhenti tepat sebelum angka <code>10</code> (yaitu di <code>9</code>).
+          </div>
+        </article>
+
+        <!-- Sub-bab 4 -->
+        <article id="sub-4" class="sub-section">
+          <span class="sub-badge">Sub-bab 04</span>
+          <h2>Nested Loop (Perulangan Bersarang) &amp; Indentasi</h2>
+          <p>Dalam perulangan bersarang (<em>nested loop</em>), satu siklus lengkap perulangan bagian dalam (<em>inner loop</em>) akan dijalankan untuk setiap satu langkah perulangan bagian luar (<em>outer loop</em>). Total eksekusinya adalah hasil perkalian jumlah iterasi keduanya.</p>
+
+          <div class="formula-box">
+            <strong class="box-label">Perhatikan Posisi Indentasi Baris print()!</strong>
+            <div class="formula-grid">
+              <div>• <strong>Kasus A (Soal No. 79):</strong><br><code>for i in range(4):</code><br><code>    print("Proses")</code> ← Di dalam loop (4x)<br><code>print("Selesai")</code> ← Di luar loop (1x)<br><em>Total tercetak = <strong>5 baris</strong>.</em></div>
+              <div>• <strong>Kasus B (Soal No. 80):</strong><br><code>for i in range(2):</code><br><code>    for j in range(3):</code><br><code>        print("Hello")</code> ← 2 × 3 = <strong>6 kali</strong>!</div>
+            </div>
+          </div>
+
+          <div class="code-playground">
+            <div class="playground-head">
+              <span class="playground-title">Simulator Nested Loop (outer × inner)</span>
+            </div>
+            <pre class="code-block">for i in range(outer):
+    for j in range(inner):
+        print("Hello")</pre>
+            <div class="sim-controls">
+              <input id="sim-nl-out" class="sim-input" type="number" min="1" max="10" value="2">
+              <input id="sim-nl-in" class="sim-input" type="number" min="1" max="10" value="3">
+              <button class="btn-run" type="button" onclick="runSimNested()"><i data-lucide="play"></i> Hitung Eksekusi</button>
+            </div>
+            <div id="sim-nested-out" class="sim-output"></div>
+          </div>
+
+          <div class="example-box">
+            <strong>Contoh Soal 4:</strong> Berapa kali kata <code>"Hello"</code> dicetak pada kode <code>for i in range(2):</code> yang di dalamnya berisi <code>for j in range(3): print("Hello")</code>?<br>
+            <strong>Pembahasan:</strong> <strong>6 kali</strong>, berasal dari perkalian <code>2 × 3 = 6</code> iterasi.
+          </div>
+        </article>
+
+        <!-- Sub-bab 5 -->
+        <article id="sub-5" class="sub-section">
+          <span class="sub-badge">Sub-bab 05</span>
+          <h2>Perulangan <code>while</code> &amp; Pencegahan <em>Infinite Loop</em></h2>
+          <p>Berbeda dengan <code>for</code> yang jumlah putarannya pasti, perulangan <strong><code>while</code></strong> terus mengulang blok kode <strong>selama syarat kondisinya masih bernilai <code>True</code></strong>, dan berhenti ketika syarat berubah menjadi <code>False</code>.</p>
+          <p><strong>Bahaya Infinite Loop:</strong> Jika variabel penghitung di dalam blok <code>while</code> tidak pernah diubah (misalnya lupa menulis <code>c = c + 1</code>), syarat akan selalu <code>True</code> sehingga program berulang terus-menerus tanpa henti.</p>
+
+          <div class="code-playground">
+            <div class="playground-head">
+              <span class="playground-title">Simulator While Loop: Tanpa Update vs Pakai c = c + 1 (Soal No. 77–78)</span>
+            </div>
+            <pre class="code-block">c = 1
+while c <= 5:
+    print(c)
+    c = c + 1   # <-- Wajib ada agar nilai c naik menuju 6 dan loop berhenti!</pre>
+            <div class="sim-controls">
+              <select id="sim-while-mode" class="sim-select" style="min-width: 240px;">
+                <option value="safe">Dengan c = c + 1 (Normal)</option>
+                <option value="inf">Tanpa c = c + 1 (Infinite Loop!)</option>
+              </select>
+              <button class="btn-run" type="button" onclick="runSimWhile()"><i data-lucide="play"></i> Jalankan While</button>
+            </div>
+            <div id="sim-while-out" class="sim-output"></div>
+          </div>
+
+          <div class="example-box">
+            <strong>Contoh Soal 5:</strong> Pada kode <code>c = 1</code> diikuti <code>while c &lt;= 5: print(c)</code> tanpa baris penambahan nilai <code>c</code>, apa yang terjadi dan bagaimana cara memperbaikinya?<br>
+            <strong>Pembahasan:</strong> Terjadi <strong><em>infinite loop</em></strong> (mencetak angka <code>1</code> tanpa henti) karena nilai <code>c</code> selalu tetap <code>1</code> (selalu <code>&lt;= 5</code>). Cara menghentikannya adalah menambahkan perintah <strong><code>c = c + 1</code></strong> (atau <code>c += 1</code>) di dalam blok <code>while</code>.
+          </div>
+        </article>
+
+        <!-- Navigasi Bawah -->
+        <div class="bottom-nav">
+          <a href="koding-bab2.html" class="btn-nav"><i data-lucide="arrow-left"></i> Bab Sebelumnya: Dasar Python, Variabel &amp; Operator</a>
+          <a href="koding-bab4.html" class="btn-nav primary">Bab Selanjutnya: Grafik Turtle, List, Fungsi &amp; SDLC <i data-lucide="arrow-right"></i></a>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <footer class="footer">
+    <div class="wrap">
+      <span>© Shira's Archive</span>
+      <span>Belajar sedikit demi sedikit, setiap hari.</span>
+    </div>
+  </footer>
+
+  <script>
+    lucide.createIcons();
+
+    // Sinkronisasi Dark Mode
+    const themeBtn = document.getElementById("theme-toggle");
+    if (localStorage.getItem("shira-theme") === "dark") {
+      document.body.classList.add("dark");
+      themeBtn.innerHTML = '<i data-lucide="sun"></i>';
+      lucide.createIcons();
+    }
+
+    themeBtn.onclick = () => {
+      const dark = document.body.classList.toggle("dark");
+      localStorage.setItem("shira-theme", dark ? "dark" : "light");
+      themeBtn.innerHTML = '<i data-lucide="' + (dark ? "sun" : "moon") + '"></i>';
+      lucide.createIcons();
+    };
+
+    // Simulator 1: Grade
+    function runSimGrade() {
+      const n = Number(document.getElementById("sim-grade-in").value);
+      const out = document.getElementById("sim-grade-out");
+      out.classList.add("show");
+      let grade = "Grade C";
+      if (n >= 88) grade = "Grade A";
+      else if (n >= 75) grade = "Grade B";
+      out.textContent = "> Input nilai = " + n + " -> Output: " + grade;
+    }
+
+    // Simulator 2: Jebakan Urutan
+    function runSimTrap() {
+      const skor = Number(document.getElementById("sim-trap-skor").value);
+      const mode = document.getElementById("sim-trap-mode").value;
+      const out = document.getElementById("sim-trap-out");
+      out.classList.add("show");
+      if (mode === "wrong") {
+        let res = "GAGAL";
+        if (skor >= 70) res = "LULUS (terjebak di syarat pertama >= 70!)";
+        else if (skor >= 90) res = "CUMLAUDE";
+        out.style.borderLeftColor = "#e07474";
+        out.textContent = "> Output: " + res;
+      } else {
+        let res = "GAGAL";
+        if (skor >= 90) res = "CUMLAUDE (tepat!)";
+        else if (skor >= 70) res = "LULUS";
+        out.style.borderLeftColor = "#37a77d";
+        out.textContent = "> Output: " + res;
+      }
+    }
+
+    // Simulator 3: range()
+    function runSimRange() {
+      const start = parseInt(document.getElementById("sim-r-start").value, 10);
+      const stop = parseInt(document.getElementById("sim-r-stop").value, 10);
+      const step = parseInt(document.getElementById("sim-r-step").value, 10);
+      const out = document.getElementById("sim-range-out");
+      out.classList.add("show");
+      if (isNaN(start) || isNaN(stop) || isNaN(step) || step === 0) {
+        out.textContent = "> ValueError: step tidak boleh 0 atau kosong!";
+        return;
+      }
+      const arr = [];
+      if (step > 0) {
+        for (let i = start; i < stop && arr.length < 50; i += step) arr.push(i);
+      } else {
+        for (let i = start; i > stop && arr.length < 50; i += step) arr.push(i);
+      }
+      out.textContent = "> Output: " + (arr.length ? arr.join(" ") : "[] (kosong, tidak ada iterasi)");
+    }
+
+    // Simulator 4: Nested Loop
+    function runSimNested() {
+      const o = parseInt(document.getElementById("sim-nl-out").value, 10) || 0;
+      const i = parseInt(document.getElementById("sim-nl-in").value, 10) || 0;
+      const out = document.getElementById("sim-nested-out");
+      out.classList.add("show");
+      out.textContent = "> Total eksekusi = " + o + " × " + i + " = " + (o * i) + " kali mencetak 'Hello'";
+    }
+
+    // Simulator 5: While
+    function runSimWhile() {
+      const mode = document.getElementById("sim-while-mode").value;
+      const out = document.getElementById("sim-while-out");
+      out.classList.add("show");
+      if (mode === "safe") {
+        out.style.borderLeftColor = "#37a77d";
+        out.textContent = "> Output: 1 2 3 4 5 (Berhenti otomatis saat c menjadi 6)";
+      } else {
+        out.style.borderLeftColor = "#e07474";
+        out.textContent = "> INFINITE LOOP: 1 1 1 1 1 1 1 1 ... (Berjalan tak terbatas karena c tetap 1!)";
+      }
+    }
+
+    // Highlight otomatis daftar sub-bab saat halaman di-scroll
+    const sections = document.querySelectorAll(".sub-section");
+    const navLinks = document.querySelectorAll(".toc-list a");
+
+    window.addEventListener("scroll", () => {
+      let current = "";
+      sections.forEach(sec => {
+        const top = sec.offsetTop - 150;
+        if (window.scrollY >= top) current = sec.getAttribute("id");
+      });
+      navLinks.forEach(link => {
+        link.classList.remove("active");
+        if (link.getAttribute("href") === "#" + current) {
+          link.classList.add("active");
+        }
+      });
+    });
+  </script>
+</body>
+</html>

@@ -1,0 +1,863 @@
+<!doctype html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Bab 2: Dasar Python, Variabel &amp; Operator — Shira's Archive</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/lucide@0.577.0/dist/umd/lucide.min.js"></script>
+  <style>
+    :root {
+      --bg: #f5f8fd;
+      --surface: #fff;
+      --surface2: #edf4fd;
+      --text: #25334a;
+      --muted: #718099;
+      --line: #e3eaf4;
+      --blue: #537fda;
+      --blue2: #e8f0ff;
+      --code-bg: #162033;
+      --code-text: #e2e8f0;
+      --shadow: 0 12px 36px rgba(48, 79, 129, .07);
+    }
+    body.dark {
+      --bg: #101827;
+      --surface: #192437;
+      --surface2: #202e45;
+      --text: #eef4ff;
+      --muted: #a7b5cb;
+      --line: #344159;
+      --blue: #8bb3ff;
+      --blue2: #263d65;
+      --code-bg: #0b111e;
+      --code-text: #eef4ff;
+      --shadow: 0 12px 36px rgba(0, 0, 0, .17);
+    }
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      background: var(--bg);
+      color: var(--text);
+      font-family: "Plus Jakarta Sans", sans-serif;
+      line-height: 1.7;
+      transition: background .25s, color .25s;
+    }
+    button, input, select { font-family: "Plus Jakarta Sans", sans-serif; }
+    button { cursor: pointer; }
+    .wrap { max-width: 1190px; margin: auto; padding: 0 28px; }
+
+    /* Header */
+    .site-header {
+      background: var(--surface);
+      border-bottom: 1px solid var(--line);
+      position: sticky;
+      top: 0;
+      z-index: 10;
+    }
+    .nav-inner {
+      min-height: 78px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+    }
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 11px;
+      font-weight: 800;
+      font-size: 18px;
+      text-decoration: none;
+      color: var(--text);
+    }
+    .brand-mark {
+      width: 38px;
+      height: 38px;
+      display: grid;
+      place-items: center;
+      border-radius: 12px;
+      background: var(--blue);
+      color: white;
+    }
+    .brand-mark svg { width: 21px; }
+    .icon-button {
+      width: 41px;
+      height: 41px;
+      border: 1px solid var(--line);
+      border-radius: 12px;
+      background: var(--surface);
+      color: var(--text);
+      display: grid;
+      place-items: center;
+    }
+    .icon-button svg { width: 19px; }
+
+    /* Breadcrumb & Judul Bab */
+    .reader-top { padding: 34px 0 24px; }
+    .back-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      color: var(--blue);
+      text-decoration: none;
+      font-weight: 700;
+      font-size: 13px;
+      margin-bottom: 18px;
+    }
+    .back-link svg { width: 17px; }
+    .eyebrow {
+      color: var(--blue);
+      font-size: 12px;
+      font-weight: 800;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+      margin: 0 0 8px;
+    }
+    .reader-top h1 {
+      font-size: clamp(28px, 4vw, 40px);
+      letter-spacing: -.04em;
+      line-height: 1.2;
+      margin: 0 0 10px;
+      font-weight: 800;
+    }
+    .reader-top p.desc {
+      color: var(--muted);
+      font-size: 14px;
+      margin: 0;
+      max-width: 680px;
+    }
+
+    /* Layout Dua Kolom: Sidebar Sub-bab + Area Baca */
+    .reader-layout {
+      display: grid;
+      grid-template-columns: 280px minmax(0, 1fr);
+      gap: 28px;
+      padding-bottom: 80px;
+      align-items: start;
+    }
+
+    /* Sidebar Daftar Sub-bab */
+    .toc-card {
+      background: var(--surface);
+      border: 1px solid var(--line);
+      border-radius: 18px;
+      padding: 20px;
+      box-shadow: var(--shadow);
+      position: sticky;
+      top: 102px;
+    }
+    .toc-title {
+      font-size: 12px;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: .08em;
+      color: var(--muted);
+      margin: 0 0 14px;
+    }
+    .toc-list {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      display: grid;
+      gap: 6px;
+    }
+    .toc-list a {
+      display: flex;
+      align-items: start;
+      gap: 9px;
+      padding: 9px 12px;
+      border-radius: 10px;
+      text-decoration: none;
+      color: var(--muted);
+      font-size: 13px;
+      font-weight: 600;
+      line-height: 1.4;
+      transition: background .2s, color .2s;
+    }
+    .toc-list a:hover {
+      background: var(--surface2);
+      color: var(--text);
+    }
+    .toc-list a.active {
+      background: var(--blue2);
+      color: var(--blue);
+      font-weight: 700;
+    }
+    .toc-num {
+      font-size: 11px;
+      font-weight: 800;
+      opacity: .8;
+      margin-top: 2px;
+    }
+
+    /* Area Konten Catatan */
+    .content-area {
+      display: grid;
+      gap: 24px;
+    }
+    .sub-section {
+      background: var(--surface);
+      border: 1px solid var(--line);
+      border-radius: 20px;
+      padding: 30px;
+      box-shadow: var(--shadow);
+      scroll-margin-top: 102px;
+    }
+    .sub-badge {
+      display: inline-block;
+      background: var(--blue2);
+      color: var(--blue);
+      font-size: 11px;
+      font-weight: 800;
+      padding: 4px 10px;
+      border-radius: 20px;
+      margin-bottom: 10px;
+    }
+    .sub-section h2 {
+      font-size: 22px;
+      letter-spacing: -.03em;
+      margin: 0 0 14px;
+    }
+    .sub-section p {
+      font-size: 14px;
+      margin: 0 0 14px;
+    }
+
+    /* Kotak Konsep & Contoh Soal */
+    .formula-box {
+      background: var(--surface2);
+      border-left: 4px solid var(--blue);
+      border-radius: 12px;
+      padding: 18px 20px;
+      margin: 18px 0;
+    }
+    .formula-box strong.box-label {
+      display: block;
+      font-size: 12px;
+      text-transform: uppercase;
+      letter-spacing: .06em;
+      color: var(--blue);
+      margin-bottom: 10px;
+    }
+    .formula-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 10px 20px;
+      font-size: 14px;
+      font-weight: 600;
+    }
+    .example-box {
+      border: 1px dashed var(--line);
+      border-radius: 12px;
+      padding: 16px 20px;
+      margin-top: 16px;
+      font-size: 13.5px;
+    }
+    .example-box strong { color: var(--blue); }
+
+    /* Blok Kode & Simulator Interaktif */
+    .code-playground {
+      background: var(--surface2);
+      border: 1px solid var(--line);
+      border-radius: 14px;
+      padding: 18px;
+      margin: 18px 0;
+    }
+    .playground-head {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 10px;
+      flex-wrap: wrap;
+    }
+    .playground-title {
+      font-size: 12px;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: .06em;
+      color: var(--blue);
+    }
+    .code-block {
+      background: var(--code-bg);
+      color: var(--code-text);
+      font-family: "JetBrains Mono", monospace;
+      font-size: 13px;
+      line-height: 1.6;
+      padding: 16px;
+      border-radius: 11px;
+      overflow-x: auto;
+      margin: 0 0 14px;
+      white-space: pre;
+    }
+    .sim-controls {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      align-items: center;
+    }
+    .sim-input, .sim-select {
+      background: var(--surface);
+      border: 1px solid var(--line);
+      color: var(--text);
+      border-radius: 10px;
+      padding: 9px 13px;
+      font-size: 13px;
+      min-width: 135px;
+    }
+    .btn-run {
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      background: var(--blue);
+      color: #fff;
+      border: 0;
+      border-radius: 10px;
+      padding: 9px 16px;
+      font-size: 13px;
+      font-weight: 700;
+      transition: opacity .2s;
+    }
+    .btn-run:hover { opacity: .9; }
+    .btn-run svg { width: 15px; height: 15px; }
+    .sim-output {
+      margin-top: 12px;
+      background: var(--surface);
+      border: 1px solid var(--line);
+      border-left: 4px solid #37a77d;
+      border-radius: 10px;
+      padding: 11px 14px;
+      font-family: "JetBrains Mono", monospace;
+      font-size: 12.5px;
+      color: var(--text);
+      display: none;
+      line-height: 1.6;
+    }
+    .sim-output.show { display: block; }
+
+    /* Tabel Materi */
+    .table-wrap {
+      overflow-x: auto;
+      margin: 16px 0;
+      border: 1px solid var(--line);
+      border-radius: 12px;
+    }
+    .data-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 13.5px;
+      text-align: left;
+    }
+    .data-table th {
+      background: var(--surface2);
+      color: var(--blue);
+      font-weight: 700;
+      padding: 12px 14px;
+      border-bottom: 1px solid var(--line);
+      white-space: nowrap;
+    }
+    .data-table td {
+      padding: 11px 14px;
+      border-bottom: 1px solid var(--line);
+      vertical-align: top;
+    }
+    .data-table tr:last-child td { border-bottom: none; }
+
+    /* Kartu Grid 2 Kolom */
+    .principle-list {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 12px;
+      margin: 16px 0;
+    }
+    .principle-item {
+      background: var(--surface2);
+      border-radius: 12px;
+      padding: 13px 15px;
+      font-size: 13px;
+      line-height: 1.55;
+    }
+    .principle-item strong {
+      display: block;
+      color: var(--blue);
+      margin-bottom: 3px;
+      font-size: 13.5px;
+    }
+
+    /* Navigasi Bawah Antar Bab */
+    .bottom-nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 12px;
+      margin-top: 10px;
+    }
+    .btn-nav {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 12px 18px;
+      border-radius: 12px;
+      text-decoration: none;
+      font-size: 13px;
+      font-weight: 700;
+      border: 1px solid var(--line);
+      background: var(--surface);
+      color: var(--text);
+    }
+    .btn-nav.primary {
+      background: var(--blue);
+      color: #fff;
+      border-color: var(--blue);
+    }
+    .btn-nav svg { width: 17px; }
+
+    .footer {
+      border-top: 1px solid var(--line);
+      padding: 26px 0;
+      color: var(--muted);
+      font-size: 12px;
+    }
+    .footer .wrap {
+      display: flex;
+      justify-content: space-between;
+      gap: 12px;
+    }
+
+    @media (max-width: 860px) {
+      .reader-layout { grid-template-columns: 1fr; }
+      .toc-card { position: static; }
+      .formula-grid, .principle-list { grid-template-columns: 1fr; }
+    }
+    @media (max-width: 620px) {
+      .wrap { padding: 0 18px; }
+      .sub-section { padding: 22px; }
+      .bottom-nav { flex-direction: column; align-items: stretch; }
+      .btn-nav { justify-content: center; }
+      .footer .wrap { flex-direction: column; }
+    }
+  </style>
+</head>
+<body>
+
+  <header class="site-header">
+    <div class="wrap nav-inner">
+      <a href="../index.html" class="brand" aria-label="Kembali ke Beranda Shira's Archive">
+        <span class="brand-mark"><i data-lucide="book-open"></i></span>
+        <span>Shira's Archive</span>
+      </a>
+      <button id="theme-toggle" class="icon-button" type="button" aria-label="Aktifkan tema gelap" title="Tukar tema">
+        <i data-lucide="moon"></i>
+      </button>
+    </div>
+  </header>
+
+  <main class="wrap">
+    <div class="reader-top">
+      <a href="../index.html" class="back-link"><i data-lucide="arrow-left"></i> Kembali ke Daftar Mata Pelajaran</a>
+      <p class="eyebrow">Koding • Kelas 10 • Bab 02</p>
+      <h1>Dasar Python, Variabel &amp; Operator</h1>
+      <p class="desc">Cara kerja interpreter Python dan IDE, aturan penulisan sintaks (case-sensitive), variabel dan tipe data dasar, fungsi input() dan output print(), serta operator aritmatika, perbandingan, dan logika.</p>
+    </div>
+
+    <div class="reader-layout">
+      <!-- Navigasi Lompat Sub-bab (Sticky Sidebar) -->
+      <aside class="toc-card" aria-label="Daftar sub-bab">
+        <p class="toc-title">Daftar Sub-bab</p>
+        <ul class="toc-list">
+          <li><a href="#sub-1" class="active"><span class="toc-num">01</span><span>Interpreter, IDE &amp; Sintaks</span></a></li>
+          <li><a href="#sub-2"><span class="toc-num">02</span><span>Variabel &amp; Tipe Data Dasar</span></a></li>
+          <li><a href="#sub-3"><span class="toc-num">03</span><span>Fungsi input() &amp; print()</span></a></li>
+          <li><a href="#sub-4"><span class="toc-num">04</span><span>Operator Aritmatika</span></a></li>
+          <li><a href="#sub-5"><span class="toc-num">05</span><span>Operator Perbandingan &amp; Logika</span></a></li>
+        </ul>
+      </aside>
+
+      <!-- Area Baca Utama -->
+      <div class="content-area">
+
+        <!-- Sub-bab 1 -->
+        <article id="sub-1" class="sub-section">
+          <span class="sub-badge">Sub-bab 01</span>
+          <h2>Interpreter, IDE &amp; Aturan Sintaks Python</h2>
+          <p><strong>Python</strong> tergolong sebagai <em>interpreted language</em> karena eksekusi kodenya diterjemahkan secara langsung <strong>baris demi baris oleh interpreter Python</strong>—berbeda dengan <em>Compiler</em> (seperti C++) yang menerjemahkan seluruh kode sekaligus menjadi file eksekusi sebelum dijalankan.</p>
+          <p>Untuk menulis kode dengan nyaman, programmer menggunakan <strong>IDE (<em>Integrated Development Environment</em>)</strong> seperti VS Code yang menyediakan editor teks, tombol eksekusi, pelacakan error, serta fitur <em>syntax highlighting</em> (pewarnaan kata kunci agar mudah dibaca).</p>
+
+          <div class="principle-list">
+            <div class="principle-item">
+              <strong>1. Bersifat Case-Sensitive</strong>
+              Huruf besar dan huruf kecil dianggap berbeda. Perintah <code>print("Halo")</code> wajib huruf kecil semua; menulis <code>PRINT("Halo")</code> akan memicu error.
+            </div>
+            <div class="principle-item">
+              <strong>2. String Wajib Diapit Tanda Petik</strong>
+              Teks string wajib diapit tanda petik ganda <code>"..."</code> atau tunggal <code>'...'</code> secara berpasangan (tidak boleh campur) agar tidak dianggap nama variabel.
+            </div>
+          </div>
+
+          <div class="code-playground">
+            <div class="playground-head">
+              <span class="playground-title">Simulator Cek Sintaks &amp; Case-Sensitivity</span>
+            </div>
+            <pre class="code-block"># Uji coba penulisan perintah print() yang benar vs salah:
+# 1. print("Selamat Datang")   -> Valid
+# 2. PRINT("Selamat Datang")   -> NameError (kapital)
+# 3. print(Selamat Belajar)    -> SyntaxError (tanpa tanda petik)
+# 4. print("Halo Pembelajar)   -> SyntaxError (petik tidak ditutup)</pre>
+            <div class="sim-controls">
+              <select id="sim-syn-select" class="sim-select">
+                <option value="ok">1. print("Selamat Datang")</option>
+                <option value="cap">2. PRINT("Selamat Datang")</option>
+                <option value="noquote">3. print(Selamat Belajar)</option>
+                <option value="mismatch">4. print("Halo Pembelajar)</option>
+              </select>
+              <button class="btn-run" type="button" onclick="runSimSyntax()"><i data-lucide="play"></i> Jalankan Kode</button>
+            </div>
+            <div id="sim-syn-out" class="sim-output"></div>
+          </div>
+
+          <div class="example-box">
+            <strong>Contoh Soal 1:</strong> Apa perbedaan mendasar antara <em>Interpreter</em> dan <em>Compiler</em> dalam menerjemahkan bahasa pemrograman?<br>
+            <strong>Pembahasan:</strong> <strong>Interpreter</strong> menerjemahkan dan mengeksekusi kode program secara langsung <strong>baris demi baris</strong>, sedangkan <strong>Compiler</strong> menerjemahkan <strong>seluruh kode sekaligus</strong> menjadi bahasa mesin sebelum dijalankan.
+          </div>
+        </article>
+
+        <!-- Sub-bab 2 -->
+        <article id="sub-2" class="sub-section">
+          <span class="sub-badge">Sub-bab 02</span>
+          <h2>Variabel &amp; Tipe Data Dasar</h2>
+          <p><strong>Variabel</strong> adalah lokasi penyimpanan data di memori komputer yang diberi nama agar nilainya dapat dipanggil dan diubah secara fleksibel. Di Python, tanda <code>=</code> berarti menyimpan nilai ke dalam variabel (<em>assignment</em>).</p>
+
+          <div class="table-wrap">
+            <table class="data-table">
+              <thead>
+                <tr>
+                  <th>Tipe Data</th>
+                  <th>Keterangan</th>
+                  <th>Contoh Nilai &amp; Hasil <code>type()</code></th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td><strong><code>int</code> (Integer)</strong></td>
+                  <td>Bilangan bulat positif maupun negatif tanpa koma.</td>
+                  <td><code>jumlah = 45</code> → <code>&lt;class 'int'&gt;</code></td>
+                </tr>
+                <tr>
+                  <td><strong><code>float</code> (Floating Point)</strong></td>
+                  <td>Bilangan desimal (berkoma). Hasil pembagian biasa <code>/</code> selalu bertipe <code>float</code>.</td>
+                  <td><code>rata = 88.75</code> atau <code>12 / 4</code> → <code>&lt;class 'float'&gt;</code></td>
+                </tr>
+                <tr>
+                  <td><strong><code>str</code> (String)</strong></td>
+                  <td>Kumpulan karakter atau teks yang diapit tanda petik.</td>
+                  <td><code>matpel = "Informatika"</code> → <code>&lt;class 'str'&gt;</code></td>
+                </tr>
+                <tr>
+                  <td><strong><code>bool</code> (Boolean)</strong></td>
+                  <td>Nilai kebenaran logika, hanya memiliki dua nilai: <code>True</code> atau <code>False</code>.</td>
+                  <td><code>lulus = True</code> → <code>&lt;class 'bool'&gt;</code></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+          <div class="formula-box">
+            <strong class="box-label">Aturan Penamaan Variabel Python yang Sah</strong>
+            <div class="formula-grid">
+              <div>• <strong>Boleh:</strong> Huruf, angka, dan garis bawah (<code>_</code>), contoh: <code>total_nilai_siswa</code>, <code>_skor</code>, <code>skor100</code>.</div>
+              <div>• <strong>Dilarang (SyntaxError):</strong> Diawali angka (<code>2nd_place</code>, <code>100_skor</code>), pakai spasi (<code>nama siswa</code>), tanda hubung (<code>nilai-siswa</code>), atau kata kunci Python (<code>while</code>, <code>if</code>, <code>for</code>).</div>
+            </div>
+          </div>
+
+          <div class="code-playground">
+            <div class="playground-head">
+              <span class="playground-title">Simulator Pemeriksa Tipe Data &amp; Nama Variabel</span>
+            </div>
+            <pre class="code-block">jumlah = 45
+rata_rata = 88.75
+nama_matpel = "Informatika"
+lulus = True
+hasil_bagi = 12 / 4   # Pembagian '/' selalu menghasilkan float (3.0)!</pre>
+            <div class="sim-controls">
+              <select id="sim-type-select" class="sim-select">
+                <option value="jumlah">type(jumlah) [45]</option>
+                <option value="rata">type(rata_rata) [88.75]</option>
+                <option value="matpel">type(nama_matpel) ["Informatika"]</option>
+                <option value="lulus">type(lulus) [True]</option>
+                <option value="bagi">type(12 / 4)</option>
+              </select>
+              <button class="btn-run" type="button" onclick="runSimType()"><i data-lucide="play"></i> Cek type()</button>
+            </div>
+            <div id="sim-type-out" class="sim-output"></div>
+          </div>
+
+          <div class="example-box">
+            <strong>Contoh Soal 2:</strong> Jika variabel <code>point = 100</code> lalu dijalankan perintah <code>print(Point)</code>, pesan error jenis apakah yang muncul?<br>
+            <strong>Pembahasan:</strong> <strong><code>NameError</code></strong> (<em>name 'Point' is not defined</em>), karena Python membedakan huruf besar dan kecil sehingga <code>Point</code> dianggap variabel baru yang belum pernah dibuat.
+          </div>
+        </article>
+
+        <!-- Sub-bab 3 -->
+        <article id="sub-3" class="sub-section">
+          <span class="sub-badge">Sub-bab 03</span>
+          <h2>Fungsi <code>input()</code> &amp; <code>print()</code> (Jebakan Tipe String!)</h2>
+          <p>Fungsi <code>input()</code> mengalirkan data dari pengguna (keyboard) ke program, sedangkan <code>print()</code> mengalirkan hasil dari program ke layar.</p>
+          <p><strong>Jebakan paling sering keluar di ujian:</strong> Secara standar (<em>default</em>), nilai yang dikembalikan oleh <code>input()</code> <strong>selalu bertipe <code>str</code> (teks)</strong>! Jika langsung dikalikan angka tanpa diubah ke <code>int()</code> atau <code>float()</code>, teks tersebut hanya akan diulang-ulang.</p>
+
+          <div class="code-playground">
+            <div class="playground-head">
+              <span class="playground-title">Simulator Jebakan input() Tanpa int() vs Pakai int()</span>
+            </div>
+            <pre class="code-block">n = input("Masukkan angka: ")
+print("Tanpa int() -> n * 3 =", n * 3)          # String diulang 3 kali!
+print("Pakai int() -> int(n) * 3 =", int(n) * 3) # Perkalian matematika!</pre>
+            <div class="sim-controls">
+              <input id="sim-inp-val" class="sim-input" type="text" placeholder="Ketik angka, mis: 5" value="5">
+              <button class="btn-run" type="button" onclick="runSimInput()"><i data-lucide="play"></i> Jalankan Input</button>
+            </div>
+            <div id="sim-inp-out" class="sim-output"></div>
+          </div>
+
+          <div class="example-box">
+            <strong>Contoh Soal 3:</strong> Diketahui <code>a = "15"</code> dan <code>b = "25"</code>. Apakah hasil dari perintah <code>print(a + b)</code>?<br>
+            <strong>Pembahasan:</strong> <strong><code>1525</code></strong>, karena kedua nilai diapit tanda petik sehingga bertipe <em>string</em>. Operator <code>+</code> pada dua string melakukan penyambungan teks (<em>concatenation</em>), bukan penjumlahan angka.
+          </div>
+        </article>
+
+        <!-- Sub-bab 4 -->
+        <article id="sub-4" class="sub-section">
+          <span class="sub-badge">Sub-bab 04</span>
+          <h2>Operator Aritmatika &amp; Urutan Prioritas Hitung</h2>
+          <p>Selain <code>+</code>, <code>-</code>, dan <code>*</code>, Python memiliki operator khusus untuk pembagian bulat, sisa bagi, dan perpangkatan.</p>
+
+          <div class="table-wrap">
+            <table class="data-table">
+              <thead>
+                <tr>
+                  <th>Operator</th>
+                  <th>Nama Operasi</th>
+                  <th>Contoh &amp; Hasil</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td><strong><code>**</code></strong></td>
+                  <td>Pangkat (Eksponen) — <em>Prioritas tertinggi!</em></td>
+                  <td><code>3 ** 2</code> → <code>9</code> (3 pangkat 2)</td>
+                </tr>
+                <tr>
+                  <td><strong><code>/</code></strong></td>
+                  <td>Pembagian biasa (hasil selalu <code>float</code>)</td>
+                  <td><code>29 / 6</code> → <code>4.8333...</code></td>
+                </tr>
+                <tr>
+                  <td><strong><code>//</code></strong></td>
+                  <td>Pembagian bulat (<em>Floor Division</em>)</td>
+                  <td><code>29 // 6</code> → <code>4</code> (karena 6 × 4 = 24)</td>
+                </tr>
+                <tr>
+                  <td><strong><code>%</code></strong></td>
+                  <td>Modulus (Sisa hasil bagi)</td>
+                  <td><code>29 % 6</code> → <code>5</code> (sisa dari 29 − 24 = 5)</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+          <div class="code-playground">
+            <div class="playground-head">
+              <span class="playground-title">Simulator Bagi Bulat (//) &amp; Sisa Bagi (%)</span>
+            </div>
+            <pre class="code-block"># Kasus Toko Kue (Soal No. 47): Punya 23 kue, tiap dus muat 5 kue
+jumlah_dus = kue // kapasitas_dus
+sisa_kue   = kue % kapasitas_dus</pre>
+            <div class="sim-controls">
+              <input id="sim-kue" class="sim-input" type="number" placeholder="Jumlah kue" value="23">
+              <input id="sim-dus" class="sim-input" type="number" placeholder="Isi per dus" value="5">
+              <button class="btn-run" type="button" onclick="runSimMod()"><i data-lucide="play"></i> Hitung // dan %</button>
+            </div>
+            <div id="sim-mod-out" class="sim-output"></div>
+          </div>
+
+          <div class="example-box">
+            <strong>Contoh Soal 4:</strong> Hitunglah hasil dari ekspresi Python <code>print(12 + 4 * 2 ** 3)</code>!<br>
+            <strong>Pembahasan:</strong> <strong><code>44</code></strong>. Kerjakan sesuai urutan prioritas operator:<br>
+            1. Pangkat terlebih dahulu: <code>2 ** 3 = 8</code><br>
+            2. Perkalian berikutnya: <code>4 * 8 = 32</code><br>
+            3. Penjumlahan terakhir: <code>12 + 32 = 44</code>.
+          </div>
+        </article>
+
+        <!-- Sub-bab 5 -->
+        <article id="sub-5" class="sub-section">
+          <span class="sub-badge">Sub-bab 05</span>
+          <h2>Operator Perbandingan &amp; Logika Boolean</h2>
+          <p>Operator perbandingan (<code>==</code>, <code>!=</code>, <code>&gt;</code>, <code>&lt;</code>, <code>&gt;=</code>, <code>&lt;=</code>) selalu menghasilkan tipe data <strong><code>bool</code></strong> (<code>True</code> atau <code>False</code>).</p>
+
+          <div class="formula-box">
+            <strong class="box-label">Aturan Emas Operator Logika (Prioritas: not → and → or)</strong>
+            <div class="formula-grid">
+              <div>• <strong><code>not</code> (Negasi):</strong> Membalik nilai kebenaran (<code>not True</code> → <code>False</code>).</div>
+              <div>• <strong><code>and</code> (Dan):</strong> Bernilai <code>True</code> <strong>hanya jika KEDUANYA True</strong>.</div>
+              <div>• <strong><code>or</code> (Atau):</strong> Bernilai <code>True</code> jika <strong>minimal SALAH SATU True</strong>.</div>
+              <div>• <strong><code>==</code> vs <code>!=</code>:</strong> <code>==</code> menguji kesamaan nilai, sedangkan <code>!=</code> berarti tidak sama dengan.</div>
+            </div>
+          </div>
+
+          <div class="code-playground">
+            <div class="playground-head">
+              <span class="playground-title">Simulator Evaluasi Logika (Soal No. 51, 52, 55, 56)</span>
+            </div>
+            <pre class="code-block"># Pilih ekspresi logika dari paket soal ASAS untuk melihat langkah hitungnya:</pre>
+            <div class="sim-controls">
+              <select id="sim-logic-select" class="sim-select" style="min-width: 260px;">
+                <option value="s51">25 > 10 and not (25 == 10)</option>
+                <option value="s52">not True or False</option>
+                <option value="s55">70 >= 75 or 70 == 70</option>
+                <option value="s56">not (10 > 5 and 3 < 2)</option>
+              </select>
+              <button class="btn-run" type="button" onclick="runSimLogic()"><i data-lucide="play"></i> Evaluasi Logika</button>
+            </div>
+            <div id="sim-logic-out" class="sim-output"></div>
+          </div>
+
+          <div class="example-box">
+            <strong>Contoh Soal 5:</strong> Jika <code>p = True</code> dan <code>q = False</code>, apakah hasil dari perintah <code>print(not p or q)</code>?<br>
+            <strong>Pembahasan:</strong> <strong><code>False</code></strong>. Operator <code>not</code> memiliki prioritas lebih tinggi daripada <code>or</code>, sehingga <code>not p</code> dievaluasi menjadi <code>False</code> terlebih dahulu, lalu <code>False or False</code> menghasilkan <code>False</code>.
+          </div>
+        </article>
+
+        <!-- Navigasi Bawah -->
+        <div class="bottom-nav">
+          <a href="koding-bab1.html" class="btn-nav"><i data-lucide="arrow-left"></i> Bab Sebelumnya: Algoritma, Pseudocode &amp; Flowchart</a>
+          <a href="koding-bab3.html" class="btn-nav primary">Bab Selanjutnya: Percabangan &amp; Perulangan <i data-lucide="arrow-right"></i></a>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <footer class="footer">
+    <div class="wrap">
+      <span>© Shira's Archive</span>
+      <span>Belajar sedikit demi sedikit, setiap hari.</span>
+    </div>
+  </footer>
+
+  <script>
+    lucide.createIcons();
+
+    // Sinkronisasi Dark Mode
+    const themeBtn = document.getElementById("theme-toggle");
+    if (localStorage.getItem("shira-theme") === "dark") {
+      document.body.classList.add("dark");
+      themeBtn.innerHTML = '<i data-lucide="sun"></i>';
+      lucide.createIcons();
+    }
+
+    themeBtn.onclick = () => {
+      const dark = document.body.classList.toggle("dark");
+      localStorage.setItem("shira-theme", dark ? "dark" : "light");
+      themeBtn.innerHTML = '<i data-lucide="' + (dark ? "sun" : "moon") + '"></i>';
+      lucide.createIcons();
+    };
+
+    // Simulator 1: Sintaks
+    function runSimSyntax() {
+      const val = document.getElementById("sim-syn-select").value;
+      const out = document.getElementById("sim-syn-out");
+      out.classList.add("show");
+      if (val === "ok") {
+        out.style.borderLeftColor = "#37a77d";
+        out.textContent = "> Output: Selamat Datang";
+      } else if (val === "cap") {
+        out.style.borderLeftColor = "#e07474";
+        out.textContent = "> NameError: name 'PRINT' is not defined (Python bersifat case-sensitive!)";
+      } else if (val === "noquote") {
+        out.style.borderLeftColor = "#e07474";
+        out.textContent = "> SyntaxError: invalid syntax (Teks string wajib diapit tanda petik!)";
+      } else {
+        out.style.borderLeftColor = "#e07474";
+        out.textContent = "> SyntaxError: unterminated string literal (Tanda petik penutup hilang!)";
+      }
+    }
+
+    // Simulator 2: Tipe Data
+    function runSimType() {
+      const val = document.getElementById("sim-type-select").value;
+      const out = document.getElementById("sim-type-out");
+      out.classList.add("show");
+      const map = {
+        jumlah: "> Output: <class 'int'> (Bilangan bulat)",
+        rata: "> Output: <class 'float'> (Bilangan desimal)",
+        matpel: "> Output: <class 'str'> (Teks / String)",
+        lulus: "> Output: <class 'bool'> (Boolean True/False)",
+        bagi: "> Output: <class 'float'> (Nilai = 3.0; pembagian '/' selalu float!)"
+      };
+      out.textContent = map[val];
+    }
+
+    // Simulator 3: Input
+    function runSimInput() {
+      const raw = document.getElementById("sim-inp-val").value;
+      const out = document.getElementById("sim-inp-out");
+      out.classList.add("show");
+      const strTimes = raw + raw + raw;
+      const numVal = Number(raw);
+      const numLine = isNaN(numVal)
+        ? "> Pakai int()  -> ValueError (Teks huruf tidak bisa diubah ke int!)"
+        : "> Pakai int()  -> int(n) * 3 = " + (numVal * 3);
+      out.innerHTML = "> Tanpa int() -> n * 3 = '" + strTimes + "' (string diulang 3x)<br>" + numLine;
+    }
+
+    // Simulator 4: Modulo & Floor Division
+    function runSimMod() {
+      const kue = parseInt(document.getElementById("sim-kue").value, 10) || 0;
+      const dus = parseInt(document.getElementById("sim-dus").value, 10) || 1;
+      const out = document.getElementById("sim-mod-out");
+      out.classList.add("show");
+      if (dus === 0) {
+        out.textContent = "> ZeroDivisionError: division by zero!";
+        return;
+      }
+      const penuh = Math.floor(kue / dus);
+      const sisa = kue % dus;
+      out.innerHTML = "> " + kue + " // " + dus + " = " + penuh + " dus penuh<br>> " + kue + " % " + dus + "  = " + sisa + " sisa kue";
+    }
+
+    // Simulator 5: Logika
+    function runSimLogic() {
+      const val = document.getElementById("sim-logic-select").value;
+      const out = document.getElementById("sim-logic-out");
+      out.classList.add("show");
+      const steps = {
+        s51: "> Langkah: (25 > 10) is True, not (25 == 10) is True -> True and True = True",
+        s52: "> Langkah: (not True) dikerjakan dulu = False -> False or False = False",
+        s55: "> Langkah: (70 >= 75) is False, (70 == 70) is True -> False or True = True",
+        s56: "> Langkah: Di dalam kurung (True and False) = False -> not False = True"
+      };
+      out.textContent = steps[val];
+    }
+
+    // Highlight otomatis daftar sub-bab saat halaman di-scroll
+    const sections = document.querySelectorAll(".sub-section");
+    const navLinks = document.querySelectorAll(".toc-list a");
+
+    window.addEventListener("scroll", () => {
+      let current = "";
+      sections.forEach(sec => {
+        const top = sec.offsetTop - 150;
+        if (window.scrollY >= top) current = sec.getAttribute("id");
+      });
+      navLinks.forEach(link => {
+        link.classList.remove("active");
+        if (link.getAttribute("href") === "#" + current) {
+          link.classList.add("active");
+        }
+      });
+    });
+  </script>
+</body>
+</html>

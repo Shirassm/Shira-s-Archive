@@ -1,0 +1,832 @@
+<!doctype html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Bab 4: Grafik Turtle, List, Fungsi &amp; SDLC — Shira's Archive</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/lucide@0.577.0/dist/umd/lucide.min.js"></script>
+  <style>
+    :root {
+      --bg: #f5f8fd;
+      --surface: #fff;
+      --surface2: #edf4fd;
+      --text: #25334a;
+      --muted: #718099;
+      --line: #e3eaf4;
+      --blue: #537fda;
+      --blue2: #e8f0ff;
+      --code-bg: #162033;
+      --code-text: #e2e8f0;
+      --shadow: 0 12px 36px rgba(48, 79, 129, .07);
+    }
+    body.dark {
+      --bg: #101827;
+      --surface: #192437;
+      --surface2: #202e45;
+      --text: #eef4ff;
+      --muted: #a7b5cb;
+      --line: #344159;
+      --blue: #8bb3ff;
+      --blue2: #263d65;
+      --code-bg: #0b111e;
+      --code-text: #eef4ff;
+      --shadow: 0 12px 36px rgba(0, 0, 0, .17);
+    }
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      background: var(--bg);
+      color: var(--text);
+      font-family: "Plus Jakarta Sans", sans-serif;
+      line-height: 1.7;
+      transition: background .25s, color .25s;
+    }
+    button, input, select { font-family: "Plus Jakarta Sans", sans-serif; }
+    button { cursor: pointer; }
+    .wrap { max-width: 1190px; margin: auto; padding: 0 28px; }
+
+    /* Header */
+    .site-header {
+      background: var(--surface);
+      border-bottom: 1px solid var(--line);
+      position: sticky;
+      top: 0;
+      z-index: 10;
+    }
+    .nav-inner {
+      min-height: 78px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+    }
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 11px;
+      font-weight: 800;
+      font-size: 18px;
+      text-decoration: none;
+      color: var(--text);
+    }
+    .brand-mark {
+      width: 38px;
+      height: 38px;
+      display: grid;
+      place-items: center;
+      border-radius: 12px;
+      background: var(--blue);
+      color: white;
+    }
+    .brand-mark svg { width: 21px; }
+    .icon-button {
+      width: 41px;
+      height: 41px;
+      border: 1px solid var(--line);
+      border-radius: 12px;
+      background: var(--surface);
+      color: var(--text);
+      display: grid;
+      place-items: center;
+    }
+    .icon-button svg { width: 19px; }
+
+    /* Breadcrumb & Judul Bab */
+    .reader-top { padding: 34px 0 24px; }
+    .back-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      color: var(--blue);
+      text-decoration: none;
+      font-weight: 700;
+      font-size: 13px;
+      margin-bottom: 18px;
+    }
+    .back-link svg { width: 17px; }
+    .eyebrow {
+      color: var(--blue);
+      font-size: 12px;
+      font-weight: 800;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+      margin: 0 0 8px;
+    }
+    .reader-top h1 {
+      font-size: clamp(28px, 4vw, 40px);
+      letter-spacing: -.04em;
+      line-height: 1.2;
+      margin: 0 0 10px;
+      font-weight: 800;
+    }
+    .reader-top p.desc {
+      color: var(--muted);
+      font-size: 14px;
+      margin: 0;
+      max-width: 680px;
+    }
+
+    /* Layout Dua Kolom: Sidebar Sub-bab + Area Baca */
+    .reader-layout {
+      display: grid;
+      grid-template-columns: 280px minmax(0, 1fr);
+      gap: 28px;
+      padding-bottom: 80px;
+      align-items: start;
+    }
+
+    /* Sidebar Daftar Sub-bab */
+    .toc-card {
+      background: var(--surface);
+      border: 1px solid var(--line);
+      border-radius: 18px;
+      padding: 20px;
+      box-shadow: var(--shadow);
+      position: sticky;
+      top: 102px;
+    }
+    .toc-title {
+      font-size: 12px;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: .08em;
+      color: var(--muted);
+      margin: 0 0 14px;
+    }
+    .toc-list {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      display: grid;
+      gap: 6px;
+    }
+    .toc-list a {
+      display: flex;
+      align-items: start;
+      gap: 9px;
+      padding: 9px 12px;
+      border-radius: 10px;
+      text-decoration: none;
+      color: var(--muted);
+      font-size: 13px;
+      font-weight: 600;
+      line-height: 1.4;
+      transition: background .2s, color .2s;
+    }
+    .toc-list a:hover {
+      background: var(--surface2);
+      color: var(--text);
+    }
+    .toc-list a.active {
+      background: var(--blue2);
+      color: var(--blue);
+      font-weight: 700;
+    }
+    .toc-num {
+      font-size: 11px;
+      font-weight: 800;
+      opacity: .8;
+      margin-top: 2px;
+    }
+
+    /* Area Konten Catatan */
+    .content-area {
+      display: grid;
+      gap: 24px;
+    }
+    .sub-section {
+      background: var(--surface);
+      border: 1px solid var(--line);
+      border-radius: 20px;
+      padding: 30px;
+      box-shadow: var(--shadow);
+      scroll-margin-top: 102px;
+    }
+    .sub-badge {
+      display: inline-block;
+      background: var(--blue2);
+      color: var(--blue);
+      font-size: 11px;
+      font-weight: 800;
+      padding: 4px 10px;
+      border-radius: 20px;
+      margin-bottom: 10px;
+    }
+    .sub-section h2 {
+      font-size: 22px;
+      letter-spacing: -.03em;
+      margin: 0 0 14px;
+    }
+    .sub-section p {
+      font-size: 14px;
+      margin: 0 0 14px;
+    }
+
+    /* Kotak Konsep & Contoh Soal */
+    .formula-box {
+      background: var(--surface2);
+      border-left: 4px solid var(--blue);
+      border-radius: 12px;
+      padding: 18px 20px;
+      margin: 18px 0;
+    }
+    .formula-box strong.box-label {
+      display: block;
+      font-size: 12px;
+      text-transform: uppercase;
+      letter-spacing: .06em;
+      color: var(--blue);
+      margin-bottom: 10px;
+    }
+    .formula-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 10px 20px;
+      font-size: 14px;
+      font-weight: 600;
+    }
+    .example-box {
+      border: 1px dashed var(--line);
+      border-radius: 12px;
+      padding: 16px 20px;
+      margin-top: 16px;
+      font-size: 13.5px;
+    }
+    .example-box strong { color: var(--blue); }
+
+    /* Blok Kode & Simulator Interaktif */
+    .code-playground {
+      background: var(--surface2);
+      border: 1px solid var(--line);
+      border-radius: 14px;
+      padding: 18px;
+      margin: 18px 0;
+    }
+    .playground-head {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 10px;
+      flex-wrap: wrap;
+    }
+    .playground-title {
+      font-size: 12px;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: .06em;
+      color: var(--blue);
+    }
+    .code-block {
+      background: var(--code-bg);
+      color: var(--code-text);
+      font-family: "JetBrains Mono", monospace;
+      font-size: 13px;
+      line-height: 1.6;
+      padding: 16px;
+      border-radius: 11px;
+      overflow-x: auto;
+      margin: 0 0 14px;
+      white-space: pre;
+    }
+    .sim-controls {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      align-items: center;
+    }
+    .sim-input, .sim-select {
+      background: var(--surface);
+      border: 1px solid var(--line);
+      color: var(--text);
+      border-radius: 10px;
+      padding: 9px 13px;
+      font-size: 13px;
+      min-width: 135px;
+    }
+    .btn-run {
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      background: var(--blue);
+      color: #fff;
+      border: 0;
+      border-radius: 10px;
+      padding: 9px 16px;
+      font-size: 13px;
+      font-weight: 700;
+      transition: opacity .2s;
+    }
+    .btn-run:hover { opacity: .9; }
+    .btn-run svg { width: 15px; height: 15px; }
+    .sim-output {
+      margin-top: 12px;
+      background: var(--surface);
+      border: 1px solid var(--line);
+      border-left: 4px solid #37a77d;
+      border-radius: 10px;
+      padding: 11px 14px;
+      font-family: "JetBrains Mono", monospace;
+      font-size: 12.5px;
+      color: var(--text);
+      display: none;
+      line-height: 1.6;
+    }
+    .sim-output.show { display: block; }
+
+    /* Kanvas Turtle Simulator */
+    .turtle-stage {
+      margin-top: 14px;
+      background: var(--surface);
+      border: 1px solid var(--line);
+      border-radius: 12px;
+      padding: 14px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 8px;
+    }
+    .turtle-stage svg {
+      background: var(--bg);
+      border-radius: 10px;
+      border: 1px solid var(--line);
+    }
+
+    /* Tabel Materi */
+    .table-wrap {
+      overflow-x: auto;
+      margin: 16px 0;
+      border: 1px solid var(--line);
+      border-radius: 12px;
+    }
+    .data-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 13.5px;
+      text-align: left;
+    }
+    .data-table th {
+      background: var(--surface2);
+      color: var(--blue);
+      font-weight: 700;
+      padding: 12px 14px;
+      border-bottom: 1px solid var(--line);
+      white-space: nowrap;
+    }
+    .data-table td {
+      padding: 11px 14px;
+      border-bottom: 1px solid var(--line);
+      vertical-align: top;
+    }
+    .data-table tr:last-child td { border-bottom: none; }
+
+    /* Kartu Grid 2 Kolom */
+    .principle-list {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 12px;
+      margin: 16px 0;
+    }
+    .principle-item {
+      background: var(--surface2);
+      border-radius: 12px;
+      padding: 13px 15px;
+      font-size: 13px;
+      line-height: 1.55;
+    }
+    .principle-item strong {
+      display: block;
+      color: var(--blue);
+      margin-bottom: 3px;
+      font-size: 13.5px;
+    }
+
+    /* Navigasi Bawah Antar Bab */
+    .bottom-nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 12px;
+      margin-top: 10px;
+    }
+    .btn-nav {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 12px 18px;
+      border-radius: 12px;
+      text-decoration: none;
+      font-size: 13px;
+      font-weight: 700;
+      border: 1px solid var(--line);
+      background: var(--surface);
+      color: var(--text);
+    }
+    .btn-nav.primary {
+      background: var(--blue);
+      color: #fff;
+      border-color: var(--blue);
+    }
+    .btn-nav svg { width: 17px; }
+
+    .footer {
+      border-top: 1px solid var(--line);
+      padding: 26px 0;
+      color: var(--muted);
+      font-size: 12px;
+    }
+    .footer .wrap {
+      display: flex;
+      justify-content: space-between;
+      gap: 12px;
+    }
+
+    @media (max-width: 860px) {
+      .reader-layout { grid-template-columns: 1fr; }
+      .toc-card { position: static; }
+      .formula-grid, .principle-list { grid-template-columns: 1fr; }
+    }
+    @media (max-width: 620px) {
+      .wrap { padding: 0 18px; }
+      .sub-section { padding: 22px; }
+      .bottom-nav { flex-direction: column; align-items: stretch; }
+      .btn-nav { justify-content: center; }
+      .footer .wrap { flex-direction: column; }
+    }
+  </style>
+</head>
+<body>
+
+  <header class="site-header">
+    <div class="wrap nav-inner">
+      <a href="../index.html" class="brand" aria-label="Kembali ke Beranda Shira's Archive">
+        <span class="brand-mark"><i data-lucide="book-open"></i></span>
+        <span>Shira's Archive</span>
+      </a>
+      <button id="theme-toggle" class="icon-button" type="button" aria-label="Aktifkan tema gelap" title="Tukar tema">
+        <i data-lucide="moon"></i>
+      </button>
+    </div>
+  </header>
+
+  <main class="wrap">
+    <div class="reader-top">
+      <a href="../index.html" class="back-link"><i data-lucide="arrow-left"></i> Kembali ke Daftar Mata Pelajaran</a>
+      <p class="eyebrow">Koding • Kelas 10 • Bab 04</p>
+      <h1>Grafik Turtle, List, Fungsi &amp; SDLC</h1>
+      <p class="desc">Menggambar bangun datar dengan modul Python Turtle (rumus sudut luar poligon), manipulasi struktur data list, pembuatan fungsi dengan def dan return, serta tahapan pengembangan perangkat lunak (SDLC).</p>
+    </div>
+
+    <div class="reader-layout">
+      <!-- Navigasi Lompat Sub-bab (Sticky Sidebar) -->
+      <aside class="toc-card" aria-label="Daftar sub-bab">
+        <p class="toc-title">Daftar Sub-bab</p>
+        <ul class="toc-list">
+          <li><a href="#sub-1" class="active"><span class="toc-num">01</span><span>Perintah Dasar Python Turtle</span></a></li>
+          <li><a href="#sub-2"><span class="toc-num">02</span><span>Rumus Sudut Putar Poligon Turtle</span></a></li>
+          <li><a href="#sub-3"><span class="toc-num">03</span><span>Struktur Data List (Array)</span></a></li>
+          <li><a href="#sub-4"><span class="toc-num">04</span><span>Fungsi (def &amp; return)</span></a></li>
+          <li><a href="#sub-5"><span class="toc-num">05</span><span>Tahapan Pengembangan Proyek (SDLC)</span></a></li>
+        </ul>
+      </aside>
+
+      <!-- Area Baca Utama -->
+      <div class="content-area">
+
+        <!-- Sub-bab 1 -->
+        <article id="sub-1" class="sub-section">
+          <span class="sub-badge">Sub-bab 01</span>
+          <h2>Perintah Dasar Modul Grafik Python Turtle</h2>
+          <p><strong>Python Turtle</strong> adalah pustaka grafik bawaan Python yang memungkinkan kita menggambar bentuk geometris dengan menggerakkan kursor pena di atas kanvas.</p>
+
+          <div class="table-wrap">
+            <table class="data-table">
+              <thead>
+                <tr>
+                  <th>Perintah Python Turtle</th>
+                  <th>Fungsi Utama</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td><code>p = turtle.Turtle()</code></td>
+                  <td>Membuat objek pena baru bernama <code>p</code> yang akan digunakan untuk menggambar.</td>
+                </tr>
+                <tr>
+                  <td><code>p.forward(80)</code> / <code>p.right(90)</code></td>
+                  <td>Menggerakkan pena maju sejauh 80 piksel lalu berbelok ke kanan sebesar 90 derajat (membentuk sudut siku-siku / huruf L).</td>
+                </tr>
+                <tr>
+                  <td><code>p.pencolor("blue")</code></td>
+                  <td>Mengubah warna garis lintasan pena menjadi biru.</td>
+                </tr>
+                <tr>
+                  <td><code>p.fillcolor("yellow")</code></td>
+                  <td>Menentukan warna isian bidang tertutup (dipanggil <strong>sebelum</strong> <code>begin_fill()</code>).</td>
+                </tr>
+                <tr>
+                  <td><code>p.begin_fill()</code> &amp; <code>p.end_fill()</code></td>
+                  <td>Menandai batas awal dan akhir dari area bidang tertutup yang akan diwarnai.</td>
+                </tr>
+                <tr>
+                  <td><code>p.penup()</code> &amp; <code>p.pendown()</code></td>
+                  <td><code>penup()</code> mengangkat pena agar perpindahan kursor <strong>tidak meninggalkan jejak garis</strong>; <code>pendown()</code> menurunkannya kembali.</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+          <div class="example-box">
+            <strong>Contoh Soal 1:</strong> Jika kursor Turtle dijalankan dengan perintah <code>t.forward(80)</code>, <code>t.right(90)</code>, lalu <code>t.forward(80)</code>, bentuk geometris apakah yang dihasilkan?<br>
+            <strong>Pembahasan:</strong> <strong>Dua garis tegak lurus yang membentuk sudut 90 derajat (huruf L terbalik)</strong>, karena baru berjalan dua sisi (belum empat sisi untuk menjadi persegi utuh).
+          </div>
+        </article>
+
+        <!-- Sub-bab 2 -->
+        <article id="sub-2" class="sub-section">
+          <span class="sub-badge">Sub-bab 02</span>
+          <h2>Rumus Sudut Putar Poligon pada Python Turtle</h2>
+          <p>Saat menggambar bangun segi-<em>N</em> beraturan menggunakan perulangan <code>for i in range(N):</code>, kursor Turtle harus berputar sebesar <strong>sudut luar</strong> bangun tersebut agar kembali ke titik awal dengan tepat.</p>
+
+          <div class="formula-box">
+            <strong class="box-label">Rumus Wajib Ujian: Sudut Putar Luar Poligon = 360° ÷ N</strong>
+            <div class="formula-grid">
+              <div>• <strong>Segitiga Sama Sisi (N = 3):</strong> <code>360 / 3 = <strong>120°</strong></code> (<code>left(120)</code>)</div>
+              <div>• <strong>Persegi / Bujur Sangkar (N = 4):</strong> <code>360 / 4 = <strong>90°</strong></code> (<code>left(90)</code>)</div>
+              <div>• <strong>Segi Lima / Pentagon (N = 5):</strong> <code>360 / 5 = <strong>72°</strong></code> (<code>left(72)</code>)</div>
+              <div>• <strong>Segi Delapan / Oktagon (N = 8):</strong> <code>360 / 8 = <strong>45°</strong></code> (<code>left(45)</code>)</div>
+            </div>
+          </div>
+
+          <div class="code-playground">
+            <div class="playground-head">
+              <span class="playground-title">Simulator Kanvas Python Turtle (Soal No. 89–92)</span>
+            </div>
+            <pre class="code-block" id="turtle-code-preview">import turtle
+t = turtle.Turtle()
+t.fillcolor("yellow")
+t.begin_fill()
+for i in range(3):
+    t.forward(100)
+    t.left(120)     # Sudut luar segitiga = 360 / 3 = 120 derajat
+t.end_fill()</pre>
+            <div class="sim-controls">
+              <select id="sim-turtle-sides" class="sim-select">
+                <option value="3">Segitiga Sama Sisi (N = 3 → 120°)</option>
+                <option value="4">Persegi / Square (N = 4 → 90°)</option>
+                <option value="5">Segi Lima / Pentagon (N = 5 → 72°)</option>
+                <option value="6">Segi Enam / Hexagon (N = 6 → 60°)</option>
+                <option value="8">Segi Delapan / Oktagon (N = 8 → 45°)</option>
+              </select>
+              <button class="btn-run" type="button" onclick="runSimTurtle()"><i data-lucide="play"></i> Gambar di Kanvas</button>
+            </div>
+            <div class="turtle-stage">
+              <svg id="turtle-svg" viewBox="0 0 240 180" width="240" height="180" aria-label="Kanvas Simulasi Python Turtle"></svg>
+              <div id="sim-turtle-out" class="sim-output show" style="width:100%; margin-top:4px;">> Sudut putar: 360° / 3 = 120° (Segitiga Sama Sisi)</div>
+            </div>
+          </div>
+
+          <div class="example-box">
+            <strong>Contoh Soal 2:</strong> Jika Turtle hendak menggambar segi lima beraturan (pentagon) menggunakan <code>for i in range(5):</code>, berapakah sudut rotasi <code>left(...)</code> yang tepat?<br>
+            <strong>Pembahasan:</strong> <strong><code>left(72)</code></strong>, karena sudut luar segi lima beraturan adalah <code>360° / 5 = 72°</code>.
+          </div>
+        </article>
+
+        <!-- Sub-bab 3 -->
+        <article id="sub-3" class="sub-section">
+          <span class="sub-badge">Sub-bab 03</span>
+          <h2>Struktur Data <code>list</code> (Array di Python)</h2>
+          <p><strong><code>list</code></strong> digunakan untuk menyimpan banyak data dalam satu variabel menggunakan kurung siku <code>[...]</code>. Sama seperti array pada C++, nomor urut posisi (<strong>indeks</strong>) elemen di dalam <code>list</code> <strong>selalu dimulai dari 0</strong>.</p>
+
+          <div class="principle-list">
+            <div class="principle-item">
+              <strong>1. Mengakses Indeks <code>data[i]</code></strong>
+              Pada <code>data = [10, 20, 30, 40, 50]</code>:<br>
+              • <code>data[0]</code> = 10<br>
+              • <code>data[1]</code> = 20<br>
+              • <code>data[3]</code> = 40
+            </div>
+            <div class="principle-item">
+              <strong>2. Method <code>.append()</code>, <code>.remove()</code>, &amp; <code>len()</code></strong>
+              • <code>list.append(x)</code>: Menambah elemen baru di posisi paling akhir.<br>
+              • <code>list.remove(x)</code>: Menghapus elemen <code>x</code> dari list.<br>
+              • <code>len(list)</code>: Menghitung total jumlah elemen di dalam list.
+            </div>
+          </div>
+
+          <div class="code-playground">
+            <div class="playground-head">
+              <span class="playground-title">Simulator Manipulasi List (Soal No. 93 &amp; 94)</span>
+            </div>
+            <pre class="code-block">item = ["Buku", "Pensil", "Penggaris"]
+item.remove("Pensil")       # Sisa 2 item
+item.append("Tipe-X")       # Jadi 3 item
+item.append("Spidol")       # Jadi 4 item
+print(len(item))</pre>
+            <div class="sim-controls">
+              <button class="btn-run" type="button" onclick="runSimList()"><i data-lucide="play"></i> Jalankan Manipulasi List</button>
+            </div>
+            <div id="sim-list-out" class="sim-output"></div>
+          </div>
+
+          <div class="example-box">
+            <strong>Contoh Soal 3:</strong> Diketahui <code>data = [10, 20, 30, 40, 50]</code>. Berapakah hasil dari perintah <code>print(data[1] + data[3])</code>?<br>
+            <strong>Pembahasan:</strong> <strong><code>60</code></strong>. Karena indeks dimulai dari <code>0</code>, maka <code>data[1]</code> bernilai <code>20</code> dan <code>data[3]</code> bernilai <code>40</code>, sehingga <code>20 + 40 = 60</code>.
+          </div>
+        </article>
+
+        <!-- Sub-bab 4 -->
+        <article id="sub-4" class="sub-section">
+          <span class="sub-badge">Sub-bab 04</span>
+          <h2>Fungsi: Kata Kunci <code>def</code> dan <code>return</code></h2>
+          <p><strong>Fungsi</strong> adalah blok kode terorganisir yang dapat dipanggil berulang kali. Di Python, fungsi didefinisikan menggunakan kata kunci <strong><code>def</code></strong>.</p>
+          <p><strong>Perbedaan <code>return</code> vs <code>print()</code> di dalam fungsi:</strong> Fungsi yang hanya memakai <code>print()</code> sekadar menampilkan teks ke layar, sedangkan fungsi dengan <strong><code>return</code></strong> mengembalikan nilai hasil perhitungan agar <strong>dapat ditampung ke dalam variabel dan diolah kembali</strong> pada kalkulasi berikutnya.</p>
+
+          <div class="code-playground">
+            <div class="playground-head">
+              <span class="playground-title">Simulator Fungsi cek_diskon(total) (Soal No. 97)</span>
+            </div>
+            <pre class="code-block">def cek_diskon(total):
+    if total >= 50000:
+        return total - 5000
+    return total
+
+print(cek_diskon(total_belanja))</pre>
+            <div class="sim-controls">
+              <input id="sim-fn-in" class="sim-input" type="number" step="5000" value="50000">
+              <button class="btn-run" type="button" onclick="runSimFunc()"><i data-lucide="play"></i> Panggil Fungsi</button>
+            </div>
+            <div id="sim-fn-out" class="sim-output"></div>
+          </div>
+
+          <div class="example-box">
+            <strong>Contoh Soal 4:</strong> Jika fungsi <code>cek_diskon(total)</code> memotong <code>5000</code> hanya jika <code>total &gt;= 50000</code>, berapakah output dari <code>print(cek_diskon(50000), cek_diskon(40000))</code>?<br>
+            <strong>Pembahasan:</strong> <strong><code>45000 40000</code></strong>. Pemanggilan pertama memenuhi syarat <code>&gt;= 50000</code> sehingga dikurangi <code>5000</code> menjadi <code>45000</code>, sedangkan pemanggilan kedua <code>40000</code> tidak mendapat diskon.
+          </div>
+        </article>
+
+        <!-- Sub-bab 5 -->
+        <article id="sub-5" class="sub-section">
+          <span class="sub-badge">Sub-bab 05</span>
+          <h2>Tahapan Pengembangan Perangkat Lunak (SDLC)</h2>
+          <p>Dalam membuat proyek aplikasi atau perangkat lunak yang terstruktur, pengembang mengikuti alur baku <strong>SDLC (<em>Software Development Life Cycle</em>)</strong> dari tahap perencanaan hingga rilis ke pengguna.</p>
+
+          <div class="table-wrap">
+            <table class="data-table">
+              <thead>
+                <tr>
+                  <th>Urutan Tahap SDLC</th>
+                  <th>Kegiatan Utama yang Dilakukan</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td><strong>1. Analisis Masalah (<em>Requirement Analysis</em>)</strong></td>
+                  <td>Mengidentifikasi kebutuhan pengguna, batasan masalah, serta data input-output yang diperlukan sistem.</td>
+                </tr>
+                <tr>
+                  <td><strong>2. Desain Algoritma</strong></td>
+                  <td>Merancang alur logika penyelesaian masalah secara sistematis sebelum menulis kode.</td>
+                </tr>
+                <tr>
+                  <td><strong>3. Pemodelan Flowchart / Pseudocode</strong></td>
+                  <td>Menuangkan desain algoritma ke dalam bentuk visual diagram alir (<em>flowchart</em>) atau kode semu (<em>pseudocode</em>).</td>
+                </tr>
+                <tr>
+                  <td><strong>4. Konstruksi Kode (<em>Code Construction</em>)</strong></td>
+                  <td>Menulis kode program menggunakan bahasa pemrograman resmi (seperti Python) berdasarkan desain yang sudah dibuat.</td>
+                </tr>
+                <tr>
+                  <td><strong>5. Quality Assurance &amp; Testing (Pengujian)</strong></td>
+                  <td>Tim penguji (<em>tester</em>) melakukan verifikasi untuk menemukan <em>bug</em>, kesalahan logika, maupun celah keamanan sebelum dirilis.</td>
+                </tr>
+                <tr>
+                  <td><strong>6. Deployment (Rilis &amp; Pemeliharaan)</strong></td>
+                  <td>Meluncurkan aplikasi agar dapat digunakan oleh publik serta melakukan pemeliharaan berkala.</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+          <div class="example-box">
+            <strong>Contoh Soal 5:</strong> Tahap SDLC di mana tim penguji (<em>tester</em>) melakukan verifikasi penemuan <em>bug</em>, kesalahan logika, dan celah keamanan sebelum aplikasi dirilis ke publik dinamakan apa?<br>
+            <strong>Pembahasan:</strong> <strong>Quality Assurance &amp; Testing (Pengujian)</strong>.
+          </div>
+        </article>
+
+        <!-- Navigasi Bawah -->
+        <div class="bottom-nav">
+          <a href="koding-bab3.html" class="btn-nav"><i data-lucide="arrow-left"></i> Bab Sebelumnya: Percabangan &amp; Perulangan</a>
+          <a href="ASASCODING.html" class="btn-nav primary">Pembahasan Soal ASAS <i data-lucide="arrow-right"></i></a>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <footer class="footer">
+    <div class="wrap">
+      <span>© Shira's Archive</span>
+      <span>Belajar sedikit demi sedikit, setiap hari.</span>
+    </div>
+  </footer>
+
+  <script>
+    lucide.createIcons();
+
+    // Sinkronisasi Dark Mode
+    const themeBtn = document.getElementById("theme-toggle");
+    if (localStorage.getItem("shira-theme") === "dark") {
+      document.body.classList.add("dark");
+      themeBtn.innerHTML = '<i data-lucide="sun"></i>';
+      lucide.createIcons();
+    }
+
+    themeBtn.onclick = () => {
+      const dark = document.body.classList.toggle("dark");
+      localStorage.setItem("shira-theme", dark ? "dark" : "light");
+      themeBtn.innerHTML = '<i data-lucide="' + (dark ? "sun" : "moon") + '"></i>';
+      lucide.createIcons();
+    };
+
+    // Simulator 1: Python Turtle
+    function runSimTurtle() {
+      const n = parseInt(document.getElementById("sim-turtle-sides").value, 10) || 3;
+      const angle = 360 / n;
+      const names = {
+        3: "Segitiga Sama Sisi",
+        4: "Persegi (Square)",
+        5: "Segi Lima (Pentagon)",
+        6: "Segi Enam (Hexagon)",
+        8: "Segi Delapan (Oktagon)"
+      };
+
+      document.getElementById("turtle-code-preview").textContent =
+        "import turtle\n" +
+        "t = turtle.Turtle()\n" +
+        "t.fillcolor(\"yellow\")\n" +
+        "t.begin_fill()\n" +
+        "for i in range(" + n + "):\n" +
+        "    t.forward(100)\n" +
+        "    t.left(" + angle + ")     # Sudut luar = 360 / " + n + " = " + angle + " derajat\n" +
+        "t.end_fill()";
+
+      const svg = document.getElementById("turtle-svg");
+      const cx = 120, cy = 90, r = 62;
+      const pts = [];
+      for (let i = 0; i < n; i++) {
+        const theta = -Math.PI / 2 + (i * 2 * Math.PI) / n;
+        const x = (cx + r * Math.cos(theta)).toFixed(1);
+        const y = (cy + r * Math.sin(theta)).toFixed(1);
+        pts.push(x + "," + y);
+      }
+      svg.innerHTML = '<polygon points="' + pts.join(" ") + '" fill="#fde047" stroke="#537fda" stroke-width="3" stroke-linejoin="round"/>';
+      document.getElementById("sim-turtle-out").textContent =
+        "> Sudut putar: 360° / " + n + " = " + angle + "° (" + (names[n] || ("Segi-" + n)) + ")";
+    }
+    runSimTurtle();
+
+    // Simulator 2: List
+    function runSimList() {
+      const out = document.getElementById("sim-list-out");
+      out.classList.add("show");
+      out.innerHTML =
+        "> Awal        : ['Buku', 'Pensil', 'Penggaris'] (len = 3)<br>" +
+        "> .remove()   : ['Buku', 'Penggaris'] (len = 2)<br>" +
+        "> .append() x2: ['Buku', 'Penggaris', 'Tipe-X', 'Spidol']<br>" +
+        "> Output len(item) = 4";
+    }
+
+    // Simulator 3: Fungsi
+    function runSimFunc() {
+      const total = Number(document.getElementById("sim-fn-in").value) || 0;
+      const hasil = total >= 50000 ? total - 5000 : total;
+      const out = document.getElementById("sim-fn-out");
+      out.classList.add("show");
+      out.textContent = "> Output cek_diskon(" + total + ") = " + hasil +
+        (total >= 50000 ? " (Dapat potongan 5000!)" : " (Belum mencapai minimal 50000)");
+    }
+
+    // Highlight otomatis daftar sub-bab saat halaman di-scroll
+    const sections = document.querySelectorAll(".sub-section");
+    const navLinks = document.querySelectorAll(".toc-list a");
+
+    window.addEventListener("scroll", () => {
+      let current = "";
+      sections.forEach(sec => {
+        const top = sec.offsetTop - 150;
+        if (window.scrollY >= top) current = sec.getAttribute("id");
+      });
+      navLinks.forEach(link => {
+        link.classList.remove("active");
+        if (link.getAttribute("href") === "#" + current) {
+          link.classList.add("active");
+        }
+      });
+    });
+  </script>
+</body>
+</html>
